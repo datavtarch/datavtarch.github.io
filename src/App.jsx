@@ -238,15 +238,20 @@ export default function App() {
     const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
 
+    let rafId = null;
     const handleMouseMove = (e) => {
-      if (cursorOuterRef.current) {
-        cursorOuterRef.current.style.translate = `${e.clientX - 16}px ${e.clientY - 16}px`;
-      }
-      if (flashlightRef.current) {
-        flashlightRef.current.style.translate = `${e.clientX - 350}px ${e.clientY - 350}px`;
-      }
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        if (cursorOuterRef.current) {
+          cursorOuterRef.current.style.translate = `${e.clientX - 16}px ${e.clientY - 16}px`;
+        }
+        if (flashlightRef.current) {
+          flashlightRef.current.style.translate = `${e.clientX - 350}px ${e.clientY - 350}px`;
+        }
+        rafId = null;
+      });
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -261,6 +266,7 @@ export default function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
     };
   }, [isLoading]);
@@ -369,18 +375,27 @@ export default function App() {
           overflow: hidden; 
           position: relative;
           background: var(--glass-bg); 
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           border: 1px solid var(--border-color);
           border-top: 1px solid var(--border-color);
           border-left: 1px solid var(--border-color);
           box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
-          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+          will-change: transform;
         }
         .luxury-card:hover {
           transform: translateY(-5px);
           border-color: rgba(217, 90, 43, 0.5);
           box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(217, 90, 43, 0.1);
+        }
+
+        /* Animated grain background thay thế video */
+        @keyframes grain { 0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-2%, -3%); } 30% { transform: translate(3%, 2%); } 50% { transform: translate(-1%, 4%); } 70% { transform: translate(4%, -1%); } 90% { transform: translate(-3%, 2%); } }
+        .bg-animated-grain {
+          width: 100%; height: 100%;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+          animation: grain 8s steps(10) infinite;
         }
 
         /* Gradient mạnh để làm nổi bật Typography */
@@ -445,12 +460,9 @@ export default function App() {
 
       `}} />
 
-      {/* --- CINE BG VIDEO --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: isLightMode ? 0.3 : 0.4 }}>
-         {/* Placeholder video kiến trúc */}
-         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover filter grayscale-[50%]">
-             <source src="https://cdn.pixabay.com/video/2021/08/11/84687-587427202_large.mp4" type="video/mp4" />
-         </video>
+      {/* --- ANIMATED BG (thay video nặng bằng gradient động) --- */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: isLightMode ? 0.15 : 0.25 }}>
+         <div className="absolute inset-0 bg-animated-grain"></div>
          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-[var(--bg-color)]/70 to-transparent"></div>
       </div>
 
@@ -678,14 +690,14 @@ export default function App() {
             onMouseMove={handleSliderMove} onTouchMove={handleSliderMove}
             onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
           >
-            <img src={IMAGES.compareRender} alt="Final Render" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+            <img src={IMAGES.compareRender} alt="Final Render" loading="lazy" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             <div className="absolute top-6 right-6 z-10 tag-accent opacity-90 backdrop-blur-md shadow-lg border border-[#D95A2B]/50">FINAL_RENDER</div>
 
             <div 
               className="absolute inset-0 pointer-events-none z-10 border-r-2 border-[#D95A2B] shadow-[2px_0_15px_rgba(217,90,43,0.5)]" 
               style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
             >
-                <img src={IMAGES.compareRender} alt="Clay Model" className="absolute inset-0 w-full h-full object-cover clay-filter pointer-events-none" />
+                <img src={IMAGES.compareRender} alt="Clay Model" loading="lazy" className="absolute inset-0 w-full h-full object-cover clay-filter pointer-events-none" />
                 <div className="absolute top-6 left-6 tag-outline bg-[var(--glass-bg)] text-[var(--text-main)] shadow-lg">CLAY_MODEL</div>
             </div>
 
@@ -717,7 +729,7 @@ export default function App() {
                 desc: "Thiết kế nội thất căn hộ 3 phòng ngủ. Áp dụng phong cách Japandi. Tập trung mô phỏng ánh sáng tự nhiên bằng D5 Render."
               })}
             >
-              <img src={IMAGES.projectVinhomes} alt="Vinhomes" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+              <img src={IMAGES.projectVinhomes} alt="Vinhomes" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute inset-0 gradient-overlay"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 z-20 flex flex-col md:flex-row md:items-end justify-between gap-4 pointer-events-none">
                 <div className="max-w-md">
@@ -743,7 +755,7 @@ export default function App() {
                     desc: "Thiết kế kiến trúc khu nghỉ dưỡng mộng mơ tại Đà Lạt. Tôn trọng tối đa địa hình tự nhiên, hướng trọn view nhìn núi đồi xung quanh."
                  })}
                >
-                 <img src={IMAGES.projectDaLatHouse} alt="Đà Lạt" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+                 <img src={IMAGES.projectDaLatHouse} alt="Đà Lạt" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                  <div className="absolute inset-0 gradient-overlay"></div>
                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 flex justify-between items-end pointer-events-none">
                    <div>
@@ -762,7 +774,7 @@ export default function App() {
                     desc: "Dự án thi công thiết kế và render nội thất chung cư cao cấp. Không gian ấm cúng, sang trọng với các tông màu hiện đại."
                  })}
                >
-                 <img src={IMAGES.projectCaledon} alt="Caledon" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+                 <img src={IMAGES.projectCaledon} alt="Caledon" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                  <div className="absolute inset-0 gradient-overlay"></div>
                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 pointer-events-none">
                    <div className="flex flex-wrap gap-2 mb-3"><span className="tag-outline border-[var(--border-color)] bg-[var(--glass-bg)]">NỘI THẤT CĂN HỘ</span></div>
@@ -781,7 +793,7 @@ export default function App() {
                     desc: "Phương án thiết kế đồ họa 3D kiến trúc chung cư và các tiện ích nội khu đỉnh cao."
                  })}
                >
-                 <img src={IMAGES.projectChungCu} alt="Chung Cu" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+                 <img src={IMAGES.projectChungCu} alt="Chung Cu" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                  <div className="absolute inset-0 gradient-overlay"></div>
                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20 pointer-events-none">
                    <h3 className="text-xl font-black text-[var(--text-main)] uppercase font-heading drop-shadow-lg">Dựng Hình Chung Cư</h3>
@@ -797,7 +809,7 @@ export default function App() {
                     desc: "Triết lý thiết kế Wabi Sabi đề cao vẻ đẹp mộc mạc ẩn giấu trong sự không hoàn hảo."
                  })}
                >
-                 <img src={IMAGES.projectWabi} alt="Wabi Sabi" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+                 <img src={IMAGES.projectWabi} alt="Wabi Sabi" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                  <div className="absolute inset-0 gradient-overlay"></div>
                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20 pointer-events-none">
                    <h3 className="text-xl font-black text-[var(--text-main)] uppercase font-heading drop-shadow-lg">Wabi Sabi</h3>
@@ -813,7 +825,7 @@ export default function App() {
                     desc: "Dự án Render Wabi Trung thể hiện tông màu ấm trầm mang dáng vẻ thiền định tĩnh lặng."
                  })}
                >
-                 <img src={IMAGES.projectWabiTrung} alt="Wabi Trung" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
+                 <img src={IMAGES.projectWabiTrung} alt="Wabi Trung" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                  <div className="absolute inset-0 gradient-overlay"></div>
                  <div className="absolute bottom-0 left-0 right-0 p-6 z-20 pointer-events-none">
                    <h3 className="text-xl font-black text-[var(--text-main)] uppercase font-heading drop-shadow-lg">Wabi Trung</h3>
@@ -833,7 +845,7 @@ export default function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 focus-container">
             <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <div className="absolute top-4 right-4 bg-white text-black text-[9px] font-mono font-bold px-3 py-1 rounded shadow-lg uppercase z-20">HOT</div>
-              <img src={IMAGES.storeIndochine} alt="Indochine" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 filter grayscale-[30%] group-hover:grayscale-0 brightness-75 group-hover:brightness-100" />
+              <img src={IMAGES.storeIndochine} alt="Indochine" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 filter grayscale-[30%] group-hover:grayscale-0 brightness-75 group-hover:brightness-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-[var(--bg-color)]/60 to-transparent opacity-90"></div>
               
               <div className="relative z-20 p-6 md:p-8 w-full pointer-events-none">
@@ -850,7 +862,7 @@ export default function App() {
             </TiltCard>
 
             <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <img src={IMAGES.storeJapandi} alt="Japandi" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 filter grayscale-[30%] group-hover:grayscale-0 brightness-75 group-hover:brightness-100" />
+              <img src={IMAGES.storeJapandi} alt="Japandi" loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 filter grayscale-[30%] group-hover:grayscale-0 brightness-75 group-hover:brightness-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-[var(--bg-color)]/60 to-transparent opacity-90"></div>
               
               <div className="relative z-20 p-6 md:p-8 w-full pointer-events-none">
@@ -887,7 +899,7 @@ export default function App() {
                   className="focus-item aspect-square overflow-hidden relative group cursor-pointer lg:rounded-lg bg-[var(--glass-bg)] border border-[var(--border-color)]"
                   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
                 >
-                   <img src={post.image} alt={`IG Post`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   <img src={post.image} alt={`IG Post`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6 text-white font-bold font-mono text-sm md:text-lg z-20 backdrop-blur-[2px]">
                       <div className="flex items-center gap-2"><Heart size={20} className="fill-white" /> {post.likes}</div>
                       <div className="flex items-center gap-2"><MessageCircle size={20} className="fill-white" /> {post.comments}</div>
