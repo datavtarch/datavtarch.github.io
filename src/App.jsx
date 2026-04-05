@@ -244,9 +244,6 @@ export default function App() {
         if (cursorOuterRef.current) {
           cursorOuterRef.current.style.translate = `${e.clientX - 16}px ${e.clientY - 16}px`;
         }
-        if (flashlightRef.current) {
-          flashlightRef.current.style.translate = `${e.clientX - 350}px ${e.clientY - 350}px`;
-        }
         rafId = null;
       });
     };
