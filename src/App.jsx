@@ -452,6 +452,23 @@ export default function App() {
         .focus-container:hover .focus-item { opacity: 0.3; filter: grayscale(80%) blur(3px); transform: scale(0.98); }
         .focus-container .focus-item:hover { opacity: 1 !important; filter: grayscale(0%) blur(0px) !important; transform: scale(1.05) translateY(-5px) !important; z-index: 30; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
 
+        /* LOGO IMAGE HANDLING */
+        .logo-icon {
+          filter: invert(1);
+          mix-blend-mode: screen;
+          transition: filter 0.3s ease;
+        }
+        .logo-icon-orange {
+          filter: invert(1) sepia(1) saturate(3) hue-rotate(340deg) brightness(0.95);
+          mix-blend-mode: screen;
+          transition: filter 0.3s ease;
+        }
+        [data-theme="light"] .logo-icon,
+        [data-theme="light"] .logo-icon-orange {
+          filter: none;
+          mix-blend-mode: normal;
+        }
+
       `}} />
 
 
@@ -472,8 +489,12 @@ export default function App() {
 
       {/* --- MÀN HÌNH KHỞI ĐỘNG (PRE-LOADER LUXURY) --- */}
       <div className={`fixed inset-0 z-[99999] bg-[var(--bg-color)] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none -translate-y-10'}`}>
-        <div className="w-16 h-16 bg-[#D95A2B] rounded-lg flex items-center justify-center text-[var(--text-main)] font-black text-2xl font-heading mb-8 shadow-[0_0_30px_rgba(217,90,43,0.4)] animate-pulse">
-            VT
+        <div className="w-40 h-40 mb-6 flex items-center justify-center">
+          <img
+            src="/logo/logo.jpg"
+            alt="VTARCH Logo"
+            className="w-full h-full object-contain logo-icon-orange"
+          />
         </div>
         <div className="w-48 h-1 bg-[var(--glass-bg)] rounded-full overflow-hidden relative">
             <div className="absolute top-0 left-0 h-full bg-[#D95A2B] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
@@ -496,8 +517,12 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between relative z-10">
           
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollToSection('home')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <div className="w-10 h-10 bg-[#D95A2B] rounded-lg flex items-center justify-center text-[var(--text-main)] font-black text-xl leading-none pt-0.5 group-hover:shadow-[0_0_15px_#D95A2B] transition-all">
-              VT
+            <div className="w-10 h-10 overflow-hidden rounded-lg group-hover:shadow-[0_0_15px_#D95A2B] transition-all">
+              <img
+                src="/logo/logo.jpg"
+                alt="VTARCH"
+                className="w-full h-full object-cover object-top logo-icon"
+              />
             </div>
             <div className="flex flex-col justify-center">
               <span className="text-xl font-black tracking-widest leading-none font-heading text-[var(--text-main)] transition-all uppercase">Thanh.</span>
