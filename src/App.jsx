@@ -390,13 +390,7 @@ export default function App() {
           box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(217, 90, 43, 0.1);
         }
 
-        /* Animated grain background thay thế video */
-        @keyframes grain { 0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-2%, -3%); } 30% { transform: translate(3%, 2%); } 50% { transform: translate(-1%, 4%); } 70% { transform: translate(4%, -1%); } 90% { transform: translate(-3%, 2%); } }
-        .bg-animated-grain {
-          width: 100%; height: 100%;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
-          animation: grain 8s steps(10) infinite;
-        }
+
 
         /* Gradient mạnh để làm nổi bật Typography */
         .gradient-overlay { background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%); }
@@ -460,11 +454,7 @@ export default function App() {
 
       `}} />
 
-      {/* --- ANIMATED BG (thay video nặng bằng gradient động) --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: isLightMode ? 0.15 : 0.25 }}>
-         <div className="absolute inset-0 bg-animated-grain"></div>
-         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-[var(--bg-color)]/70 to-transparent"></div>
-      </div>
+
 
       {/* --- ÁNH SÁNG NỀN VÀ FLASHLIGHT CON TRỎ --- */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
