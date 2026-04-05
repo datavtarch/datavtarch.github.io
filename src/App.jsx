@@ -171,7 +171,6 @@ export default function App() {
   
   const cursorOuterRef = useRef(null);
   const cursorInnerRef = useRef(null);
-  const flashlightRef = useRef(null);
   
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -491,7 +490,7 @@ export default function App() {
       <div className={`fixed inset-0 z-[99999] bg-[var(--bg-color)] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none -translate-y-10'}`}>
         <div className="w-40 h-40 mb-6 flex items-center justify-center">
           <img
-            src="/logo/logo.jpg"
+            src="logo/logo.jpg"
             alt="VTARCH Logo"
             className="w-full h-full object-contain logo-icon-orange"
           />
@@ -519,7 +518,7 @@ export default function App() {
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollToSection('home')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className="w-10 h-10 overflow-hidden rounded-lg group-hover:shadow-[0_0_15px_#D95A2B] transition-all">
               <img
-                src="/logo/logo.jpg"
+                src="logo/logo.jpg"
                 alt="VTARCH"
                 className="w-full h-full object-cover object-top logo-icon"
               />
