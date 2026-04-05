@@ -11,16 +11,16 @@ const InstagramIcon = ({ size = 24, className = "" }) => (
 import { Mail, Phone, MapPin, Menu, X, ExternalLink, MoveRight, Maximize2, Layers, ArrowLeftRight, Calculator, Check, Cpu, Terminal, Command, MonitorPlay, Cuboid, Sparkles , Volume2, VolumeX, Sun, Moon, Play, Pause, Heart, MessageCircle } from 'lucide-react';
 
 const IMAGES = {
-  portrait: "/projects/PROFILE_NGUYỄN_VĂN_THANH.jpg", 
-  projectDaLatHouse: "/projects/SKETCHUP__D5_RENDER_DỰ_ÁN_THIẾT_KẾ_ĐÀ_LẠT_HOUSE.jpg", 
-  projectWabi: "/projects/D5_RENDER_-_WABI.jpg", 
-  projectWabiTrung: "/projects/D5_RENDER_-_WABI_TRUNG.jpg", 
-  projectChungCu: "/projects/SKETCHUP__D5_RENDER_-__CHUNG_CƯ_DỰNG.jpg", 
-  projectVinhomes: "/projects/SKETCHUP__D5_RENDER_-_CĂN_HỘ_VINHOMES_ẢNH_RENDER_TỔNG_HỢP.jpg", 
-  projectCaledon: "/projects/SKETCHUP__D5_RENDER_-_CĂN_HỘ_CALEDON_ẢNH_RENDER_TỔNG_HỢP.jpg", 
-  storeJapandi: "/projects/AI_-_Phong_cách_Japandi.jpg", 
-  storeIndochine: "/projects/AI_-_Phong_cách_Indochine.jpg", 
-  compareRender: "/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.jpg"
+  portrait: "projects/PROFILE_NGUYỄN_VĂN_THANH.jpg", 
+  projectDaLatHouse: "projects/SKETCHUP__D5_RENDER_DỰ_ÁN_THIẾT_KẾ_ĐÀ_LẠT_HOUSE.jpg", 
+  projectWabi: "projects/D5_RENDER_-_WABI.jpg", 
+  projectWabiTrung: "projects/D5_RENDER_-_WABI_TRUNG.jpg", 
+  projectChungCu: "projects/SKETCHUP__D5_RENDER_-__CHUNG_CƯ_DỰNG.jpg", 
+  projectVinhomes: "projects/SKETCHUP__D5_RENDER_-_CĂN_HỘ_VINHOMES_ẢNH_RENDER_TỔNG_HỢP.jpg", 
+  projectCaledon: "projects/SKETCHUP__D5_RENDER_-_CĂN_HỘ_CALEDON_ẢNH_RENDER_TỔNG_HỢP.jpg", 
+  storeJapandi: "projects/AI_-_Phong_cách_Japandi.jpg", 
+  storeIndochine: "projects/AI_-_Phong_cách_Indochine.jpg", 
+  compareRender: "projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.jpg"
 };
 
 const IG_POSTS = [
