@@ -101,7 +101,8 @@ const MagneticButton = ({ children, className, onClick, onMouseEnter, onMouseLea
       onMouseEnter={onMouseEnter}
       style={{
         transform: `translate(${position.x}px, ${position.y}px)`,
-        transition: position.x === 0 ? 'transform 0.5s ease-out' : 'transform 0.1s ease-out'
+        transition: position.x === 0 ? 'transform 0.5s ease-out' : 'transform 0.1s ease-out',
+        willChange: 'transform'
       }}
     >
       {children}
@@ -230,7 +231,8 @@ export default function App() {
       if (rafId) return;
       rafId = requestAnimationFrame(() => {
         if (cursorOuterRef.current) {
-          cursorOuterRef.current.style.translate = `${e.clientX - 16}px ${e.clientY - 16}px`;
+          // Dùng transform3d thay vì translate để mượt hơn trên mọi trình duyệt
+          cursorOuterRef.current.style.transform = `translate3d(${e.clientX - 16}px, ${e.clientY - 16}px, 0)`;
         }
         rafId = null;
       });
@@ -243,7 +245,7 @@ export default function App() {
           entry.target.classList.add('revealed');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 }); // Trigger earlier for smoothness
 
     document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
@@ -257,7 +259,7 @@ export default function App() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.1, // Snappier scrolling
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
       smoothWheel: true,
       wheelMultiplier: 1,
@@ -353,44 +355,49 @@ export default function App() {
           background-size: 80px 80px;
         }
 
-        /* KHỐI KÍNH MỜ (GLASSMORPHISM) CỨNG CÁP HƠN */
+        /* THANH CUỘN TÙY CHỈNH - PREMIUM LOOK */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { 
+          background: #332A25; 
+          border-radius: 10px;
+          transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #D95A2B; }
+
+        /* TYPOGRAPHY GRADIENT */
+        .text-gradient {
+          background: linear-gradient(135deg, #ffffff 30%, #D95A2B 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
         .luxury-card {
           border-radius: 1.25rem; 
           overflow: hidden; 
           position: relative;
           background: var(--glass-bg); 
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
           border: 1px solid var(--border-color);
-          border-top: 1px solid var(--border-color);
-          border-left: 1px solid var(--border-color);
           box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
           transition: border-color 0.4s ease, box-shadow 0.4s ease;
+          will-change: transform, opacity;
+          transform: translateZ(0);
         }
         .luxury-card:hover {
           border-color: rgba(217, 90, 43, 0.5);
-          box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(217, 90, 43, 0.1);
+          box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-
-
-        /* Gradient mạnh để làm nổi bật Typography */
-        .gradient-overlay { background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%); }
-
-        /* TECH TAGS GÓC CẠNH */
-        .tag-accent {
-          background-color: #D95A2B; color: #fff; font-family: 'Space Mono', monospace; font-weight: 700;
-          padding: 6px 12px; border-radius: 4px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+        .reveal-on-scroll { 
+          opacity: 0; 
+          transform: translate3d(0, 30px, 0); 
+          transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+          will-change: transform, opacity;
         }
-        .tag-outline {
-          background-color: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.15);
-          color: #bfaea3; font-family: 'Space Mono', monospace; font-weight: 700;
-          padding: 6px 12px; border-radius: 4px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-          backdrop-filter: blur(8px);
-        }
-
-        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-on-scroll.revealed { opacity: 1; transform: translate3d(0, 0, 0); }
         .delay-100 { transition-delay: 150ms; }
         .delay-200 { transition-delay: 300ms; }
 
@@ -436,21 +443,18 @@ export default function App() {
 
         /* LOGO IMAGE HANDLING */
         .logo-icon {
-          filter: invert(1);
-          mix-blend-mode: screen;
-          transition: filter 0.3s ease;
+          transition: filter 0.3s ease, transform 0.3s ease;
+          mix-blend-mode: screen; /* Removes black background in dark mode */
         }
         .logo-icon-orange {
-          filter: invert(1) sepia(1) saturate(3) hue-rotate(340deg) brightness(0.95);
-          mix-blend-mode: screen;
+          filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.95);
           transition: filter 0.3s ease;
+          mix-blend-mode: screen;
         }
         [data-theme="light"] .logo-icon,
         [data-theme="light"] .logo-icon-orange {
-          filter: none;
-          mix-blend-mode: normal;
+          mix-blend-mode: multiply; /* Removes white background in light mode */
         }
-
       `}} />
 
 
@@ -496,17 +500,17 @@ export default function App() {
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? 'bg-[var(--bg-color)]/80 border-b border-[var(--border-color)] backdrop-blur-xl py-3' : 'bg-transparent py-6'}`}>
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between relative z-10">
           
-          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => scrollToSection('home')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <div className="w-10 h-10 overflow-hidden rounded-lg group-hover:shadow-[0_0_15px_#D95A2B] transition-all">
+          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => scrollToSection('home')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className="w-12 h-12 transition-all flex items-center justify-center">
               <img
                 src="logo/logo.jpg"
                 alt="VTARCH"
-                className="w-full h-full object-cover object-top logo-icon"
+                className="w-full h-full object-contain logo-icon"
               />
             </div>
             <div className="flex flex-col justify-center">
-              <span className="text-xl font-black tracking-widest leading-none font-heading text-[var(--text-main)] transition-all uppercase">Thanh.</span>
-              <span className="text-[var(--text-muted)] text-[8px] font-mono tracking-[0.2em] uppercase mt-1.5 font-bold">Architecture</span>
+              <span className="text-xl font-black tracking-widest leading-none font-heading text-[var(--text-main)] transition-all uppercase">VTARCH</span>
+              <span className="text-[var(--text-muted)] text-[7px] font-mono tracking-[0.15em] uppercase mt-1.5 font-bold">Architecture & Design</span>
             </div>
           </div>
           
@@ -1046,13 +1050,14 @@ export default function App() {
                      <MagneticButton onClick={() => {setSelectedProject(null); scrollToSection('estimator');}} className="btn-accent px-8 py-4 text-xs uppercase tracking-widest font-mono justify-center flex shadow-[0_0_15px_rgba(217,90,43,0.4)] w-full sm:w-auto" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         TƯ VẤN DỰ ÁN NÀY
                      </MagneticButton>
-                   </div>
-                 </>
-               )}
-            </div>
-         </div>
-      </div>
+                     </div>
+                     </>
+                     )}
+                     </div>
+                     </div>
+                     </div>
 
-    </div>
-  );
-}
+                     </div>
+                     );
+                     }
+
