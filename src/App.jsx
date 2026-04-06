@@ -36,55 +36,22 @@ const IG_POSTS = Array.from({ length: 53 }, (_, i) => {
 }).filter(Boolean);
 
 /* ========================================================
-   COMPONENT: TILT CARD
+   COMPONENT: TILT CARD (Simplified)
 ======================================================== */
-const TiltCard = ({ children, className, onClick, onMouseEnter, onMouseLeave }) => {
-  const [style, setStyle] = useState({});
-  const cardRef = useRef(null);
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
-    setStyle({ transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`, transition: 'transform 0.1s ease-out' });
-    if(onMouseEnter) onMouseEnter();
-  };
-  const handleMouseLeaveInner = () => {
-    setStyle({ transform: `none`, transition: 'transform 0.5s ease-out' });
-    if(onMouseLeave) onMouseLeave();
-  };
+const TiltCard = ({ children, className, onClick }) => {
   return (
-    <div ref={cardRef} className={className} style={style} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeaveInner} onMouseEnter={onMouseEnter} onClick={onClick}>
+    <div className={className} onClick={onClick}>
       {children}
     </div>
   );
 };
 
 /* ========================================================
-   COMPONENT: MAGNETIC BUTTON
+   COMPONENT: MAGNETIC BUTTON (Simplified)
 ======================================================== */
-const MagneticButton = ({ children, className, onClick, onMouseEnter, onMouseLeave }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const btnRef = useRef(null);
-  const handleMouseMove = (e) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const originalLeft = rect.left - position.x;
-    const originalTop = rect.top - position.y;
-    const x = e.clientX - originalLeft - rect.width / 2;
-    const y = e.clientY - originalTop - rect.height / 2;
-    setPosition({ x: x * 0.3, y: y * 0.3 });
-  };
-  const handleMouseLeaveInner = () => {
-    setPosition({ x: 0, y: 0 });
-    if (onMouseLeave) onMouseLeave();
-  };
+const MagneticButton = ({ children, className, onClick }) => {
   return (
-    <button ref={btnRef} className={className} onClick={onClick} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeaveInner} onMouseEnter={onMouseEnter} style={{ transform: `translate(${position.x}px, ${position.y}px)`, transition: position.x === 0 ? 'transform 0.5s ease-out' : 'transform 0.1s ease-out', willChange: 'transform' }}>
+    <button className={className} onClick={onClick}>
       {children}
     </button>
   );
@@ -128,14 +95,9 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const cursorOuterRef = useRef(null);
-  const cursorInnerRef = useRef(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef(null);
   const [isLightMode, setIsLightMode] = useState(false);
-  const [sliderPos, setSliderPos] = useState(50);
-  const sliderRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
   const [viewsCount, setViewsCount] = useState(3);
   const [needModeling, setNeedModeling] = useState(false);
   const [needAI, setNeedAI] = useState(true);
@@ -179,17 +141,7 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', isLightMode ? 'light' : 'dark');
     const handleScroll = () => setIsScrolled(window.scrollY > 30);
     window.addEventListener('scroll', handleScroll);
-    let rafId = null;
-    const handleMouseMove = (e) => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        if (cursorOuterRef.current) {
-          cursorOuterRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        }
-        rafId = null;
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -198,13 +150,12 @@ export default function App() {
       });
     }, { threshold: 0.05 });
     document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
     };
-  }, [isLoading]);
+  }, [isLoading, isLightMode]);
 
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.1, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: 1 });
@@ -226,68 +177,36 @@ export default function App() {
     }
   };
 
-  const handleMouseEnter = () => {
-    if (cursorOuterRef.current) {
-      cursorOuterRef.current.classList.add('scale-150', 'border-[#D95A2B]', 'bg-[#D95A2B]/10');
-    }
-    if (cursorInnerRef.current) {
-      cursorInnerRef.current.classList.add('opacity-0');
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (cursorOuterRef.current) {
-      cursorOuterRef.current.classList.remove('scale-150', 'border-[#D95A2B]', 'bg-[#D95A2B]/10');
-    }
-    if (cursorInnerRef.current) {
-      cursorInnerRef.current.classList.remove('opacity-0');
-    }
-  };
-
-  const handleSliderMove = (e) => {
-    if (!isDragging || !sliderRef.current) return;
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const rect = sliderRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setSliderPos((x / rect.width) * 100);
-  };
-
   return (
-    <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[#D95A2B] selection:text-[var(--text-main)] cursor-none relative overflow-x-hidden" onMouseUp={() => setIsDragging(false)} onTouchEnd={() => setIsDragging(false)} onMouseLeave={() => setIsDragging(false)}>
+    <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[#D95A2B] selection:text-[var(--text-main)] relative overflow-x-hidden">
       <style dangerouslySetInnerHTML={{ __html: `
         :root { --bg-color: #100D0B; --text-main: #ffffff; --text-muted: #9ca3af; --border-color: rgba(255, 255, 255, 0.1); --glass-bg: rgba(20, 16, 14, 0.4); }
         [data-theme="light"] { --bg-color: #F4F1ED; --text-main: #1C1917; --text-muted: #57534E; --border-color: rgba(0, 0, 0, 0.08); --glass-bg: rgba(255, 255, 255, 0.5); }
         body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; background-color: var(--bg-color); color: var(--text-main); }
         .font-heading { font-family: 'Montserrat', sans-serif; }
         .font-mono { font-family: 'Space Mono', monospace; }
-        @media (min-width: 1024px) { * { cursor: none !important; } }
         .bg-grid-subtle { background-size: 80px 80px; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #332A25; border-radius: 10px; transition: background 0.3s ease; }
+        ::-webkit-scrollbar-thumb { background: #332A25; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #D95A2B; }
         .text-gradient { background: linear-gradient(135deg, #ffffff 30%, #D95A2B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .luxury-card { border-radius: 1.25rem; overflow: hidden; position: relative; background: var(--glass-bg); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--border-color); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2); transition: border-color 0.4s ease, box-shadow 0.4s ease; will-change: transform, opacity; transform: translateZ(0); }
-        .luxury-card:hover { border-color: rgba(217, 90, 43, 0.5); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        .luxury-card { border-radius: 1.25rem; overflow: hidden; position: relative; background: var(--glass-bg); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--border-color); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2); transition: border-color 0.3s ease; }
+        .luxury-card:hover { border-color: rgba(217, 90, 43, 0.5); }
         .static-luxury-card { border-radius: 1.25rem; overflow: hidden; position: relative; background: var(--glass-bg); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--border-color); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2); }
-        .reveal-on-scroll { opacity: 0; transform: translate3d(0, 30px, 0); transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); will-change: transform, opacity; }
+        .reveal-on-scroll { opacity: 0; transform: translate3d(0, 20px, 0); transition: all 0.5s ease-out; }
         .reveal-on-scroll.revealed { opacity: 1; transform: translate3d(0, 0, 0); }
         .btn-outline-luxury { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .btn-outline-luxury:hover { border-color: #D95A2B; color: #D95A2B; background: rgba(217, 90, 43, 0.05); box-shadow: 0 0 20px rgba(217, 90, 43, 0.2); }
+        .btn-outline-luxury:hover { border-color: #D95A2B; color: #D95A2B; }
         .btn-accent { background: #D95A2B; color: #FFF; border-radius: 8px; font-weight: 800; transition: all 0.3s ease; }
-        .btn-accent:hover { box-shadow: 0 0 20px rgba(217, 90, 43, 0.5); }
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 16px; border-radius: 4px; background: #D95A2B; cursor: ew-resize; margin-top: -10px; box-shadow: 0 0 15px rgba(217, 90, 43, 0.5); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 0px; }
-        .clay-filter { filter: grayscale(100%) contrast(1.1) brightness(1.2) sepia(20%) hue-rotate(5deg); }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 16px; border-radius: 4px; background: #D95A2B; cursor: ew-resize; margin-top: -10px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.1); }
         .animate-marquee { display: inline-flex; white-space: nowrap; animation: marquee 35s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .focus-container:hover .focus-item { opacity: 0.3; filter: grayscale(80%) blur(3px); }
-        .focus-container .focus-item:hover { opacity: 1 !important; filter: grayscale(0%) blur(0px) !important; z-index: 30; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
-        .logo-icon { transition: filter 0.3s ease, transform 0.3s ease; mix-blend-mode: screen; }
-        .logo-icon-orange { filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.95); transition: filter 0.3s ease; mix-blend-mode: screen; }
+        .logo-icon { transition: transform 0.3s ease; mix-blend-mode: screen; }
+        .logo-icon-orange { filter: sepia(1) saturate(3) hue-rotate(340deg) brightness(0.95); mix-blend-mode: screen; }
         [data-theme="light"] .logo-icon, [data-theme="light"] .logo-icon-orange { mix-blend-mode: multiply; }
-        #cursor-fixed { position: fixed; top: 0; left: 0; width: 32px; height: 32px; border: 1.5px solid var(--border-color); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; mix-blend-mode: screen; }
       ` }} />
 
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
@@ -303,11 +222,9 @@ export default function App() {
         <div className="mt-4 font-mono text-[10px] text-[var(--text-muted)] tracking-[0.2em]">LOADING_CORE <span className="text-[#D95A2B] font-bold">{loadingProgress}%</span></div>
       </div>
 
-      <div ref={cursorOuterRef} id="cursor-fixed" className="hidden lg:block"></div>
-
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? 'bg-[var(--bg-color)]/80 border-b border-[var(--border-color)] backdrop-blur-xl py-3' : 'bg-transparent py-6'}`}>
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between">
-          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => scrollToSection('home')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => scrollToSection('home')}>
             <img src="logo/logo.jpg" alt="VTARCH" className="w-12 h-12 object-contain logo-icon" />
             <div className="flex flex-col justify-center">
               <span className="text-xl font-black tracking-widest font-heading text-[var(--text-main)] uppercase">VTARCH</span>
@@ -315,22 +232,22 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => setIsLightMode(!isLightMode)} className="w-10 h-10 rounded-full flex items-center justify-center transition-all bg-[var(--glass-bg)] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{isLightMode ? <Moon size={16} /> : <Sun size={16} />}</button>
+            <button onClick={() => setIsLightMode(!isLightMode)} className="w-10 h-10 rounded-full flex items-center justify-center transition-all bg-[var(--glass-bg)] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md">{isLightMode ? <Moon size={16} /> : <Sun size={16} />}</button>
             <nav className="hidden lg:flex items-center space-x-6 bg-[var(--glass-bg)] px-6 py-2.5 rounded-lg border border-[var(--border-color)] backdrop-blur-md">
-              {['Dự án', 'Dịch vụ', 'Quy trình', 'Báo Giá', 'Cửa hàng'].map((item, idx) => (
-                <button key={idx} onClick={() => scrollToSection(['projects', 'services', 'skills', 'estimator', 'store'][idx])} className="text-[10px] font-bold font-mono text-[var(--text-muted)] hover:text-[#D95A2B] tracking-widest uppercase transition-colors" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{item}</button>
+              {['Dự án', 'Dịch vụ', 'Báo Giá', 'Cửa hàng'].map((item, idx) => (
+                <button key={idx} onClick={() => scrollToSection(['projects', 'services', 'estimator', 'store'][idx])} className="text-[10px] font-bold font-mono text-[var(--text-muted)] hover:text-[#D95A2B] tracking-widest uppercase transition-colors">{item}</button>
               ))}
             </nav>
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden bg-[var(--glass-bg)] border border-[var(--border-color)] hover:text-[#D95A2B] backdrop-blur-md">{mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}</button>
-            <MagneticButton onClick={() => scrollToSection('contact')} className="hidden lg:flex btn-accent px-6 py-2.5 text-[10px] uppercase tracking-widest font-mono" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Hợp Tác Ngay</MagneticButton>
+            <MagneticButton onClick={() => scrollToSection('contact')} className="hidden lg:flex btn-accent px-6 py-2.5 text-[10px] uppercase tracking-widest font-mono">Hợp Tác Ngay</MagneticButton>
           </div>
         </div>
       </header>
 
       <div className={`fixed inset-0 z-40 bg-[var(--bg-color)]/95 backdrop-blur-3xl flex flex-col justify-center items-center transition-all duration-400 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <nav className="flex flex-col items-center space-y-8 text-center">
-          {['Trang chủ', 'Dự án', 'Dịch vụ', 'Quy trình', 'Báo giá', 'Cửa hàng', 'Liên hệ'].map((item, idx) => (
-            <button key={idx} onClick={() => scrollToSection(['home', 'projects', 'services', 'skills', 'estimator', 'store', 'contact'][idx])} className="text-3xl font-black hover:text-[#D95A2B] uppercase tracking-widest font-heading">{item}</button>
+          {['Trang chủ', 'Dự án', 'Dịch vụ', 'Báo giá', 'Cửa hàng', 'Liên hệ'].map((item, idx) => (
+            <button key={idx} onClick={() => scrollToSection(['home', 'projects', 'services', 'estimator', 'store', 'contact'][idx])} className="text-3xl font-black hover:text-[#D95A2B] uppercase tracking-widest font-heading">{item}</button>
           ))}
         </nav>
       </div>
@@ -347,8 +264,8 @@ export default function App() {
             <span>&gt; Định tuyến không gian kiến trúc 3D.</span>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-            <MagneticButton onClick={() => scrollToSection('projects')} className="btn-accent w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-mono flex items-center justify-center gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Khám phá Portfolio <MoveRight size={14} /></MagneticButton>
-            <MagneticButton onClick={() => scrollToSection('store')} className="btn-outline-luxury w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-mono gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><Command size={14}/> Thư viện D5</MagneticButton>
+            <MagneticButton onClick={() => scrollToSection('projects')} className="btn-accent w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-mono flex items-center justify-center gap-2">Khám phá Portfolio <MoveRight size={14} /></MagneticButton>
+            <MagneticButton onClick={() => scrollToSection('store')} className="btn-outline-luxury w-full sm:w-auto px-8 py-4 text-xs uppercase tracking-widest font-mono gap-2"><Command size={14}/> Thư viện D5</MagneticButton>
           </div>
         </section>
 
@@ -358,7 +275,7 @@ export default function App() {
             <h3 className="text-4xl font-black tracking-tight font-heading uppercase">Dự Án <span className="text-[#D95A2B]">Tiêu Biểu</span></h3>
           </div>
           <div className="space-y-12">
-            <TiltCard className="focus-item luxury-card aspect-[16/9] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Vinhomes Japandi", tags: ["NỘI THẤT", "120M2", "D5 RENDER"], image: IMAGES.projectVinhomes, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ VINHOMES ẢNH RENDER TỔNG HỢP.pdf", desc: "Thiết kế nội thất căn hộ Japandi. Áp dụng D5 Render mô phỏng ánh sáng thực." })} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <TiltCard className="focus-item luxury-card aspect-[16/9] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Vinhomes Japandi", tags: ["NỘI THẤT", "120M2", "D5 RENDER"], image: IMAGES.projectVinhomes, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ VINHOMES ẢNH RENDER TỔNG HỢP.pdf", desc: "Thiết kế nội thất căn hộ Japandi. Áp dụng D5 Render mô phỏng ánh sáng thực." })}>
               <img src={IMAGES.projectVinhomes} alt="Vinhomes" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute bottom-0 left-0 right-0 p-10 z-20 flex justify-between items-end">
                 <div className="max-w-md"><div className="flex gap-2 mb-4"><span className="tag-accent">NỘI THẤT P.JAPANDI</span></div><h3 className="text-4xl font-black font-heading uppercase drop-shadow-md">Căn Hộ Vinhomes</h3></div>
@@ -366,11 +283,11 @@ export default function App() {
               </div>
             </TiltCard>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 focus-container">
-              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Đà Lạt House", tags: ["KIẾN TRÚC", "NGHỈ DƯỠNG"], image: IMAGES.projectDaLatHouse, pdfLink: "/documents/SKETCHUP + D5 RENDER DỰ ÁN THIẾT KẾ ĐÀ LẠT HOUSE.pdf", desc: "Kiến trúc khu nghỉ dưỡng Đà Lạt." })} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Đà Lạt House", tags: ["KIẾN TRÚC", "NGHỈ DƯỠNG"], image: IMAGES.projectDaLatHouse, pdfLink: "/documents/SKETCHUP + D5 RENDER DỰ ÁN THIẾT KẾ ĐÀ LẠT HOUSE.pdf", desc: "Kiến trúc khu nghỉ dưỡng Đà Lạt." })}>
                 <img src={IMAGES.projectDaLatHouse} alt="Đà Lạt" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute bottom-0 left-0 p-8 z-20"><h3 className="text-2xl font-black font-heading uppercase">Đà Lạt House</h3></div>
               </TiltCard>
-              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Caledon", tags: ["NỘI THẤT"], image: IMAGES.projectCaledon, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ CALEDON ẢNH RENDER TỔNG HỢP.pdf", desc: "Nội thất chung cư cao cấp Caledon." })} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Caledon", tags: ["NỘI THẤT"], image: IMAGES.projectCaledon, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ CALEDON ẢNH RENDER TỔNG HỢP.pdf", desc: "Nội thất chung cư cao cấp Caledon." })}>
                 <img src={IMAGES.projectCaledon} alt="Caledon" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute bottom-0 left-0 p-8 z-20"><h3 className="text-2xl font-black font-heading uppercase">Căn Hộ Caledon</h3></div>
               </TiltCard>
@@ -384,9 +301,9 @@ export default function App() {
               <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#D95A2B] bg-[#D95A2B]/10 px-3 py-1 rounded-md w-max">&gt; CORE_EXPERTISE</h2>
               <h3 className="text-4xl font-black font-heading uppercase">Dịch Vụ <br/><span className="text-[#D95A2B]">Kỹ Thuật</span></h3>
               <div className="space-y-4">
-                <div className="flex gap-4 p-5 luxury-card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><MonitorPlay className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Diễn họa 3D Kiến trúc</h4><p className="text-xs text-[var(--text-muted)] font-mono">kết xuất Still Image & Video Animation bằng D5 Render.</p></div></div>
-                <div className="flex gap-4 p-5 luxury-card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><Cuboid className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Dựng Hình Sketchup</h4><p className="text-xs text-[var(--text-muted)] font-mono">Xây dựng Model 3D chuẩn xác, tối ưu hóa Wireframe.</p></div></div>
-                <div className="flex gap-4 p-5 luxury-card border-[#D95A2B]/50" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><Cpu className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Hệ Sinh Thái AI</h4><p className="text-xs text-[var(--text-muted)] font-mono">Nâng cấp ảnh 4K & Hậu kỳ bằng Custom GPT.</p></div></div>
+                <div className="flex gap-4 p-5 luxury-card"><MonitorPlay className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Diễn họa 3D Kiến trúc</h4><p className="text-xs text-[var(--text-muted)] font-mono">kết xuất Still Image & Video Animation bằng D5 Render.</p></div></div>
+                <div className="flex gap-4 p-5 luxury-card"><Cuboid className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Dựng Hình Sketchup</h4><p className="text-xs text-[var(--text-muted)] font-mono">Xây dựng Model 3D chuẩn xác, tối ưu hóa Wireframe.</p></div></div>
+                <div className="flex gap-4 p-5 luxury-card border-[#D95A2B]/50"><Cpu className="text-[#D95A2B]" /><div><h4 className="font-bold uppercase text-sm">Hệ Sinh Thái AI</h4><p className="text-xs text-[var(--text-muted)] font-mono">Nâng cấp ảnh 4K & Hậu kỳ bằng Custom GPT.</p></div></div>
               </div>
             </div>
             <div className="lg:col-span-7 luxury-card p-10 flex flex-col justify-center">
@@ -400,35 +317,23 @@ export default function App() {
           </div>
         </section>
 
-        <section id="skills" className="reveal-on-scroll">
-          <div className="mb-10 text-center">
-            <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#D95A2B] bg-[#D95A2B]/10 px-3 py-1 rounded-md w-max mx-auto">&gt; INTERACTIVE_PROCESS</h2>
-            <h3 className="text-4xl font-black font-heading uppercase mt-2">Quy Trình <span className="text-[#D95A2B]">Ánh Sáng</span></h3>
-          </div>
-          <div className="w-full max-w-5xl mx-auto relative aspect-[21/9] luxury-card overflow-hidden cursor-ew-resize" ref={sliderRef} onMouseDown={() => setIsDragging(true)} onTouchStart={() => setIsDragging(true)} onMouseMove={handleSliderMove} onTouchMove={handleSliderMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <img src={IMAGES.compareRender} alt="Final" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 border-r-2 border-[#D95A2B]" style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}><img src={IMAGES.compareRender} alt="Clay" loading="lazy" className="absolute inset-0 w-full h-full object-cover clay-filter" /></div>
-            <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: `${sliderPos}%` }}><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[var(--glass-bg)] border-2 border-[#D95A2B] rounded-lg flex items-center justify-center text-[#D95A2B] shadow-lg backdrop-blur-md"><ArrowLeftRight size={18} /></div></div>
-          </div>
-        </section>
-
         <section id="estimator" className="reveal-on-scroll">
           <div className="static-luxury-card p-12 border border-[#D95A2B]/30">
             <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="w-full md:w-1/2 space-y-8">
                 <div><div className="inline-flex items-center gap-2 px-3 py-1 bg-[#D95A2B]/10 text-[#D95A2B] text-[10px] font-mono font-bold mb-3"><Calculator size={12}/> AUTO_QUOTE_SYSTEM</div><h3 className="text-3xl font-black font-heading uppercase">Dự Toán <span className="text-[#D95A2B]">Hệ Thống</span></h3></div>
                 <div className="space-y-6">
-                  <div className="space-y-3"><div className="flex justify-between font-bold font-mono"><span>&gt; SỐ VIEWS</span><span className="text-[#D95A2B] text-2xl">{viewsCount}</span></div><input type="range" min="1" max="15" value={viewsCount} onChange={(e) => setViewsCount(parseInt(e.target.value))} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/></div>
+                  <div className="space-y-3"><div className="flex justify-between font-bold font-mono"><span>&gt; SỐ VIEWS</span><span className="text-[#D95A2B] text-2xl">{viewsCount}</span></div><input type="range" min="1" max="15" value={viewsCount} onChange={(e) => setViewsCount(parseInt(e.target.value))} /></div>
                   <div className="space-y-3">
-                    <div className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer ${needModeling ? 'bg-[#D95A2B]/10 border-[#D95A2B]' : 'bg-[var(--glass-bg)]'}`} onClick={() => setNeedModeling(!needModeling)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><div className="flex items-center gap-4"><div className={`w-5 h-5 rounded border ${needModeling ? 'bg-[#D95A2B]' : ''}`}>{needModeling && <Check size={14} className="text-black" />}</div><span className="text-sm font-bold uppercase">Dựng 3D Model</span></div><span className="text-xs font-mono">+2TR</span></div>
-                    <div className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer ${needAI ? 'bg-[#D95A2B]/10 border-[#D95A2B]' : 'bg-[var(--glass-bg)]'}`} onClick={() => setNeedAI(!needAI)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}><div className="flex items-center gap-4"><div className={`w-5 h-5 rounded border ${needAI ? 'bg-[#D95A2B]' : ''}`}>{needAI && <Check size={14} className="text-black" />}</div><span className="text-sm font-bold uppercase">AI Enhancement</span></div><span className="text-xs font-mono">+200K/V</span></div>
+                    <div className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer ${needModeling ? 'bg-[#D95A2B]/10 border-[#D95A2B]' : 'bg-[var(--glass-bg)]'}`} onClick={() => setNeedModeling(!needModeling)}><div className="flex items-center gap-4"><div className={`w-5 h-5 rounded border ${needModeling ? 'bg-[#D95A2B]' : ''}`}>{needModeling && <Check size={14} className="text-black" />}</div><span className="text-sm font-bold uppercase">Dựng 3D Model</span></div><span className="text-xs font-mono">+2TR</span></div>
+                    <div className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer ${needAI ? 'bg-[#D95A2B]/10 border-[#D95A2B]' : 'bg-[var(--glass-bg)]'}`} onClick={() => setNeedAI(!needAI)}><div className="flex items-center gap-4"><div className={`w-5 h-5 rounded border ${needAI ? 'bg-[#D95A2B]' : ''}`}>{needAI && <Check size={14} className="text-black" />}</div><span className="text-sm font-bold uppercase">AI Enhancement</span></div><span className="text-xs font-mono">+200K/V</span></div>
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-1/2 bg-[var(--bg-color)] p-10 rounded-2xl border border-[#D95A2B]/20">
                 <h4 className="text-xs text-[var(--text-muted)] font-mono uppercase mb-6">&gt; KẾT QUẢ TRUY XUẤT</h4>
                 <div className="text-5xl font-black text-[#D95A2B] font-mono mb-8">{formatVND(estimatedPrice)}</div>
-                <button onClick={() => window.location.href = `mailto:vtarch99@gmail.com?subject=Dự toán: ${formatVND(estimatedPrice)}`} className="w-full btn-accent py-5 uppercase font-mono flex items-center justify-center gap-2" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>KHỞI ĐỘNG DỰ ÁN <MoveRight size={16} /></button>
+                <button onClick={() => window.location.href = `mailto:vtarch99@gmail.com?subject=Dự toán: ${formatVND(estimatedPrice)}`} className="w-full btn-accent py-5 uppercase font-mono flex items-center justify-center gap-2">KHỞI ĐỘNG DỰ ÁN <MoveRight size={16} /></button>
               </div>
             </div>
           </div>
@@ -441,7 +346,7 @@ export default function App() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 focus-container">
             {[ { img: IMAGES.storeIndochine, title: "Indochine Hoài cổ", price: "$18" }, { img: IMAGES.storeJapandi, title: "Japandi Hiện đại", price: "$15" } ].map((item, idx) => (
-              <TiltCard key={idx} className="focus-item luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <TiltCard key={idx} className="focus-item luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end">
                 <img src={item.img} alt={item.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] to-transparent opacity-90"></div>
                 <div className="relative z-20 p-8"><h3 className="text-2xl font-black font-heading uppercase">{item.title}</h3><div className="flex items-center justify-between mt-4 border-t border-[var(--border-color)] pt-4"><span className="text-[#D95A2B] font-bold text-2xl">{item.price}</span><button className="btn-outline-luxury w-10 h-10"><ExternalLink size={16}/></button></div></div>
@@ -453,15 +358,13 @@ export default function App() {
         <section id="instagram" className="reveal-on-scroll border-t border-[var(--border-color)] pt-32 text-center">
           <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6"><InstagramIcon size={24} /></div>
           <h3 className="text-4xl font-black font-heading uppercase">Social Feed</h3>
-          <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>&gt; @vtarch99</a>
+          <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B]">&gt; @vtarch99</a>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-16 px-4">
             {IG_POSTS.map((post, idx) => {
-              // Tự động chọn tiền tố đường dẫn: DEV dùng '/', PROD dùng BASE_URL
               const prefix = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL;
               const fullSrc = `${prefix}instagram/${post.image}`.replace(/\/+/g, '/');
-              
               return (
-                <a key={idx} href={post.link} className="aspect-square luxury-card overflow-hidden group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <a key={idx} href={post.link} className="aspect-square luxury-card overflow-hidden group">
                   <img src={fullSrc} alt="IG" loading="lazy" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white font-mono font-bold">
                     <div className="flex items-center gap-2"><Heart size={20} /> {post.likes}</div>
@@ -476,8 +379,8 @@ export default function App() {
         <section id="contact" className="reveal-on-scroll text-center py-20">
           <h3 className="text-3xl font-black font-heading uppercase mb-8">Cổng <span className="text-[#D95A2B]">Giao Tiếp</span></h3>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 font-mono text-sm">
-            <a href="mailto:vtarch99@gmail.com" className="px-6 py-4 rounded-xl border border-[var(--border-color)] bg-[var(--glass-bg)] hover:border-[#D95A2B] hover:text-[#D95A2B] transition-all" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>vtarch99@gmail.com</a>
-            <a href="tel:0385550506" className="px-6 py-4 rounded-xl border border-[#D95A2B] bg-[#D95A2B]/10 font-bold hover:bg-[#D95A2B] hover:text-black transition-all" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>038.555.0506</a>
+            <a href="mailto:vtarch99@gmail.com" className="px-6 py-4 rounded-xl border border-[var(--border-color)] bg-[var(--glass-bg)] hover:border-[#D95A2B] hover:text-[#D95A2B] transition-all">vtarch99@gmail.com</a>
+            <a href="tel:0385550506" className="px-6 py-4 rounded-xl border border-[#D95A2B] bg-[#D95A2B]/10 font-bold hover:bg-[#D95A2B] hover:text-black transition-all">038.555.0506</a>
           </div>
           <div className="mt-20 border-t border-[var(--border-color)] pt-8"><p className="text-[10px] font-mono text-[var(--text-muted)] tracking-widest uppercase">&copy; {new Date().getFullYear()} VTARCH. SYSTEM ONLINE.</p></div>
         </section>
