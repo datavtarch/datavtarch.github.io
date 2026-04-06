@@ -455,12 +455,21 @@ export default function App() {
           <h3 className="text-4xl font-black font-heading uppercase">Social Feed</h3>
           <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>&gt; @vtarch99</a>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-16 px-4">
-            {IG_POSTS.map((post, idx) => (
-              <a key={idx} href={post.link} className="aspect-square luxury-card overflow-hidden group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <img src={`${import.meta.env.BASE_URL}instagram/${post.image}`} alt="IG" loading="lazy" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white font-mono font-bold"><div className="flex items-center gap-2"><Heart size={20} /> {post.likes}</div><div className="flex items-center gap-2"><MessageCircle size={20} /> {post.comments}</div></div>
-              </a>
-            ))}
+            {IG_POSTS.map((post, idx) => {
+              // Tự động chọn tiền tố đường dẫn: DEV dùng '/', PROD dùng BASE_URL
+              const prefix = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL;
+              const fullSrc = `${prefix}instagram/${post.image}`.replace(/\/+/g, '/');
+              
+              return (
+                <a key={idx} href={post.link} className="aspect-square luxury-card overflow-hidden group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  <img src={fullSrc} alt="IG" loading="lazy" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-6 text-white font-mono font-bold">
+                    <div className="flex items-center gap-2"><Heart size={20} /> {post.likes}</div>
+                    <div className="flex items-center gap-2"><MessageCircle size={20} /> {post.comments}</div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </section>
 
