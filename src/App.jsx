@@ -33,31 +33,19 @@ const IG_POSTS = [
 ];
 
 /* ========================================================
-   COMPONENT: TILT CARD (HIỆU ỨNG 3D MẠNH MẼ)
+   COMPONENT: TILT CARD (HIỆU ỨNG 3D MẠNH MẼ - ĐÃ VÔ HIỆU HÓA TRANSFORM)
 ======================================================== */
 const TiltCard = ({ children, className, onClick, onMouseEnter, onMouseLeave }) => {
   const [style, setStyle] = useState({});
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left; 
-    const y = e.clientY - rect.top;  
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6; 
-    const rotateY = ((x - centerX) / centerX) * 6;
-
-    setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
-      transition: 'transform 0.1s ease-out'
-    });
+    // Vô hiệu hóa tính toán transform để xóa hiệu ứng nẩy
   };
 
   const handleMouseLeaveInner = () => {
     setStyle({ 
-      transform: `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`, 
+      transform: `none`, 
       transition: 'transform 0.5s ease-out' 
     });
     if(onMouseLeave) onMouseLeave();
@@ -377,11 +365,9 @@ export default function App() {
           border-top: 1px solid var(--border-color);
           border-left: 1px solid var(--border-color);
           box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
-          transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-          will-change: transform;
+          transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
         .luxury-card:hover {
-          transform: translateY(-5px);
           border-color: rgba(217, 90, 43, 0.5);
           box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(217, 90, 43, 0.1);
         }
@@ -419,7 +405,7 @@ export default function App() {
         .btn-accent { 
           background: #D95A2B; color: #FFF; border-radius: 8px; font-weight: 800; transition: all 0.3s ease; 
         }
-        .btn-accent:hover { box-shadow: 0 0 20px rgba(217, 90, 43, 0.5); transform: translateY(-2px); }
+        .btn-accent:hover { box-shadow: 0 0 20px rgba(217, 90, 43, 0.5); }
 
         /* RANGE SLIDER CÔNG NGHỆ */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
@@ -445,8 +431,8 @@ export default function App() {
         [data-theme="light"] .text-outline { -webkit-text-stroke: 2px var(--border-color); }
 
         /* Focus Hover Rule */
-        .focus-container:hover .focus-item { opacity: 0.3; filter: grayscale(80%) blur(3px); transform: scale(0.98); }
-        .focus-container .focus-item:hover { opacity: 1 !important; filter: grayscale(0%) blur(0px) !important; transform: scale(1.05) translateY(-5px) !important; z-index: 30; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        .focus-container:hover .focus-item { opacity: 0.3; filter: grayscale(80%) blur(3px); }
+        .focus-container .focus-item:hover { opacity: 1 !important; filter: grayscale(0%) blur(0px) !important; z-index: 30; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
 
         /* LOGO IMAGE HANDLING */
         .logo-icon {
@@ -469,10 +455,8 @@ export default function App() {
 
 
 
-      {/* --- ÁNH SÁNG NỀN VÀ FLASHLIGHT CON TRỎ --- */}
+      {/* --- ÁNH SÁNG NỀN --- */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Đèn pin theo chuột */}
-        <div ref={flashlightRef} className="absolute top-0 left-0 w-[700px] h-[700px] bg-[#D95A2B]/10 rounded-full blur-[80px] pointer-events-none z-10 hidden lg:block opacity-80 mix-blend-screen"></div>
         {/* Khối sáng cam góc trái trên */}
         <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-[#D95A2B]/15 rounded-full blur-[120px]"></div>
         {/* Khối sáng trắng góc phải giữa */}
