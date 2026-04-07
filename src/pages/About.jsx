@@ -67,13 +67,12 @@ const About = () => {
           <div className="w-48 h-48 rounded-3xl overflow-hidden mb-6 border-2 border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <img 
               src={IMAGES.portrait} 
-              alt={CV_DATA.fullName} 
+              alt="NGUYỄN VĂN THANH" 
               className="w-full h-full object-cover filter grayscale-[20%] hover:grayscale-0 transition-all duration-700" 
             />
           </div>
           <h2 className="text-2xl font-black font-heading uppercase tracking-wide mb-1 text-white">
-            {CV_DATA.fullName.split(' ').slice(0, 2).join(' ')}<br />
-            {CV_DATA.fullName.split(' ').slice(2).join(' ')}
+            NGUYỄN<br />VĂN THANH
           </h2>
           <div className="bg-white text-black text-[10px] font-bold px-4 py-1.5 tracking-widest uppercase mb-8 rounded-sm font-mono">
             {CV_DATA.title}
