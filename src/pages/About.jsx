@@ -146,7 +146,7 @@ const About = () => {
               <span className="font-mono">{CV_DATA.phone}</span>
             </a>
             
-            <a href={`mailto:${CV_DATA.email}`} class="flex items-center gap-4 text-xs text-gray-400 hover:text-white transition-colors group cursor-pointer">
+            <a href={`mailto:${CV_DATA.email}`} className="flex items-center gap-4 text-xs text-gray-400 hover:text-white transition-colors group cursor-pointer">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors">
                 <Mail size={14} />
               </div>

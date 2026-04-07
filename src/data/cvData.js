@@ -7,7 +7,7 @@ export const CV_DATA = {
   address: "204 QL13, Bình Thạnh, TPHCM",
   instagram: "instagram.com/vtarch99",
   
-  summary: "Là một Kiến trúc sư tốt nghiệp từ Đại học Kiến trúc TP.HCM, tôi mang trong mình sự kiên trì, khả năng thích nghi cao và tư duy nhạy bén trong việc tìm tòi, học hỏi những xu hướng mới. Trong mọi dự án, tôi luôn đề cao sự trung thực, tinh thần trách nhiệm và cam kết mang lại giá trị thực tiễn cao nhất cho khách hàng cũng như doanh nghiệp.\n\nĐiểm khác biệt trong quy trình làm việc của tôi là khả năng tự nghiên cứu và tích hợp Trí tuệ Nhân tạo (AI) vào lĩnh vực diễn họa 3D. Thay vì làm việc thủ công, tôi đã tự xây dựng các hệ thống Custom GPTs giúp tự động hóa khâu xử lý hình ảnh, tối ưu hóa quá trình hậu kỳ mà không cần phụ thuộc vào việc nhập prompt lặp đi lặp lại. Kỹ năng này giúp tôi kiểm soát hoàn toàn chất lượng ảnh Render và xử lý mượt mà hàng loạt hình ảnh sản phẩm nội thất phục vụ cho mảng Thương mại điện tử (E-commerce).",
+  summary: "Là một Kiến trúc sư tốt nghiệp từ Đại học Kiến trúc TP.HCM, tôi mang trong mình sự kiên trì, khả năng thích nghi cao và tư duy nhạy bén trong việc tìm tòi, học hỏi những xu hướng mới. Trong mọi dự án, tôi luôn đề cao sự trung thực, tinh thần trách nhiệm và cam kết mang lại giá trị thực tiễn cao nhất cho khách hàng cũng như doanh nghiệp.\n\nĐiểm khác biệt trong quy trình làm việc của tôi là khả năng tự nghiên cứu và tích hợp Trí tuệ Nhân tạo (AI) vào lĩnh vực diễn họa 3D. Thay vì làm việc thủ công, tôi đã tự xây dựng các hệ thống Custom GPTs giúp tự động hóa khâu xử lý hình ảnh, tối ưu hóa quá trình hậu kỳ mà không cần phụ thuộc vào việc nhập prompt lặp đi lặp lại. Kỹ năng này giúp tôi kiểm sơát hoàn toàn chất lượng ảnh Render và xử lý mượt mà hàng loạt hình ảnh sản phẩm nội thất phục vụ cho mảng Thương mại điện tử (E-commerce).",
 
   education: [
     "Tốt nghiệp Trường Đại học Kiến trúc TP HCM.",
@@ -49,13 +49,12 @@ export const CV_DATA = {
     workflow: "Kiểm soát 100% chất lượng ảnh Render thông qua quy trình Hybrid AI-CGI."
   },
 
-  // ĐÂY LÀ NƠI BẠN ĐIỀN CÁC LINK TRẠM LIÊN KẾT
   linkHub: {
-    gptNoiThat: "https://chatgpt.com/g/g-your-link-here", // Thay link GPT của bạn vào đây
-    gptEcommerce: "https://chatgpt.com/g/g-your-link-here",
-    khoAnhRender: "/#/portfolio", // Link dẫn đến trang Portfolio của bạn
-    videoAnimation: "https://www.youtube.com/@yourchannel", // Link Youtube hoặc Video của bạn
-    aiConcept: "https://www.instagram.com/vtarch99",
-    aiPostProduction: "https://www.behance.net/yourprofile"
+    gptNoiThat: "#",
+    gptEcommerce: "#",
+    khoAnhRender: "#",
+    videoAnimation: "#",
+    aiConcept: "#",
+    aiPostProduction: "#"
   }
 };
