@@ -142,31 +142,35 @@ const Home = ({ setSelectedProject }) => {
 
       {/* ── SOCIAL FEED ── */}
       <section className="max-w-6xl mx-auto border-t border-[var(--border-color)] pt-32 text-center">
-        <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6">
+        <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
           <InstagramIcon size={24} />
         </div>
         <h3 className="text-4xl font-black font-heading uppercase">Social Feed</h3>
         <a
           href="https://www.instagram.com/vtarch99/"
-          className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B]"
+          className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors"
         >
           &gt; @vtarch99
         </a>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-16">
-          {IG_POSTS.slice(0, 6).map((post, idx) => {
+        
+        {/* Grid cố định 3 cột cho mọi thiết bị */}
+        <div className="grid grid-cols-3 gap-2 md:gap-4 mt-16 px-2 md:px-0">
+          {IG_POSTS.slice(0, 9).map((post, idx) => {
             const prefix = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL;
             return (
               <a
                 key={idx}
                 href={post.link}
-                className="aspect-square luxury-card overflow-hidden group"
+                className="aspect-square luxury-card overflow-hidden group border-[0.5px] md:border"
               >
                 <img
                   src={`${prefix}instagram/${post.image}`.replace(/\/+/g, '/')}
-                  alt="IG"
+                  alt="Instagram Post"
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                {/* Overlay Subtle on Mobile */}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </a>
             );
           })}
