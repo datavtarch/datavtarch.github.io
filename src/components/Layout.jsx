@@ -100,6 +100,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center space-x-6 bg-[var(--glass-bg)] px-6 py-2.5 rounded-lg border border-[var(--border-color)] backdrop-blur-md">
               <NavLink to="/">Trang Chủ</NavLink>
+              <NavLink to="/about">Giới thiệu</NavLink>
               <NavLink to="/portfolio">Portfolio</NavLink>
               <NavLink to="/store">Cửa Hàng</NavLink>
             </nav>

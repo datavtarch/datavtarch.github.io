@@ -6,6 +6,7 @@ import Lenis from '@studio-freight/lenis';
 import Layout from './components/Layout';
 import { ProjectModal } from './components/UI';
 import Home from './pages/Home';
+import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Store from './pages/Store';
 
@@ -72,7 +73,7 @@ export default function App() {
   }
 
   return (
-    <Router>
+    <Router basename={window.location.pathname.includes('/PROFILE-VTARCH-') ? '/PROFILE-VTARCH-' : '/'}>
       {/* Global Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
@@ -155,6 +156,7 @@ export default function App() {
       <Layout isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
         <Routes>
           <Route path="/" element={<Home setSelectedProject={setSelectedProject} />} />
+          <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
           <Route path="/store" element={<Store />} />
         </Routes>
