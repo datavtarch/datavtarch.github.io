@@ -210,7 +210,9 @@ function Portfolio({ setSelectedProject }) {
           <TiltCard key={proj.id} className="luxury-card aspect-square cursor-pointer group" onClick={() => setSelectedProject(proj)}>
             <img src={proj.image} alt={proj.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
-              <div className="flex gap-2 mb-3">{proj.tags.map(t => <span key={tag} className="tag-accent text-[8px]">{t}</span>)}</div>
+              <div className="flex gap-2 mb-3">
+                {proj.tags.map((t, i) => <span key={i} className="tag-accent text-[8px]">{t}</span>)}
+              </div>
               <h3 className="text-2xl font-black font-heading uppercase">{proj.title}</h3>
             </div>
           </TiltCard>
@@ -320,7 +322,7 @@ export default function App() {
             <button onClick={() => setSelectedProject(null)} className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/50 rounded-lg flex items-center justify-center text-white hover:bg-[#D95A2B] transition-colors"><X size={18} /></button>
             <div className="w-full md:w-3/5 h-[40vh] md:h-full"><img src={selectedProject.image} alt={selectedProject.title} loading="lazy" className="w-full h-full object-cover" /></div>
             <div className="w-full md:w-2/5 p-12 flex flex-col justify-center">
-              <div className="flex gap-2 mb-6">{selectedProject.tags.map(tag => <span key={tag} className="tag-accent">{tag}</span>)}</div>
+              <div className="flex gap-2 mb-6">{selectedProject.tags.map(t => <span key={t} className="tag-accent">{t}</span>)}</div>
               <h2 className="text-3xl font-black font-heading uppercase mb-6">{selectedProject.title}</h2>
               <p className="text-sm text-gray-400 font-mono leading-relaxed mb-10">&gt; {selectedProject.desc}</p>
               <div className="flex gap-3">
