@@ -314,7 +314,7 @@ const About = () => {
             <i className="fa-solid fa-brain"></i>
           </div>
           <h2 className="text-2xl md:text-4xl lg:text-[2.75rem] font-black text-white font-heading uppercase leading-[1.3] md:leading-[1.4] mb-12 italic relative z-10 tracking-tighter max-w-4xl mx-auto drop-shadow-lg text-center">
-            "Luôn chủ động nghiên cứu, <br className="hidden md:block" />công bằng - sáng tạo để phục vụ công việc <span className="text-[#D95A2B]">tốt nhất</span>"
+            "Luôn chủ động nghiên cứu, <br className="hidden md:block" /><span className="text-[#D95A2B]">công bằng - sáng tạo</span> để phục vụ công việc <span className="text-[#D95A2B]">tốt nhất</span>"
           </h2>
           <div className="flex flex-wrap justify-center items-center text-[#A48F82] text-[9px] md:text-[11px] font-mono font-bold tracking-[0.3em] md:tracking-[0.5em] uppercase relative z-10 w-full">
             <span>Adaptability</span>
