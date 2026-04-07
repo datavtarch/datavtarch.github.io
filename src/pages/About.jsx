@@ -127,9 +127,8 @@ const About = () => {
           </div>
 
           <h1 className="text-5xl md:text-[5.5rem] font-black leading-[0.95] font-heading uppercase mb-10 tracking-tighter text-white">
-            {CV_DATA.fullName.split(' ').slice(0, 2).join(' ')}<br />
-            {CV_DATA.fullName.split(' ').slice(2, 3).join(' ')}<br />
-            <span className="text-[#D95A2B]">{CV_DATA.fullName.split(' ').slice(-1)}</span>
+            NGUYỄN<br />VĂN<br />
+            <span className="text-[#D95A2B]">THANH</span>
           </h1>
 
           <div className="space-y-6 text-sm text-gray-400 leading-relaxed font-light mb-10 text-justify">
