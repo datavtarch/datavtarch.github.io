@@ -275,7 +275,7 @@ export default function App() {
             <h3 className="text-4xl font-black tracking-tight font-heading uppercase">Dự Án <span className="text-[#D95A2B]">Tiêu Biểu</span></h3>
           </div>
           <div className="space-y-12">
-            <TiltCard className="focus-item luxury-card aspect-[16/9] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Vinhomes Japandi", tags: ["NỘI THẤT", "120M2", "D5 RENDER"], image: IMAGES.projectVinhomes, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ VINHOMES ẢNH RENDER TỔNG HỢP.pdf", desc: "Thiết kế nội thất căn hộ Japandi. Áp dụng D5 Render mô phỏng ánh sáng thực." })}>
+            <TiltCard className="focus-item luxury-card aspect-[16/9] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Vinhomes Japandi", tags: ["NỘI THẤT", "120M2", "D5 RENDER"], image: IMAGES.projectVinhomes, pdfLink: "documents/SKETCHUP + D5 RENDER - CĂN HỘ VINHOMES ẢNH RENDER TỔNG HỢP.pdf", desc: "Thiết kế nội thất căn hộ Japandi. Áp dụng D5 Render mô phỏng ánh sáng thực." })}>
               <img src={IMAGES.projectVinhomes} alt="Vinhomes" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
               <div className="absolute bottom-0 left-0 right-0 p-10 z-20 flex justify-between items-end">
                 <div className="max-w-md"><div className="flex gap-2 mb-4"><span className="tag-accent">NỘI THẤT P.JAPANDI</span></div><h3 className="text-4xl font-black font-heading uppercase drop-shadow-md">Căn Hộ Vinhomes</h3></div>
@@ -283,11 +283,11 @@ export default function App() {
               </div>
             </TiltCard>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 focus-container">
-              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Đà Lạt House", tags: ["KIẾN TRÚC", "NGHỈ DƯỠNG"], image: IMAGES.projectDaLatHouse, pdfLink: "/documents/SKETCHUP + D5 RENDER DỰ ÁN THIẾT KẾ ĐÀ LẠT HOUSE.pdf", desc: "Kiến trúc khu nghỉ dưỡng Đà Lạt." })}>
+              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Đà Lạt House", tags: ["KIẾN TRÚC", "NGHỈ DƯỠNG"], image: IMAGES.projectDaLatHouse, pdfLink: "documents/SKETCHUP + D5 RENDER DỰ ÁN THIẾT KẾ ĐÀ LẠT HOUSE.pdf", desc: "Kiến trúc khu nghỉ dưỡng Đà Lạt." })}>
                 <img src={IMAGES.projectDaLatHouse} alt="Đà Lạt" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute bottom-0 left-0 p-8 z-20"><h3 className="text-2xl font-black font-heading uppercase">Đà Lạt House</h3></div>
               </TiltCard>
-              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Caledon", tags: ["NỘI THẤT"], image: IMAGES.projectCaledon, pdfLink: "/documents/SKETCHUP + D5 RENDER - CĂN HỘ CALEDON ẢNH RENDER TỔNG HỢP.pdf", desc: "Nội thất chung cư cao cấp Caledon." })}>
+              <TiltCard className="focus-item luxury-card aspect-[4/3] cursor-pointer group" onClick={() => setSelectedProject({ title: "Căn Hộ Caledon", tags: ["NỘI THẤT"], image: IMAGES.projectCaledon, pdfLink: "documents/SKETCHUP + D5 RENDER - CĂN HỘ CALEDON ẢNH RENDER TỔNG HỢP.pdf", desc: "Nội thất chung cư cao cấp Caledon." })}>
                 <img src={IMAGES.projectCaledon} alt="Caledon" loading="lazy" className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" />
                 <div className="absolute bottom-0 left-0 p-8 z-20"><h3 className="text-2xl font-black font-heading uppercase">Căn Hộ Caledon</h3></div>
               </TiltCard>
@@ -396,7 +396,17 @@ export default function App() {
               <div className="flex gap-2 mb-6">{selectedProject.tags.map(tag => <span key={tag} className="tag-accent">{tag}</span>)}</div>
               <h2 className="text-3xl font-black font-heading uppercase mb-6">{selectedProject.title}</h2>
               <p className="text-sm text-[var(--text-muted)] font-mono leading-relaxed mb-10">&gt; {selectedProject.desc}</p>
-              <div className="flex gap-3"><a href={selectedProject.pdfLink} target="_blank" rel="noreferrer" className="btn-outline-luxury px-8 py-4 text-xs font-mono">XEM PDF</a><button onClick={() => {setSelectedProject(null); scrollToSection('estimator');}} className="btn-accent px-8 py-4 text-xs font-mono">TƯ VẤN</button></div>
+              <div className="flex gap-3">
+                <a 
+                  href={`${import.meta.env.DEV ? '/' : import.meta.env.BASE_URL}${selectedProject.pdfLink}`.replace(/\/+/g, '/')} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="btn-outline-luxury px-8 py-4 text-xs font-mono"
+                >
+                  XEM PDF
+                </a>
+                <button onClick={() => {setSelectedProject(null); scrollToSection('estimator');}} className="btn-accent px-8 py-4 text-xs font-mono">TƯ VẤN</button>
+              </div>
             </div>
           </div>
         </div>
