@@ -1,48 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { IMAGES } from '../data/constants';
 import { CV_DATA } from '../data/cvData';
-import { 
-  Download, Zap, Cpu, Search, Sparkles, Brain, 
-  MapPin, Mail, Globe, Calendar, Phone,
-  Microchip, FlaskConical, Layers, Robot, Cube, Wand2,
-  Users, UserPlus, GraduationCap, Award,
-  Instagram, ArrowRight, LayoutGrid, Coins, Leaf, HandHeart, HeartHandshake,
-  Sitemap, UserSquare
-} from 'lucide-react';
-
-// ========================================================
-//  STYLED COMPONENTS (Based on user template)
-// ========================================================
 
 const CVBox = ({ children, className = "" }) => (
-  <div className={`cv-box p-8 flex flex-col items-start group relative overflow-hidden transition-all duration-400 ${className}`}>
-    <style dangerouslySetInnerHTML={{ __html: `
-      .cv-box {
-        background: #110E0B;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 1rem;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        position: relative;
-        overflow: hidden;
-      }
-      .cv-box:hover {
-        border-color: rgba(217, 90, 43, 0.5);
-        background: #15110E;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 0 20px rgba(217, 90, 43, 0.05);
-        transform: translateY(-4px);
-      }
-      .cv-box::after {
-        content: ''; position: absolute; inset: 0;
-        background: radial-gradient(circle at top right, rgba(217, 90, 43, 0.1), transparent 70%);
-        opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
-      }
-      .cv-box:hover::after { opacity: 1; }
-    `}} />
+  <div className={`p-8 bg-[#110E0B] border border-white/5 rounded-2xl relative overflow-hidden transition-all duration-300 hover:border-[#D95A2B]/50 hover:bg-[#15110E] hover:shadow-[0_15px_35px_rgba(0,0,0,0.6),inset_0_0_20px_rgba(217,90,43,0.05)] hover:-translate-y-1 group ${className}`}>
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(217,90,43,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
     {children}
   </div>
 );
 
-const LinkBtn = ({ label, href }) => {
+const LinkBtn = ({ label, href, isSpecial = false }) => {
   const handleClick = (e) => {
     if (!href || href === "#") {
       e.preventDefault();
@@ -56,10 +23,14 @@ const LinkBtn = ({ label, href }) => {
       onClick={handleClick}
       target={href && href !== "#" ? "_blank" : "_self"}
       rel="noopener noreferrer" 
-      className="link-btn flex items-center justify-between w-full p-3 bg-black/40 border border-white/10 rounded-lg text-[#9ca3af] text-[10px] font-mono uppercase tracking-wider hover:bg-[#D95A2B]/10 hover:border-[#D95A2B]/50 hover:text-white hover:translate-x-1.5 transition-all group/btn cursor-pointer"
+      className={`flex items-center justify-between w-full p-3 rounded-lg text-[10px] font-mono uppercase tracking-wider transition-all duration-300 group/btn relative z-10 ${
+        isSpecial 
+          ? "bg-[#D95A2B]/5 border border-[#D95A2B]/30 text-white hover:bg-[#D95A2B]/20 hover:border-[#D95A2B]/80 hover:translate-x-1.5 hover:shadow-[0_0_15px_rgba(217,90,43,0.2)]" 
+          : "bg-black/40 border border-white/10 text-[#9ca3af] hover:bg-[#D95A2B]/10 hover:border-[#D95A2B]/50 hover:text-white hover:translate-x-1.5 hover:shadow-[0_0_15px_rgba(217,90,43,0.1)]"
+      }`}
     >
       <span>[ {label} ]</span>
-      <ArrowRight size={12} className="text-[#D95A2B] group-hover/btn:rotate-[-45deg] transition-transform" />
+      <i className="fa-solid fa-arrow-right text-[#D95A2B] group-hover/btn:-rotate-45 transition-transform duration-300"></i>
     </a>
   );
 };
@@ -79,44 +50,20 @@ const ProgressBar = ({ name, level }) => (
   </div>
 );
 
-// ========================================================
-//  ABOUT PAGE COMPONENT
-// ========================================================
-
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => setIsVisible(true), []);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div className={`pt-32 pb-32 px-4 md:px-8 max-w-6xl mx-auto space-y-24 md:space-y-32 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       
-      {/* Custom Styles from MauAbout.jsx */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        .cv-card {
-          background: #15110E;
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: 1.5rem;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-        .btn-shimmer {
-          position: relative; overflow: hidden;
-          background: #D95A2B; color: white;
-          transition: all 0.3s ease;
-        }
-        .btn-shimmer::before {
-          content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-          background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-          transform: skewX(-20deg); animation: shimmer 2.5s infinite;
-        }
-        .btn-shimmer:hover { background: #e86b3e; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(217, 90, 43, 0.4); }
-      `}} />
-
       {/* ── SECTION 1: HERO & ABOUT ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start">
         
-        {/* Avatar Card (Left) */}
-        <div className="lg:col-span-4 cv-card p-6 md:p-8 flex flex-col items-center text-center lg:sticky lg:top-32 z-20">
+        {/* Avatar Card */}
+        <div className="lg:col-span-4 bg-[#15110E] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col items-center text-center lg:sticky lg:top-32 z-20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
           <div className="w-48 h-48 rounded-3xl overflow-hidden mb-6 border-2 border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <img 
               src={IMAGES.portrait} 
@@ -137,42 +84,42 @@ const About = () => {
             
             <div className="flex items-center gap-4 text-xs text-gray-400 group cursor-default">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors">
-                <Calendar size={14} />
+                <i className="fa-regular fa-calendar"></i>
               </div>
               <span className="font-mono">{CV_DATA.birthDate}</span>
             </div>
             
             <a href={`tel:${CV_DATA.phone.replace(/\./g, '')}`} className="flex items-center gap-4 text-xs text-gray-400 hover:text-white transition-colors group cursor-pointer">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors">
-                <Phone size={14} />
+                <i className="fa-solid fa-phone"></i>
               </div>
               <span className="font-mono">{CV_DATA.phone}</span>
             </a>
             
             <a href={`mailto:${CV_DATA.email}`} className="flex items-center gap-4 text-xs text-gray-400 hover:text-white transition-colors group cursor-pointer">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors">
-                <Mail size={14} />
+                <i className="fa-regular fa-envelope"></i>
               </div>
               <span className="font-mono truncate">{CV_DATA.email}</span>
             </a>
             
             <a href={`https://${CV_DATA.instagram}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-xs text-gray-400 hover:text-white transition-colors group cursor-pointer">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors">
-                <Instagram size={14} />
+                <i className="fa-brands fa-instagram"></i>
               </div>
               <span className="font-mono">@vtarch99</span>
             </a>
             
             <div className="flex items-center gap-4 text-xs text-gray-400 group cursor-default">
               <div className="w-8 h-8 rounded-lg bg-white/5 text-[#D95A2B] flex items-center justify-center group-hover:bg-[#D95A2B] group-hover:text-black transition-colors shrink-0">
-                <MapPin size={14} />
+                <i className="fa-solid fa-location-dot"></i>
               </div>
               <span className="font-mono leading-relaxed">{CV_DATA.address}</span>
             </div>
           </div>
         </div>
 
-        {/* Content (Right) */}
+        {/* Content Right */}
         <div className="lg:col-span-8 flex flex-col justify-center">
           <div className="flex items-center gap-4 mb-4">
             <div className="h-[2px] w-12 bg-[#D95A2B]"></div>
@@ -202,9 +149,9 @@ const About = () => {
           <a 
             href="/documents/PROFILE NGUYỄN VĂN THANH.pdf" 
             target="_blank" 
-            className="btn-shimmer font-bold text-xs font-mono uppercase tracking-widest px-8 py-4 rounded-lg flex items-center justify-center w-max gap-3 shadow-lg"
+            className="bg-[#D95A2B] hover:bg-[#e86b3e] text-white font-bold text-xs font-mono uppercase tracking-widest px-8 py-4 rounded-lg flex items-center justify-center w-max gap-3 shadow-[0_10px_25px_rgba(217,90,43,0.4)] transition-all hover:-translate-y-1"
           >
-            <Download size={16} /> Tải Profile Đầy Đủ
+            <i className="fa-solid fa-download"></i> Tải Profile Đầy Đủ
           </a>
         </div>
       </div>
@@ -220,21 +167,21 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CVBox>
             <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D95A2B] mb-6 group-hover:scale-110 group-hover:bg-[#D95A2B]/10 group-hover:border-[#D95A2B]/50 transition-all duration-300">
-              <Microchip size={20} />
+              <i className="fa-solid fa-microchip text-xl"></i>
             </div>
             <h3 className="text-lg font-bold text-white font-heading uppercase mb-3 relative z-10">Custom GPTs</h3>
             <p className="text-xs text-gray-400 font-mono leading-relaxed relative z-10">{CV_DATA.aiSkills.automation}</p>
           </CVBox>
           <CVBox>
             <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D95A2B] mb-6 group-hover:scale-110 group-hover:bg-[#D95A2B]/10 group-hover:border-[#D95A2B]/50 transition-all duration-300">
-              <FlaskConical size={20} />
+              <i className="fa-solid fa-flask text-xl"></i>
             </div>
             <h3 className="text-lg font-bold text-white font-heading uppercase mb-3 relative z-10">R&D Lab</h3>
             <p className="text-xs text-gray-400 font-mono leading-relaxed relative z-10">{CV_DATA.aiSkills.research}</p>
           </CVBox>
           <CVBox>
             <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D95A2B] mb-6 group-hover:scale-110 group-hover:bg-[#D95A2B]/10 group-hover:border-[#D95A2B]/50 transition-all duration-300">
-              <Layers size={20} />
+              <i className="fa-solid fa-layer-group text-xl"></i>
             </div>
             <h3 className="text-lg font-bold text-white font-heading uppercase mb-3 relative z-10">Hybrid Workflow</h3>
             <p className="text-xs text-gray-400 font-mono leading-relaxed relative z-10">{CV_DATA.aiSkills.workflow}</p>
@@ -253,7 +200,7 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CVBox>
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5 relative z-10 w-full text-[#D95A2B]">
-              <Robot size={24} />
+              <i className="fa-solid fa-robot text-xl"></i>
               <h4 className="text-base font-bold text-white uppercase font-heading">Hệ Sinh Thái GPT</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
@@ -264,7 +211,7 @@ const About = () => {
 
           <CVBox>
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5 relative z-10 w-full text-[#D95A2B]">
-              <Cube size={24} />
+              <i className="fa-solid fa-cube text-xl"></i>
               <h4 className="text-base font-bold text-white uppercase font-heading">Thư Viện D5 Render</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
@@ -276,12 +223,12 @@ const About = () => {
           <CVBox>
             <div className="absolute top-4 right-4 bg-[#D95A2B] text-white text-[8px] font-bold px-2 py-1 rounded-sm tracking-widest font-mono uppercase z-20">MỚI</div>
             <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/5 relative z-10 w-full text-[#D95A2B]">
-              <Wand2 size={24} />
+              <i className="fa-solid fa-wand-magic-sparkles text-xl"></i>
               <h4 className="text-base font-bold text-white uppercase font-heading">AI Generation</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
               <LinkBtn label="Concept Đồng Nhất" href={CV_DATA.linkHub.aiConcept} />
-              <LinkBtn label="Hậu Kỳ Siêu Thực" href={CV_DATA.linkHub.aiPostProduction} />
+              <LinkBtn label="Hậu Kỳ Siêu Thực" href={CV_DATA.linkHub.aiPostProduction} isSpecial={true} />
             </div>
           </CVBox>
         </div>
@@ -338,16 +285,18 @@ const About = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CV_DATA.activities.map((act, idx) => (
-            <CVBox key={idx} className="p-6 justify-center min-h-[140px]">
-              <div className="text-[#D95A2B] mb-4 group-hover:-translate-y-1 transition-transform relative z-10">
-                {idx === 0 && <Users size={20} />}
-                {idx === 1 && <UserPlus size={20} />}
-                {idx === 2 && <Sitemap size={20} />}
-                {idx === 3 && <Coins size={20} />}
-                {idx === 4 && <Award size={20} />}
-                {idx === 5 && <Leaf size={20} />}
-                {idx === 6 && <HeartHandshake size={20} />}
-                {idx >= 7 && <HandHeart size={20} />}
+            <CVBox key={idx} className="!p-6 justify-center min-h-[140px]">
+              <div className="text-[#D95A2B] text-xl mb-4 group-hover:-translate-y-1 transition-transform relative z-10">
+                <i className={`fa-solid ${
+                  idx === 0 ? 'fa-users' : 
+                  idx === 1 ? 'fa-user-tie' : 
+                  idx === 2 ? 'fa-sitemap' : 
+                  idx === 3 ? 'fa-coins' : 
+                  idx === 4 ? 'fa-medal' : 
+                  idx === 5 ? 'fa-leaf' : 
+                  idx === 6 ? 'fa-hands-holding-child' : 
+                  'fa-hand-holding-heart'
+                }`}></i>
               </div>
               <p className="text-[11px] text-gray-400 font-mono uppercase leading-relaxed group-hover:text-white transition-colors relative z-10">
                 {act}
@@ -360,11 +309,11 @@ const About = () => {
       {/* ── SECTION 6: FINAL QUOTE ── */}
       <section>
         <div className="cv-box p-12 md:p-24 text-center flex flex-col items-center justify-center bg-[#0C0908] border-white/5 relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#D95A2B]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(217,90,43,0.05))] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
           <div className="text-[#D95A2B] text-4xl md:text-5xl mb-8 relative z-10 drop-shadow-[0_0_15px_rgba(217,90,43,0.4)]">
-            <Brain size={48} />
+            <i className="fa-solid fa-brain"></i>
           </div>
-          <h2 className="text-2xl md:text-4xl lg:text-[2.75rem] font-black text-white font-heading uppercase leading-[1.3] md:leading-[1.4] mb-12 italic relative z-10 tracking-tighter max-w-4xl mx-auto drop-shadow-lg">
+          <h2 className="text-2xl md:text-4xl lg:text-[2.75rem] font-black text-white font-heading uppercase leading-[1.3] md:leading-[1.4] mb-12 italic relative z-10 tracking-tighter max-w-4xl mx-auto drop-shadow-lg text-center">
             "Luôn chủ động nghiên cứu, <br className="hidden md:block" />công bằng - sáng tạo để phục vụ công việc <span className="text-[#D95A2B]">tốt nhất</span>"
           </h2>
           <div className="flex flex-wrap justify-center items-center text-[#A48F82] text-[9px] md:text-[11px] font-mono font-bold tracking-[0.3em] md:tracking-[0.5em] uppercase relative z-10 w-full">
