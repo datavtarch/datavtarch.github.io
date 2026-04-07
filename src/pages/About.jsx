@@ -38,12 +38,27 @@ const CVBox = ({ children, className = "" }) => (
   </div>
 );
 
-const LinkBtn = ({ label, href = "#" }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" className="link-btn flex items-center justify-between w-full p-3 bg-black/40 border border-white/10 rounded-lg text-[#9ca3af] text-[10px] font-mono uppercase tracking-wider hover:bg-[#D95A2B]/10 hover:border-[#D95A2B]/50 hover:text-white hover:translate-x-1.5 transition-all group/btn">
-    <span>[ {label} ]</span>
-    <Zap size={12} className="text-[#D95A2B] group-hover/btn:rotate-45 transition-transform" />
-  </a>
-);
+const LinkBtn = ({ label, href }) => {
+  const handleClick = (e) => {
+    if (!href || href === "#") {
+      e.preventDefault();
+      alert("Vui lòng liên hệ để được sử dụng công cụ này!");
+    }
+  };
+
+  return (
+    <a 
+      href={href || "#"} 
+      onClick={handleClick}
+      target={href && href !== "#" ? "_blank" : "_self"}
+      rel="noopener noreferrer" 
+      className="link-btn flex items-center justify-between w-full p-3 bg-black/40 border border-white/10 rounded-lg text-[#9ca3af] text-[10px] font-mono uppercase tracking-wider hover:bg-[#D95A2B]/10 hover:border-[#D95A2B]/50 hover:text-white hover:translate-x-1.5 transition-all group/btn cursor-pointer"
+    >
+      <span>[ {label} ]</span>
+      <Zap size={12} className="text-[#D95A2B] group-hover/btn:rotate-45 transition-transform" />
+    </a>
+  );
+};
 
 const ProgressBar = ({ name, level }) => (
   <div className="w-full">
@@ -241,8 +256,8 @@ const About = () => {
               <h4 className="text-base font-bold text-white uppercase font-heading">Hệ Sinh Thái GPT</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
-              <LinkBtn label="Trợ Lý Nội Thất" />
-              <LinkBtn label="Xử Lý Ảnh E-Commerce" />
+              <LinkBtn label="Trợ Lý Nội Thất" href={CV_DATA.linkHub.gptNoiThat} />
+              <LinkBtn label="Xử Lý Ảnh E-Commerce" href={CV_DATA.linkHub.gptEcommerce} />
             </div>
           </CVBox>
 
@@ -252,8 +267,8 @@ const About = () => {
               <h4 className="text-base font-bold text-white uppercase font-heading">Thư Viện D5 Render</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
-              <LinkBtn label="Kho Ảnh Render Tĩnh" />
-              <LinkBtn label="Video 3D Animation" />
+              <LinkBtn label="Kho Ảnh Render Tĩnh" href={CV_DATA.linkHub.khoAnhRender} />
+              <LinkBtn label="Video 3D Animation" href={CV_DATA.linkHub.videoAnimation} />
             </div>
           </CVBox>
 
@@ -264,8 +279,8 @@ const About = () => {
               <h4 className="text-base font-bold text-white uppercase font-heading">AI Generation</h4>
             </div>
             <div className="space-y-3 relative z-10 w-full">
-              <LinkBtn label="Concept Đồng Nhất" />
-              <LinkBtn label="Hậu Kỳ Siêu Thực" />
+              <LinkBtn label="Concept Đồng Nhất" href={CV_DATA.linkHub.aiConcept} />
+              <LinkBtn label="Hậu Kỳ Siêu Thực" href={CV_DATA.linkHub.aiPostProduction} />
             </div>
           </CVBox>
         </div>

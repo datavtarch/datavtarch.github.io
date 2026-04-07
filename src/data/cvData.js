@@ -47,5 +47,15 @@ export const CV_DATA = {
     automation: "Tạo Custom GPT tự động hóa việc xử lý hình ảnh không cần nhập prompt nhiều.",
     research: "Tự nghiên cứu AI phục vụ Render & Chỉnh sửa sản phẩm nội thất E-commerce.",
     workflow: "Kiểm soát 100% chất lượng ảnh Render thông qua quy trình Hybrid AI-CGI."
+  },
+
+  // ĐÂY LÀ NƠI BẠN ĐIỀN CÁC LINK TRẠM LIÊN KẾT
+  linkHub: {
+    gptNoiThat: "https://chatgpt.com/g/g-your-link-here", // Thay link GPT của bạn vào đây
+    gptEcommerce: "https://chatgpt.com/g/g-your-link-here",
+    khoAnhRender: "/#/portfolio", // Link dẫn đến trang Portfolio của bạn
+    videoAnimation: "https://www.youtube.com/@yourchannel", // Link Youtube hoặc Video của bạn
+    aiConcept: "https://www.instagram.com/vtarch99",
+    aiPostProduction: "https://www.behance.net/yourprofile"
   }
 };
