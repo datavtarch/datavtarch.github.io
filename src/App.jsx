@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 
 // Components & Pages
@@ -73,7 +73,7 @@ export default function App() {
   }
 
   return (
-    <Router basename={window.location.pathname.includes('/PROFILE-VTARCH-') ? '/PROFILE-VTARCH-' : '/'}>
+    <Router>
       {/* Global Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
