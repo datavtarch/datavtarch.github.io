@@ -1,17 +1,20 @@
 import React from 'react';
 import { IMAGES } from '../data/constants';
 import { TiltCard } from '../components/UI';
-import { Download, Award, Briefcase, Zap } from 'lucide-react';
+import { Download, Award, Briefcase, Zap, Cpu, Search, Sparkles, Brain } from 'lucide-react';
 
-const SkillBar = ({ name, level }) => (
-  <div className="space-y-2">
-    <div className="flex justify-between font-mono text-[10px] uppercase tracking-widest">
-      <span>{name}</span>
-      <span className="text-[#D95A2B]">{level}%</span>
+const SkillBar = ({ name, level, icon: Icon }) => (
+  <div className="space-y-3 p-6 luxury-card bg-white/5 hover:bg-[#D95A2B]/5 transition-all group">
+    <div className="flex justify-between items-center font-mono text-[10px] uppercase tracking-[0.2em]">
+      <div className="flex items-center gap-3">
+        {Icon && <Icon size={14} className="text-[#D95A2B]" />}
+        <span className="font-bold">{name}</span>
+      </div>
+      <span className="text-[#D95A2B] font-black">{level}%</span>
     </div>
     <div className="h-1 bg-[var(--border-color)] rounded-full overflow-hidden">
       <div 
-        className="h-full bg-[#D95A2B] transition-all duration-1000 ease-out" 
+        className="h-full bg-[#D95A2B] transition-all duration-1000 ease-out group-hover:bg-white" 
         style={{ width: `${level}%` }}
       ></div>
     </div>
@@ -19,25 +22,30 @@ const SkillBar = ({ name, level }) => (
 );
 
 const About = () => {
-  const skills = [
-    { name: "SketchUp Pro", level: 95 },
-    { name: "D5 Render (Expert)", level: 98 },
-    { name: "3ds Max", level: 85 },
-    { name: "AI Architecture Tools", level: 90 },
-    { name: "CGI Interior Design", level: 92 },
+  const coreSkills = [
+    { name: "SketchUp & 3ds Max", level: 95, icon: Briefcase },
+    { name: "D5 Render (Expert)", level: 98, icon: Zap },
+    { name: "CGI Interior Design", level: 92, icon: Award },
   ];
 
-  const milestones = [
-    { year: "2020", title: "Khởi đầu Đam mê", desc: "Bắt đầu hành trình thiết kế với các công cụ diễn họa cơ bản." },
-    { year: "2022", title: "Chuyên gia D5 Render", desc: "Tập trung tối ưu hóa quy trình diễn họa kiến trúc siêu thực." },
-    { year: "2024", title: "VTARCH ra đời", desc: "Thành lập thương hiệu cá nhân, kết hợp AI vào thiết kế kiến trúc." },
+  const aiSkills = [
+    { 
+      title: "AI Automation & GPTs", 
+      desc: "Xây dựng các hệ thống GPT chuyên dụng để tự động hóa quy trình xử lý hình ảnh kiến trúc, giúp tối ưu hóa hiệu suất mà không cần nhập prompt thủ công phức tạp.",
+      icon: Cpu 
+    },
+    { 
+      title: "AI Research & Rendering", 
+      desc: "Chủ động nghiên cứu và ứng dụng các mô hình AI tiên tiến nhất vào quy trình Rendering và hậu kỳ sản phẩm nội thất, tạo ra độ chân thực vượt trội.",
+      icon: Search 
+    }
   ];
 
   return (
     <div className="pt-32 pb-32 px-4 md:px-6 max-w-6xl mx-auto space-y-32">
-      {/* ── HERO SECTION ── */}
+      {/* ── HERO SECTION (Personal Intro) ── */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-        <div className="luxury-card aspect-[3/4] md:aspect-square overflow-hidden group">
+        <div className="luxury-card aspect-square overflow-hidden group border-[#D95A2B]/20">
           <img 
             src={IMAGES.portrait} 
             alt="Nguyễn Văn Thanh" 
@@ -46,69 +54,70 @@ const About = () => {
         </div>
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-[#D95A2B]/30 bg-[#D95A2B]/10">
-            <Zap size={14} className="text-[#D95A2B]" />
-            <span className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-widest font-bold">The Creator</span>
+            <Sparkles size={14} className="text-[#D95A2B]" />
+            <span className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-widest font-bold">Innovation Lead</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black uppercase font-heading tracking-tighter leading-none">
             Nguyễn Văn <br /> <span className="text-[#D95A2B]">Thanh.</span>
           </h1>
-          <p className="text-[var(--text-muted)] font-mono text-sm leading-relaxed border-l-2 border-[#D95A2B] pl-6 italic">
-            "Tôi không chỉ vẽ nên những bức tường, tôi kiến tạo nên những cảm xúc sống động trong không gian 3D."
-          </p>
+          <div className="space-y-4">
+            <h4 className="text-[#D95A2B] font-mono text-xs uppercase font-bold tracking-widest">&gt; GIỚI THIỆU BẢN THÂN</h4>
+            <p className="text-[var(--text-main)] font-mono text-sm leading-relaxed border-l-2 border-[#D95A2B] pl-6">
+              Tôi là một kiến trúc sư với niềm đam mê mãnh liệt trong việc kết hợp nghệ thuật diễn họa và công nghệ hiện đại. 
+              Thế mạnh lớn nhất của tôi là **khả năng thích nghi linh hoạt, tinh thần tự tìm tòi và học hỏi không ngừng**. 
+              Tôi luôn tiên phong ứng dụng các giải pháp công nghệ mới để giải quyết các bài toán phức tạp trong kiến trúc.
+            </p>
+          </div>
           <div className="flex flex-wrap gap-4 pt-4">
             <a href="/CV_NguyenVanThanh.pdf" target="_blank" className="btn-accent px-8 py-4 text-xs font-mono uppercase flex items-center gap-2">
-              <Download size={14} /> Tải CV
+              <Download size={14} /> Tải CV Đầy Đủ
             </a>
-            <div className="flex gap-4 items-center">
-              <div className="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:border-[#D95A2B] transition-colors cursor-pointer">
-                <Briefcase size={16} />
-              </div>
-              <div className="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center hover:border-[#D95A2B] transition-colors cursor-pointer">
-                <Award size={16} />
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ── STORY & SKILLS ── */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-        <div className="lg:col-span-1 space-y-6">
-          <h3 className="text-2xl font-black font-heading uppercase">Tầm nhìn & <br/><span className="text-[#D95A2B]">Sứ mệnh</span></h3>
-          <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-            Với hơn 4 năm kinh nghiệm trong lĩnh vực kiến trúc và diễn họa 3D, tôi luôn tìm kiếm sự giao thoa hoàn hảo giữa kỹ thuật dựng hình và nghệ thuật ánh sáng. 
-            Mỗi dự án tại VTARCH là một lời cam kết về chất lượng và độ chân thực cao nhất.
-          </p>
-        </div>
-        
-        <div className="lg:col-span-2 luxury-card p-10 space-y-8">
-          <h3 className="text-xl font-black font-heading uppercase text-[#D95A2B]">Năng lực Chuyên môn</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-            {skills.map(skill => (
-              <SkillBar key={skill.name} name={skill.name} level={skill.level} />
-            ))}
+      {/* ── AI & AUTOMATION SECTION ── */}
+      <section className="space-y-12">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-black font-heading uppercase leading-none">AI & <span className="text-[#D95A2B]">Automation</span></h2>
+            <p className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-widest">Tiên phong trong giải pháp thiết kế tương lai</p>
           </div>
-        </div>
-      </section>
-
-      {/* ── MILESTONES ── */}
-      <section className="space-y-16">
-        <div className="text-center">
-          <h2 className="text-4xl font-black font-heading uppercase mb-4">Lộ trình <span className="text-[#D95A2B]">Phát triển</span></h2>
-          <div className="w-20 h-1 bg-[#D95A2B] mx-auto"></div>
+          <Brain size={40} className="text-[#D95A2B] opacity-50 hidden md:block" />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {milestones.map((item, idx) => (
-            <div key={idx} className="relative p-8 luxury-card group hover:bg-[#D95A2B]/5 transition-colors">
-              <span className="text-6xl font-black text-[#D95A2B]/10 absolute top-4 right-4 group-hover:text-[#D95A2B]/20 transition-colors uppercase font-heading">
-                {item.year}
-              </span>
-              <h4 className="text-xl font-bold font-heading uppercase mb-4 relative z-10">{item.title}</h4>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed relative z-10">{item.desc}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {aiSkills.map((skill, idx) => (
+            <div key={idx} className="luxury-card p-10 space-y-6 bg-gradient-to-br from-[#D95A2B]/5 to-transparent border-[#D95A2B]/10 group hover:border-[#D95A2B]/40 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-[#D95A2B] flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                <skill.icon size={24} />
+              </div>
+              <h3 className="text-xl font-black font-heading uppercase group-hover:text-[#D95A2B] transition-colors">{skill.title}</h3>
+              <p className="text-sm text-[var(--text-muted)] font-mono leading-relaxed uppercase tracking-tight">
+                {skill.desc}
+              </p>
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── CORE TECHNICAL SKILLS ── */}
+      <section className="space-y-12">
+        <h3 className="text-2xl font-black font-heading uppercase border-b border-[var(--border-color)] pb-6">Năng lực <span className="text-[#D95A2B]">Kỹ thuật</span></h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {coreSkills.map(skill => (
+            <SkillBar key={skill.name} name={skill.name} level={skill.level} icon={skill.icon} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── EXPERIENCE MANTRA ── */}
+      <section className="luxury-card p-12 md:p-20 bg-[var(--glass-bg)] text-center space-y-8 border-dashed">
+        <h3 className="text-2xl font-black font-heading uppercase">"Học hỏi là hành trình <span className="text-[#D95A2B]">không có điểm dừng</span>"</h3>
+        <p className="max-w-2xl mx-auto text-sm text-[var(--text-muted)] font-mono uppercase tracking-widest leading-relaxed">
+          Tôi không ngừng nghiên cứu các công nghệ mới mỗi ngày để đảm bảo rằng mọi sản phẩm 3D và phương án kiến trúc 
+          mà tôi cung cấp luôn dẫn đầu về cả thẩm mỹ lẫn hiệu quả thực thi.
+        </p>
       </section>
     </div>
   );
