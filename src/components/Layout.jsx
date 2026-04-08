@@ -126,6 +126,9 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
           <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>
             Trang Chủ
           </MobileNavLink>
+          <MobileNavLink to="/about" onClick={() => setMobileMenuOpen(false)}>
+            Giới thiệu
+          </MobileNavLink>
           <MobileNavLink to="/portfolio" onClick={() => setMobileMenuOpen(false)}>
             Portfolio
           </MobileNavLink>
