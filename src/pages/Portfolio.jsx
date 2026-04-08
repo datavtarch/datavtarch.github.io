@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TiltCard } from '../components/UI';
 import { PROJECTS_DATA, FILTER_CATEGORIES } from '../data/constants';
 
 const Portfolio = ({ setSelectedProject }) => {
   const [filter, setFilter] = useState("Tất cả");
+  const navigate = useNavigate();
 
   const filteredProjects = filter === "Tất cả" 
     ? PROJECTS_DATA 
     : PROJECTS_DATA.filter(p => p.category === filter);
+
+  const handleProjectClick = (proj) => {
+    if (proj.detailsPath) {
+      navigate(proj.detailsPath);
+    } else {
+      setSelectedProject(proj);
+    }
+  };
 
   return (
     <div className="pt-40 max-w-6xl mx-auto px-4 md:px-6 pb-32">
@@ -39,7 +49,7 @@ const Portfolio = ({ setSelectedProject }) => {
           <TiltCard 
             key={proj.id} 
             className="luxury-card aspect-square cursor-pointer group"
-            onClick={() => setSelectedProject(proj)}
+            onClick={() => handleProjectClick(proj)}
           >
             <img 
               src={proj.image} 

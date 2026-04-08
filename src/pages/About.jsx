@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IMAGES } from '../data/constants';
 import { CV_DATA } from '../data/cvData';
 
@@ -163,7 +164,7 @@ const About = () => {
           <div className="h-[2px] w-24 bg-[#D95A2B] mt-2 rounded-full"></div>
         </div>
 
-        <div className="group relative rounded-3xl overflow-hidden border border-white/5 bg-[#110E0B] shadow-2xl transition-all duration-700 hover:border-[#D95A2B]/30">
+        <Link to="/graduation-project" className="block group relative rounded-3xl overflow-hidden border border-white/5 bg-[#110E0B] shadow-2xl transition-all duration-700 hover:border-[#D95A2B]/30 hover:-translate-y-1">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="aspect-[16/10] lg:aspect-auto overflow-hidden">
               <img 
@@ -176,7 +177,7 @@ const About = () => {
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <i className="fa-solid fa-graduation-cap text-8xl text-white"></i>
               </div>
-              <h3 className="text-2xl md:text-3xl font-black text-white font-heading uppercase mb-6 leading-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-white font-heading uppercase mb-6 leading-tight group-hover:text-[#D95A2B] transition-colors">
                 Trung tâm Thiền <br />
                 <span className="text-[#D95A2B]">Làng Mai Đà Lạt</span>
               </h3>
@@ -185,12 +186,8 @@ const About = () => {
                   Đây là đồ án tâm huyết nhất trong hành trình học tập tại Đại học Kiến trúc TP.HCM. 
                   Dự án lấy cảm hứng từ triết lý tỉnh thức của Làng Mai, kết hợp với địa hình đặc trưng và khí hậu sương mờ của Đà Lạt.
                 </p>
-                <p>
-                  Giải pháp kiến trúc tập trung vào sự kết nối giữa con người và thiên nhiên, sử dụng vật liệu địa phương và 
-                  tổ chức không gian mở để tạo nên một chốn về bình an, tĩnh tại cho tâm hồn.
-                </p>
               </div>
-              <div className="flex flex-wrap gap-4 items-center">
+              <div className="flex flex-wrap gap-4 items-center mb-8">
                 <div className="flex flex-col">
                   <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mb-1">Quy mô</span>
                   <span className="text-xs font-bold text-white uppercase font-mono">Dự án cấp thành phố</span>
@@ -201,9 +198,14 @@ const About = () => {
                   <span className="text-xs font-bold text-white uppercase font-mono">Đà Lạt, Lâm Đồng</span>
                 </div>
               </div>
+              
+              <div className="flex items-center gap-2 text-[#D95A2B] font-bold text-[10px] uppercase tracking-widest font-mono">
+                <span>Xem chi tiết đồ án</span>
+                <i className="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </section>
 
       {/* ── SECTION 2: AI & AUTOMATION ── */}

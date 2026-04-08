@@ -35,6 +35,7 @@ export const PROJECTS_DATA = [
     tags: ["Đồ án tốt nghiệp", "Kiến trúc"],
     image: IMAGES.projectDoAn,
     pdfLink: "#",
+    detailsPath: "/graduation-project",
     desc: "Đồ án tốt nghiệp kiến trúc sư - Một không gian thiền định hài hòa với thiên nhiên Đà Lạt.",
     category: "Kiến trúc",
   },

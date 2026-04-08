@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Store from './pages/Store';
+import GraduationProject from './pages/GraduationProject';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -159,6 +160,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/graduation-project" element={<GraduationProject />} />
         </Routes>
       </Layout>
 
