@@ -283,8 +283,8 @@ const About = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {CV_DATA.activities.map((act, idx) => (
-            <CVBox key={idx} className="!p-6 justify-center min-h-[140px]">
-              <div className="text-[#D95A2B] text-xl mb-4 group-hover:-translate-y-1 transition-transform relative z-10">
+            <CVBox key={idx} className="!p-4 justify-center min-h-[110px]">
+              <div className="text-[#D95A2B] text-xl mb-3 group-hover:-translate-y-1 transition-transform relative z-10">
                 <i className={`fa-solid ${
                   idx === 0 ? 'fa-users' : 
                   idx === 1 ? 'fa-user-tie' : 
