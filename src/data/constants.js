@@ -23,10 +23,21 @@ export const IMAGES = {
   storeJapandi: getAssetPath("/projects/AI_-_Phong_cách_Japandi.webp"),
   storeIndochine: getAssetPath("/projects/AI_-_Phong_cách_Indochine.webp"),
   projectAIJapandiModern: getAssetPath("/projects/AI_-_Phong_cách_Japandi_hiện_đại.webp"),
+  projectDoAn: getAssetPath("/projects/do-an-tot-nghiep.png"),
   compareRender: getAssetPath("/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp"),
 };
 
 export const PROJECTS_DATA = [
+  // ── ĐỒ ÁN TỐT NGHIỆP ──
+  {
+    id: 0,
+    title: "Trung tâm Thiền Làng Mai Đà Lạt",
+    tags: ["Đồ án tốt nghiệp", "Kiến trúc"],
+    image: IMAGES.projectDoAn,
+    pdfLink: "#",
+    desc: "Đồ án tốt nghiệp kiến trúc sư - Một không gian thiền định hài hòa với thiên nhiên Đà Lạt.",
+    category: "Kiến trúc",
+  },
   // ── CÔNG TRÌNH THỰC TẾ ──
   {
     id: 1,

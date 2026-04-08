@@ -154,6 +154,58 @@ const About = () => {
         </div>
       </div>
 
+      {/* ── FEATURED PROJECT: ĐỒ ÁN TỐT NGHIỆP ── */}
+      <section className="relative">
+        <div className="absolute -left-4 md:-left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#D95A2B]/20 to-transparent"></div>
+        <div className="mb-12 flex flex-col gap-2">
+          <span className="text-[#D95A2B] text-[10px] font-mono font-bold tracking-[0.3em] uppercase">Featured Work</span>
+          <h2 className="text-3xl md:text-5xl font-black text-white font-heading uppercase tracking-tight">Đồ án <span className="text-[#D95A2B]">Tốt nghiệp</span></h2>
+          <div className="h-[2px] w-24 bg-[#D95A2B] mt-2 rounded-full"></div>
+        </div>
+
+        <div className="group relative rounded-3xl overflow-hidden border border-white/5 bg-[#110E0B] shadow-2xl transition-all duration-700 hover:border-[#D95A2B]/30">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="aspect-[16/10] lg:aspect-auto overflow-hidden">
+              <img 
+                src={IMAGES.projectDoAn} 
+                alt="Trung tâm Thiền Làng Mai Đà Lạt" 
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </div>
+            <div className="p-8 md:p-12 flex flex-col justify-center relative">
+              <div className="absolute top-0 right-0 p-8 opacity-5">
+                <i className="fa-solid fa-graduation-cap text-8xl text-white"></i>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-black text-white font-heading uppercase mb-6 leading-tight">
+                Trung tâm Thiền <br />
+                <span className="text-[#D95A2B]">Làng Mai Đà Lạt</span>
+              </h3>
+              <div className="space-y-4 text-gray-400 text-sm font-light leading-relaxed mb-8 text-justify">
+                <p>
+                  Đây là đồ án tâm huyết nhất trong hành trình học tập tại Đại học Kiến trúc TP.HCM. 
+                  Dự án lấy cảm hứng từ triết lý tỉnh thức của Làng Mai, kết hợp với địa hình đặc trưng và khí hậu sương mờ của Đà Lạt.
+                </p>
+                <p>
+                  Giải pháp kiến trúc tập trung vào sự kết nối giữa con người và thiên nhiên, sử dụng vật liệu địa phương và 
+                  tổ chức không gian mở để tạo nên một chốn về bình an, tĩnh tại cho tâm hồn.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4 items-center">
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mb-1">Quy mô</span>
+                  <span className="text-xs font-bold text-white uppercase font-mono">Dự án cấp thành phố</span>
+                </div>
+                <div className="w-[1px] h-8 bg-white/10 mx-2"></div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mb-1">Vị trí</span>
+                  <span className="text-xs font-bold text-white uppercase font-mono">Đà Lạt, Lâm Đồng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── SECTION 2: AI & AUTOMATION ── */}
       <section>
         <div className="mb-10 flex flex-col gap-2">
