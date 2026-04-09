@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IMAGES } from '../data/constants';
-import { ArrowLeft, MapPin, Calendar, Layers, Wind, Sun } from 'lucide-react';
+import { ArrowLeft, MapPin, Calendar, Layers, Wind, Sun, FileText, Download } from 'lucide-react';
 
 const GraduationProject = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,6 +10,21 @@ const GraduationProject = () => {
     setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
+
+  const documents = [
+    {
+      title: "Thuyết minh tốt nghiệp",
+      description: "Tài liệu chi tiết về quá trình nghiên cứu, ý tưởng thiết kế và giải pháp kiến trúc của dự án.",
+      file: "/documents/THUYET MINH TOT NGHIEP.pdf",
+      type: "PDF"
+    },
+    {
+      title: "Báo cáo NCKH",
+      description: "Nghiên cứu khoa học về 'Sự tỉnh thức trong Kiến trúc' - cơ sở lý luận cho đồ án.",
+      file: "/documents/NCKH - NGUYEN VAN THANH.docx",
+      type: "DOCX"
+    }
+  ];
 
   return (
     <div className={`pt-24 pb-32 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -151,6 +166,66 @@ const GraduationProject = () => {
                 <p className="text-xs text-gray-400 font-mono leading-relaxed">Sự chuyển tiếp cao độ nhịp nhàng theo địa hình đồi dốc, tạo nên các khoảng nhìn (view) đa dạng từ mọi phía.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RESEARCH DOCUMENTS SECTION ── */}
+      <section className="max-w-7xl mx-auto px-6 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-4">
+            <span className="text-[#D95A2B] text-[10px] font-mono font-bold tracking-[0.3em] uppercase mb-4 block">Research & Documentation</span>
+            <h2 className="text-3xl md:text-5xl font-black text-white font-heading uppercase tracking-tight mb-6">Tài liệu <br /> nghiên cứu</h2>
+            <p className="text-gray-400 font-light leading-relaxed text-sm font-mono">
+              Tổng hợp các văn bản thuyết minh và báo cáo khoa học đi kèm để hiểu rõ hơn về chiều sâu lý luận của đồ án.
+            </p>
+          </div>
+          
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {documents.map((doc, index) => (
+              <div key={index} className="group/doc bg-[#15110E] border border-white/5 p-8 rounded-2xl hover:border-[#D95A2B]/40 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover/doc:opacity-20 transition-opacity">
+                  <FileText size={80} className="text-[#D95A2B]" />
+                </div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="px-2 py-1 bg-[#D95A2B]/20 border border-[#D95A2B]/30 rounded text-[#D95A2B] text-[10px] font-mono font-bold">
+                      {doc.type}
+                    </div>
+                    <div className="h-[1px] flex-grow bg-white/5"></div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover/doc:text-[#D95A2B] transition-colors font-heading uppercase tracking-wide">
+                    {doc.title}
+                  </h3>
+                  
+                  <p className="text-gray-500 text-xs mb-8 leading-relaxed font-mono italic">
+                    {doc.description}
+                  </p>
+                  
+                  <div className="flex gap-4">
+                    <a 
+                      href={doc.file} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-[#D95A2B] text-white text-[10px] font-mono uppercase tracking-widest py-3 rounded-lg transition-all group/btn"
+                    >
+                      <FileText size={14} />
+                      Xem tài liệu
+                    </a>
+                    <a 
+                      href={doc.file} 
+                      download
+                      className="w-12 flex items-center justify-center bg-white/5 hover:bg-white/10 text-white rounded-lg transition-all"
+                      title="Tải xuống"
+                    >
+                      <Download size={16} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
