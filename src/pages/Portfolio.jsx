@@ -9,7 +9,11 @@ const Portfolio = ({ setSelectedProject }) => {
 
   const filteredProjects = filter === "Tất cả" 
     ? PROJECTS_DATA 
-    : PROJECTS_DATA.filter(p => p.category === filter);
+    : PROJECTS_DATA.filter(p => 
+        Array.isArray(p.category) 
+          ? p.category.includes(filter) 
+          : p.category === filter
+      );
 
   const handleProjectClick = (proj) => {
     if (proj.detailsPath) {

@@ -21,8 +21,8 @@ const GraduationProject = () => {
     {
       title: "Báo cáo NCKH",
       description: "Nghiên cứu khoa học về 'Sự tỉnh thức trong Kiến trúc' - cơ sở lý luận cho đồ án.",
-      file: "/documents/NCKH - NGUYEN VAN THANH.docx",
-      type: "DOCX"
+      file: "/documents/NCKH - NGUYEN VAN THANH.pdf",
+      type: "PDF"
     }
   ];
 

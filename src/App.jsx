@@ -32,10 +32,13 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // ── SMOOTH SCROLL & THEME ──
+  // ── THEME ──
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isLightMode ? 'light' : 'dark');
-    
+  }, [isLightMode]);
+
+  // ── SMOOTH SCROLL (init once only) ──
+  useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -46,10 +49,9 @@ export default function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
-    
-    return () => lenis.destroy();
-  }, [isLightMode]);
+    const id = requestAnimationFrame(raf);
+    return () => { lenis.destroy(); cancelAnimationFrame(id); };
+  }, []);
 
   if (isLoading) {
     return (

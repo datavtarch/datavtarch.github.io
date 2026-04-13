@@ -84,18 +84,32 @@ export const ProjectModal = ({ project, onClose }) => {
           <h2 className="text-3xl font-black font-heading uppercase mb-6">
             {project.title}
           </h2>
-          <p className="text-sm text-gray-400 font-mono leading-relaxed mb-10">
+          <p className="text-sm text-gray-400 font-mono leading-relaxed mb-6">
             &gt; {project.desc}
           </p>
-          <div className="flex gap-3">
-            <a
-              href={`${import.meta.env.DEV ? "/" : import.meta.env.BASE_URL}${project.pdfLink}`.replace(/\/+/g, "/")}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-outline-luxury px-8 py-4 text-xs font-mono"
-            >
-              XEM PDF
-            </a>
+          
+          <div className="space-y-5 mb-10 bg-[var(--glass-bg)] p-4 border border-[var(--border-color)] rounded-xl">
+             <div>
+                <h4 className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-[0.2em] font-bold mb-1">Vấn Đề / Challenge</h4>
+                <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">Nghiên cứu ánh sáng tự nhiên, thiết lập hệ vật liệu PBR kết hợp tạo cảm xúc cho không gian nội/ngoại thất.</p>
+             </div>
+             <div>
+                <h4 className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-[0.2em] font-bold mb-1">Công Cụ / Workflow</h4>
+                <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">Sketchup + D5 Render + AI Post-Production</p>
+             </div>
+          </div>
+          
+          <div className="flex gap-4 items-center">
+            {project.pdfLink && (
+              <a
+                href={`${import.meta.env.DEV ? "/" : import.meta.env.BASE_URL}${project.pdfLink}`.replace(/\/+/g, "/")}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-accent px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all shadow-[0_5px_15px_rgba(217,90,43,0.3)]"
+              >
+                XEM PDF DỰ ÁN
+              </a>
+            )}
           </div>
         </div>
       </div>

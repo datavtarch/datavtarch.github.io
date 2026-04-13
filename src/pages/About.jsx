@@ -126,23 +126,18 @@ const About = () => {
             <span className="text-[#D95A2B] text-[10px] font-bold tracking-[0.3em] font-mono uppercase">Profile.Exe</span>
           </div>
 
-          <h1 className="text-5xl md:text-[5.5rem] font-black leading-[0.95] font-heading uppercase mb-10 tracking-tighter text-white">
+          <h1 className="text-5xl md:text-[5.5rem] font-black leading-[0.95] font-heading uppercase mb-10 tracking-tighter text-white drop-shadow-xl">
             NGUYỄN<br />VĂN<br />
             <span className="text-[#D95A2B]">THANH</span>
           </h1>
 
-          <div className="space-y-6 text-sm text-gray-400 leading-relaxed font-light mb-10 text-justify">
-            {CV_DATA.summary.split('\n\n').map((p, i) => (
-              <p key={i}>
-                {p.includes("Trí tuệ Nhân tạo (AI)") ? (
-                  <>
-                    {p.split("Trí tuệ Nhân tạo (AI)")[0]}
-                    <strong className="text-white font-medium">Trí tuệ Nhân tạo (AI)</strong>
-                    {p.split("Trí tuệ Nhân tạo (AI)")[1]}
-                  </>
-                ) : p}
-              </p>
-            ))}
+          <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed font-light mb-10 text-justify font-mono border-l-2 border-[#D95A2B] pl-6">
+             <p>
+               Là một chuyên gia diễn họa kiến trúc, tôi tin rằng mỗi dự án không chỉ là những đường nét hình học, mà là một <strong className="text-white">trải nghiệm cảm xúc</strong>. Tôi tập trung vào hiệu ứng ánh sáng tự nhiên và thiết lập vật liệu chân thực PBR để kiến tạo những tác phẩm vượt ra khỏi giới hạn của 3D thông thường.
+             </p>
+             <p>
+               Bằng việc tiên phong ứng dụng <strong className="text-[#D95A2B] font-bold">Trí Tuệ Nhân Tạo (AI Workflow)</strong> vào quy trình đồ hoạ truyền thống, tôi mang đến giải pháp siêu chân thực, đồng thời tối ưu hóa 300% thời gian render. Tôi giúp ý tưởng của các đối tác, kiến trúc sư trở thành hiện thực một cách ấn tượng và cao cấp nhất.
+             </p>
           </div>
 
           <a 
