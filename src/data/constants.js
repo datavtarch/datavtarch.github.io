@@ -3,7 +3,6 @@
 // ========================================================
 const getAssetPath = (path) => {
   const base = window.location.pathname.includes('/PROFILE-VTARCH-') ? '/PROFILE-VTARCH-' : '';
-  // Ensure path starts with / if it doesn't
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   return `${base}${normalizedPath}`.replace(/\/+/g, '/');
 };
@@ -23,7 +22,7 @@ export const IMAGES = {
   storeJapandi: getAssetPath("/projects/AI_-_Phong_cách_Japandi.webp"),
   storeIndochine: getAssetPath("/projects/AI_-_Phong_cách_Indochine.webp"),
   projectAIJapandiModern: getAssetPath("/projects/AI_-_Phong_cách_Japandi_hiện_đại.webp"),
-  projectDoAn: getAssetPath("/projects/do-an-tot-nghiep.png"),
+  projectDoAn: getAssetPath("/projects/do-an-tot-nghiep.webp"),
   compareRender: getAssetPath("/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp"),
 };
 
@@ -167,15 +166,17 @@ export const STORE_ITEMS = [
   },
 ];
 
-export const IG_POSTS = Array.from({ length: 53 }, (_, i) => {
-  const id = (i + 1).toString().padStart(2, "0");
-  if (id === "16" || id === "17") return null;
+const VALID_IG_IMAGE_IDS = Array.from({ length: 47 }, (_, i) => i + 1)
+  .filter((id) => id !== 16 && id !== 17);
+
+export const IG_POSTS = VALID_IG_IMAGE_IDS.map((num) => {
+  const id = num.toString().padStart(2, "0");
   return {
     image: `${id}.webp`,
     likes: `${(Math.random() * 5 + 0.5).toFixed(1)}k`,
     comments: Math.floor(Math.random() * 100),
     link: "https://www.instagram.com/vtarch99/",
   };
-}).filter(Boolean);
+});
 
 export const FILTER_CATEGORIES = ["Tất cả", "Kiến trúc", "Công trình thực tế", "Render D5", "Model", "AI Render"];
