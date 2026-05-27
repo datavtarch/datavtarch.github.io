@@ -1,225 +1,236 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MoveRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, MoveRight, Sparkles } from 'lucide-react';
 import { TiltCard, Typewriter } from '../components/UI';
 import { InstagramIcon } from '../components/Icons';
-import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS } from '../data/constants';
+import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS, IMAGES } from '../data/constants';
+
+const stats = [
+  ['50+', 'Visual projects'],
+  ['300%', 'Faster AI workflow'],
+  ['D5', 'Render specialist'],
+  ['AI', 'Post-production lab'],
+];
 
 const Home = ({ setSelectedProject }) => {
   const [igModal, setIgModal] = useState(null);
+  const heroProject = PROJECTS_DATA[1] || PROJECTS_DATA[0];
 
   return (
-    <div className="pt-32 space-y-32 px-4 md:px-6 relative">
-      {/* ── HERO SECTION ── */}
-      <section className="flex flex-col items-center text-center max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-[#D95A2B]/30 bg-[#D95A2B]/10 mb-8 backdrop-blur-md">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#D95A2B] animate-pulse"></span>
-          <span className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-widest font-bold">
-            Architect & 3D Visualizer
-          </span>
+    <div className="relative overflow-hidden">
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6">
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src={heroProject.image}
+            alt="VTARCH hero render"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.22] scale-105"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#080604_0%,rgba(8,6,4,.92)_34%,rgba(8,6,4,.60)_68%,#080604_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_32%,rgba(217,90,43,.28),transparent_32%)]" />
+          <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter font-heading mb-4 drop-shadow-xl">
-          Kiến Tạo Không Gian. <br />
-          <span className="text-[#D95A2B]">Vượt Qua Giới Hạn.</span>
-        </h1>
-        <div className="text-sm md:text-base text-[var(--text-muted)] font-mono max-w-lg mx-auto leading-relaxed mb-10 border-l-2 border-[#D95A2B] pl-4 text-left h-[70px] flex flex-col justify-center">
-          <span>
-            &gt; ROLE:{' '}
-            <Typewriter
-              phrases={[
-                'Chuyên gia diễn họa kiến trúc 3D.',
-                'AI Workflow & D5 Render.',
-                'Cá nhân hóa thiết kế dự án cao cấp.',
-              ]}
-            />
-          </span>
-        </div>
-        <div className="flex gap-4">
-          <a
-            href="mailto:vtarch99@gmail.com"
-            className="btn-accent px-8 py-4 text-xs uppercase font-mono flex items-center gap-2"
-          >
-            Hợp Tác Cùng Tôi <MoveRight size={14} />
-          </a>
-          <Link
-            to="/portfolio"
-            className="btn-outline-luxury px-8 py-4 text-xs uppercase font-mono"
-          >
-            Khám phá dự án
-          </Link>
-        </div>
-      </section>
 
-      {/* ── FEATURED PROJECTS ── */}
-      <section className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest mb-2 text-[#D95A2B]">
-              &gt; FEATURED
-            </h2>
-            <h3 className="text-4xl font-black font-heading uppercase">
-              Dự Án <span className="text-[#D95A2B]">Nổi Bật</span>
-            </h3>
-          </div>
-          <Link
-            to="/portfolio"
-            className="text-[#D95A2B] font-mono text-xs hover:underline flex items-center gap-2"
-          >
-            XEM TẤT CẢ <ExternalLink size={14} />
-          </Link>
-        </div>
-        <div className="flex flex-col gap-12">
-          {PROJECTS_DATA.slice(0, 3).map((proj, idx) => (
-            <div
-              key={proj.id}
-              className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-6 md:gap-12 items-center group cursor-pointer`}
-              onClick={() => setSelectedProject(proj)}
-            >
-              <div className="w-full md:w-2/3 overflow-hidden rounded-xl border border-[var(--border-color)]">
-                <img
-                  src={proj.image}
-                  alt={proj.title}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={idx === 0 ? 'high' : 'auto'}
-                  decoding="async"
-                  className="w-full aspect-[16/9] md:aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="w-full md:w-1/3 flex flex-col justify-center">
-                <span className="text-[10px] font-mono text-[#D95A2B] uppercase mb-4 tracking-widest font-bold">
-                  &gt; {proj.category?.[0] || 'Dự án'}
-                </span>
-                <h4 className="text-3xl font-black font-heading uppercase mb-4 group-hover:text-[#D95A2B] transition-colors">
-                  {proj.title}
-                </h4>
-                <p className="text-[var(--text-muted)] font-mono text-sm mb-6 line-clamp-3 leading-relaxed">
-                  {proj.desc}
+        <div className="section-shell relative z-10 w-full">
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="eyebrow mb-7">Architectural Visualization Lab</div>
+              <h1 className="text-[13vw] sm:text-7xl lg:text-[6.5rem] leading-[0.86] font-black uppercase font-heading tracking-[-0.08em] mb-8">
+                Kiến tạo <br />
+                <span className="gradient-title">hình ảnh</span><br />
+                điện ảnh.
+              </h1>
+              <div className="max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed border-l border-[#D95A2B]/60 pl-5 mb-9">
+                <p className="mb-3">
+                  &gt; ROLE:{' '}
+                  <Typewriter
+                    phrases={[
+                      'Architecture CGI & D5 Render.',
+                      'AI-powered post-production workflow.',
+                      'Premium visual storytelling for spaces.',
+                    ]}
+                  />
                 </p>
-                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase hover:text-[#D95A2B] transition-colors">
-                  Xem chi tiết dự án <MoveRight size={14} />
-                </div>
+                <p>
+                  VTARCH kết hợp diễn họa kiến trúc, ánh sáng điện ảnh và AI workflow để biến ý tưởng không gian thành hình ảnh có chiều sâu, cảm xúc và tính thương mại cao.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/portfolio" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
+                  Xem Portfolio <ArrowUpRight size={15} />
+                </Link>
+                <a href="mailto:vtarch99@gmail.com" className="btn-outline-luxury px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
+                  Hợp tác dự án <MoveRight size={15} />
+                </a>
               </div>
             </div>
-          ))}
+
+            <div className="relative">
+              <div className="absolute -inset-6 bg-[#D95A2B]/20 blur-[80px] rounded-full" />
+              <div className="neo-card rounded-[2.2rem] p-3 relative">
+                <div className="relative overflow-hidden rounded-[1.7rem] aspect-[4/5]">
+                  <img
+                    src={heroProject.image}
+                    alt={heroProject.title}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                  <div className="absolute left-5 right-5 bottom-5">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {heroProject.tags.map((tag) => <span key={tag} className="tag-accent">{tag}</span>)}
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight">
+                      {heroProject.title}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card rounded-2xl p-5 max-w-[260px] hidden sm:block">
+                <div className="flex items-center gap-3 mb-2 text-[#F3A06D]">
+                  <Sparkles size={18} />
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">AI + CGI</span>
+                </div>
+                <p className="text-xs font-mono text-[var(--text-muted)] leading-relaxed">
+                  Hybrid workflow cho render, hậu kỳ và tối ưu hình ảnh nội thất.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-16">
+            {stats.map(([number, label]) => (
+              <div key={label} className="neo-card rounded-2xl p-5">
+                <div className="text-3xl md:text-4xl font-black font-heading text-[#F3A06D]">{number}</div>
+                <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.18em] text-[var(--text-muted)] mt-2">{label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── FEATURED STORE ── */}
-      <section className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
+      {/* FEATURED PROJECTS */}
+      <section className="section-shell py-20 md:py-28">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
-            <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest mb-2 text-[#D95A2B]">
-              &gt; PREMIUM ASSETS
+            <div className="eyebrow mb-5">Featured works</div>
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight">
+              Dự án <span className="gradient-title">nổi bật</span>
             </h2>
-            <h3 className="text-4xl font-black font-heading uppercase">
-              Premium <span className="text-[#D95A2B]">D5 Assets</span>
-            </h3>
-            <p className="text-[var(--text-muted)] font-mono text-xs uppercase tracking-[0.2em] mt-2 font-bold max-w-sm">
-              Giải pháp tối ưu thời gian diễn họa với bộ thư viện cao cấp
-            </p>
           </div>
-          <Link
-            to="/store"
-            className="text-[#D95A2B] font-mono text-xs hover:underline flex items-center gap-2"
-          >
-            XEM TẤT CẢ <ExternalLink size={14} />
+          <Link to="/portfolio" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
+            Xem tất cả <ExternalLink size={14} />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {STORE_ITEMS.slice(0, 3).map((item, idx) => (
+
+        <div className="grid lg:grid-cols-12 gap-5 md:gap-6">
+          {PROJECTS_DATA.slice(0, 5).map((proj, idx) => (
             <TiltCard
-              key={idx}
-              className="luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end"
+              key={proj.id}
+              className={`luxury-card cursor-pointer group ${idx === 0 ? 'lg:col-span-7 aspect-[16/10]' : idx === 1 ? 'lg:col-span-5 aspect-[16/10]' : 'lg:col-span-4 aspect-[4/5]'}`}
+              onClick={() => setSelectedProject(proj)}
             >
               <img
-                src={item.img}
-                alt={item.title}
-                loading="lazy"
+                src={proj.image}
+                alt={proj.title}
+                loading={idx < 2 ? 'eager' : 'lazy'}
+                fetchPriority={idx < 2 ? 'high' : 'auto'}
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] to-transparent opacity-90"></div>
-              <div className="relative z-20 p-6">
-                <h3 className="text-xl font-black font-heading uppercase">
-                  {item.title}
-                </h3>
-                <div className="flex items-center justify-between mt-4 border-t border-[var(--border-color)] pt-4">
-                  <span className="text-[#D95A2B] font-bold text-xl">
-                    {item.price}
-                  </span>
-                  <button className="btn-accent px-4 py-2 text-[10px] font-mono uppercase">
-                    Chi Tiết
-                  </button>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/28 to-transparent" />
+              <div className="absolute top-5 left-5 right-5 flex justify-between items-start gap-3">
+                <span className="tag-accent">0{idx + 1}</span>
+                <span className="w-9 h-9 rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#D95A2B] transition-colors">
+                  <ArrowUpRight size={15} />
+                </span>
+              </div>
+              <div className="absolute left-5 right-5 bottom-5 md:left-7 md:right-7 md:bottom-7">
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  {proj.tags.slice(0, 3).map((t) => <span key={t} className="tag-accent">{t}</span>)}
                 </div>
+                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[#F3A06D] transition-colors">
+                  {proj.title}
+                </h3>
+                <p className="text-xs md:text-sm font-mono text-gray-300 mt-3 max-w-xl line-clamp-2">
+                  {proj.desc}
+                </p>
               </div>
             </TiltCard>
           ))}
         </div>
       </section>
 
-      {/* ── SOCIAL FEED ── */}
-      <section className="max-w-6xl mx-auto border-t border-[var(--border-color)] pt-32 text-center">
-        <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
-          <InstagramIcon size={24} />
-        </div>
-        <h3 className="text-4xl font-black font-heading uppercase">Social Feed</h3>
-        <a
-          href="https://www.instagram.com/vtarch99/"
-          className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors"
-        >
-          &gt; @vtarch99
-        </a>
-        
-        {/* Grid cố định 3 cột cho mọi thiết bị */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 mt-16 px-2 md:px-0">
-          {IG_POSTS.slice(0, 9).map((post, idx) => {
-            const prefix = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL;
-            return (
-              <div
-                key={idx}
-                onClick={() => setIgModal(post)}
-                className="aspect-square luxury-card overflow-hidden group border-[0.5px] md:border cursor-pointer relative"
-              >
-                <img
-                  src={`${prefix}instagram/${post.image}`.replace(/\/+/g, '/')}
-                  alt="Instagram Post"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                {/* Overlay Subtle on Mobile */}
-                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="bg-black/80 text-white text-xs font-mono px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
-                    Xem ảnh
+      {/* STORE PREVIEW */}
+      <section className="section-shell py-20 md:py-28">
+        <div className="neo-card rounded-[2rem] p-6 md:p-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+            <div>
+              <div className="eyebrow mb-5">Premium assets</div>
+              <h2 className="text-4xl md:text-5xl font-black font-heading uppercase tracking-tight">
+                D5 Assets <span className="gradient-title">Library</span>
+              </h2>
+              <p className="text-[var(--text-muted)] font-mono text-sm mt-4 max-w-xl">
+                Thư viện vật liệu, setting render và workflow dành cho diễn họa nội thất cao cấp.
+              </p>
+            </div>
+            <Link to="/store" className="btn-outline-luxury px-7 py-4 text-xs uppercase font-mono tracking-widest">
+              Xem Assets
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {STORE_ITEMS.slice(0, 3).map((item, idx) => (
+              <TiltCard key={idx} className="luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end">
+                <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
+                <div className="relative z-20 p-6">
+                  <h3 className="text-xl font-black font-heading uppercase leading-tight">{item.title}</h3>
+                  <div className="flex items-center justify-between mt-5 border-t border-white/10 pt-4">
+                    <span className="text-[#F3A06D] font-black text-2xl">{item.price}</span>
+                    <button className="btn-accent px-4 py-2 text-[10px] font-mono uppercase">Chi tiết</button>
                   </div>
                 </div>
+              </TiltCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL FEED */}
+      <section className="section-shell py-20 md:py-28 text-center">
+        <div className="w-14 h-14 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
+          <InstagramIcon size={26} />
+        </div>
+        <h3 className="text-4xl md:text-5xl font-black font-heading uppercase">Social Feed</h3>
+        <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors">
+          &gt; @vtarch99
+        </a>
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 mt-12">
+          {IG_POSTS.slice(0, 12).map((post, idx) => {
+            const prefix = import.meta.env.DEV ? '/' : import.meta.env.BASE_URL;
+            return (
+              <div key={idx} onClick={() => setIgModal(post)} className="aspect-square luxury-card overflow-hidden group border-[0.5px] md:border cursor-pointer relative rounded-xl md:rounded-2xl">
+                <img src={`${prefix}instagram/${post.image}`.replace(/\/+/g, '/')} alt="Instagram Post" loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors" />
               </div>
             );
           })}
         </div>
       </section>
 
-      {/* ── IG MODAL ── */}
       {igModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm transition-opacity" onClick={() => setIgModal(null)}>
-          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] p-4 rounded-xl max-w-lg w-full relative shadow-2xl" onClick={e => e.stopPropagation()}>
-            <button className="absolute top-4 right-4 text-[var(--text-muted)] hover:text-white bg-black/50 w-8 h-8 rounded-full flex items-center justify-center" onClick={() => setIgModal(null)}>
-               ✕
-            </button>
-            <img 
-              src={`${import.meta.env.DEV ? '/' : import.meta.env.BASE_URL}instagram/${igModal.image}`.replace(/\/+/g, '/')} 
-              alt="IG Post" 
-              loading="lazy"
-              decoding="async"
-              className="w-full aspect-square object-cover rounded-lg mb-6 border border-[var(--border-color)]" 
-            />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={() => setIgModal(null)}>
+          <div className="bg-[var(--bg-color)] border border-[var(--border-color)] p-4 rounded-2xl max-w-lg w-full relative shadow-2xl" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-white bg-black/60 w-9 h-9 rounded-full flex items-center justify-center z-10" onClick={() => setIgModal(null)}>✕</button>
+            <img src={`${import.meta.env.DEV ? '/' : import.meta.env.BASE_URL}instagram/${igModal.image}`.replace(/\/+/g, '/')} alt="IG Post" loading="lazy" decoding="async" className="w-full aspect-square object-cover rounded-xl mb-5 border border-[var(--border-color)]" />
             <div className="flex items-center justify-between">
-              <span className="text-[var(--text-muted)] font-mono text-sm px-2">
-                ❤️ {igModal.likes} | 💬 {igModal.comments}
-              </span>
-              <a href={igModal.link} target="_blank" rel="noreferrer" className="btn-accent px-4 py-2 text-[10px] uppercase font-mono font-bold tracking-widest">
-                Follow @vtarch99
-              </a>
+              <span className="text-[var(--text-muted)] font-mono text-sm px-2">❤️ {igModal.likes} | 💬 {igModal.comments}</span>
+              <a href={igModal.link} target="_blank" rel="noreferrer" className="btn-accent px-4 py-2 text-[10px] uppercase font-mono font-bold tracking-widest">Follow</a>
             </div>
           </div>
         </div>
