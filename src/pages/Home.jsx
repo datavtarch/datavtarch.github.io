@@ -79,7 +79,9 @@ const Home = ({ setSelectedProject }) => {
                 <img
                   src={proj.image}
                   alt={proj.title}
-                  loading="lazy"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={idx === 0 ? 'high' : 'auto'}
+                  decoding="async"
                   className="w-full aspect-[16/9] md:aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -133,6 +135,7 @@ const Home = ({ setSelectedProject }) => {
                 src={item.img}
                 alt={item.title}
                 loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] to-transparent opacity-90"></div>
@@ -181,6 +184,7 @@ const Home = ({ setSelectedProject }) => {
                   src={`${prefix}instagram/${post.image}`.replace(/\/+/g, '/')}
                   alt="Instagram Post"
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {/* Overlay Subtle on Mobile */}
@@ -205,6 +209,8 @@ const Home = ({ setSelectedProject }) => {
             <img 
               src={`${import.meta.env.DEV ? '/' : import.meta.env.BASE_URL}instagram/${igModal.image}`.replace(/\/+/g, '/')} 
               alt="IG Post" 
+              loading="lazy"
+              decoding="async"
               className="w-full aspect-square object-cover rounded-lg mb-6 border border-[var(--border-color)]" 
             />
             <div className="flex items-center justify-between">
