@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 
-// Components & Pages
+// Components
 import Layout from './components/Layout';
 import { ProjectModal } from './components/UI';
-import Home from './pages/Home';
-import About from './pages/About';
-import Portfolio from './pages/Portfolio';
-import Store from './pages/Store';
-import GraduationProject from './pages/GraduationProject';
+
+// Lazy-loaded pages: keeps the first load lighter.
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
+const Store = lazy(() => import('./pages/Store'));
+const GraduationProject = lazy(() => import('./pages/GraduationProject'));
+
+const PageLoader = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+    <div className="w-40 h-1 bg-white/10 rounded-full overflow-hidden relative">
+      <div className="absolute top-0 left-0 h-full w-1/2 bg-[#D95A2B] animate-pulse"></div>
+    </div>
+    <div className="mt-4 font-mono text-[10px] text-[var(--text-muted)] tracking-[0.2em] uppercase">
+      Loading section...
+    </div>
+  </div>
+);
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -157,13 +170,15 @@ export default function App() {
       ` }} />
       
       <Layout isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
-        <Routes>
-          <Route path="/" element={<Home setSelectedProject={setSelectedProject} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/graduation-project" element={<GraduationProject />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Home setSelectedProject={setSelectedProject} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="/graduation-project" element={<GraduationProject />} />
+          </Routes>
+        </Suspense>
       </Layout>
 
       {/* Shared Components */}
