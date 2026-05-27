@@ -49,6 +49,12 @@ export const Typewriter = ({ phrases }) => {
   );
 };
 
+const normalizeUrl = (url) => {
+  if (!url) return '#';
+  if (/^https?:\/\//.test(url)) return url;
+  return url.replace(/\/+/g, '/');
+};
+
 // ========================================================
 //  PROJECT MODAL
 // ========================================================
@@ -72,6 +78,7 @@ export const ProjectModal = ({ project, onClose }) => {
             src={project.image}
             alt={project.title}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
           />
         </div>
@@ -102,7 +109,7 @@ export const ProjectModal = ({ project, onClose }) => {
           <div className="flex gap-4 items-center">
             {project.pdfLink && (
               <a
-                href={`${import.meta.env.DEV ? "/" : import.meta.env.BASE_URL}${project.pdfLink}`.replace(/\/+/g, "/")}
+                href={normalizeUrl(project.pdfLink)}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-accent px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all shadow-[0_5px_15px_rgba(217,90,43,0.3)]"
