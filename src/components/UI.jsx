@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
 
-// ========================================================
-//  TILT CARD (wrapper)
-// ========================================================
 export const TiltCard = ({ children, className, onClick }) => (
   <div className={className} onClick={onClick}>{children}</div>
 );
 
-// ========================================================
-//  TYPEWRITER EFFECT
-// ========================================================
 export const Typewriter = ({ phrases }) => {
   const [text, setText] = useState("");
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -42,7 +36,7 @@ export const Typewriter = ({ phrases }) => {
   }, [text, isDeleting, phraseIdx, phrases]);
 
   return (
-    <span className="text-[#D95A2B] font-bold">
+    <span className="text-[#F3A06D] font-bold">
       {text}
       <span className="inline-block w-1.5 h-4 bg-[#D95A2B] ml-1 animate-pulse align-middle" />
     </span>
@@ -51,29 +45,25 @@ export const Typewriter = ({ phrases }) => {
 
 const normalizeUrl = (url) => {
   if (!url) return '#';
-  if (/^https?:\/\//.test(url)) return url;
+  if (url.startsWith('http')) return url;
   return url.replace(/\/+/g, '/');
 };
 
-// ========================================================
-//  PROJECT MODAL
-// ========================================================
 export const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 transition-all duration-500">
-      <div
-        className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-        onClick={onClose}
-      />
-      <div className="relative w-full max-w-5xl max-h-[90vh] bg-[#14100E] rounded-2xl overflow-hidden border border-[#D95A2B]/30 flex flex-col md:flex-row">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
+      <div className="relative w-full max-w-6xl max-h-[92vh] neo-card rounded-[2rem] overflow-hidden grid md:grid-cols-[1.25fr_.75fr]">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/50 rounded-lg flex items-center justify-center text-white hover:bg-[#D95A2B] transition-colors"
+          className="absolute top-4 right-4 z-30 w-11 h-11 bg-black/55 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#D95A2B] transition-colors"
+          aria-label="Close project modal"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          ✕
         </button>
-        <div className="w-full md:w-3/5 h-[40vh] md:h-full min-h-[280px]">
+
+        <div className="relative h-[42vh] md:h-[82vh] min-h-[300px] overflow-hidden">
           <img
             src={project.image}
             alt={project.title}
@@ -81,40 +71,42 @@ export const ProjectModal = ({ project, onClose }) => {
             decoding="async"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent md:hidden" />
         </div>
-        <div className="w-full md:w-2/5 p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
-          <div className="flex gap-2 mb-6 flex-wrap">
-            {project.tags.map((t) => (
-              <span key={t} className="tag-accent">{t}</span>
-            ))}
-          </div>
-          <h2 className="text-3xl font-black font-heading uppercase mb-6">
-            {project.title}
-          </h2>
-          <p className="text-sm text-gray-400 font-mono leading-relaxed mb-6">
-            &gt; {project.desc}
-          </p>
-          
-          <div className="space-y-5 mb-10 bg-[var(--glass-bg)] p-4 border border-[var(--border-color)] rounded-xl">
-             <div>
-                <h4 className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-[0.2em] font-bold mb-1">Vấn Đề / Challenge</h4>
-                <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">Nghiên cứu ánh sáng tự nhiên, thiết lập hệ vật liệu PBR kết hợp tạo cảm xúc cho không gian nội/ngoại thất.</p>
-             </div>
-             <div>
-                <h4 className="text-[10px] font-mono text-[#D95A2B] uppercase tracking-[0.2em] font-bold mb-1">Công Cụ / Workflow</h4>
+
+        <div className="relative p-7 md:p-10 flex flex-col justify-center overflow-y-auto bg-[#0B0806]/88">
+          <div className="absolute inset-0 soft-grid opacity-10" />
+          <div className="relative z-10">
+            <div className="flex gap-2 mb-6 flex-wrap">
+              {project.tags.map((t) => <span key={t} className="tag-accent">{t}</span>)}
+            </div>
+            <div className="eyebrow mb-5">Project detail</div>
+            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase mb-6 leading-[0.95] tracking-tight">
+              {project.title}
+            </h2>
+            <p className="text-sm text-[var(--text-muted)] font-mono leading-relaxed mb-8">
+              &gt; {project.desc}
+            </p>
+            <div className="space-y-5 mb-9 bg-white/[0.035] p-5 border border-white/10 rounded-2xl">
+              <div>
+                <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Challenge</h4>
+                <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">
+                  Nghiên cứu ánh sáng tự nhiên, thiết lập vật liệu PBR và tạo cảm xúc hình ảnh cho không gian nội/ngoại thất.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Workflow</h4>
                 <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">Sketchup + D5 Render + AI Post-Production</p>
-             </div>
-          </div>
-          
-          <div className="flex gap-4 items-center">
+              </div>
+            </div>
             {project.pdfLink && (
               <a
                 href={normalizeUrl(project.pdfLink)}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-accent px-8 py-4 text-xs font-mono font-bold tracking-widest uppercase transition-all shadow-[0_5px_15px_rgba(217,90,43,0.3)]"
+                className="btn-accent px-7 py-4 text-xs font-mono font-bold tracking-widest uppercase inline-flex items-center gap-2"
               >
-                XEM PDF DỰ ÁN
+                Xem PDF dự án ↗
               </a>
             )}
           </div>
