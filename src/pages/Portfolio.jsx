@@ -49,7 +49,7 @@ const Portfolio = ({ setSelectedProject }) => {
 
       {/* ── PROJECTS GRID ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {filteredProjects.map(proj => (
+        {filteredProjects.map((proj, idx) => (
           <TiltCard 
             key={proj.id} 
             className="luxury-card aspect-square cursor-pointer group"
@@ -58,7 +58,9 @@ const Portfolio = ({ setSelectedProject }) => {
             <img 
               src={proj.image} 
               alt={proj.title} 
-              loading="lazy" 
+              loading={idx < 3 ? 'eager' : 'lazy'}
+              fetchPriority={idx < 3 ? 'high' : 'auto'}
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
