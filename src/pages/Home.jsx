@@ -1,15 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ExternalLink, MoveRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, MoveRight, Sparkles, CheckCircle2 } from 'lucide-react';
 import { TiltCard, Typewriter } from '../components/UI';
 import { InstagramIcon } from '../components/Icons';
-import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS, IMAGES } from '../data/constants';
+import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS } from '../data/constants';
 
 const stats = [
   ['50+', 'Visual projects'],
-  ['300%', 'Faster AI workflow'],
-  ['D5', 'Render specialist'],
-  ['AI', 'Post-production lab'],
+  ['D5', 'Render workflow'],
+  ['AI', 'Concept & post'],
+  ['1:1', 'Brief to final image'],
+];
+
+const serviceHighlights = [
+  {
+    title: 'Interior CGI',
+    desc: 'Diễn họa nội thất bằng D5 Render, ánh sáng điện ảnh, vật liệu rõ và bố cục dễ bán hàng.',
+  },
+  {
+    title: 'Architecture Render',
+    desc: 'Hình ảnh ngoại thất, công trình thực tế, không gian kiến trúc có bối cảnh và chiều sâu thị giác.',
+  },
+  {
+    title: 'AI Concept',
+    desc: 'Phát triển concept, mood visual và hậu kỳ AI để tạo nhiều phương án nhanh, đẹp, có tính thương mại.',
+  },
+  {
+    title: 'Product Visual',
+    desc: 'Tối ưu hình ảnh sản phẩm nội thất cho website, catalog, social, quảng cáo và e-commerce.',
+  },
 ];
 
 const Home = ({ setSelectedProject }) => {
@@ -29,42 +48,42 @@ const Home = ({ setSelectedProject }) => {
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#080604_0%,rgba(8,6,4,.92)_34%,rgba(8,6,4,.60)_68%,#080604_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_32%,rgba(217,90,43,.28),transparent_32%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#080604_0%,rgba(8,6,4,.93)_36%,rgba(8,6,4,.62)_72%,#080604_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_32%,rgba(217,90,43,.30),transparent_32%)]" />
           <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
 
         <div className="section-shell relative z-10 w-full">
           <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="eyebrow mb-7">Architectural Visualization Lab</div>
-              <h1 className="text-[13vw] sm:text-7xl lg:text-[6.5rem] leading-[0.86] font-black uppercase font-heading tracking-[-0.08em] mb-8">
-                Kiến tạo <br />
-                <span className="gradient-title">hình ảnh</span><br />
-                điện ảnh.
+              <div className="eyebrow mb-7">VTARCH · Visualization · D5 · AI CGI</div>
+              <h1 className="text-[12vw] sm:text-7xl lg:text-[6.2rem] leading-[0.88] font-black uppercase font-heading tracking-[-0.08em] mb-8">
+                Diễn họa <br />
+                <span className="gradient-title">kiến trúc</span><br />
+                có cảm xúc.
               </h1>
               <div className="max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed border-l border-[#D95A2B]/60 pl-5 mb-9">
                 <p className="mb-3">
-                  &gt; ROLE:{' '}
+                  &gt; SERVICE:{' '}
                   <Typewriter
                     phrases={[
                       'Architecture CGI & D5 Render.',
-                      'AI-powered post-production workflow.',
-                      'Premium visual storytelling for spaces.',
+                      'Interior visualization for brands.',
+                      'AI concept & post-production workflow.',
                     ]}
                   />
                 </p>
                 <p>
-                  VTARCH kết hợp diễn họa kiến trúc, ánh sáng điện ảnh và AI workflow để biến ý tưởng không gian thành hình ảnh có chiều sâu, cảm xúc và tính thương mại cao.
+                  VTARCH tạo hình ảnh kiến trúc, nội thất và sản phẩm nội thất bằng D5 Render kết hợp AI workflow — giúp dự án nhìn rõ vật liệu, đẹp ánh sáng và thuyết phục khách hàng hơn.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/portfolio" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
-                  Xem Portfolio <ArrowUpRight size={15} />
-                </Link>
-                <a href="mailto:vtarch99@gmail.com" className="btn-outline-luxury px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
-                  Hợp tác dự án <MoveRight size={15} />
+                <a href="mailto:vtarch99@gmail.com" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
+                  Gửi brief dự án <ArrowUpRight size={15} />
                 </a>
+                <Link to="/portfolio" className="btn-outline-luxury px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
+                  Xem dự án <MoveRight size={15} />
+                </Link>
               </div>
             </div>
 
@@ -80,7 +99,7 @@ const Home = ({ setSelectedProject }) => {
                     decoding="async"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/10 to-transparent" />
                   <div className="absolute left-5 right-5 bottom-5">
                     <div className="flex flex-wrap gap-2 mb-4">
                       {heroProject.tags.map((tag) => <span key={tag} className="tag-accent">{tag}</span>)}
@@ -91,13 +110,13 @@ const Home = ({ setSelectedProject }) => {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card rounded-2xl p-5 max-w-[260px] hidden sm:block">
+              <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card rounded-2xl p-5 max-w-[270px] hidden sm:block">
                 <div className="flex items-center gap-3 mb-2 text-[#F3A06D]">
                   <Sparkles size={18} />
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">AI + CGI</span>
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">Project-ready visual</span>
                 </div>
                 <p className="text-xs font-mono text-[var(--text-muted)] leading-relaxed">
-                  Hybrid workflow cho render, hậu kỳ và tối ưu hình ảnh nội thất.
+                  Render, AI concept và hậu kỳ để hình ảnh dùng được cho bán hàng, portfolio và hồ sơ thuyết trình.
                 </p>
               </div>
             </div>
@@ -111,6 +130,38 @@ const Home = ({ setSelectedProject }) => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="section-shell py-20 md:py-28">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div>
+            <div className="eyebrow mb-5">Core services</div>
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight">
+              VTARCH làm <span className="gradient-title">dịch vụ gì?</span>
+            </h2>
+          </div>
+          <Link to="/services" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
+            Xem chi tiết <ExternalLink size={14} />
+          </Link>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          {serviceHighlights.map((service, idx) => (
+            <div key={service.title} className="luxury-card p-6 min-h-[250px] flex flex-col">
+              <div className="flex items-center justify-between mb-8">
+                <span className="tag-accent">0{idx + 1}</span>
+                <CheckCircle2 size={18} className="text-[#F3A06D]" />
+              </div>
+              <h3 className="text-2xl font-black font-heading uppercase leading-tight mb-4">
+                {service.title}
+              </h3>
+              <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed mt-auto">
+                {service.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -166,37 +217,37 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      {/* STORE PREVIEW */}
+      {/* RESOURCES PREVIEW */}
       <section className="section-shell py-20 md:py-28">
         <div className="neo-card rounded-[2rem] p-6 md:p-10">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+          <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
             <div>
-              <div className="eyebrow mb-5">Premium assets</div>
+              <div className="eyebrow mb-5">Resources</div>
               <h2 className="text-4xl md:text-5xl font-black font-heading uppercase tracking-tight">
-                D5 Assets <span className="gradient-title">Library</span>
+                D5 Assets <span className="gradient-title">& workflow</span>
               </h2>
-              <p className="text-[var(--text-muted)] font-mono text-sm mt-4 max-w-xl">
-                Thư viện vật liệu, setting render và workflow dành cho diễn họa nội thất cao cấp.
+              <p className="text-[var(--text-muted)] font-mono text-sm mt-4 max-w-xl leading-relaxed">
+                Khu tài nguyên phụ dành cho D5 Render, vật liệu và workflow. Phần chính của website vẫn là portfolio và dịch vụ hình ảnh dự án.
               </p>
+              <Link to="/store" className="btn-outline-luxury px-7 py-4 text-xs uppercase font-mono tracking-widest mt-7 inline-flex">
+                Xem Resources
+              </Link>
             </div>
-            <Link to="/store" className="btn-outline-luxury px-7 py-4 text-xs uppercase font-mono tracking-widest">
-              Xem Assets
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {STORE_ITEMS.slice(0, 3).map((item, idx) => (
-              <TiltCard key={idx} className="luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end">
-                <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
-                <div className="relative z-20 p-6">
-                  <h3 className="text-xl font-black font-heading uppercase leading-tight">{item.title}</h3>
-                  <div className="flex items-center justify-between mt-5 border-t border-white/10 pt-4">
-                    <span className="text-[#F3A06D] font-black text-2xl">{item.price}</span>
-                    <button className="btn-accent px-4 py-2 text-[10px] font-mono uppercase">Chi tiết</button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {STORE_ITEMS.slice(0, 3).map((item, idx) => (
+                <TiltCard key={idx} className="luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end">
+                  <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
+                  <div className="relative z-20 p-5">
+                    <h3 className="text-lg font-black font-heading uppercase leading-tight">{item.title}</h3>
+                    <div className="flex items-center justify-between mt-4 border-t border-white/10 pt-4">
+                      <span className="text-[#F3A06D] font-black text-xl">{item.price}</span>
+                      <span className="tag-accent">Detail</span>
+                    </div>
                   </div>
-                </div>
-              </TiltCard>
-            ))}
+                </TiltCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
