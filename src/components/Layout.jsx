@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight, Mail, Phone } from 'lucide-react';
 
 function NavLink({ to, children, onClick }) {
   const { pathname } = useLocation();
@@ -72,16 +72,17 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
                   VTARCH
                 </span>
                 <span className="text-[var(--text-muted)] text-[7px] font-mono tracking-[0.18em] uppercase font-bold truncate">
-                  Architecture · CGI · AI
+                  Visualization · D5 · AI CGI
                 </span>
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-7 px-7 py-2 rounded-full border border-white/5 bg-white/[0.025]">
+            <nav className="hidden lg:flex items-center gap-6 px-7 py-2 rounded-full border border-white/5 bg-white/[0.025]">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">Profile</NavLink>
-              <NavLink to="/portfolio">Portfolio</NavLink>
-              <NavLink to="/store">Assets</NavLink>
+              <NavLink to="/portfolio">Projects</NavLink>
+              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/store">Resources</NavLink>
             </nav>
 
             <div className="flex items-center gap-2 md:gap-3">
@@ -89,7 +90,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
                 href="mailto:vtarch99@gmail.com"
                 className="hidden md:inline-flex items-center gap-2 btn-accent px-5 py-3 text-[10px] uppercase font-mono tracking-widest"
               >
-                Contact <ArrowUpRight size={13} />
+                Gửi brief <ArrowUpRight size={13} />
               </a>
               <button
                 onClick={() => setIsLightMode(!isLightMode)}
@@ -116,25 +117,38 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         }`}
       >
         <div className="absolute inset-0 soft-grid opacity-20" />
-        <nav className="relative z-10 flex flex-col items-center space-y-8 text-center">
+        <nav className="relative z-10 flex flex-col items-center space-y-7 text-center">
           <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
           <MobileNavLink to="/about" onClick={() => setMobileMenuOpen(false)}>Profile</MobileNavLink>
-          <MobileNavLink to="/portfolio" onClick={() => setMobileMenuOpen(false)}>Portfolio</MobileNavLink>
-          <MobileNavLink to="/store" onClick={() => setMobileMenuOpen(false)}>Assets</MobileNavLink>
+          <MobileNavLink to="/portfolio" onClick={() => setMobileMenuOpen(false)}>Projects</MobileNavLink>
+          <MobileNavLink to="/services" onClick={() => setMobileMenuOpen(false)}>Services</MobileNavLink>
+          <MobileNavLink to="/store" onClick={() => setMobileMenuOpen(false)}>Resources</MobileNavLink>
           <a href="mailto:vtarch99@gmail.com" className="btn-accent px-8 py-4 text-xs font-mono uppercase tracking-widest mt-6">
-            Contact VTARCH
+            Gửi brief dự án
           </a>
         </nav>
       </div>
 
       <main className="relative z-10">{children}</main>
 
+      <div className="fixed right-4 bottom-4 z-40 flex flex-col gap-3 md:right-6 md:bottom-6">
+        <a href="mailto:vtarch99@gmail.com" aria-label="Email VTARCH" className="w-12 h-12 rounded-full btn-accent flex items-center justify-center shadow-2xl">
+          <Mail size={18} />
+        </a>
+        <a href="tel:0385550506" aria-label="Call VTARCH" className="w-12 h-12 rounded-full btn-outline-luxury bg-[var(--glass-bg)] flex items-center justify-center shadow-2xl">
+          <Phone size={18} />
+        </a>
+      </div>
+
       <footer className="relative z-10 section-shell py-24 border-t border-[var(--border-color)] text-center">
         <div className="neo-card rounded-[2rem] p-8 md:p-12">
-          <p className="eyebrow mb-6">System online</p>
+          <p className="eyebrow mb-6">VTARCH Visual Lab</p>
           <h3 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8 tracking-tight">
-            Ready to build <span className="gradient-title">visual impact?</span>
+            Cần hình ảnh <span className="gradient-title">ấn tượng</span> cho dự án?
           </h3>
+          <p className="text-[var(--text-muted)] font-mono text-sm leading-relaxed max-w-2xl mx-auto mb-9">
+            Gửi brief kiến trúc, nội thất hoặc sản phẩm. VTARCH hỗ trợ định hướng visual, render, AI concept và hậu kỳ để hình ảnh có tính thương mại hơn.
+          </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 font-mono text-sm">
             <a href="mailto:vtarch99@gmail.com" className="btn-outline-luxury px-7 py-4">
               vtarch99@gmail.com
@@ -144,7 +158,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
             </a>
           </div>
           <p className="mt-10 text-[10px] font-mono text-[var(--text-muted)] tracking-[0.24em] uppercase">
-            &copy; {new Date().getFullYear()} VTARCH · Architecture Visualization Lab
+            &copy; {new Date().getFullYear()} VTARCH · Architecture Visualization & AI CGI
           </p>
         </div>
       </footer>
