@@ -129,7 +129,7 @@ export default function App() {
           inset: 0;
           pointer-events: none;
           z-index: 0;
-          opacity: 0.05;
+          opacity: 0.035;
           background-image:
             linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
@@ -161,27 +161,17 @@ export default function App() {
           height: 6px;
           border-radius: 999px;
           background: var(--accent);
-          box-shadow: 0 0 18px var(--accent);
+          box-shadow: 0 0 14px var(--accent);
         }
         .neo-card {
           position: relative;
           overflow: hidden;
           border: 1px solid var(--border-color);
-          background: linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018));
-          backdrop-filter: blur(18px);
-          box-shadow: 0 26px 80px rgba(0,0,0,0.36);
+          background: linear-gradient(145deg, rgba(255,255,255,0.052), rgba(255,255,255,0.018));
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          box-shadow: 0 20px 56px rgba(0,0,0,0.30);
         }
-        .neo-card::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 42%, transparent 62%);
-          opacity: 0;
-          transform: translateX(-30%);
-          transition: opacity .45s ease, transform .7s ease;
-        }
-        .neo-card:hover::after { opacity: 1; transform: translateX(30%); }
         .tag-accent {
           background: rgba(217,90,43,0.15);
           color: #F3A06D;
@@ -199,10 +189,10 @@ export default function App() {
           color: #fff;
           border-radius: 999px;
           font-weight: 900;
-          transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
-          box-shadow: 0 16px 40px rgba(217,90,43,0.24);
+          transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+          box-shadow: 0 14px 32px rgba(217,90,43,0.22);
         }
-        .btn-accent:hover { transform: translateY(-3px); filter: brightness(1.06); box-shadow: 0 22px 54px rgba(217,90,43,0.36); }
+        .btn-accent:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 18px 42px rgba(217,90,43,0.30); }
         .btn-outline-luxury {
           background: rgba(255,255,255,0.035);
           border: 1px solid var(--border-color);
@@ -211,21 +201,23 @@ export default function App() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          transition: all .3s ease;
-          backdrop-filter: blur(14px);
+          transition: all .25s ease;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
-        .btn-outline-luxury:hover { border-color: rgba(217,90,43,0.55); color: var(--accent); transform: translateY(-3px); }
+        .btn-outline-luxury:hover { border-color: rgba(217,90,43,0.55); color: var(--accent); transform: translateY(-2px); }
         .luxury-card {
           border-radius: 1.45rem;
           overflow: hidden;
           position: relative;
           background: var(--glass-bg);
-          backdrop-filter: blur(18px);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
           border: 1px solid var(--border-color);
-          transition: transform .45s cubic-bezier(0.4, 0, 0.2, 1), border-color .45s ease, box-shadow .45s ease;
-          box-shadow: 0 20px 60px rgba(0,0,0,.24);
+          transition: transform .32s cubic-bezier(0.4, 0, 0.2, 1), border-color .32s ease, box-shadow .32s ease;
+          box-shadow: 0 18px 46px rgba(0,0,0,.22);
         }
-        .luxury-card:hover { border-color: rgba(217,90,43,0.55); transform: translateY(-8px); box-shadow: 0 28px 80px rgba(0,0,0,.42); }
+        .luxury-card:hover { border-color: rgba(217,90,43,0.50); transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,.34); }
         .gradient-title {
           background: linear-gradient(135deg, var(--text-main) 0%, #F3A06D 52%, var(--accent) 100%);
           -webkit-background-clip: text;
@@ -234,9 +226,24 @@ export default function App() {
         }
         .soft-grid {
           background-image:
-            linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
           background-size: 38px 38px;
+        }
+        @media (hover: none) {
+          .luxury-card:hover,
+          .btn-accent:hover,
+          .btn-outline-luxury:hover {
+            transform: none;
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+          }
         }
       ` }} />
       
