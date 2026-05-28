@@ -8,6 +8,7 @@ import { ProjectModal } from './components/UI';
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
+const Services = lazy(() => import('./pages/Services'));
 const Store = lazy(() => import('./pages/Store'));
 const GraduationProject = lazy(() => import('./pages/GraduationProject'));
 
@@ -30,14 +31,14 @@ export default function App() {
   useEffect(() => {
     let progress = 0;
     const interval = setInterval(() => {
-      progress += Math.floor(Math.random() * 22) + 18;
+      progress += Math.floor(Math.random() * 28) + 30;
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
-        setTimeout(() => setIsLoading(false), 280);
+        setTimeout(() => setIsLoading(false), 120);
       }
       setLoadingProgress(progress);
-    }, 55);
+    }, 35);
     return () => clearInterval(interval);
   }, []);
 
@@ -76,12 +77,12 @@ export default function App() {
           </div>
           <div className="w-64 h-[3px] bg-white/10 rounded-full overflow-hidden relative">
             <div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#D95A2B] to-[#F3A06D] transition-all duration-300"
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#D95A2B] to-[#F3A06D] transition-all duration-200"
               style={{ width: `${loadingProgress}%` }}
             />
           </div>
           <div className="mt-5 font-mono text-[10px] text-[#9A8F87] tracking-[0.28em] uppercase">
-            Initializing VTARCH <span className="text-[#D95A2B] font-bold">{loadingProgress}%</span>
+            VTARCH Visual Lab <span className="text-[#D95A2B] font-bold">{loadingProgress}%</span>
           </div>
         </div>
       </div>
@@ -253,6 +254,7 @@ export default function App() {
             <Route path="/" element={<Home setSelectedProject={setSelectedProject} />} />
             <Route path="/about" element={<About />} />
             <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/store" element={<Store />} />
             <Route path="/graduation-project" element={<GraduationProject />} />
           </Routes>
