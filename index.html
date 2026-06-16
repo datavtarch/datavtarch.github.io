@@ -1,1 +1,118 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thu thập STK CTV MODI</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f6f6f6;color:#222}.wrap{max-width:680px;margin:auto;padding:22px 12px 48px}.card{background:#fff;border:1px solid #eee1d8;border-radius:20px;box-shadow:0 8px 28px rgba(0,0,0,.06);padding:24px}.brand{text-align:center;margin-bottom:20px}.badge{display:inline-block;background:#fff4ef;color:#ee4d2d;border:1px solid #ffd7c8;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;margin-bottom:10px}.brand h1{margin:0;color:#ee4d2d;font-size:26px;line-height:1.25}.brand p{margin:8px 0 0;color:#666;font-size:14px;line-height:1.45}label{display:block;font-weight:800;margin:15px 0 7px;font-size:14px}input,select,textarea{width:100%;border:1px solid #ddd;border-radius:12px;padding:12px 13px;font-size:15px;background:#fff;outline:none}textarea{min-height:76px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:#ee4d2d;box-shadow:0 0 0 3px rgba(238,77,45,.1)}.hint{font-size:13px;color:#777;margin-top:6px;line-height:1.45}.rules{margin-top:18px;padding:14px;border-radius:14px;background:#fff7f3;border:1px solid #ffd7c8;color:#6b2b1b;font-size:13px;line-height:1.55}.checkrow{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:13px;border-radius:14px;background:#fafafa;border:1px solid #e8e8e8}.checkrow input{width:auto;margin-top:3px}.btn{margin-top:18px;width:100%;border:0;border-radius:14px;background:#ee4d2d;color:#fff;font-weight:800;font-size:16px;padding:14px;cursor:pointer}.btn:disabled{opacity:.65;cursor:not-allowed}.status{display:none;margin-top:16px;border-radius:16px;padding:16px;font-size:14px;line-height:1.5}.ok{display:block;background:linear-gradient(180deg,#f0fff3 0%,#fff 100%);border:1px solid #bde8c2;color:#164b20}.err{display:block;background:#fff0f0;border:1px solid #ffc2c2;color:#a10000}.oktitle{font-size:18px;font-weight:900;color:#146b1e;margin-bottom:8px}.privacy{font-size:12px;color:#777;margin-top:12px;line-height:1.45}@media(max-width:760px){.wrap{padding:14px 10px 34px}.card{padding:18px}.brand h1{font-size:22px}}</style></head><body><div class="wrap"><div class="card"><div class="brand"><div class="badge">MODI CTV</div><h1>Gửi thông tin tài khoản ngân hàng</h1><p>Thông tin chỉ dùng để chuyển khoản tiền công CTV. Không yêu cầu mật khẩu, OTP, CCCD hoặc ảnh thẻ ngân hàng.</p></div><form id="bankForm"><label>Tên cộng tác viên</label><input name="ctvName" required placeholder="Ví dụ: Nguyễn Văn A"><label>SĐT/Zalo</label><input name="phone" required placeholder="Ví dụ: 090..."><label>Tên ngân hàng</label><select name="bankName" required><option value="">-- Chọn ngân hàng --</option><option>Vietcombank</option><option>Techcombank</option><option>MB Bank</option><option>ACB</option><option>BIDV</option><option>VietinBank</option><option>Agribank</option><option>VPBank</option><option>TPBank</option><option>VIB</option><option>Sacombank</option><option>SHB</option><option>HDBank</option><option>OCB</option><option>MSB</option><option>SeABank</option><option>Eximbank</option><option>Nam A Bank</option><option>Khác</option></select><label>Số tài khoản</label><input name="accountNumber" required inputmode="numeric" placeholder="Nhập số tài khoản"><div class="hint">Chỉ nhập số tài khoản, không nhập số thẻ nếu không cần.</div><label>Tên chủ tài khoản</label><input name="accountHolder" required placeholder="Ví dụ: NGUYEN VAN A"><div class="hint">Nên viết đúng như trong app ngân hàng, có thể viết IN HOA.</div><label>Ghi chú</label><textarea name="note" placeholder="Ví dụ: Ngân hàng khác, chi nhánh, lưu ý thêm..."></textarea><div class="rules"><b>Lưu ý bảo mật:</b><br>1. Không gửi mật khẩu ngân hàng, OTP, mã PIN.<br>2. Không gửi CCCD/CMND nếu không được yêu cầu riêng.<br>3. Kiểm tra kỹ ngân hàng, số tài khoản và tên chủ tài khoản trước khi gửi.</div><label class="checkrow"><input type="checkbox" name="confirm" required><span>Tôi xác nhận thông tin tài khoản ngân hàng bên trên là đúng và dùng để nhận tiền công CTV.</span></label><button class="btn" id="submitBtn" type="submit">Gửi thông tin STK</button><div id="status" class="status"></div><div class="privacy">Dữ liệu này chỉ hiển thị cho quản trị MODI, không chia sẻ cho CTV khác.</div></form></div></div><script>const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwx-tZWE5H2Dfkmz9JFbV7NQeOyB-Y6jMKQ8HBs8MQrLVehI6QHHFgQKtxFGwzUNn9cOg/exec";const form=document.getElementById('bankForm'),statusBox=document.getElementById('status'),submitBtn=document.getElementById('submitBtn');function show(type,msg){statusBox.className='status '+type;statusBox.innerHTML=msg}form.addEventListener('submit',async e=>{e.preventDefault();const fd=new FormData(form);const payload={ctvName:fd.get('ctvName'),phone:fd.get('phone'),bankName:fd.get('bankName'),accountNumber:fd.get('accountNumber'),accountHolder:fd.get('accountHolder'),note:fd.get('note'),confirm:fd.get('confirm')==='on'};if(!payload.confirm){show('err','Bạn cần tick xác nhận thông tin đúng.');return}submitBtn.disabled=true;submitBtn.textContent='Đang gửi...';show('ok','Đang gửi thông tin, vui lòng chờ...');try{const res=await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});const text=await res.text();let data;try{data=JSON.parse(text)}catch{data={ok:false,message:text}}if(!data.ok)throw new Error(data.message||'Gửi thất bại.');show('ok',`<div class="oktitle">✓ Đã gửi thông tin STK thành công</div><div>Tên CTV: <b>${payload.ctvName}</b></div><div>Ngân hàng: <b>${payload.bankName}</b></div><div>Số tài khoản: <b>${payload.accountNumber}</b></div><div>Tên chủ tài khoản: <b>${payload.accountHolder}</b></div><br><div>MODI sẽ kiểm tra và xác nhận trước khi chuyển khoản.</div>`);form.reset()}catch(err){show('err','Lỗi gửi thông tin: '+err.message)}finally{submitBtn.disabled=false;submitBtn.textContent='Gửi thông tin STK'}});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTARCH Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .bio {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        .links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .link-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #667eea;
+            color: #667eea;
+            display: inline-block;
+        }
+        
+        .link-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .link-btn.primary {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .link-btn.primary:hover {
+            background: #764ba2;
+            border-color: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-pic">👨‍💻</div>
+        <h1>VTARCH</h1>
+        <p class="subtitle">Developer & Creator</p>
+        <p class="bio">
+            Welcome to my profile! I'm passionate about creating amazing web experiences and building innovative solutions.
+        </p>
+        <div class="links">
+            <a href="https://github.com/datavtarch" class="link-btn primary">GitHub</a>
+            <a href="mailto:contact@example.com" class="link-btn">Email</a>
+            <a href="https://twitter.com" class="link-btn">Twitter</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
