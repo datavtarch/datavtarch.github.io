@@ -34,7 +34,7 @@ const ContactRow = ({ icon: Icon, children, href }) => {
   const content = (
     <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-muted)] hover:text-[#F3A06D] transition-colors">
       <span className="w-9 h-9 rounded-xl border border-white/10 bg-white/[0.035] flex items-center justify-center text-[#F3A06D] shrink-0">
-        <Icon size={16} />
+        {React.createElement(Icon, { size: 16 })}
       </span>
       <span className="leading-relaxed break-all">{children}</span>
     </div>

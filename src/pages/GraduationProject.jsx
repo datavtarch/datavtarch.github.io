@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IMAGES } from '../data/constants';
 import { ArrowLeft, ArrowUpRight, Calendar, FileText, Layers, MapPin, Mountain, Sun, Wind } from 'lucide-react';
@@ -22,15 +22,12 @@ const solutions = [
 ];
 
 const GraduationProject = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className={`pt-32 md:pt-40 pb-32 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className="pt-32 md:pt-40 pb-32 transition-all duration-700 opacity-100">
       <section className="section-shell">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <Link to="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors group">
@@ -56,7 +53,7 @@ const GraduationProject = () => {
               <div className="grid sm:grid-cols-3 gap-3 mt-8">
                 {facts.map(({ icon: Icon, label, value }) => (
                   <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                    <Icon size={18} className="text-[#F3A06D] mb-3" />
+                    {React.createElement(Icon, { size: 18, className: 'text-[#F3A06D] mb-3' })}
                     <div className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-widest mb-1">{label}</div>
                     <div className="text-xs font-bold text-[var(--text-main)] uppercase font-mono">{value}</div>
                   </div>
@@ -106,7 +103,7 @@ const GraduationProject = () => {
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {solutions.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-[#D95A2B]/40 transition-colors">
-                <Icon className="text-[#F3A06D] mb-5" size={24} />
+                {React.createElement(Icon, { className: 'text-[#F3A06D] mb-5', size: 24 })}
                 <h4 className="font-heading font-black uppercase text-lg mb-3">{title}</h4>
                 <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">{desc}</p>
               </div>

@@ -42,7 +42,6 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    setMobileMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
