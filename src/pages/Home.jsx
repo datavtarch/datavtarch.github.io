@@ -32,9 +32,9 @@ const serviceHighlights = [
 ];
 
 const narrativeSteps = [
-  ['01', 'Brief', 'Chot muc tieu hinh anh, phong cach, vat lieu, deadline va kenh su dung.'],
-  ['02', 'Visual direction', 'Dung mood anh sang, goc nhin, cau chuyen khong gian va tieu chuan dau ra.'],
-  ['03', 'Render craft', 'Trien khai D5 Render, hau ky mau, AI concept va toi uu hinh anh thuong mai.'],
+  ['01', 'Brief', 'Chốt mục tiêu hình ảnh, phong cách, vật liệu, deadline và kênh sử dụng.'],
+  ['02', 'Visual direction', 'Dựng mood ánh sáng, góc nhìn, câu chuyện không gian và tiêu chuẩn đầu ra.'],
+  ['03', 'Render craft', 'Triển khai D5 Render, hậu kỳ màu, AI concept và tối ưu hình ảnh thương mại.'],
 ];
 
 const Home = ({ setSelectedProject }) => {
@@ -62,7 +62,7 @@ const Home = ({ setSelectedProject }) => {
           <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
             <div>
               <div className="eyebrow mb-7">VTARCH · Visualization · D5 · AI CGI</div>
-              <h1 className="text-[13vw] sm:text-7xl lg:text-[7rem] leading-[0.82] font-black uppercase font-heading mb-8">
+              <h1 className="text-[14vw] sm:text-7xl lg:text-[6.5rem] leading-[0.94] font-black font-heading mb-8">
                 Diễn họa <br />
                 <span className="gradient-title">kiến trúc</span><br />
                 có cảm xúc.
@@ -142,8 +142,8 @@ const Home = ({ setSelectedProject }) => {
         <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-14 items-start">
           <div className="lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Studio method</div>
-            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase leading-[0.9]">
-              Mot hinh anh dep phai <span className="gradient-title">ban duoc cau chuyen.</span>
+            <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.96]">
+              Một hình ảnh đẹp phải <span className="gradient-title">bán được câu chuyện.</span>
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
