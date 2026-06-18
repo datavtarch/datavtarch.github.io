@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ExternalLink, MoveRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, MoveRight, Sparkles, CheckCircle2 } from 'lucide-react';
 import { TiltCard, Typewriter } from '../components/UI';
 import { InstagramIcon } from '../components/Icons';
 import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS } from '../data/constants';
 
 const stats = [
-  ['50+', 'Selected visuals'],
-  ['D5', 'Cinematic render'],
-  ['AI', 'Concept direction'],
-  ['1:1', 'Bespoke briefing'],
+  ['50+', 'Visual projects'],
+  ['D5', 'Render workflow'],
+  ['AI', 'Concept & post'],
+  ['1:1', 'Brief to final image'],
 ];
 
 const serviceHighlights = [
   {
     title: 'Interior CGI',
-    desc: 'Interior imagery with controlled light, tactile material and a composition made for presentation.',
+    desc: 'Diễn họa nội thất bằng D5 Render, ánh sáng điện ảnh, vật liệu rõ và bố cục dễ bán hàng.',
   },
   {
     title: 'Architecture Render',
-    desc: 'Exterior and building visuals with context, atmosphere and a clear sense of architectural scale.',
+    desc: 'Hình ảnh ngoại thất, công trình thực tế, không gian kiến trúc có bối cảnh và chiều sâu thị giác.',
   },
   {
     title: 'AI Concept',
-    desc: 'Fast mood exploration and image direction for premium concepts before final render production.',
+    desc: 'Phát triển concept, mood visual và hậu kỳ AI để tạo nhiều phương án nhanh, đẹp, có tính thương mại.',
   },
   {
     title: 'Product Visual',
-    desc: 'Furniture and decor visuals prepared for web, social, catalogue and sales presentation.',
+    desc: 'Tối ưu hình ảnh sản phẩm nội thất cho website, catalog, social, quảng cáo và e-commerce.',
   },
 ];
 
 const narrativeSteps = [
-  ['01', 'Brief', 'Define the image purpose, audience, material tone, deadline and final usage.'],
-  ['02', 'Visual direction', 'Set the mood, camera rhythm, light story and architectural atmosphere.'],
-  ['03', 'Render craft', 'Build D5 scenes, refine color, apply AI direction and polish every final image.'],
+  ['01', 'Brief', 'Chot muc tieu hinh anh, phong cach, vat lieu, deadline va kenh su dung.'],
+  ['02', 'Visual direction', 'Dung mood anh sang, goc nhin, cau chuyen khong gian va tieu chuan dau ra.'],
+  ['03', 'Render craft', 'Trien khai D5 Render, hau ky mau, AI concept va toi uu hinh anh thuong mai.'],
 ];
 
 const Home = ({ setSelectedProject }) => {
@@ -54,32 +54,32 @@ const Home = ({ setSelectedProject }) => {
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,.96)_42%,rgba(5,5,5,.72)_76%,#050505_100%)]" />
-          <div className="absolute inset-0 soft-grid opacity-10" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#070706_0%,rgba(7,7,6,.95)_38%,rgba(7,7,6,.66)_74%,#070706_100%)]" />
+          <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
 
         <div className="section-shell relative z-10 w-full">
-          <div className="grid lg:grid-cols-[.9fr_1.1fr] gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
             <div>
-              <div className="eyebrow mb-7">VTARCH / Visualization / D5 / AI CGI</div>
-              <h1 className="editorial-title text-[17vw] sm:text-8xl lg:text-[8.5rem] mb-8">
-                Visuals<br />
-                with quiet<br />
-                <span className="gradient-title">gravity.</span>
+              <div className="eyebrow mb-7">VTARCH · Visualization · D5 · AI CGI</div>
+              <h1 className="text-[13vw] sm:text-7xl lg:text-[7rem] leading-[0.82] font-black uppercase font-heading mb-8">
+                Diễn họa <br />
+                <span className="gradient-title">kiến trúc</span><br />
+                có cảm xúc.
               </h1>
               <div className="story-card max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed mb-9">
                 <p className="mb-3">
-                  Studio focus:{' '}
+                  &gt; SERVICE:{' '}
                   <Typewriter
                     phrases={[
-                      'Architecture CGI with cinematic restraint.',
-                      'Interior images for premium project stories.',
-                      'AI concept and post-production direction.',
+                      'Architecture CGI & D5 Render.',
+                      'Interior visualization for brands.',
+                      'AI concept & post-production workflow.',
                     ]}
                   />
                 </p>
                 <p>
-                  VTARCH crafts architectural, interior and furniture imagery with D5 Render and AI direction, turning raw project material into calm, persuasive visuals.
+                  VTARCH tạo hình ảnh kiến trúc, nội thất và sản phẩm nội thất bằng D5 Render kết hợp AI workflow — giúp dự án nhìn rõ vật liệu, đẹp ánh sáng và thuyết phục khách hàng hơn.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -93,8 +93,8 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="hero-image-shell architectural-frame p-3 relative">
-                <div className="relative overflow-hidden rounded-md aspect-[16/13] lg:aspect-[5/6]">
+              <div className="hero-image-shell p-3 relative">
+                <div className="relative overflow-hidden rounded-md aspect-[4/5]">
                   <img
                     src={heroProject.image}
                     alt={heroProject.title}
@@ -103,7 +103,7 @@ const Home = ({ setSelectedProject }) => {
                     decoding="async"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/8 to-black/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/10 to-transparent" />
                   <div className="absolute left-5 right-5 bottom-5">
                     <div className="flex flex-wrap gap-2 mb-4">
                       {heroProject.tags.map((tag) => <span key={tag} className="tag-accent">{tag}</span>)}
@@ -115,7 +115,8 @@ const Home = ({ setSelectedProject }) => {
                 </div>
               </div>
               <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card p-5 max-w-[270px] hidden sm:block">
-                <div className="flex items-center gap-3 mb-2 text-[var(--accent-2)]">
+                <div className="flex items-center gap-3 mb-2 text-[#F3A06D]">
+                  <Sparkles size={18} />
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">Project-ready visual</span>
                 </div>
                 <p className="text-xs font-mono text-[var(--text-muted)] leading-relaxed">
@@ -128,7 +129,7 @@ const Home = ({ setSelectedProject }) => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-16">
             {stats.map(([number, label]) => (
               <div key={label} className="neo-card p-5">
-                <div className="text-4xl md:text-5xl font-black font-heading text-[var(--accent-2)]">{number}</div>
+                <div className="text-3xl md:text-4xl font-black font-heading text-[#F3A06D]">{number}</div>
                 <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.18em] text-[var(--text-muted)] mt-2">{label}</div>
               </div>
             ))}
@@ -166,7 +167,7 @@ const Home = ({ setSelectedProject }) => {
               VTARCH làm <span className="gradient-title">dịch vụ gì?</span>
             </h2>
           </div>
-          <Link to="/services" className="text-[var(--accent-2)] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
+          <Link to="/services" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
             Xem chi tiết <ExternalLink size={14} />
           </Link>
         </div>
@@ -176,7 +177,7 @@ const Home = ({ setSelectedProject }) => {
             <div key={service.title} className="luxury-card p-6 min-h-[250px] flex flex-col">
               <div className="flex items-center justify-between mb-8">
                 <span className="tag-accent">0{idx + 1}</span>
-                <CheckCircle2 size={18} className="text-[var(--accent-2)]" />
+                <CheckCircle2 size={18} className="text-[#F3A06D]" />
               </div>
               <h3 className="text-2xl font-black font-heading uppercase leading-tight mb-4">
                 {service.title}
@@ -198,7 +199,7 @@ const Home = ({ setSelectedProject }) => {
               Dự án <span className="gradient-title">nổi bật</span>
             </h2>
           </div>
-          <Link to="/portfolio" className="text-[var(--accent-2)] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
+          <Link to="/portfolio" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
             Xem tất cả <ExternalLink size={14} />
           </Link>
         </div>
@@ -221,7 +222,7 @@ const Home = ({ setSelectedProject }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/28 to-transparent" />
               <div className="absolute top-5 left-5 right-5 flex justify-between items-start gap-3">
                 <span className="tag-accent">0{idx + 1}</span>
-                <span className="w-9 h-9 rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[var(--accent)] transition-colors">
+                <span className="w-9 h-9 rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#D95A2B] transition-colors">
                   <ArrowUpRight size={15} />
                 </span>
               </div>
@@ -229,7 +230,7 @@ const Home = ({ setSelectedProject }) => {
                 <div className="flex gap-2 mb-4 flex-wrap">
                   {proj.tags.slice(0, 3).map((t) => <span key={t} className="tag-accent">{t}</span>)}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[var(--accent-2)] transition-colors">
+                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[#F3A06D] transition-colors">
                   {proj.title}
                 </h3>
                 <p className="text-xs md:text-sm font-mono text-gray-300 mt-3 max-w-xl line-clamp-2">
@@ -265,7 +266,7 @@ const Home = ({ setSelectedProject }) => {
                   <div className="relative z-20 p-5">
                     <h3 className="text-lg font-black font-heading uppercase leading-tight">{item.title}</h3>
                     <div className="flex items-center justify-between mt-4 border-t border-white/10 pt-4">
-                      <span className="text-[var(--accent-2)] font-black text-xl">{item.price}</span>
+                      <span className="text-[#F3A06D] font-black text-xl">{item.price}</span>
                       <span className="tag-accent">Detail</span>
                     </div>
                   </div>
@@ -282,7 +283,7 @@ const Home = ({ setSelectedProject }) => {
           <InstagramIcon size={26} />
         </div>
         <h3 className="text-4xl md:text-5xl font-black font-heading uppercase">Social Feed</h3>
-        <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+        <a href="https://www.instagram.com/vtarch99/" className="text-sm font-mono text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors">
           &gt; @vtarch99
         </a>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 mt-12">

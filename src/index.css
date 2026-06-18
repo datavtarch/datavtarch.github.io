@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --bg-color: #050505;
-  --panel-color: #0d0c0a;
-  --panel-elevated: #15130f;
-  --text-main: #f8f1e3;
-  --text-muted: #a9a08e;
-  --accent: #b89658;
-  --accent-2: #e0c88f;
-  --accent-3: #667565;
-  --accent-soft: rgba(184, 150, 88, 0.1);
-  --border-color: rgba(248, 241, 227, 0.12);
-  --glass-bg: rgba(13, 12, 10, 0.9);
-  --hairline: rgba(224, 200, 143, 0.24);
-  --shadow-strong: 0 32px 90px rgba(0, 0, 0, 0.46);
+  --bg-color: #070706;
+  --panel-color: #11100d;
+  --panel-elevated: #181611;
+  --text-main: #f7f2e9;
+  --text-muted: #b3aa9b;
+  --accent: #d46232;
+  --accent-2: #b7a27a;
+  --accent-3: #7f947d;
+  --accent-soft: rgba(212, 98, 50, 0.13);
+  --border-color: rgba(247, 242, 233, 0.13);
+  --glass-bg: rgba(17, 16, 13, 0.86);
+  --hairline: rgba(247, 242, 233, 0.2);
+  --shadow-strong: 0 28px 80px rgba(0, 0, 0, 0.36);
 }
 
 [data-theme="light"] {
@@ -22,8 +22,8 @@
   --panel-elevated: #ffffff;
   --text-main: #191713;
   --text-muted: #675f54;
-  --accent: #8b6c38;
-  --accent-2: #5f4b2a;
+  --accent: #bd5229;
+  --accent-2: #8d7650;
   --accent-3: #627b61;
   --accent-soft: rgba(189, 82, 41, 0.10);
   --border-color: rgba(25, 23, 19, 0.13);
@@ -44,10 +44,10 @@ body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    linear-gradient(90deg, rgba(248,241,227,0.022) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(248,241,227,0.018) 1px, transparent 1px),
-    linear-gradient(135deg, #020202 0%, var(--bg-color) 54%, #100f0c 100%);
-  background-size: 96px 96px, 96px 96px, auto;
+    linear-gradient(90deg, rgba(247,242,233,0.032) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(247,242,233,0.024) 1px, transparent 1px),
+    linear-gradient(135deg, #070706 0%, var(--bg-color) 46%, #14110d 100%);
+  background-size: 72px 72px, 72px 72px, auto;
   color: var(--text-main);
   transition: background-color 0.35s ease, color 0.35s ease;
 }
@@ -66,7 +66,7 @@ body {
 }
 
 .font-heading {
-  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-family: Oswald, Montserrat, Inter, ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0;
 }
 
@@ -85,13 +85,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--accent-2);
+  color: var(--accent);
   border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   background: var(--accent-soft);
   border-radius: 8px;
   padding: 8px 12px;
   font-family: "Space Mono", monospace;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -112,10 +112,10 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 8px !important;
   background:
-    linear-gradient(135deg, rgba(248,241,227,0.045), rgba(248,241,227,0.012)),
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.018)),
     var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--shadow-strong);
 }
 
@@ -124,14 +124,14 @@ body {
 }
 
 .luxury-card:hover {
-  border-color: var(--hairline);
-  transform: translateY(-2px);
-  box-shadow: 0 26px 68px rgba(0, 0, 0, 0.38);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
 }
 
 .tag-accent {
   background: var(--accent-soft);
-  color: var(--accent-2);
+  color: color-mix(in srgb, var(--accent) 82%, #fff);
   border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   padding: 5px 9px;
   border-radius: 6px;
@@ -151,9 +151,9 @@ body {
 
 .btn-accent {
   background: var(--accent);
-  color: #080705;
-  border: 1px solid color-mix(in srgb, var(--accent) 70%, #fff);
-  box-shadow: 0 12px 28px rgba(184, 150, 88, 0.18);
+  color: #fff;
+  border: 1px solid color-mix(in srgb, var(--accent) 80%, #fff);
+  box-shadow: 0 12px 28px rgba(207, 90, 44, 0.24);
 }
 
 .btn-accent:hover,
@@ -176,7 +176,7 @@ body {
 }
 
 .gradient-title {
-  background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-2) 52%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-2) 42%, var(--accent) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -196,7 +196,7 @@ body {
   width: 7px;
   height: 28px;
   border-radius: 2px;
-  background: var(--accent-2);
+  background: var(--accent);
 }
 
 .story-kicker {
@@ -211,32 +211,10 @@ body {
 .hero-image-shell {
   border-radius: 8px;
   border: 1px solid var(--hairline);
-  background: var(--panel-color);
-  box-shadow: var(--shadow-strong);
-}
-
-.editorial-title {
-  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  font-weight: 700;
-  line-height: 0.86;
-}
-
-.architectural-frame {
-  border: 1px solid var(--hairline);
   background:
-    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), var(--hairline) calc(100% - 1px)),
-    linear-gradient(180deg, transparent 0, transparent calc(100% - 1px), var(--hairline) calc(100% - 1px));
-  background-size: 25% 100%, 100% 25%;
-}
-
-.quiet-link {
-  color: var(--accent-2);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.quiet-link:hover {
-  border-bottom-color: var(--accent-2);
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.018)),
+    var(--panel-color);
+  box-shadow: var(--shadow-strong);
 }
 
 .section-rule {
@@ -252,9 +230,9 @@ input:focus-visible {
 
 .soft-grid {
   background-image:
-    linear-gradient(rgba(248,241,227,0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(248,241,227,0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .logo-icon {

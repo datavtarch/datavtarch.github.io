@@ -10,11 +10,11 @@ function NavLink({ to, children, onClick }) {
       to={to}
       onClick={onClick}
       className={`relative px-1 py-2 text-[10px] font-bold font-mono tracking-[0.22em] uppercase transition-colors ${
-        isActive ? 'text-[var(--accent-2)]' : 'text-[var(--text-muted)] hover:text-[var(--accent-2)]'
+        isActive ? 'text-[#F3A06D]' : 'text-[var(--text-muted)] hover:text-[#F3A06D]'
       }`}
     >
       {children}
-      <span className={`absolute left-1 right-1 -bottom-0.5 h-px bg-[var(--accent)] transition-transform origin-left ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
+      <span className={`absolute left-1 right-1 -bottom-0.5 h-px bg-[#D95A2B] transition-transform origin-left ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
     </Link>
   );
 }
@@ -26,8 +26,8 @@ function MobileNavLink({ to, children, onClick }) {
     <Link
       to={to}
       onClick={onClick}
-      className={`text-4xl font-black hover:text-[var(--accent)] uppercase font-heading transition-colors ${
-        isActive ? 'text-[var(--accent)]' : 'text-[var(--text-main)]'
+      className={`text-4xl font-black hover:text-[#D95A2B] uppercase font-heading transition-colors ${
+        isActive ? 'text-[#D95A2B]' : 'text-[var(--text-main)]'
       }`}
     >
       {children}
@@ -51,7 +51,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[var(--accent)] selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[#D95A2B] selection:text-white relative overflow-x-hidden">
       <header className="fixed top-0 left-0 right-0 z-40 px-3 md:px-5 pt-3 transition-all duration-500">
         <div
           className={`max-w-6xl mx-auto rounded-2xl border transition-all duration-500 ${
@@ -64,7 +64,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
             <Link to="/" className="flex items-center gap-3 group min-w-0">
               <div className="relative w-11 h-11 rounded-xl border border-white/10 bg-white/[0.03] overflow-hidden flex items-center justify-center shadow-[0_0_28px_rgba(217,90,43,.14)]">
                 <img src="logo/logo.jpg" alt="VTARCH" className="w-8 h-8 object-contain logo-icon" />
-                <span className="absolute inset-0 bg-[var(--accent)]/0 group-hover:bg-[var(--accent)]/10 transition-colors" />
+                <span className="absolute inset-0 bg-[#D95A2B]/0 group-hover:bg-[#D95A2B]/10 transition-colors" />
               </div>
               <div className="flex flex-col justify-center leading-none min-w-0">
                 <span className="text-lg md:text-xl font-black tracking-[0.16em] font-heading text-[var(--text-main)] uppercase">
@@ -94,14 +94,14 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
               <button
                 onClick={() => setIsLightMode(!isLightMode)}
                 aria-label="Toggle theme"
-                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-white/[0.035] border border-[var(--border-color)] hover:border-[var(--accent)] hover:text-[var(--accent)] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-white/[0.035] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {isLightMode ? <Moon size={16} /> : <Sun size={16} />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Open menu"
-                className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden bg-white/[0.035] border border-[var(--border-color)] hover:text-[var(--accent)] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden bg-white/[0.035] border border-[var(--border-color)] hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
               </button>

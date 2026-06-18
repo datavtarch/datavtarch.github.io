@@ -38,9 +38,9 @@ export const Typewriter = ({ phrases }) => {
   }, [text, isDeleting, phraseIdx, phrases]);
 
   return (
-    <span className="text-[var(--accent-2)] font-bold">
+    <span className="text-[#F3A06D] font-bold">
       {text}
-      <span className="inline-block w-1.5 h-4 bg-[var(--accent)] ml-1 animate-pulse align-middle" />
+      <span className="inline-block w-1.5 h-4 bg-[#D95A2B] ml-1 animate-pulse align-middle" />
     </span>
   );
 };
@@ -83,7 +83,7 @@ export const ProjectModal = ({ project, onClose }) => {
       <div className="relative w-full max-w-6xl max-h-[92vh] neo-card rounded-[2rem] overflow-hidden grid md:grid-cols-[1.18fr_.82fr]">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-30 w-11 h-11 bg-black/55 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[var(--accent)] transition-colors"
+          className="absolute top-4 right-4 z-30 w-11 h-11 bg-black/55 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#D95A2B] transition-colors"
           aria-label="Close project modal"
         >
           <X size={18} />
@@ -118,23 +118,23 @@ export const ProjectModal = ({ project, onClose }) => {
 
             <div className="grid gap-3 mb-7">
               <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
-                <Sparkles size={17} className="text-[var(--accent-2)] shrink-0 mt-0.5" />
+                <Sparkles size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-[10px] font-mono text-[var(--accent-2)] uppercase tracking-[0.2em] font-bold mb-2">Role</h4>
+                  <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Role</h4>
                   <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">{getProjectRole(project)}</p>
                 </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
-                <Layers3 size={17} className="text-[var(--accent-2)] shrink-0 mt-0.5" />
+                <Layers3 size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-[10px] font-mono text-[var(--accent-2)] uppercase tracking-[0.2em] font-bold mb-2">Tools</h4>
+                  <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Tools</h4>
                   <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">{getProjectTools(project)}</p>
                 </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
-                <Target size={17} className="text-[var(--accent-2)] shrink-0 mt-0.5" />
+                <Target size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-[10px] font-mono text-[var(--accent-2)] uppercase tracking-[0.2em] font-bold mb-2">Visual goal</h4>
+                  <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Visual goal</h4>
                   <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">{getProjectGoal(project)}</p>
                 </div>
               </div>
