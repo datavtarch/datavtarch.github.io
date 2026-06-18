@@ -14,6 +14,10 @@
   --glass-bg: rgba(13, 12, 10, 0.9);
   --hairline: rgba(224, 200, 143, 0.24);
   --shadow-strong: 0 32px 90px rgba(0, 0, 0, 0.46);
+  --subtle-surface: rgba(248, 241, 227, 0.045);
+  --field-bg: rgba(2, 2, 2, 0.42);
+  --field-text: #f8f1e3;
+  --on-media: #ffffff;
 }
 
 [data-theme="light"] {
@@ -30,6 +34,10 @@
   --glass-bg: rgba(255, 253, 248, 0.88);
   --hairline: rgba(25, 23, 19, 0.2);
   --shadow-strong: 0 28px 80px rgba(83, 63, 42, 0.16);
+  --subtle-surface: rgba(25, 23, 19, 0.045);
+  --field-bg: rgba(255, 255, 255, 0.72);
+  --field-text: #191713;
+  --on-media: #ffffff;
 }
 
 * {
@@ -119,6 +127,13 @@ body {
   box-shadow: var(--shadow-strong);
 }
 
+[data-theme="light"] .neo-card,
+[data-theme="light"] .luxury-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.46)),
+    var(--glass-bg);
+}
+
 .luxury-card {
   transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
 }
@@ -147,6 +162,25 @@ body {
   border-radius: 8px !important;
   font-weight: 900;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.theme-surface {
+  background: var(--subtle-surface);
+  border-color: var(--border-color);
+}
+
+.theme-field {
+  background: var(--field-bg);
+  color: var(--field-text);
+  border-color: var(--border-color);
+}
+
+.media-copy {
+  color: var(--on-media);
+}
+
+.muted-on-media {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .btn-accent {
@@ -255,6 +289,29 @@ input:focus-visible {
     linear-gradient(rgba(248,241,227,0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(248,241,227,0.035) 1px, transparent 1px);
   background-size: 56px 56px;
+}
+
+[data-theme="light"] .soft-grid {
+  background-image:
+    linear-gradient(rgba(25,23,19,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25,23,19,0.055) 1px, transparent 1px);
+}
+
+[data-theme="light"] [class*="border-white/10"],
+[data-theme="light"] [class*="border-white/5"] {
+  border-color: rgba(25, 23, 19, 0.13) !important;
+}
+
+[data-theme="light"] [class*="bg-white/[0.03"],
+[data-theme="light"] [class*="bg-white/[0.035"],
+[data-theme="light"] [class*="bg-white/[0.04"],
+[data-theme="light"] [class*="bg-white/10"] {
+  background-color: rgba(25, 23, 19, 0.045) !important;
+}
+
+[data-theme="light"] .text-gray-300,
+[data-theme="light"] .text-gray-400 {
+  color: rgba(255, 255, 255, 0.82) !important;
 }
 
 .logo-icon {

@@ -18,7 +18,7 @@ const PageLoader = () => (
       <div className="text-[10px] font-mono tracking-[0.24em] text-[var(--accent)] uppercase font-bold">
         Loading workspace
       </div>
-      <div className="mt-5 h-1.5 bg-white/10 overflow-hidden rounded-sm">
+      <div className="mt-5 h-1.5 theme-surface overflow-hidden rounded-sm">
         <div className="h-full w-2/3 bg-[var(--accent)] animate-pulse" />
       </div>
     </div>
@@ -79,7 +79,7 @@ export default function App() {
               className="w-24 h-24 object-contain logo-icon"
             />
           </div>
-          <div className="w-64 h-[3px] bg-white/10 overflow-hidden relative">
+          <div className="w-64 h-[3px] theme-surface overflow-hidden relative">
             <div
               className="absolute top-0 left-0 h-full bg-[var(--accent)] transition-all duration-200"
               style={{ width: `${loadingProgress}%` }}
