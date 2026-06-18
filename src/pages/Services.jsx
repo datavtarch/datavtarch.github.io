@@ -39,7 +39,7 @@ export default function Services() {
         <div className="neo-card rounded-[2.2rem] p-6 md:p-12 overflow-hidden">
           <div className="relative z-10 max-w-4xl">
             <div className="eyebrow mb-6">VTARCH Services</div>
-            <h1 className="text-5xl md:text-7xl font-black font-heading uppercase leading-[0.92] tracking-tight mb-7">
+            <h1 className="text-5xl md:text-7xl font-black font-heading uppercase leading-[0.92] mb-7">
               Dịch vụ <span className="gradient-title">diễn họa</span><br /> kiến trúc & AI CGI
             </h1>
             <p className="text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed max-w-2xl">
@@ -88,7 +88,7 @@ export default function Services() {
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 items-start">
           <div>
             <div className="eyebrow mb-5">Workflow</div>
-            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase">
               Quy trình <span className="gradient-title">làm việc</span>
             </h2>
           </div>

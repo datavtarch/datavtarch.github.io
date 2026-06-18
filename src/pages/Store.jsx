@@ -19,7 +19,7 @@ const Store = () => {
           <div className="relative z-10 grid lg:grid-cols-[1fr_.75fr] gap-8 items-end">
             <div>
               <div className="eyebrow mb-6">VTARCH Resources</div>
-              <h1 className="text-5xl md:text-8xl font-black uppercase font-heading tracking-[-0.07em] leading-[0.9]">
+              <h1 className="text-5xl md:text-8xl font-black uppercase font-heading leading-[0.9]">
                 D5 Assets <span className="gradient-title">& Workflow.</span>
               </h1>
               <p className="max-w-2xl mt-6 text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed">
@@ -92,7 +92,7 @@ const Store = () => {
             <div className="w-16 h-16 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
               <Download size={26} />
             </div>
-            <h3 className="text-3xl md:text-6xl font-black uppercase font-heading mb-5 tracking-tight">
+            <h3 className="text-3xl md:text-6xl font-black uppercase font-heading mb-5">
               Muốn nhận <br /> <span className="gradient-title">D5 Material Pack?</span>
             </h3>
             <p className="text-sm font-mono text-[var(--text-muted)] mb-8 max-w-2xl mx-auto leading-relaxed">

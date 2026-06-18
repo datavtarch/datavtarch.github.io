@@ -102,7 +102,7 @@ export const ProjectModal = ({ project, onClose }) => {
             <div className="flex gap-2 mb-4 flex-wrap">
               {project.tags.map((t) => <span key={t} className="tag-accent">{t}</span>)}
             </div>
-            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-[0.95] tracking-tight text-white max-w-3xl">
+            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-[0.95] text-white max-w-3xl">
               {project.title}
             </h2>
           </div>

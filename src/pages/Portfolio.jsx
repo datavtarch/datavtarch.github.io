@@ -51,7 +51,7 @@ const Portfolio = ({ setSelectedProject }) => {
           <div className="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div>
               <div className="eyebrow mb-6">Selected case studies</div>
-              <h1 className="text-5xl md:text-8xl font-black uppercase font-heading tracking-[-0.07em] leading-[0.9]">
+              <h1 className="text-5xl md:text-8xl font-black uppercase font-heading leading-[0.9]">
                 Project <span className="gradient-title">Archive.</span>
               </h1>
               <p className="max-w-2xl mt-6 text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed">

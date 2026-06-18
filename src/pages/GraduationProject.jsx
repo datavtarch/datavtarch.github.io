@@ -42,7 +42,7 @@ const GraduationProject = () => {
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
               <div className="eyebrow mb-6">Architecture case study</div>
-              <h1 className="text-4xl md:text-7xl lg:text-[5.4rem] font-black font-heading leading-[0.9] tracking-[-0.07em] uppercase mb-7">
+              <h1 className="text-4xl md:text-7xl lg:text-[5.4rem] font-black font-heading leading-[0.9] uppercase mb-7">
                 Trung tâm Thiền <br />
                 <span className="gradient-title">Làng Mai Đà Lạt</span>
               </h1>
@@ -70,7 +70,7 @@ const GraduationProject = () => {
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 md:gap-8 mb-20 md:mb-28">
           <div className="neo-card rounded-[2rem] p-7 md:p-8 h-max lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Concept</div>
-            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-tight tracking-tight mb-6">
+            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-tight mb-6">
               Sự tỉnh thức trong <span className="gradient-title">kiến trúc</span>
             </h2>
             <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">
@@ -93,7 +93,7 @@ const GraduationProject = () => {
 
         <div className="neo-card rounded-[2rem] p-6 md:p-10 mb-20 md:mb-28">
           <div className="eyebrow mb-5">Architecture layout</div>
-          <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight mb-8">
+          <h2 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
           <div className="rounded-2xl overflow-hidden border border-white/10 bg-black mb-6">
@@ -114,7 +114,7 @@ const GraduationProject = () => {
           <div className="w-14 h-14 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
             <FileText size={24} />
           </div>
-          <h3 className="text-3xl md:text-5xl font-black font-heading uppercase tracking-tight mb-5">
+          <h3 className="text-3xl md:text-5xl font-black font-heading uppercase mb-5">
             Xem thêm <span className="gradient-title">dự án khác</span>
           </h3>
           <p className="text-sm font-mono text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">

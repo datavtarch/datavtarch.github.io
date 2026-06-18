@@ -31,6 +31,12 @@ const serviceHighlights = [
   },
 ];
 
+const narrativeSteps = [
+  ['01', 'Brief', 'Chot muc tieu hinh anh, phong cach, vat lieu, deadline va kenh su dung.'],
+  ['02', 'Visual direction', 'Dung mood anh sang, goc nhin, cau chuyen khong gian va tieu chuan dau ra.'],
+  ['03', 'Render craft', 'Trien khai D5 Render, hau ky mau, AI concept va toi uu hinh anh thuong mai.'],
+];
+
 const Home = ({ setSelectedProject }) => {
   const [igModal, setIgModal] = useState(null);
   const heroProject = PROJECTS_DATA[1] || PROJECTS_DATA[0];
@@ -48,7 +54,7 @@ const Home = ({ setSelectedProject }) => {
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#080604_0%,rgba(8,6,4,.93)_36%,rgba(8,6,4,.62)_72%,#080604_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#070706_0%,rgba(7,7,6,.95)_38%,rgba(7,7,6,.66)_74%,#070706_100%)]" />
           <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
 
@@ -56,12 +62,12 @@ const Home = ({ setSelectedProject }) => {
           <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
             <div>
               <div className="eyebrow mb-7">VTARCH · Visualization · D5 · AI CGI</div>
-              <h1 className="text-[12vw] sm:text-7xl lg:text-[6.2rem] leading-[0.88] font-black uppercase font-heading tracking-[-0.08em] mb-8">
+              <h1 className="text-[13vw] sm:text-7xl lg:text-[7rem] leading-[0.82] font-black uppercase font-heading mb-8">
                 Diễn họa <br />
                 <span className="gradient-title">kiến trúc</span><br />
                 có cảm xúc.
               </h1>
-              <div className="max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed border-l border-[#D95A2B]/60 pl-5 mb-9">
+              <div className="story-card max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed mb-9">
                 <p className="mb-3">
                   &gt; SERVICE:{' '}
                   <Typewriter
@@ -87,8 +93,8 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="neo-card rounded-[2.2rem] p-3 relative">
-                <div className="relative overflow-hidden rounded-[1.7rem] aspect-[4/5]">
+              <div className="hero-image-shell p-3 relative">
+                <div className="relative overflow-hidden rounded-md aspect-[4/5]">
                   <img
                     src={heroProject.image}
                     alt={heroProject.title}
@@ -108,7 +114,7 @@ const Home = ({ setSelectedProject }) => {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card rounded-2xl p-5 max-w-[270px] hidden sm:block">
+              <div className="absolute -bottom-6 -left-4 md:-left-8 neo-card p-5 max-w-[270px] hidden sm:block">
                 <div className="flex items-center gap-3 mb-2 text-[#F3A06D]">
                   <Sparkles size={18} />
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-bold">Project-ready visual</span>
@@ -122,7 +128,7 @@ const Home = ({ setSelectedProject }) => {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-16">
             {stats.map(([number, label]) => (
-              <div key={label} className="neo-card rounded-2xl p-5">
+              <div key={label} className="neo-card p-5">
                 <div className="text-3xl md:text-4xl font-black font-heading text-[#F3A06D]">{number}</div>
                 <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.18em] text-[var(--text-muted)] mt-2">{label}</div>
               </div>
@@ -131,12 +137,33 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
+      {/* STORY PATH */}
+      <section className="section-shell py-16 md:py-24 section-rule">
+        <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-14 items-start">
+          <div className="lg:sticky lg:top-32">
+            <div className="eyebrow mb-5">Studio method</div>
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase leading-[0.9]">
+              Mot hinh anh dep phai <span className="gradient-title">ban duoc cau chuyen.</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {narrativeSteps.map(([number, title, desc]) => (
+              <div key={number} className="story-card min-h-[220px]">
+                <div className="story-kicker mb-5">Chapter {number}</div>
+                <h3 className="text-2xl font-black font-heading uppercase mb-4">{title}</h3>
+                <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
-      <section className="section-shell py-20 md:py-28">
+      <section className="section-shell py-20 md:py-28 section-rule">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
             <div className="eyebrow mb-5">Core services</div>
-            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase">
               VTARCH làm <span className="gradient-title">dịch vụ gì?</span>
             </h2>
           </div>
@@ -164,11 +191,11 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* FEATURED PROJECTS */}
-      <section className="section-shell py-20 md:py-28">
+      <section className="section-shell py-20 md:py-28 section-rule">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
             <div className="eyebrow mb-5">Featured works</div>
-            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-black font-heading uppercase">
               Dự án <span className="gradient-title">nổi bật</span>
             </h2>
           </div>
@@ -216,12 +243,12 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* RESOURCES PREVIEW */}
-      <section className="section-shell py-20 md:py-28">
-        <div className="neo-card rounded-[2rem] p-6 md:p-10">
+      <section className="section-shell py-20 md:py-28 section-rule">
+        <div className="neo-card p-6 md:p-10">
           <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
             <div>
               <div className="eyebrow mb-5">Resources</div>
-              <h2 className="text-4xl md:text-5xl font-black font-heading uppercase tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-black font-heading uppercase">
                 D5 Assets <span className="gradient-title">& workflow</span>
               </h2>
               <p className="text-[var(--text-muted)] font-mono text-sm mt-4 max-w-xl leading-relaxed">
@@ -251,7 +278,7 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* SOCIAL FEED */}
-      <section className="section-shell py-20 md:py-28 text-center">
+      <section className="section-shell py-20 md:py-28 text-center section-rule">
         <div className="w-14 h-14 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
           <InstagramIcon size={26} />
         </div>

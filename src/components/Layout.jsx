@@ -26,7 +26,7 @@ function MobileNavLink({ to, children, onClick }) {
     <Link
       to={to}
       onClick={onClick}
-      className={`text-4xl font-black hover:text-[#D95A2B] uppercase tracking-tight font-heading transition-colors ${
+      className={`text-4xl font-black hover:text-[#D95A2B] uppercase font-heading transition-colors ${
         isActive ? 'text-[#D95A2B]' : 'text-[var(--text-main)]'
       }`}
     >
@@ -142,7 +142,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       <footer className="relative z-10 section-shell py-24 border-t border-[var(--border-color)] text-center">
         <div className="neo-card rounded-[2rem] p-8 md:p-12">
           <p className="eyebrow mb-6">VTARCH Visual Lab</p>
-          <h3 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8 tracking-tight">
+          <h3 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8">
             Cần hình ảnh <span className="gradient-title">ấn tượng</span> cho dự án?
           </h3>
           <p className="text-[var(--text-muted)] font-mono text-sm leading-relaxed max-w-2xl mx-auto mb-9">
