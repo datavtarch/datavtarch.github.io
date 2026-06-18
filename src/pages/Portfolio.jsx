@@ -48,7 +48,6 @@ const Portfolio = ({ setSelectedProject }) => {
       <section className="section-shell">
         <div className="relative neo-card rounded-[2rem] p-7 md:p-12 mb-10 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
-          <div className="absolute right-0 top-0 w-80 h-80 bg-[#D95A2B]/20 blur-[90px] rounded-full" />
           <div className="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div>
               <div className="eyebrow mb-6">Selected case studies</div>
@@ -83,12 +82,12 @@ const Portfolio = ({ setSelectedProject }) => {
         </div>
 
         <div className="sticky top-24 z-20 mb-10 -mx-2 px-2 py-2 overflow-x-auto">
-          <div className="flex gap-3 min-w-max rounded-full border border-[var(--border-color)] bg-[var(--glass-bg)]/85 backdrop-blur-2xl p-2 w-max mx-auto">
+          <div className="flex gap-3 min-w-max rounded-lg border border-[var(--border-color)] bg-[var(--glass-bg)]/85 backdrop-blur-2xl p-2 w-max mx-auto">
             {FILTER_CATEGORIES.map(cat => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 md:px-7 py-3 rounded-full font-mono text-[10px] uppercase tracking-[0.18em] font-bold transition-all duration-300 ${
+                className={`px-5 md:px-7 py-3 rounded-md font-mono text-[10px] uppercase tracking-[0.18em] font-bold transition-all duration-300 ${
                   filter === cat
                     ? 'bg-[#D95A2B] text-white shadow-lg shadow-[#D95A2B]/30'
                     : 'text-[var(--text-muted)] hover:text-[#F3A06D] hover:bg-white/[0.04]'

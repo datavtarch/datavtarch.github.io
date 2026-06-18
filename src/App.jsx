@@ -13,11 +13,14 @@ const Store = lazy(() => import('./pages/Store'));
 const GraduationProject = lazy(() => import('./pages/GraduationProject'));
 
 const PageLoader = () => (
-  <div className="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center">
-    <div className="relative w-44 h-44 rounded-full border border-white/10 flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-4 rounded-full border border-[#D95A2B]/30 animate-pulse" />
-      <div className="absolute w-32 h-32 bg-[#D95A2B]/20 blur-3xl" />
-      <span className="relative z-10 text-[10px] font-mono tracking-[0.35em] text-[#D95A2B] uppercase">Loading</span>
+  <div className="min-h-[70vh] flex items-center justify-center px-6 text-center">
+    <div className="neo-card w-full max-w-sm p-7">
+      <div className="text-[10px] font-mono tracking-[0.24em] text-[var(--accent)] uppercase font-bold">
+        Loading workspace
+      </div>
+      <div className="mt-5 h-1.5 bg-white/10 overflow-hidden rounded-sm">
+        <div className="h-full w-2/3 bg-[var(--accent)] animate-pulse" />
+      </div>
     </div>
   </div>
 );
@@ -57,32 +60,33 @@ export default function App() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
+
     const id = requestAnimationFrame(raf);
-    return () => { lenis.destroy(); cancelAnimationFrame(id); };
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(id);
+    };
   }, []);
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 z-[99999] bg-[#080604] flex flex-col items-center justify-center transition-all duration-700 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,90,43,0.18),transparent_42%)]" />
-        <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:42px_42px]" />
+      <div className="fixed inset-0 z-[99999] bg-[var(--bg-color)] flex flex-col items-center justify-center overflow-hidden">
         <div className="relative z-10 flex flex-col items-center">
-          <div className="relative w-44 h-44 rounded-full border border-white/10 flex items-center justify-center mb-8 shadow-[0_0_80px_rgba(217,90,43,0.18)]">
-            <div className="absolute inset-3 rounded-full border border-[#D95A2B]/30" />
+          <div className="relative w-36 h-36 border border-[var(--border-color)] bg-[var(--panel-color)] flex items-center justify-center mb-8 shadow-[0_24px_70px_rgba(0,0,0,0.34)]">
             <img
               src="logo/logo.jpg"
               alt="VTARCH"
-              className="w-28 h-28 object-contain filter invert brightness-200 opacity-90"
+              className="w-24 h-24 object-contain logo-icon"
             />
           </div>
-          <div className="w-64 h-[3px] bg-white/10 rounded-full overflow-hidden relative">
+          <div className="w-64 h-[3px] bg-white/10 overflow-hidden relative">
             <div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#D95A2B] to-[#F3A06D] transition-all duration-200"
+              className="absolute top-0 left-0 h-full bg-[var(--accent)] transition-all duration-200"
               style={{ width: `${loadingProgress}%` }}
             />
           </div>
-          <div className="mt-5 font-mono text-[10px] text-[#9A8F87] tracking-[0.28em] uppercase">
-            VTARCH Visual Lab <span className="text-[#D95A2B] font-bold">{loadingProgress}%</span>
+          <div className="mt-5 font-mono text-[10px] text-[var(--text-muted)] tracking-[0.24em] uppercase">
+            VTARCH Visual Lab <span className="text-[var(--accent)] font-bold">{loadingProgress}%</span>
           </div>
         </div>
       </div>
@@ -91,163 +95,6 @@ export default function App() {
 
   return (
     <Router>
-      <style dangerouslySetInnerHTML={{ __html: `
-        :root {
-          --bg-color: #080604;
-          --panel-color: #120E0B;
-          --text-main: #F8F4EF;
-          --text-muted: #9A8F87;
-          --accent: #D95A2B;
-          --accent-soft: rgba(217, 90, 43, 0.14);
-          --border-color: rgba(255, 255, 255, 0.09);
-          --glass-bg: rgba(18, 14, 11, 0.64);
-        }
-        [data-theme="light"] {
-          --bg-color: #F4F1ED;
-          --panel-color: #FFFFFF;
-          --text-main: #1C1917;
-          --text-muted: #6B625D;
-          --accent: #D95A2B;
-          --accent-soft: rgba(217, 90, 43, 0.10);
-          --border-color: rgba(28, 25, 23, 0.10);
-          --glass-bg: rgba(255, 255, 255, 0.72);
-        }
-        * { box-sizing: border-box; }
-        html { scroll-behavior: auto; }
-        body {
-          margin: 0;
-          font-family: 'Inter', sans-serif;
-          background:
-            radial-gradient(circle at 18% 8%, rgba(217,90,43,0.18), transparent 28%),
-            radial-gradient(circle at 82% 18%, rgba(255,255,255,0.06), transparent 24%),
-            linear-gradient(180deg, #080604 0%, var(--bg-color) 42%, #0D0907 100%);
-          color: var(--text-main);
-          transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        body::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          pointer-events: none;
-          z-index: 0;
-          opacity: 0.035;
-          background-image:
-            linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
-          background-size: 56px 56px;
-          mask-image: linear-gradient(to bottom, black, transparent 85%);
-        }
-        ::selection { background: var(--accent); color: #fff; }
-        .font-heading { font-family: 'Montserrat', sans-serif; }
-        .font-mono { font-family: 'Space Mono', monospace; }
-        .section-shell { max-width: 1180px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
-        .eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          color: var(--accent);
-          border: 1px solid rgba(217,90,43,0.24);
-          background: rgba(217,90,43,0.08);
-          border-radius: 999px;
-          padding: 8px 14px;
-          font-family: 'Space Mono', monospace;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: .22em;
-          text-transform: uppercase;
-        }
-        .eyebrow::before {
-          content: '';
-          width: 6px;
-          height: 6px;
-          border-radius: 999px;
-          background: var(--accent);
-          box-shadow: 0 0 14px var(--accent);
-        }
-        .neo-card {
-          position: relative;
-          overflow: hidden;
-          border: 1px solid var(--border-color);
-          background: linear-gradient(145deg, rgba(255,255,255,0.052), rgba(255,255,255,0.018));
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          box-shadow: 0 20px 56px rgba(0,0,0,0.30);
-        }
-        .tag-accent {
-          background: rgba(217,90,43,0.15);
-          color: #F3A06D;
-          border: 1px solid rgba(217,90,43,0.24);
-          padding: 5px 10px;
-          border-radius: 999px;
-          font-size: 8px;
-          font-weight: 800;
-          letter-spacing: .14em;
-          text-transform: uppercase;
-          font-family: 'Space Mono', monospace;
-        }
-        .btn-accent {
-          background: linear-gradient(135deg, #D95A2B, #F08A56);
-          color: #fff;
-          border-radius: 999px;
-          font-weight: 900;
-          transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-          box-shadow: 0 14px 32px rgba(217,90,43,0.22);
-        }
-        .btn-accent:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 18px 42px rgba(217,90,43,0.30); }
-        .btn-outline-luxury {
-          background: rgba(255,255,255,0.035);
-          border: 1px solid var(--border-color);
-          border-radius: 999px;
-          color: var(--text-main);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          transition: all .25s ease;
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-        }
-        .btn-outline-luxury:hover { border-color: rgba(217,90,43,0.55); color: var(--accent); transform: translateY(-2px); }
-        .luxury-card {
-          border-radius: 1.45rem;
-          overflow: hidden;
-          position: relative;
-          background: var(--glass-bg);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border: 1px solid var(--border-color);
-          transition: transform .32s cubic-bezier(0.4, 0, 0.2, 1), border-color .32s ease, box-shadow .32s ease;
-          box-shadow: 0 18px 46px rgba(0,0,0,.22);
-        }
-        .luxury-card:hover { border-color: rgba(217,90,43,0.50); transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,.34); }
-        .gradient-title {
-          background: linear-gradient(135deg, var(--text-main) 0%, #F3A06D 52%, var(--accent) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-        .soft-grid {
-          background-image:
-            linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-          background-size: 38px 38px;
-        }
-        @media (hover: none) {
-          .luxury-card:hover,
-          .btn-accent:hover,
-          .btn-outline-luxury:hover {
-            transform: none;
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            scroll-behavior: auto !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-      ` }} />
-      
       <Layout isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
         <Suspense fallback={<PageLoader />}>
           <Routes>

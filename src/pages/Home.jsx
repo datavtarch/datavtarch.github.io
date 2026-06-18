@@ -49,7 +49,6 @@ const Home = ({ setSelectedProject }) => {
             decoding="async"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#080604_0%,rgba(8,6,4,.93)_36%,rgba(8,6,4,.62)_72%,#080604_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_32%,rgba(217,90,43,.30),transparent_32%)]" />
           <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
 
@@ -88,7 +87,6 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="absolute -inset-6 bg-[#D95A2B]/20 blur-[80px] rounded-full" />
               <div className="neo-card rounded-[2.2rem] p-3 relative">
                 <div className="relative overflow-hidden rounded-[1.7rem] aspect-[4/5]">
                   <img

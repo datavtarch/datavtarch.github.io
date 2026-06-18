@@ -37,7 +37,6 @@ export default function Services() {
     <div className="pt-32 pb-24">
       <section className="section-shell">
         <div className="neo-card rounded-[2.2rem] p-6 md:p-12 overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_80%_10%,rgba(217,90,43,.22),transparent_34%)]" />
           <div className="relative z-10 max-w-4xl">
             <div className="eyebrow mb-6">VTARCH Services</div>
             <h1 className="text-5xl md:text-7xl font-black font-heading uppercase leading-[0.92] tracking-tight mb-7">

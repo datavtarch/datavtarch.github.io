@@ -39,7 +39,6 @@ const GraduationProject = () => {
 
         <div className="relative neo-card rounded-[2rem] p-6 md:p-12 overflow-hidden mb-10">
           <div className="absolute inset-0 soft-grid opacity-20" />
-          <div className="absolute right-0 top-0 w-96 h-96 bg-[#D95A2B]/20 blur-[100px] rounded-full" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
               <div className="eyebrow mb-6">Architecture case study</div>

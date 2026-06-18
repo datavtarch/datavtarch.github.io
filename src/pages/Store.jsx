@@ -16,7 +16,6 @@ const Store = () => {
       <section className="section-shell">
         <div className="relative neo-card rounded-[2rem] p-7 md:p-12 mb-12 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
-          <div className="absolute -right-12 -top-12 w-96 h-96 bg-[#D95A2B]/20 blur-[100px] rounded-full" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.75fr] gap-8 items-end">
             <div>
               <div className="eyebrow mb-6">VTARCH Resources</div>
@@ -89,7 +88,6 @@ const Store = () => {
         </div>
 
         <div className="mt-20 md:mt-28 neo-card rounded-[2rem] p-7 md:p-12 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,90,43,0.18),transparent_60%)]" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="w-16 h-16 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
               <Download size={26} />
@@ -107,7 +105,7 @@ const Store = () => {
                   type="email" 
                   required
                   placeholder="Email của bạn..." 
-                  className="w-full bg-black/40 border border-white/10 rounded-full pl-12 pr-6 py-4 text-sm font-mono focus:outline-none focus:border-[#D95A2B] text-white" 
+                  className="w-full bg-black/40 border border-white/10 rounded-lg pl-12 pr-6 py-4 text-sm font-mono focus:outline-none focus:border-[#D95A2B] text-white" 
                 />
               </div>
               <button type="submit" className="btn-accent px-8 py-4 font-mono font-bold uppercase text-xs tracking-widest">

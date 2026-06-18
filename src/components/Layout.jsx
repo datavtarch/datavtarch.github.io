@@ -76,7 +76,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-6 px-7 py-2 rounded-full border border-white/5 bg-white/[0.025]">
+            <nav className="hidden lg:flex items-center gap-6 px-7 py-2 rounded-lg border border-white/5 bg-white/[0.025]">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">Profile</NavLink>
               <NavLink to="/portfolio">Projects</NavLink>
@@ -94,14 +94,14 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
               <button
                 onClick={() => setIsLightMode(!isLightMode)}
                 aria-label="Toggle theme"
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all bg-white/[0.035] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-white/[0.035] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {isLightMode ? <Moon size={16} /> : <Sun size={16} />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Open menu"
-                className="w-10 h-10 rounded-full flex items-center justify-center lg:hidden bg-white/[0.035] border border-[var(--border-color)] hover:text-[#D95A2B] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden bg-white/[0.035] border border-[var(--border-color)] hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
               </button>
@@ -131,10 +131,10 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       <main className="relative z-10">{children}</main>
 
       <div className="fixed right-4 bottom-4 z-40 flex flex-col gap-3 md:right-6 md:bottom-6">
-        <a href="mailto:vtarch99@gmail.com" aria-label="Email VTARCH" className="w-12 h-12 rounded-full btn-accent flex items-center justify-center shadow-2xl">
+        <a href="mailto:vtarch99@gmail.com" aria-label="Email VTARCH" className="w-12 h-12 rounded-lg btn-accent flex items-center justify-center shadow-2xl">
           <Mail size={18} />
         </a>
-        <a href="tel:0385550506" aria-label="Call VTARCH" className="w-12 h-12 rounded-full btn-outline-luxury bg-[var(--glass-bg)] flex items-center justify-center shadow-2xl">
+        <a href="tel:0385550506" aria-label="Call VTARCH" className="w-12 h-12 rounded-lg btn-outline-luxury bg-[var(--glass-bg)] flex items-center justify-center shadow-2xl">
           <Phone size={18} />
         </a>
       </div>
