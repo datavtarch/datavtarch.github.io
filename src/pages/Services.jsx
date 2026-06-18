@@ -63,7 +63,7 @@ export default function Services() {
             <div key={service.title} className="luxury-card p-6 md:p-8">
               <div className="flex items-start justify-between gap-4 mb-8">
                 <span className="tag-accent">Service 0{idx + 1}</span>
-                <span className="text-[#F3A06D] font-mono text-xs">VTARCH</span>
+                <span className="text-[var(--accent-2)] font-mono text-xs">VTARCH</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight mb-4">
                 {service.title}
@@ -74,7 +74,7 @@ export default function Services() {
               <div className="space-y-3">
                 {service.points.map((point) => (
                   <div key={point} className="flex items-center gap-3 text-sm text-[var(--text-main)]">
-                    <CheckCircle2 size={16} className="text-[#F3A06D] shrink-0" />
+                    <CheckCircle2 size={16} className="text-[var(--accent-2)] shrink-0" />
                     <span>{point}</span>
                   </div>
                 ))}
@@ -95,7 +95,7 @@ export default function Services() {
           <div className="grid gap-4">
             {workflow.map(([number, title, desc]) => (
               <div key={number} className="neo-card rounded-2xl p-5 md:p-6 flex gap-5 items-start">
-                <div className="w-12 h-12 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 flex items-center justify-center text-[#F3A06D] font-black font-heading">
+                <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/15 border border-[var(--accent)]/25 flex items-center justify-center text-[var(--accent-2)] font-black font-heading">
                   {number}
                 </div>
                 <div>

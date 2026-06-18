@@ -66,7 +66,7 @@ const Portfolio = ({ setSelectedProject }) => {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:flex w-24 h-24 rounded-3xl border border-white/10 bg-white/[0.035] items-center justify-center text-[#F3A06D]">
+            <div className="hidden md:flex w-24 h-24 rounded-3xl border border-white/10 bg-white/[0.035] items-center justify-center text-[var(--accent-2)]">
               <Search size={34} />
             </div>
           </div>
@@ -75,7 +75,7 @@ const Portfolio = ({ setSelectedProject }) => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
           {portfolioStats.map(([title, desc]) => (
             <div key={title} className="neo-card rounded-2xl p-5">
-              <div className="text-xl md:text-2xl font-black font-heading text-[#F3A06D] uppercase leading-tight">{title}</div>
+              <div className="text-xl md:text-2xl font-black font-heading text-[var(--accent-2)] uppercase leading-tight">{title}</div>
               <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.14em] text-[var(--text-muted)] mt-2 leading-relaxed">{desc}</div>
             </div>
           ))}
@@ -89,8 +89,8 @@ const Portfolio = ({ setSelectedProject }) => {
                 onClick={() => setFilter(cat)}
                 className={`px-5 md:px-7 py-3 rounded-md font-mono text-[10px] uppercase tracking-[0.18em] font-bold transition-all duration-300 ${
                   filter === cat
-                    ? 'bg-[#D95A2B] text-white shadow-lg shadow-[#D95A2B]/30'
-                    : 'text-[var(--text-muted)] hover:text-[#F3A06D] hover:bg-white/[0.04]'
+                    ? 'bg-[var(--accent)] text-white shadow-lg shadow-[var(--accent)]/30'
+                    : 'text-[var(--text-muted)] hover:text-[var(--accent-2)] hover:bg-white/[0.04]'
                 }`}
               >
                 {cat}
@@ -117,7 +117,7 @@ const Portfolio = ({ setSelectedProject }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/96 via-black/36 to-black/5" />
               <div className="absolute top-5 left-5 right-5 flex items-start justify-between gap-4">
                 <span className="tag-accent">Case {String(idx + 1).padStart(2, '0')}</span>
-                <span className="w-10 h-10 rounded-full border border-white/10 bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-[#D95A2B] transition-colors">
+                <span className="w-10 h-10 rounded-full border border-white/10 bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-[var(--accent)] transition-colors">
                   <ArrowUpRight size={15} />
                 </span>
               </div>
@@ -127,7 +127,7 @@ const Portfolio = ({ setSelectedProject }) => {
                     <span key={i} className="tag-accent">{t}</span>
                   ))}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[#F3A06D] transition-colors">
+                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[var(--accent-2)] transition-colors">
                   {proj.title}
                 </h3>
                 <p className="text-xs font-mono text-gray-300 mt-3 line-clamp-2 opacity-90">
@@ -135,11 +135,11 @@ const Portfolio = ({ setSelectedProject }) => {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 pt-5 border-t border-white/10">
                   <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.12em] text-gray-300">
-                    <Sparkles size={14} className="text-[#F3A06D] shrink-0" />
+                    <Sparkles size={14} className="text-[var(--accent-2)] shrink-0" />
                     {getProjectRole(proj)}
                   </div>
                   <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.12em] text-gray-300">
-                    <Layers3 size={14} className="text-[#F3A06D] shrink-0" />
+                    <Layers3 size={14} className="text-[var(--accent-2)] shrink-0" />
                     {getProjectTools(proj)}
                   </div>
                 </div>

@@ -22,18 +22,18 @@ const SkillBar = ({ name, level }) => (
   <div>
     <div className="flex justify-between text-[10px] font-mono uppercase tracking-widest mb-2">
       <span className="text-[var(--text-main)]">{name}</span>
-      <span className="text-[#F3A06D]">{level}%</span>
+      <span className="text-[var(--accent-2)]">{level}%</span>
     </div>
     <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
-      <div className="h-full rounded-full bg-gradient-to-r from-[#D95A2B] to-[#F3A06D]" style={{ width: `${level}%` }} />
+      <div className="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]" style={{ width: `${level}%` }} />
     </div>
   </div>
 );
 
 const ContactRow = ({ icon: Icon, children, href }) => {
   const content = (
-    <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-muted)] hover:text-[#F3A06D] transition-colors">
-      <span className="w-9 h-9 rounded-xl border border-white/10 bg-white/[0.035] flex items-center justify-center text-[#F3A06D] shrink-0">
+    <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--accent-2)] transition-colors">
+      <span className="w-9 h-9 rounded-xl border border-white/10 bg-white/[0.035] flex items-center justify-center text-[var(--accent-2)] shrink-0">
         {React.createElement(Icon, { size: 16 })}
       </span>
       <span className="leading-relaxed break-all">{children}</span>
@@ -67,7 +67,7 @@ const About = () => {
               <h1 className="text-5xl md:text-7xl font-black font-heading uppercase leading-[0.9] mb-7">
                 Visual <br /> <span className="gradient-title">Storyteller</span>
               </h1>
-              <div className="space-y-5 text-sm md:text-base text-[var(--text-muted)] font-mono leading-relaxed border-l border-[#D95A2B]/50 pl-5 mb-8">
+              <div className="space-y-5 text-sm md:text-base text-[var(--text-muted)] font-mono leading-relaxed border-l border-[var(--accent)]/50 pl-5 mb-8">
                 <p>
                   VTARCH là studio cá nhân của Nguyễn Văn Thanh, tập trung vào diễn họa kiến trúc, nội thất, D5 Render và AI CGI cho các dự án cần hình ảnh đẹp, rõ vật liệu và có tính thương mại.
                 </p>
@@ -90,7 +90,7 @@ const About = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {profileStats.map(([num, label]) => (
             <div key={label} className="neo-card rounded-2xl p-6">
-              <div className="text-4xl font-black font-heading text-[#F3A06D]">{num}</div>
+              <div className="text-4xl font-black font-heading text-[var(--accent-2)]">{num}</div>
               <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-[0.18em] mt-2">{label}</div>
             </div>
           ))}
@@ -109,13 +109,13 @@ const About = () => {
 
           <div className="neo-card rounded-[2rem] p-7 md:p-8">
             <div className="flex items-center gap-3 mb-7">
-              <span className="w-11 h-11 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 flex items-center justify-center text-[#F3A06D]"><Sparkles size={20} /></span>
+              <span className="w-11 h-11 rounded-2xl bg-[var(--accent)]/15 border border-[var(--accent)]/25 flex items-center justify-center text-[var(--accent-2)]"><Sparkles size={20} /></span>
               <h3 className="text-2xl font-black font-heading uppercase">Điểm mạnh làm việc</h3>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               {strengths.map((item) => (
                 <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 flex gap-3">
-                  <CheckCircle2 size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
+                  <CheckCircle2 size={17} className="text-[var(--accent-2)] shrink-0 mt-0.5" />
                   <p className="text-xs md:text-sm font-mono text-[var(--text-muted)] leading-relaxed">{item}</p>
                 </div>
               ))}
@@ -138,7 +138,7 @@ const About = () => {
             <h3 className="text-2xl font-black font-heading uppercase mb-6">Achievements</h3>
             <div className="space-y-4">
               {CV_DATA.achievements.slice(0, 4).map((item) => (
-                <div key={item.title} className="border-l border-[#D95A2B]/50 pl-4">
+                <div key={item.title} className="border-l border-[var(--accent)]/50 pl-4">
                   <h4 className="text-sm font-bold text-[var(--text-main)]">{item.title}</h4>
                   <p className="text-xs font-mono text-[var(--text-muted)] mt-1">{item.event}</p>
                 </div>
@@ -155,7 +155,7 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-4">
             {Object.entries(CV_DATA.aiSkills).map(([key, value]) => (
               <div key={key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-3">{key}</h4>
+                <h4 className="text-[10px] font-mono text-[var(--accent-2)] uppercase tracking-[0.2em] font-bold mb-3">{key}</h4>
                 <p className="text-xs font-mono text-[var(--text-muted)] leading-relaxed">{value}</p>
               </div>
             ))}

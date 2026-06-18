@@ -30,7 +30,7 @@ const GraduationProject = () => {
     <div className="pt-32 md:pt-40 pb-32 transition-all duration-700 opacity-100">
       <section className="section-shell">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <Link to="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors group">
+          <Link to="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors group">
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
             Trở về Projects
           </Link>
@@ -46,13 +46,13 @@ const GraduationProject = () => {
                 Trung tâm Thiền <br />
                 <span className="gradient-title">Làng Mai Đà Lạt</span>
               </h1>
-              <p className="max-w-2xl text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed border-l border-[#D95A2B]/50 pl-5">
+              <p className="max-w-2xl text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed border-l border-[var(--accent)]/50 pl-5">
                 Đồ án tốt nghiệp kiến trúc sư, khai thác tinh thần tỉnh thức, thiền hành và sự hòa hợp giữa công trình với địa hình tự nhiên Đà Lạt.
               </p>
               <div className="grid sm:grid-cols-3 gap-3 mt-8">
                 {facts.map(({ icon: Icon, label, value }) => (
                   <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
-                    {React.createElement(Icon, { size: 18, className: 'text-[#F3A06D] mb-3' })}
+                    {React.createElement(Icon, { size: 18, className: 'text-[var(--accent-2)] mb-3' })}
                     <div className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-widest mb-1">{label}</div>
                     <div className="text-xs font-bold text-[var(--text-main)] uppercase font-mono">{value}</div>
                   </div>
@@ -81,7 +81,7 @@ const GraduationProject = () => {
           <div className="space-y-4">
             {ideas.map(([number, title, desc]) => (
               <div key={number} className="luxury-card p-6 md:p-7 grid sm:grid-cols-[90px_1fr] gap-5 items-start">
-                <div className="text-5xl font-black font-heading text-[#F3A06D] leading-none">{number}</div>
+                <div className="text-5xl font-black font-heading text-[var(--accent-2)] leading-none">{number}</div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-black font-heading uppercase mb-3">{title}</h3>
                   <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">{desc}</p>
@@ -101,8 +101,8 @@ const GraduationProject = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {solutions.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-[#D95A2B]/40 transition-colors">
-                {React.createElement(Icon, { className: 'text-[#F3A06D] mb-5', size: 24 })}
+              <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-[var(--accent)]/40 transition-colors">
+                {React.createElement(Icon, { className: 'text-[var(--accent-2)] mb-5', size: 24 })}
                 <h4 className="font-heading font-black uppercase text-lg mb-3">{title}</h4>
                 <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">{desc}</p>
               </div>
@@ -111,7 +111,7 @@ const GraduationProject = () => {
         </div>
 
         <div className="neo-card rounded-[2rem] p-8 md:p-12 text-center">
-          <div className="w-14 h-14 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
+          <div className="w-14 h-14 rounded-2xl bg-[var(--accent)]/15 border border-[var(--accent)]/25 mx-auto mb-6 flex items-center justify-center text-[var(--accent-2)]">
             <FileText size={24} />
           </div>
           <h3 className="text-3xl md:text-5xl font-black font-heading uppercase mb-5">
