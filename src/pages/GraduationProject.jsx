@@ -96,7 +96,7 @@ const GraduationProject = () => {
           <h2 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
-          <div className="rounded-2xl overflow-hidden border border-[var(--border-color)] bg-[var(--panel-color)] mb-6">
+          <div className="rounded-2xl overflow-hidden border border-white/10 bg-black mb-6">
             <img src={IMAGES.projectDoAn} alt="Detailed Layout" className="w-full h-auto object-contain" loading="lazy" decoding="async" />
           </div>
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
