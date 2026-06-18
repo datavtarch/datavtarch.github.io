@@ -57,12 +57,12 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
           className={`max-w-6xl mx-auto rounded-2xl border transition-all duration-500 ${
             isScrolled
               ? 'bg-[var(--glass-bg)]/90 border-[var(--border-color)] backdrop-blur-2xl shadow-[0_18px_60px_rgba(0,0,0,0.32)]'
-              : 'bg-black/10 border-white/5 backdrop-blur-md'
+              : 'theme-header backdrop-blur-md shadow-[0_14px_40px_rgba(0,0,0,0.12)]'
           }`}
         >
           <div className="px-4 md:px-5 py-3 flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-3 group min-w-0">
-              <div className="relative w-11 h-11 rounded-xl border border-white/10 bg-white/[0.03] overflow-hidden flex items-center justify-center shadow-[0_0_28px_rgba(217,90,43,.14)]">
+              <div className="relative w-11 h-11 rounded-xl border theme-surface overflow-hidden flex items-center justify-center shadow-[0_0_28px_rgba(217,90,43,.14)]">
                 <img src="logo/logo.jpg" alt="VTARCH" className="w-8 h-8 object-contain logo-icon" />
                 <span className="absolute inset-0 bg-[#D95A2B]/0 group-hover:bg-[#D95A2B]/10 transition-colors" />
               </div>
@@ -76,7 +76,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-6 px-7 py-2 rounded-lg border border-white/5 bg-white/[0.025]">
+            <nav className="hidden lg:flex items-center gap-6 px-7 py-2 rounded-lg border theme-surface">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">Profile</NavLink>
               <NavLink to="/portfolio">Projects</NavLink>
@@ -94,14 +94,14 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
               <button
                 onClick={() => setIsLightMode(!isLightMode)}
                 aria-label="Toggle theme"
-                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all bg-white/[0.035] border border-[var(--border-color)] hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center transition-all border theme-surface hover:border-[#D95A2B] hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {isLightMode ? <Moon size={16} /> : <Sun size={16} />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Open menu"
-                className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden bg-white/[0.035] border border-[var(--border-color)] hover:text-[#D95A2B] backdrop-blur-md"
+                className="w-10 h-10 rounded-lg flex items-center justify-center lg:hidden border theme-surface hover:text-[#D95A2B] backdrop-blur-md"
               >
                 {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
               </button>
@@ -111,7 +111,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       </header>
 
       <div
-        className={`fixed inset-0 z-30 bg-[#080604]/96 backdrop-blur-3xl flex flex-col justify-center items-center transition-all duration-500 ${
+        className={`fixed inset-0 z-30 bg-[var(--panel-color)]/96 backdrop-blur-3xl flex flex-col justify-center items-center transition-all duration-500 ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

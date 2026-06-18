@@ -105,7 +105,7 @@ const Store = () => {
                   type="email" 
                   required
                   placeholder="Email của bạn..." 
-                  className="w-full bg-black/40 border border-white/10 rounded-lg pl-12 pr-6 py-4 text-sm font-mono focus:outline-none focus:border-[#D95A2B] text-white" 
+                  className="w-full theme-field border rounded-lg pl-12 pr-6 py-4 text-sm font-mono focus:outline-none focus:border-[#D95A2B]"
                 />
               </div>
               <button type="submit" className="btn-accent px-8 py-4 font-mono font-bold uppercase text-xs tracking-widest">

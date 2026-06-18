@@ -51,7 +51,7 @@ const GraduationProject = () => {
               </p>
               <div className="grid sm:grid-cols-3 gap-3 mt-8">
                 {facts.map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
+                  <div key={label} className="rounded-2xl border theme-surface p-4">
                     {React.createElement(Icon, { size: 18, className: 'text-[#F3A06D] mb-3' })}
                     <div className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-widest mb-1">{label}</div>
                     <div className="text-xs font-bold text-[var(--text-main)] uppercase font-mono">{value}</div>
@@ -60,7 +60,7 @@ const GraduationProject = () => {
               </div>
             </div>
 
-            <div className="relative rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] md:aspect-[16/12]">
+            <div className="relative rounded-[2rem] overflow-hidden border border-[var(--border-color)] shadow-2xl aspect-[4/5] md:aspect-[16/12]">
               <img src={IMAGES.projectDoAn} alt="Trung tâm Thiền Làng Mai Đà Lạt" className="w-full h-full object-cover" loading="eager" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </div>
@@ -96,12 +96,12 @@ const GraduationProject = () => {
           <h2 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
-          <div className="rounded-2xl overflow-hidden border border-white/10 bg-black mb-6">
+          <div className="rounded-2xl overflow-hidden border border-[var(--border-color)] bg-[var(--panel-color)] mb-6">
             <img src={IMAGES.projectDoAn} alt="Detailed Layout" className="w-full h-auto object-contain" loading="lazy" decoding="async" />
           </div>
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {solutions.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-[#D95A2B]/40 transition-colors">
+              <div key={title} className="rounded-2xl border theme-surface p-6 hover:border-[#D95A2B]/40 transition-colors">
                 {React.createElement(Icon, { className: 'text-[#F3A06D] mb-5', size: 24 })}
                 <h4 className="font-heading font-black uppercase text-lg mb-3">{title}</h4>
                 <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">{desc}</p>
