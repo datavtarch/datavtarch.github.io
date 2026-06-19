@@ -44,7 +44,7 @@ const Home = ({ setSelectedProject }) => {
   return (
     <div className="relative overflow-hidden">
       {/* HERO */}
-      <section className="relative min-h-[860px] md:min-h-screen flex items-center pt-28 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+      <section className="relative min-h-[820px] md:min-h-screen flex items-center pt-24 md:pt-32 pb-10 md:pb-20 px-4 md:px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 hero-stage" />
           <div className="absolute inset-0 soft-grid opacity-20" />
@@ -52,7 +52,7 @@ const Home = ({ setSelectedProject }) => {
         </div>
 
         <div className="section-shell relative z-10 w-full">
-          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 md:gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-6 md:gap-12 lg:gap-16 items-center">
             <div>
               <div className="eyebrow mb-5 md:mb-7">VTARCH · Visualization · D5 · AI CGI</div>
               <h1 className="text-[13vw] sm:text-7xl lg:text-[6.5rem] leading-[0.94] font-black font-heading mb-6 md:mb-8">
@@ -89,8 +89,8 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="hero-image-shell visual-frame relative max-w-[320px] sm:max-w-none mx-auto">
-                <div className="relative overflow-hidden rounded-md aspect-[16/11] sm:aspect-[4/5]">
+              <div className="hero-image-shell visual-frame relative max-w-[292px] sm:max-w-none mx-auto">
+                <div className="relative overflow-hidden rounded-md aspect-[16/10] sm:aspect-[4/5]">
                   <img
                     src={heroProject.image}
                     alt={heroProject.title}
