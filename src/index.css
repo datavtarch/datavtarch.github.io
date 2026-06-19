@@ -522,8 +522,7 @@ input:focus-visible {
   }
 
   .store-benefits-card {
-    border-radius: 14px !important;
-    padding: 18px !important;
+    display: none;
   }
 
   .site-footer {
