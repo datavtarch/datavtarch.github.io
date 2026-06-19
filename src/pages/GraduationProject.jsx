@@ -42,7 +42,7 @@ const GraduationProject = () => {
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
               <div className="eyebrow mb-6">Architecture case study</div>
-              <h1 className="text-4xl md:text-7xl lg:text-[5.4rem] font-black font-heading leading-[0.9] uppercase mb-7">
+              <h1 className="text-4xl md:text-7xl lg:text-[5.2rem] font-black font-heading leading-[0.98] mb-7">
                 Trung tâm Thiền <br />
                 <span className="gradient-title">Làng Mai Đà Lạt</span>
               </h1>
@@ -70,7 +70,7 @@ const GraduationProject = () => {
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 md:gap-8 mb-20 md:mb-28">
           <div className="neo-card rounded-[2rem] p-7 md:p-8 h-max lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Concept</div>
-            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-tight mb-6">
+            <h2 className="text-3xl md:text-5xl font-black font-heading leading-[1.02] mb-6">
               Sự tỉnh thức trong <span className="gradient-title">kiến trúc</span>
             </h2>
             <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">
@@ -83,7 +83,7 @@ const GraduationProject = () => {
               <div key={number} className="luxury-card p-6 md:p-7 grid sm:grid-cols-[90px_1fr] gap-5 items-start">
                 <div className="text-5xl font-black font-heading text-[#F3A06D] leading-none">{number}</div>
                 <div>
-                  <h3 className="text-xl md:text-2xl font-black font-heading uppercase mb-3">{title}</h3>
+                  <h3 className="text-xl md:text-2xl font-black font-heading leading-tight mb-3">{title}</h3>
                   <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">{desc}</p>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const GraduationProject = () => {
 
         <div className="neo-card rounded-[2rem] p-6 md:p-10 mb-20 md:mb-28">
           <div className="eyebrow mb-5">Architecture layout</div>
-          <h2 className="text-4xl md:text-6xl font-black font-heading uppercase mb-8">
+          <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98] mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
           <div className="rounded-2xl overflow-hidden border border-[var(--border-color)] bg-[var(--panel-color)] mb-6">
@@ -103,7 +103,7 @@ const GraduationProject = () => {
             {solutions.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="rounded-2xl border theme-surface p-6 hover:border-[#D95A2B]/40 transition-colors">
                 {React.createElement(Icon, { className: 'text-[#F3A06D] mb-5', size: 24 })}
-                <h4 className="font-heading font-black uppercase text-lg mb-3">{title}</h4>
+                <h4 className="font-heading font-black text-lg leading-tight mb-3">{title}</h4>
                 <p className="text-xs text-[var(--text-muted)] font-mono leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -114,7 +114,7 @@ const GraduationProject = () => {
           <div className="w-14 h-14 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
             <FileText size={24} />
           </div>
-          <h3 className="text-3xl md:text-5xl font-black font-heading uppercase mb-5">
+          <h3 className="text-3xl md:text-5xl font-black font-heading leading-[0.98] mb-5">
             Xem thêm <span className="gradient-title">dự án khác</span>
           </h3>
           <p className="text-sm font-mono text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">

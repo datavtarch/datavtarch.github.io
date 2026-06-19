@@ -55,7 +55,7 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-transparent to-transparent" />
                 <div className="absolute left-5 right-5 bottom-5">
                   <div className="eyebrow mb-4">Founder / Visual Artist</div>
-                  <h2 className="text-3xl md:text-4xl font-black font-heading uppercase leading-none">
+                  <h2 className="text-3xl md:text-4xl font-black font-heading leading-[1.02]">
                     Nguyễn Văn <span className="gradient-title">Thanh</span>
                   </h2>
                 </div>
@@ -64,7 +64,7 @@ const About = () => {
 
             <div>
               <div className="eyebrow mb-6">VTARCH · Architecture Visualization</div>
-              <h1 className="text-5xl md:text-7xl font-black font-heading uppercase leading-[0.9] mb-7">
+              <h1 className="text-5xl md:text-7xl font-black font-heading leading-[0.98] mb-7">
                 Visual <br /> <span className="gradient-title">Storyteller</span>
               </h1>
               <div className="space-y-5 text-sm md:text-base text-[var(--text-muted)] font-mono leading-relaxed border-l border-[#D95A2B]/50 pl-5 mb-8">
@@ -110,7 +110,7 @@ const About = () => {
           <div className="neo-card rounded-[2rem] p-7 md:p-8">
             <div className="flex items-center gap-3 mb-7">
               <span className="w-11 h-11 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 flex items-center justify-center text-[#F3A06D]"><Sparkles size={20} /></span>
-              <h3 className="text-2xl font-black font-heading uppercase">Điểm mạnh làm việc</h3>
+              <h3 className="text-2xl font-black font-heading leading-tight">Điểm mạnh làm việc</h3>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               {strengths.map((item) => (
@@ -126,7 +126,7 @@ const About = () => {
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="neo-card rounded-[2rem] p-7 md:p-8 lg:col-span-2">
             <div className="eyebrow mb-5">Skills Matrix</div>
-            <h3 className="text-3xl md:text-5xl font-black font-heading uppercase mb-7">
+            <h3 className="text-3xl md:text-5xl font-black font-heading leading-[0.98] mb-7">
               Tools <span className="gradient-title">& Software</span>
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
