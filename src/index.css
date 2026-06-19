@@ -305,7 +305,8 @@ body {
 
 .hero-stage {
   background:
-    linear-gradient(135deg, rgba(7, 7, 6, 0.96) 0%, rgba(17, 16, 13, 0.98) 48%, rgba(38, 28, 20, 0.78) 100%),
+    radial-gradient(circle at 50% 0%, rgba(212, 98, 50, 0.08), transparent 34%),
+    linear-gradient(135deg, rgba(7, 7, 6, 0.98) 0%, rgba(14, 13, 11, 0.99) 54%, rgba(18, 15, 12, 0.96) 100%),
     var(--bg-color);
 }
 
@@ -319,36 +320,35 @@ body {
 
 .hero-stage::before {
   background:
-    linear-gradient(90deg, transparent 0 23.5%, rgba(212, 98, 50, 0.16) 23.5% 23.65%, transparent 23.65% 100%),
-    linear-gradient(90deg, transparent 0 72%, rgba(183, 162, 122, 0.12) 72% 72.12%, transparent 72.12% 100%),
-    repeating-linear-gradient(0deg, rgba(247, 242, 233, 0.045) 0 1px, transparent 1px 56px),
-    repeating-linear-gradient(90deg, rgba(247, 242, 233, 0.045) 0 1px, transparent 1px 56px);
+    linear-gradient(90deg, transparent 0 23.5%, rgba(212, 98, 50, 0.08) 23.5% 23.58%, transparent 23.58% 100%),
+    linear-gradient(90deg, transparent 0 72%, rgba(183, 162, 122, 0.06) 72% 72.08%, transparent 72.08% 100%),
+    repeating-linear-gradient(0deg, rgba(247, 242, 233, 0.026) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(247, 242, 233, 0.026) 0 1px, transparent 1px 64px);
 }
 
 .hero-stage::after {
   background:
-    linear-gradient(90deg, rgba(7, 7, 6, 0.82), rgba(7, 7, 6, 0.3) 48%, rgba(7, 7, 6, 0.68)),
-    linear-gradient(115deg, transparent 0 66%, rgba(212, 98, 50, 0.1) 66% 66.4%, transparent 66.4% 100%);
+    linear-gradient(90deg, rgba(7, 7, 6, 0.9), rgba(7, 7, 6, 0.42) 48%, rgba(7, 7, 6, 0.78));
 }
 
 [data-theme="light"] .hero-stage {
   background:
-    linear-gradient(135deg, rgba(242, 239, 232, 0.94) 0%, rgba(255, 253, 248, 0.96) 48%, rgba(226, 216, 199, 0.88) 100%),
+    radial-gradient(circle at 50% 0%, rgba(189, 82, 41, 0.06), transparent 36%),
+    linear-gradient(135deg, rgba(242, 239, 232, 0.97) 0%, rgba(255, 253, 248, 0.98) 54%, rgba(238, 232, 221, 0.96) 100%),
     var(--bg-color);
 }
 
 [data-theme="light"] .hero-stage::before {
   background:
-    linear-gradient(90deg, transparent 0 23.5%, rgba(189, 82, 41, 0.22) 23.5% 23.65%, transparent 23.65% 100%),
-    linear-gradient(90deg, transparent 0 72%, rgba(141, 118, 80, 0.18) 72% 72.12%, transparent 72.12% 100%),
-    repeating-linear-gradient(0deg, rgba(25, 23, 19, 0.06) 0 1px, transparent 1px 56px),
-    repeating-linear-gradient(90deg, rgba(25, 23, 19, 0.06) 0 1px, transparent 1px 56px);
+    linear-gradient(90deg, transparent 0 23.5%, rgba(189, 82, 41, 0.08) 23.5% 23.58%, transparent 23.58% 100%),
+    linear-gradient(90deg, transparent 0 72%, rgba(141, 118, 80, 0.06) 72% 72.08%, transparent 72.08% 100%),
+    repeating-linear-gradient(0deg, rgba(25, 23, 19, 0.03) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(25, 23, 19, 0.03) 0 1px, transparent 1px 64px);
 }
 
 [data-theme="light"] .hero-stage::after {
   background:
-    linear-gradient(90deg, rgba(242, 239, 232, 0.92), rgba(242, 239, 232, 0.28) 48%, rgba(242, 239, 232, 0.62)),
-    linear-gradient(115deg, transparent 0 66%, rgba(189, 82, 41, 0.12) 66% 66.4%, transparent 66.4% 100%);
+    linear-gradient(90deg, rgba(242, 239, 232, 0.94), rgba(242, 239, 232, 0.4) 48%, rgba(242, 239, 232, 0.76));
 }
 
 .hero-ruler {
@@ -448,6 +448,18 @@ input:focus-visible {
 }
 
 @media (max-width: 640px) {
+  body {
+    background:
+      linear-gradient(180deg, #080807 0%, #0d0c0a 46%, #080807 100%);
+    background-size: auto;
+  }
+
+  [data-theme="light"] body {
+    background:
+      linear-gradient(180deg, #f4f0e8 0%, #fffdf8 48%, #eee7dc 100%);
+    background-size: auto;
+  }
+
   .section-shell {
     padding-left: 18px;
     padding-right: 18px;
@@ -556,6 +568,42 @@ input:focus-visible {
     width: 44px !important;
     height: 44px !important;
     border-radius: 10px !important;
+  }
+
+  .hero-stage {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(212, 98, 50, 0.055), transparent 38%),
+      linear-gradient(180deg, #080807 0%, #0c0b0a 54%, #080807 100%);
+  }
+
+  .hero-stage::before {
+    background:
+      linear-gradient(90deg, transparent 0 13%, rgba(212, 98, 50, 0.055) 13% 13.22%, transparent 13.22% 100%);
+  }
+
+  .hero-stage::after {
+    background:
+      linear-gradient(180deg, rgba(8, 8, 7, 0.24), rgba(8, 8, 7, 0.72));
+  }
+
+  [data-theme="light"] .hero-stage {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(189, 82, 41, 0.045), transparent 40%),
+      linear-gradient(180deg, #f4f0e8 0%, #fffdf8 52%, #eee7dc 100%);
+  }
+
+  [data-theme="light"] .hero-stage::before {
+    background:
+      linear-gradient(90deg, transparent 0 13%, rgba(189, 82, 41, 0.055) 13% 13.22%, transparent 13.22% 100%);
+  }
+
+  [data-theme="light"] .hero-stage::after {
+    background:
+      linear-gradient(180deg, rgba(244, 240, 232, 0.24), rgba(244, 240, 232, 0.68));
+  }
+
+  .hero-grid {
+    opacity: 0 !important;
   }
 
   .project-card-content {

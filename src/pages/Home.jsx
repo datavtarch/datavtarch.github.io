@@ -47,7 +47,7 @@ const Home = ({ setSelectedProject }) => {
       <section className="relative min-h-[820px] md:min-h-screen flex items-center pt-24 md:pt-32 pb-10 md:pb-20 px-4 md:px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 hero-stage" />
-          <div className="absolute inset-0 soft-grid opacity-20" />
+          <div className="absolute inset-0 soft-grid hero-grid opacity-20" />
           <div className="hero-ruler hidden md:block" />
         </div>
 
