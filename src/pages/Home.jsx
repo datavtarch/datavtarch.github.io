@@ -46,15 +46,7 @@ const Home = ({ setSelectedProject }) => {
       {/* HERO */}
       <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6">
         <div className="absolute inset-0 pointer-events-none">
-          <img
-            src={heroProject.image}
-            alt="VTARCH hero render"
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.22] scale-105"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#070706_0%,rgba(7,7,6,.95)_38%,rgba(7,7,6,.66)_74%,#070706_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#070706_0%,rgba(17,16,13,.98)_48%,rgba(38,28,20,.78)_100%)]" />
           <div className="absolute inset-0 soft-grid opacity-20" />
         </div>
 
