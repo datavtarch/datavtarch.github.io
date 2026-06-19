@@ -44,7 +44,7 @@ const Home = ({ setSelectedProject }) => {
   return (
     <div className="relative overflow-hidden">
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6">
+      <section className="relative min-h-[860px] md:min-h-screen flex items-center pt-28 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 hero-stage" />
           <div className="absolute inset-0 soft-grid opacity-20" />
@@ -52,24 +52,27 @@ const Home = ({ setSelectedProject }) => {
         </div>
 
         <div className="section-shell relative z-10 w-full">
-          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-8 md:gap-12 lg:gap-16 items-center">
             <div>
-              <div className="eyebrow mb-7">VTARCH · Visualization · D5 · AI CGI</div>
-              <h1 className="text-[14vw] sm:text-7xl lg:text-[6.5rem] leading-[0.94] font-black font-heading mb-8">
+              <div className="eyebrow mb-5 md:mb-7">VTARCH · Visualization · D5 · AI CGI</div>
+              <h1 className="text-[13vw] sm:text-7xl lg:text-[6.5rem] leading-[0.94] font-black font-heading mb-6 md:mb-8">
                 Diễn họa <br />
                 <span className="gradient-title">kiến trúc</span><br />
                 có cảm xúc.
               </h1>
-              <div className="story-card max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed mb-9">
+              <div className="story-card max-w-2xl text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed mb-7 md:mb-9">
                 <p className="mb-3">
                   &gt; SERVICE:{' '}
-                  <Typewriter
-                    phrases={[
-                      'Architecture CGI & D5 Render.',
-                      'Interior visualization for brands.',
-                      'AI concept & post-production workflow.',
-                    ]}
-                  />
+                  <span className="hidden sm:inline">
+                    <Typewriter
+                      phrases={[
+                        'Architecture CGI & D5 Render.',
+                        'Interior visualization for brands.',
+                        'AI concept & post-production workflow.',
+                      ]}
+                    />
+                  </span>
+                  <span className="sm:hidden text-[var(--text-main)] font-bold">Architecture CGI.</span>
                 </p>
                 <p>
                   VTARCH tạo hình ảnh kiến trúc, nội thất và sản phẩm nội thất bằng D5 Render kết hợp AI workflow — giúp dự án nhìn rõ vật liệu, đẹp ánh sáng và thuyết phục khách hàng hơn.
@@ -86,8 +89,8 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="hero-image-shell visual-frame relative">
-                <div className="relative overflow-hidden rounded-md aspect-[4/5]">
+              <div className="hero-image-shell visual-frame relative max-w-[320px] sm:max-w-none mx-auto">
+                <div className="relative overflow-hidden rounded-md aspect-[16/11] sm:aspect-[4/5]">
                   <img
                     src={heroProject.image}
                     alt={heroProject.title}
@@ -119,7 +122,7 @@ const Home = ({ setSelectedProject }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16">
             {stats.map(([number, label]) => (
               <div key={label} className="neo-card p-5">
                 <div className="text-3xl md:text-4xl font-black font-heading text-[#F3A06D]">{number}</div>
