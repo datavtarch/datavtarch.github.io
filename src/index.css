@@ -127,6 +127,57 @@ body {
   box-shadow: var(--shadow-strong);
 }
 
+.visual-frame,
+.project-card {
+  border: 1px solid color-mix(in srgb, var(--hairline) 72%, transparent);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018)),
+    var(--panel-color);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.26);
+}
+
+.visual-frame {
+  padding: 8px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--hairline));
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img,
+.visual-frame img {
+  border-radius: 6px;
+}
+
+.project-card-content {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  border: 1px solid rgba(247, 242, 233, 0.12);
+  border-radius: 8px;
+  background: rgba(7, 7, 6, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 16px;
+}
+
+[data-theme="light"] .project-card-content {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(15, 13, 10, 0.64);
+}
+
 [data-theme="light"] .neo-card,
 [data-theme="light"] .luxury-card {
   background:
@@ -232,11 +283,9 @@ body {
 
 .hero-image-shell {
   border-radius: 8px;
-  border: 1px solid var(--hairline);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.018)),
-    var(--panel-color);
-  box-shadow: var(--shadow-strong);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .hero-stage {
@@ -376,6 +425,7 @@ input:focus-visible {
 
 @media (hover: none) {
   .luxury-card:hover,
+  .project-card:hover,
   .btn-accent:hover,
   .btn-outline-luxury:hover {
     transform: none;

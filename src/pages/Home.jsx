@@ -86,7 +86,7 @@ const Home = ({ setSelectedProject }) => {
             </div>
 
             <div className="relative">
-              <div className="hero-image-shell p-3 relative">
+              <div className="hero-image-shell visual-frame relative">
                 <div className="relative overflow-hidden rounded-md aspect-[4/5]">
                   <img
                     src={heroProject.image}
@@ -131,8 +131,8 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* STORY PATH */}
-      <section className="section-shell py-16 md:py-24 section-rule">
-        <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-14 items-start">
+      <section className="section-shell py-12 md:py-18 section-rule">
+        <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-8 lg:gap-10 items-start">
           <div className="lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Studio method</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.96]">
@@ -152,8 +152,8 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* SERVICES */}
-      <section className="section-shell py-20 md:py-28 section-rule">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <section className="section-shell py-14 md:py-20 section-rule">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9">
           <div>
             <div className="eyebrow mb-5">Core services</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98]">
@@ -165,7 +165,7 @@ const Home = ({ setSelectedProject }) => {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {serviceHighlights.map((service, idx) => (
             <div key={service.title} className="luxury-card p-6 min-h-[250px] flex flex-col">
               <div className="flex items-center justify-between mb-8">
@@ -184,8 +184,8 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* FEATURED PROJECTS */}
-      <section className="section-shell py-20 md:py-28 section-rule">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <section className="section-shell py-14 md:py-20 section-rule">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9">
           <div>
             <div className="eyebrow mb-5">Featured works</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98]">
@@ -197,11 +197,11 @@ const Home = ({ setSelectedProject }) => {
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-5 md:gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROJECTS_DATA.slice(0, 5).map((proj, idx) => (
             <TiltCard
               key={proj.id}
-              className={`luxury-card cursor-pointer group ${idx === 0 ? 'lg:col-span-7 aspect-[16/10]' : idx === 1 ? 'lg:col-span-5 aspect-[16/10]' : 'lg:col-span-4 aspect-[4/5]'}`}
+              className="project-card aspect-[4/5] group"
               onClick={() => setSelectedProject(proj)}
             >
               <img
@@ -210,23 +210,23 @@ const Home = ({ setSelectedProject }) => {
                 loading={idx < 2 ? 'eager' : 'lazy'}
                 fetchPriority={idx < 2 ? 'high' : 'auto'}
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/28 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/12 to-transparent" />
               <div className="absolute top-5 left-5 right-5 flex justify-between items-start gap-3">
                 <span className="tag-accent">0{idx + 1}</span>
                 <span className="w-9 h-9 rounded-full bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#D95A2B] transition-colors">
                   <ArrowUpRight size={15} />
                 </span>
               </div>
-              <div className="absolute left-5 right-5 bottom-5 md:left-7 md:right-7 md:bottom-7">
+              <div className="project-card-content">
                 <div className="flex gap-2 mb-4 flex-wrap">
                   {proj.tags.slice(0, 3).map((t) => <span key={t} className="tag-accent">{t}</span>)}
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black font-heading uppercase leading-tight group-hover:text-[#F3A06D] transition-colors">
+                <h3 className="text-xl md:text-2xl font-black font-heading leading-tight group-hover:text-[#F3A06D] transition-colors">
                   {proj.title}
                 </h3>
-                <p className="text-xs md:text-sm font-mono text-gray-300 mt-3 max-w-xl line-clamp-2">
+                <p className="text-xs font-mono text-gray-300 mt-3 line-clamp-2">
                   {proj.desc}
                 </p>
               </div>
@@ -236,7 +236,7 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* RESOURCES PREVIEW */}
-      <section className="section-shell py-20 md:py-28 section-rule">
+      <section className="section-shell py-14 md:py-20 section-rule">
         <div className="neo-card p-6 md:p-10">
           <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
             <div>
@@ -251,9 +251,9 @@ const Home = ({ setSelectedProject }) => {
                 Xem Resources
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {STORE_ITEMS.slice(0, 3).map((item, idx) => (
-                <TiltCard key={idx} className="luxury-card aspect-[4/3] cursor-pointer group flex flex-col justify-end">
+                <TiltCard key={idx} className="project-card aspect-[4/3] group flex flex-col justify-end">
                   <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
                   <div className="relative z-20 p-5">
@@ -271,7 +271,7 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* SOCIAL FEED */}
-      <section className="section-shell py-20 md:py-28 text-center section-rule">
+      <section className="section-shell py-14 md:py-20 text-center section-rule">
         <div className="w-14 h-14 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg">
           <InstagramIcon size={26} />
         </div>

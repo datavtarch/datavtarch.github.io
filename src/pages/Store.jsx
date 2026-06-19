@@ -12,9 +12,9 @@ const resourceBenefits = [
 
 const Store = () => {
   return (
-    <div className="pt-36 md:pt-44 pb-32">
+    <div className="pt-32 md:pt-40 pb-24">
       <section className="section-shell">
-        <div className="relative neo-card rounded-[2rem] p-7 md:p-12 mb-12 overflow-hidden">
+        <div className="relative neo-card rounded-[2rem] p-7 md:p-10 mb-8 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.75fr] gap-8 items-end">
             <div>
@@ -49,31 +49,31 @@ const Store = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {STORE_ITEMS.map((item, idx) => (
-            <TiltCard key={idx} className="luxury-card aspect-[4/5] cursor-pointer group flex flex-col justify-end">
+            <TiltCard key={idx} className="project-card aspect-[4/5] group flex flex-col justify-end">
               <img 
                 src={item.img} 
                 alt={item.title} 
                 loading={idx < 2 ? 'eager' : 'lazy'}
                 decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/96 via-black/34 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/16 to-transparent" />
               <div className="absolute top-5 left-5 right-5 flex items-start justify-between">
                 <span className="tag-accent">{item.tags?.[0] || 'Resource'}</span>
                 <span className="w-10 h-10 rounded-full border border-white/10 bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-[#D95A2B] transition-colors">
                   <ArrowUpRight size={15} />
                 </span>
               </div>
-              <div className="relative z-20 p-6 md:p-7">
-                <h3 className="text-2xl font-black font-heading uppercase leading-tight mb-4 group-hover:text-[#F3A06D] transition-colors">
+              <div className="project-card-content">
+                <h3 className="text-xl font-black font-heading leading-tight mb-3 group-hover:text-[#F3A06D] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-gray-300 font-mono mb-7 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-gray-300 font-mono mb-5 line-clamp-3 leading-relaxed">
                   {item.desc}
                 </p>
-                <div className="flex items-end justify-between border-t border-white/10 pt-5 gap-4">
+                <div className="flex items-end justify-between border-t border-white/10 pt-4 gap-4">
                   <div>
                     <span className="text-[#F3A06D] font-black text-4xl block leading-none">{item.price}</span>
                     <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Digital resource</span>
@@ -87,7 +87,7 @@ const Store = () => {
           ))}
         </div>
 
-        <div className="mt-20 md:mt-28 neo-card rounded-[2rem] p-7 md:p-12 text-center relative overflow-hidden">
+        <div className="mt-14 md:mt-18 neo-card rounded-[2rem] p-7 md:p-10 text-center relative overflow-hidden">
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="w-16 h-16 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
               <Download size={26} />

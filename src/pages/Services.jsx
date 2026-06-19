@@ -34,9 +34,9 @@ const workflow = [
 
 export default function Services() {
   return (
-    <div className="pt-32 pb-24">
+    <div className="pt-32 pb-20">
       <section className="section-shell">
-        <div className="neo-card rounded-[2.2rem] p-6 md:p-12 overflow-hidden">
+        <div className="neo-card rounded-[2.2rem] p-6 md:p-10 overflow-hidden">
           <div className="relative z-10 max-w-4xl">
             <div className="eyebrow mb-6">VTARCH Services</div>
             <h1 className="text-5xl md:text-7xl font-black font-heading leading-[0.98] mb-7">
@@ -57,11 +57,11 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section-shell py-20 md:py-28">
-        <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+      <section className="section-shell py-14 md:py-20">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
           {services.map((service, idx) => (
-            <div key={service.title} className="luxury-card p-6 md:p-8">
-              <div className="flex items-start justify-between gap-4 mb-8">
+            <div key={service.title} className="luxury-card p-6 md:p-7">
+              <div className="flex items-start justify-between gap-4 mb-6">
                 <span className="tag-accent">Service 0{idx + 1}</span>
                 <span className="text-[#F3A06D] font-mono text-xs">VTARCH</span>
               </div>
@@ -84,7 +84,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section-shell pb-20 md:pb-28">
+      <section className="section-shell pb-16 md:pb-20">
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 items-start">
           <div>
             <div className="eyebrow mb-5">Workflow</div>

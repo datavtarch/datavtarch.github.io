@@ -27,7 +27,7 @@ const GraduationProject = () => {
   }, []);
 
   return (
-    <div className="pt-32 md:pt-40 pb-32 transition-all duration-700 opacity-100">
+    <div className="pt-32 md:pt-40 pb-24 transition-all duration-700 opacity-100">
       <section className="section-shell">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <Link to="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors group">
@@ -37,7 +37,7 @@ const GraduationProject = () => {
           <span className="tag-accent w-max">Graduation Project</span>
         </div>
 
-        <div className="relative neo-card rounded-[2rem] p-6 md:p-12 overflow-hidden mb-10">
+        <div className="relative neo-card rounded-[2rem] p-6 md:p-10 overflow-hidden mb-8">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
@@ -60,14 +60,14 @@ const GraduationProject = () => {
               </div>
             </div>
 
-            <div className="relative rounded-[2rem] overflow-hidden border border-[var(--border-color)] shadow-2xl aspect-[4/5] md:aspect-[16/12]">
+            <div className="relative visual-frame aspect-[4/5] md:aspect-[16/12]">
               <img src={IMAGES.projectDoAn} alt="Trung tâm Thiền Làng Mai Đà Lạt" className="w-full h-full object-cover" loading="eager" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 md:gap-8 mb-20 md:mb-28">
+        <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 md:gap-8 mb-14 md:mb-18">
           <div className="neo-card rounded-[2rem] p-7 md:p-8 h-max lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Concept</div>
             <h2 className="text-3xl md:text-5xl font-black font-heading leading-[1.02] mb-6">
@@ -91,12 +91,12 @@ const GraduationProject = () => {
           </div>
         </div>
 
-        <div className="neo-card rounded-[2rem] p-6 md:p-10 mb-20 md:mb-28">
+        <div className="neo-card rounded-[2rem] p-6 md:p-9 mb-14 md:mb-18">
           <div className="eyebrow mb-5">Architecture layout</div>
           <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98] mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
-          <div className="rounded-2xl overflow-hidden border border-[var(--border-color)] bg-[var(--panel-color)] mb-6">
+          <div className="visual-frame mb-6">
             <img src={IMAGES.projectDoAn} alt="Detailed Layout" className="w-full h-auto object-contain" loading="lazy" decoding="async" />
           </div>
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
