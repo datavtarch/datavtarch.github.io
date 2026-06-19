@@ -134,8 +134,8 @@ const Home = ({ setSelectedProject }) => {
       </section>
 
       {/* STORY PATH */}
-      <section className="section-shell py-12 md:py-18 section-rule">
-        <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-8 lg:gap-10 items-start">
+      <section className="section-shell story-path-section py-12 md:py-18 section-rule">
+        <div className="grid story-path-grid lg:grid-cols-[.72fr_1.28fr] gap-8 lg:gap-10 items-start">
           <div className="lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Studio method</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.96]">
@@ -144,7 +144,7 @@ const Home = ({ setSelectedProject }) => {
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {narrativeSteps.map(([number, title, desc]) => (
-              <div key={number} className="story-card min-h-[220px]">
+              <div key={number} className="story-card story-step-card min-h-[220px]">
                 <div className="story-kicker mb-5">Chapter {number}</div>
                 <h3 className="text-2xl font-black font-heading uppercase mb-4">{title}</h3>
                 <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">{desc}</p>

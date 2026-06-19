@@ -130,7 +130,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
 
       <main className="relative z-10">{children}</main>
 
-      <div className="fixed right-4 bottom-4 z-40 flex flex-col gap-3 md:right-6 md:bottom-6">
+      <div className="floating-actions fixed right-4 bottom-4 z-40 flex flex-col gap-3 md:right-6 md:bottom-6">
         <a href="mailto:vtarch99@gmail.com" aria-label="Email VTARCH" className="w-12 h-12 rounded-lg btn-accent flex items-center justify-center shadow-2xl">
           <Mail size={18} />
         </a>
@@ -139,8 +139,8 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         </a>
       </div>
 
-      <footer className="relative z-10 section-shell py-16 md:py-20 border-t border-[var(--border-color)] text-center">
-        <div className="neo-card rounded-[2rem] p-7 md:p-10">
+      <footer className="site-footer relative z-10 section-shell py-16 md:py-20 border-t border-[var(--border-color)] text-center">
+        <div className="site-footer-card neo-card rounded-[2rem] p-7 md:p-10">
           <p className="eyebrow mb-6">VTARCH Visual Lab</p>
           <h3 className="text-4xl md:text-5xl font-black font-heading leading-[0.98] mb-7">
             Cần hình ảnh <span className="gradient-title">ấn tượng</span> cho dự án?

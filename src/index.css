@@ -448,6 +448,60 @@ input:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .section-shell {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .page-hero-card,
+  .site-footer-card,
+  .compact-cta {
+    border-radius: 14px !important;
+    padding: 20px !important;
+  }
+
+  .page-hero-card h1 {
+    margin-bottom: 18px;
+  }
+
+  .page-hero-card p,
+  .site-footer-card p,
+  .compact-cta p {
+    line-height: 1.65;
+  }
+
+  .story-path-section {
+    padding-top: 34px !important;
+    padding-bottom: 38px !important;
+  }
+
+  .story-path-grid {
+    gap: 22px !important;
+  }
+
+  .story-step-card {
+    min-height: auto !important;
+    padding-top: 2px;
+    padding-bottom: 20px;
+  }
+
+  .story-step-card .story-kicker {
+    margin-bottom: 14px !important;
+  }
+
+  .story-step-card h3 {
+    margin-bottom: 12px !important;
+  }
+
+  .story-card {
+    padding-left: 18px;
+  }
+
+  .story-card::before {
+    height: 24px;
+    top: 2px;
+  }
+
   .eyebrow {
     gap: 7px;
     padding: 8px 10px;
@@ -461,6 +515,48 @@ input:focus-visible {
 
   .visual-frame::after {
     inset: 6px;
+  }
+
+  .mobile-wide-visual {
+    aspect-ratio: 16 / 10 !important;
+  }
+
+  .store-benefits-card {
+    border-radius: 14px !important;
+    padding: 18px !important;
+  }
+
+  .site-footer {
+    padding-top: 44px !important;
+    padding-bottom: 96px !important;
+  }
+
+  .site-footer-card h3,
+  .compact-cta h3 {
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .site-footer-card .eyebrow,
+  .compact-cta .eyebrow {
+    margin-bottom: 16px !important;
+  }
+
+  .site-footer-card > p:last-child {
+    margin-top: 28px !important;
+  }
+
+  .floating-actions {
+    right: 12px !important;
+    bottom: max(18px, env(safe-area-inset-bottom)) !important;
+    gap: 8px !important;
+  }
+
+  .floating-actions a {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 10px !important;
   }
 
   .project-card-content {

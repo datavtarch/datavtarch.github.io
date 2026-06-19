@@ -46,7 +46,7 @@ const Portfolio = ({ setSelectedProject }) => {
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <section className="section-shell">
-        <div className="relative neo-card rounded-[2rem] p-7 md:p-10 mb-8 overflow-hidden">
+        <div className="page-hero-card relative neo-card rounded-[2rem] p-7 md:p-10 mb-8 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div>

@@ -37,7 +37,7 @@ const GraduationProject = () => {
           <span className="tag-accent w-max">Graduation Project</span>
         </div>
 
-        <div className="relative neo-card rounded-[2rem] p-6 md:p-10 overflow-hidden mb-8">
+        <div className="page-hero-card relative neo-card rounded-[2rem] p-6 md:p-10 overflow-hidden mb-8">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
@@ -60,7 +60,7 @@ const GraduationProject = () => {
               </div>
             </div>
 
-            <div className="relative visual-frame aspect-[4/5] md:aspect-[16/12]">
+            <div className="relative visual-frame mobile-wide-visual aspect-[4/5] md:aspect-[16/12]">
               <img src={IMAGES.projectDoAn} alt="Trung tâm Thiền Làng Mai Đà Lạt" className="w-full h-full object-cover" loading="eager" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </div>
@@ -110,7 +110,7 @@ const GraduationProject = () => {
           </div>
         </div>
 
-        <div className="neo-card rounded-[2rem] p-8 md:p-12 text-center">
+        <div className="compact-cta neo-card rounded-[2rem] p-8 md:p-12 text-center">
           <div className="w-14 h-14 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
             <FileText size={24} />
           </div>

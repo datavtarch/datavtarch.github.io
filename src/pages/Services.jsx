@@ -36,7 +36,7 @@ export default function Services() {
   return (
     <div className="pt-32 pb-20">
       <section className="section-shell">
-        <div className="neo-card rounded-[2.2rem] p-6 md:p-10 overflow-hidden">
+        <div className="page-hero-card neo-card rounded-[2.2rem] p-6 md:p-10 overflow-hidden">
           <div className="relative z-10 max-w-4xl">
             <div className="eyebrow mb-6">VTARCH Services</div>
             <h1 className="text-5xl md:text-7xl font-black font-heading leading-[0.98] mb-7">

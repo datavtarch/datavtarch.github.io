@@ -14,7 +14,7 @@ const Store = () => {
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <section className="section-shell">
-        <div className="relative neo-card rounded-[2rem] p-7 md:p-10 mb-8 overflow-hidden">
+        <div className="page-hero-card relative neo-card rounded-[2rem] p-7 md:p-10 mb-8 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.75fr] gap-8 items-end">
             <div>
@@ -34,7 +34,7 @@ const Store = () => {
                 </a>
               </div>
             </div>
-            <div className="neo-card rounded-3xl p-6">
+            <div className="store-benefits-card neo-card rounded-3xl p-6">
               <div className="w-12 h-12 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 flex items-center justify-center text-[#F3A06D] mb-5">
                 <PackageCheck size={22} />
               </div>
@@ -87,7 +87,7 @@ const Store = () => {
           ))}
         </div>
 
-        <div className="mt-14 md:mt-18 neo-card rounded-[2rem] p-7 md:p-10 text-center relative overflow-hidden">
+        <div className="compact-cta mt-14 md:mt-18 neo-card rounded-[2rem] p-7 md:p-10 text-center relative overflow-hidden">
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="w-16 h-16 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 mx-auto mb-6 flex items-center justify-center text-[#F3A06D]">
               <Download size={26} />

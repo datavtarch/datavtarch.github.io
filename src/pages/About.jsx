@@ -46,11 +46,11 @@ const About = () => {
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <section className="section-shell space-y-8 md:space-y-10">
-        <div className="relative neo-card rounded-[2rem] p-6 md:p-9 overflow-hidden">
+        <div className="page-hero-card relative neo-card rounded-[2rem] p-6 md:p-9 overflow-hidden">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[.9fr_1.1fr] gap-9 md:gap-12 items-center">
             <div className="relative">
-              <div className="relative visual-frame aspect-[4/5] shadow-[0_22px_64px_rgba(0,0,0,.28)]">
+              <div className="relative visual-frame mobile-wide-visual aspect-[4/5] shadow-[0_22px_64px_rgba(0,0,0,.28)]">
                 <img src={IMAGES.portrait} alt={CV_DATA.fullName} loading="eager" decoding="async" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-transparent to-transparent" />
                 <div className="absolute left-5 right-5 bottom-5">
