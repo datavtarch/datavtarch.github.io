@@ -19,9 +19,9 @@ export const IMAGES = {
   projectThanhTuanMotel: getAssetPath("/projects/THANH_TUAN_MOTEL.webp"),
   projectVinhomes: getAssetPath("/projects/VINHOMES_HYBRID.webp"),
   projectCaledon: getAssetPath("/projects/CELADON_INTERIOR.webp"),
-  storeJapandi: getAssetPath("/projects/ai-phong-cach-japandi.webp"),
+  storeJapandi: getAssetPath("/projects/D5_RENDER_-_WABI.webp"),
   storeIndochine: getAssetPath("/projects/AI_-_Phong_cách_Indochine.webp"),
-  projectAIJapandiModern: getAssetPath("/projects/ai-phong-cach-japandi-hien-dai.webp"),
+  projectAIJapandiModern: getAssetPath("/projects/VINHOMES_HYBRID.webp"),
   projectDoAn: getAssetPath("/projects/do-an-tot-nghiep.webp"),
   compareRender: getAssetPath("/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp"),
 };
