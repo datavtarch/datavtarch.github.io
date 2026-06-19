@@ -102,13 +102,13 @@ export const ProjectModal = ({ project, onClose }) => {
             <div className="flex gap-2 mb-4 flex-wrap">
               {project.tags.map((t) => <span key={t} className="tag-accent">{t}</span>)}
             </div>
-            <h2 className="text-3xl md:text-5xl font-black font-heading uppercase leading-[0.95] text-white max-w-3xl">
+            <h2 className="text-3xl md:text-5xl font-black font-heading leading-[1.02] text-white max-w-3xl">
               {project.title}
             </h2>
           </div>
         </div>
 
-        <div className="relative p-6 md:p-9 overflow-y-auto bg-[#0B0806]/92 max-h-[50vh] md:max-h-[92vh]">
+        <div className="relative p-6 md:p-9 overflow-y-auto bg-[var(--panel-color)]/95 max-h-[50vh] md:max-h-[92vh]">
           <div className="absolute inset-0 soft-grid opacity-10" />
           <div className="relative z-10">
             <div className="eyebrow mb-5">Case study detail</div>
@@ -117,21 +117,21 @@ export const ProjectModal = ({ project, onClose }) => {
             </p>
 
             <div className="grid gap-3 mb-7">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
+              <div className="rounded-2xl border theme-surface p-4 flex gap-3">
                 <Sparkles size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Role</h4>
-                  <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">{getProjectRole(project)}</p>
+                  <p className="text-xs text-[var(--text-main)] font-mono uppercase tracking-widest font-bold">{getProjectRole(project)}</p>
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
+              <div className="rounded-2xl border theme-surface p-4 flex gap-3">
                 <Layers3 size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Tools</h4>
-                  <p className="text-xs text-white font-mono uppercase tracking-widest font-bold">{getProjectTools(project)}</p>
+                  <p className="text-xs text-[var(--text-main)] font-mono uppercase tracking-widest font-bold">{getProjectTools(project)}</p>
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 flex gap-3">
+              <div className="rounded-2xl border theme-surface p-4 flex gap-3">
                 <Target size={17} className="text-[#F3A06D] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-[10px] font-mono text-[#F3A06D] uppercase tracking-[0.2em] font-bold mb-2">Visual goal</h4>

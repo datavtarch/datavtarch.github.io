@@ -39,15 +39,16 @@ const narrativeSteps = [
 
 const Home = ({ setSelectedProject }) => {
   const [igModal, setIgModal] = useState(null);
-  const heroProject = PROJECTS_DATA[1] || PROJECTS_DATA[0];
+  const heroProject = PROJECTS_DATA.find((project) => project.id === 3) || PROJECTS_DATA[0];
 
   return (
     <div className="relative overflow-hidden">
       {/* HERO */}
       <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,#070706_0%,rgba(17,16,13,.98)_48%,rgba(38,28,20,.78)_100%)]" />
+          <div className="absolute inset-0 hero-stage" />
           <div className="absolute inset-0 soft-grid opacity-20" />
+          <div className="hero-ruler hidden md:block" />
         </div>
 
         <div className="section-shell relative z-10 w-full">
