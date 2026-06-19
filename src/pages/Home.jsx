@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ExternalLink, MoveRight, Sparkles, CheckCircle2 } from 'lucide-react';
-import { TiltCard, Typewriter } from '../components/UI';
+import { Reveal, TiltCard, Typewriter } from '../components/UI';
 import { InstagramIcon } from '../components/Icons';
 import { PROJECTS_DATA, STORE_ITEMS, IG_POSTS } from '../data/constants';
 
@@ -53,7 +53,7 @@ const Home = ({ setSelectedProject }) => {
 
         <div className="section-shell relative z-10 w-full">
           <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-6 md:gap-12 lg:gap-16 items-center">
-            <div>
+            <Reveal>
               <div className="eyebrow mb-5 md:mb-7">VTARCH · Visualization · D5 · AI CGI</div>
               <h1 className="text-[13vw] sm:text-7xl lg:text-[6.5rem] leading-[0.94] font-black font-heading mb-6 md:mb-8">
                 Diễn họa <br />
@@ -86,9 +86,9 @@ const Home = ({ setSelectedProject }) => {
                   Xem dự án <MoveRight size={15} />
                 </Link>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="relative">
+            <Reveal className="relative" delay={140} variant="scale">
               <div className="hero-image-shell visual-frame relative max-w-[292px] sm:max-w-none mx-auto">
                 <div className="relative overflow-hidden rounded-md aspect-[16/10] sm:aspect-[4/5]">
                   <img
@@ -119,15 +119,15 @@ const Home = ({ setSelectedProject }) => {
                   Render, AI concept và hậu kỳ để hình ảnh dùng được cho bán hàng, portfolio và hồ sơ thuyết trình.
                 </p>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16">
-            {stats.map(([number, label]) => (
-              <div key={label} className="neo-card p-5">
+            {stats.map(([number, label], idx) => (
+              <Reveal key={label} className="neo-card p-5" delay={idx * 70}>
                 <div className="text-3xl md:text-4xl font-black font-heading text-[#F3A06D]">{number}</div>
                 <div className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.18em] text-[var(--text-muted)] mt-2">{label}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -136,19 +136,19 @@ const Home = ({ setSelectedProject }) => {
       {/* STORY PATH */}
       <section className="section-shell story-path-section py-12 md:py-18 section-rule">
         <div className="grid story-path-grid lg:grid-cols-[.72fr_1.28fr] gap-8 lg:gap-10 items-start">
-          <div className="lg:sticky lg:top-32">
+          <Reveal className="lg:sticky lg:top-32">
             <div className="eyebrow mb-5">Studio method</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.96]">
               Một hình ảnh đẹp phải <span className="gradient-title">bán được câu chuyện.</span>
             </h2>
-          </div>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
-            {narrativeSteps.map(([number, title, desc]) => (
-              <div key={number} className="story-card story-step-card min-h-[220px]">
+            {narrativeSteps.map(([number, title, desc], idx) => (
+              <Reveal key={number} className="story-card story-step-card min-h-[220px]" delay={idx * 90}>
                 <div className="story-kicker mb-5">Chapter {number}</div>
                 <h3 className="text-2xl font-black font-heading uppercase mb-4">{title}</h3>
                 <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed">{desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -157,12 +157,12 @@ const Home = ({ setSelectedProject }) => {
       {/* SERVICES */}
       <section className="section-shell py-14 md:py-20 section-rule">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9">
-          <div>
+          <Reveal>
             <div className="eyebrow mb-5">Core services</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98]">
               VTARCH làm <span className="gradient-title">dịch vụ gì?</span>
             </h2>
-          </div>
+          </Reveal>
           <Link to="/services" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
             Xem chi tiết <ExternalLink size={14} />
           </Link>
@@ -170,7 +170,7 @@ const Home = ({ setSelectedProject }) => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {serviceHighlights.map((service, idx) => (
-            <div key={service.title} className="luxury-card p-6 min-h-[250px] flex flex-col">
+            <Reveal key={service.title} className="luxury-card p-6 min-h-[250px] flex flex-col" delay={idx * 80}>
               <div className="flex items-center justify-between mb-8">
                 <span className="tag-accent">0{idx + 1}</span>
                 <CheckCircle2 size={18} className="text-[#F3A06D]" />
@@ -181,7 +181,7 @@ const Home = ({ setSelectedProject }) => {
               <p className="text-sm font-mono text-[var(--text-muted)] leading-relaxed mt-auto">
                 {service.desc}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -189,12 +189,12 @@ const Home = ({ setSelectedProject }) => {
       {/* FEATURED PROJECTS */}
       <section className="section-shell py-14 md:py-20 section-rule">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9">
-          <div>
+          <Reveal>
             <div className="eyebrow mb-5">Featured works</div>
             <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98]">
               Dự án <span className="gradient-title">nổi bật</span>
             </h2>
-          </div>
+          </Reveal>
           <Link to="/portfolio" className="text-[#F3A06D] font-mono text-xs hover:underline flex items-center gap-2 uppercase tracking-widest">
             Xem tất cả <ExternalLink size={14} />
           </Link>
@@ -204,8 +204,9 @@ const Home = ({ setSelectedProject }) => {
           {PROJECTS_DATA.slice(0, 5).map((proj, idx) => (
             <TiltCard
               key={proj.id}
-              className="project-card aspect-[4/5] group"
+              className="project-card reveal-item is-visible aspect-[4/5] group"
               onClick={() => setSelectedProject(proj)}
+              style={{ '--reveal-delay': `${idx * 80}ms` }}
             >
               <img
                 src={proj.image}
@@ -240,7 +241,7 @@ const Home = ({ setSelectedProject }) => {
 
       {/* RESOURCES PREVIEW */}
       <section className="section-shell py-14 md:py-20 section-rule">
-        <div className="neo-card p-6 md:p-10">
+        <Reveal className="neo-card p-6 md:p-10">
           <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-start">
             <div>
               <div className="eyebrow mb-5">Resources</div>
@@ -256,7 +257,11 @@ const Home = ({ setSelectedProject }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {STORE_ITEMS.slice(0, 3).map((item, idx) => (
-                <TiltCard key={idx} className="project-card aspect-[4/3] group flex flex-col justify-end">
+                <TiltCard
+                  key={idx}
+                  className="project-card reveal-item is-visible aspect-[4/3] group flex flex-col justify-end"
+                  style={{ '--reveal-delay': `${idx * 80}ms` }}
+                >
                   <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
                   <div className="relative z-20 p-5">
@@ -270,7 +275,7 @@ const Home = ({ setSelectedProject }) => {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* SOCIAL FEED */}

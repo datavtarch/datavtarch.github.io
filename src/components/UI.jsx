@@ -1,10 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, BriefcaseBusiness, FileText, Layers3, Sparkles, Target, X } from 'lucide-react';
 
-export const TiltCard = ({ children, className, onClick }) => (
-  <div className={className} onClick={onClick}>{children}</div>
+export const TiltCard = ({ children, className, onClick, style }) => (
+  <div className={className} onClick={onClick} style={style}>{children}</div>
 );
+
+export const Reveal = ({ children, className = '', delay = 0, variant = 'up' }) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.18 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`reveal-item ${isVisible ? 'is-visible' : ''} ${className}`}
+      data-reveal-variant={variant}
+      style={{ '--reveal-delay': `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
 
 export const Typewriter = ({ phrases }) => {
   const [text, setText] = useState('');
