@@ -10,14 +10,14 @@ const About = lazy(() => import('./pages/About'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Services = lazy(() => import('./pages/Services'));
 const Store = lazy(() => import('./pages/Store'));
+const Insights = lazy(() => import('./pages/Insights'));
+const Contact = lazy(() => import('./pages/Contact'));
 const GraduationProject = lazy(() => import('./pages/GraduationProject'));
 
 const PageLoader = () => (
   <div className="min-h-[70vh] flex items-center justify-center px-6 text-center">
-    <div className="neo-card w-full max-w-sm p-7">
-      <div className="text-[10px] font-mono tracking-[0.24em] text-[var(--accent)] uppercase font-bold">
-        Loading workspace
-      </div>
+    <div className="w-full max-w-sm border border-[var(--border-color)] p-7 bg-[var(--panel-color)]">
+      <div className="text-[10px] font-mono tracking-[0.24em] text-[var(--accent)] uppercase font-bold">VTARCH</div>
       <div className="mt-5 h-1.5 theme-surface overflow-hidden rounded-sm">
         <div className="h-full w-2/3 bg-[var(--accent)] animate-pulse" />
       </div>
@@ -103,6 +103,8 @@ export default function App() {
             <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
             <Route path="/services" element={<Services />} />
             <Route path="/store" element={<Store />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/graduation-project" element={<GraduationProject />} />
           </Routes>
         </Suspense>

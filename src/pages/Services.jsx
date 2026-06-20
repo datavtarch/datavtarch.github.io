@@ -1,111 +1,90 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, CheckCircle2, MoveRight } from 'lucide-react';
-
-const services = [
-  {
-    title: 'Diễn họa nội thất D5 Render',
-    desc: 'Render không gian nội thất với ánh sáng điện ảnh, vật liệu rõ nét và bố cục phù hợp hồ sơ bán hàng, portfolio hoặc truyền thông.',
-    points: ['Căn hộ, nhà phố, showroom', 'Set ánh sáng & vật liệu', 'Hậu kỳ màu sắc cao cấp'],
-  },
-  {
-    title: 'Diễn họa kiến trúc ngoại thất',
-    desc: 'Hình ảnh kiến trúc có chiều sâu bối cảnh, ánh sáng, cây xanh và cảm xúc thị giác để tăng sức thuyết phục cho dự án.',
-    points: ['Nhà ở, villa, công trình nhỏ', 'D5 Render + Photoshop', 'Góc nhìn thương mại'],
-  },
-  {
-    title: 'AI Concept & Post-production',
-    desc: 'Ứng dụng AI để phát triển ý tưởng nhanh, nâng cấp ảnh render, tạo mood concept và thử nhiều phương án thẩm mỹ.',
-    points: ['Moodboard AI', 'Nâng cấp ảnh render', 'Biến thể phong cách nhanh'],
-  },
-  {
-    title: 'Hình ảnh sản phẩm nội thất',
-    desc: 'Tạo và tinh chỉnh hình ảnh sản phẩm nội thất cho website, catalog, social, quảng cáo và thương mại điện tử.',
-    points: ['Sofa, giường, tủ, decor', 'Bối cảnh lifestyle', 'Tối ưu ảnh bán hàng'],
-  },
-];
+import { ArrowUpRight } from 'lucide-react';
+import { Reveal } from '../components/UI';
+import { AI_LAB_ITEMS, SERVICE_GROUPS } from '../data/constants';
 
 const workflow = [
-  ['01', 'Nhận brief', 'Trao đổi phong cách, mục tiêu hình ảnh, mặt bằng/model và deadline.'],
-  ['02', 'Định hướng visual', 'Chốt mood ánh sáng, góc camera, vật liệu và cảm xúc chính của bộ ảnh.'],
-  ['03', 'Render / AI workflow', 'Dựng hình, set D5 Render, hậu kỳ hoặc AI concept theo nhu cầu dự án.'],
-  ['04', 'Bàn giao', 'Xuất ảnh final rõ nét, tối ưu cho portfolio, web, social hoặc hồ sơ thuyết trình.'],
+  ['01', 'Brief', 'Xác định mục tiêu hình ảnh, đối tượng xem, tài liệu đầu vào và deadline.'],
+  ['02', 'Visual direction', 'Chốt mood ánh sáng, vật liệu, camera, tỉ lệ ảnh và câu chuyện không gian.'],
+  ['03', 'Production', 'Dựng model, D5 Render, AI concept, GPT hỗ trợ tài liệu hoặc hậu kỳ hình ảnh.'],
+  ['04', 'Delivery', 'Bàn giao hình ảnh tối ưu cho hồ sơ, website, social, trình chiếu hoặc bán hàng.'],
 ];
 
 export default function Services() {
   return (
-    <div className="pt-32 pb-20">
-      <section className="section-shell">
-        <div className="page-hero-card neo-card rounded-[2.2rem] p-6 md:p-10 overflow-hidden">
-          <div className="relative z-10 max-w-4xl">
-            <div className="eyebrow mb-6">VTARCH Services</div>
-            <h1 className="text-5xl md:text-7xl font-black font-heading leading-[0.98] mb-7">
-              Dịch vụ <span className="gradient-title">diễn họa</span><br /> kiến trúc & AI CGI
-            </h1>
-            <p className="text-[var(--text-muted)] font-mono text-sm md:text-base leading-relaxed max-w-2xl">
-              VTARCH tập trung vào hình ảnh kiến trúc, nội thất và sản phẩm có tính thương mại: rõ vật liệu, đẹp ánh sáng, đúng tinh thần thương hiệu và dễ dùng cho bán hàng.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-9">
-              <a href="mailto:vtarch99@gmail.com" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
-                Gửi brief dự án <ArrowUpRight size={15} />
-              </a>
-              <Link to="/portfolio" className="btn-outline-luxury px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
-                Xem portfolio <MoveRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
+    <div className="page-wrap">
+      <section className="section-shell page-hero-minimal">
+        <Reveal>
+          <p className="eyebrow">Dịch vụ</p>
+          <h1>Hình ảnh kiến trúc được phát triển như một phần của quá trình thiết kế.</h1>
+          <p>
+            VTARCH không đóng gói dịch vụ theo kiểu landing page bán render. Mỗi nhóm việc được tổ chức quanh
+            visual, design và technology để hỗ trợ kiến trúc sư, studio thiết kế và chủ đầu tư truyền đạt ý tưởng.
+          </p>
+        </Reveal>
       </section>
 
-      <section className="section-shell py-14 md:py-20">
-        <div className="grid md:grid-cols-2 gap-4 md:gap-5">
-          {services.map((service, idx) => (
-            <div key={service.title} className="luxury-card p-6 md:p-7">
-              <div className="flex items-start justify-between gap-4 mb-6">
-                <span className="tag-accent">Service 0{idx + 1}</span>
-                <span className="text-[#F3A06D] font-mono text-xs">VTARCH</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black font-heading leading-tight mb-4">
-                {service.title}
-              </h2>
-              <p className="text-[var(--text-muted)] text-sm font-mono leading-relaxed mb-7">
-                {service.desc}
-              </p>
-              <div className="space-y-3">
-                {service.points.map((point) => (
-                  <div key={point} className="flex items-center gap-3 text-sm text-[var(--text-main)]">
-                    <CheckCircle2 size={16} className="text-[#F3A06D] shrink-0" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section className="section-shell section-space">
+        <div className="service-lines service-lines-large">
+          {SERVICE_GROUPS.map((group, idx) => (
+            <Reveal key={group.title} className="service-line" delay={idx * 90}>
+              <span>0{idx + 1}</span>
+              <h2>{group.title}</h2>
+              <p>{group.desc}</p>
+              <ul>
+                {group.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="section-shell pb-16 md:pb-20">
-        <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 items-start">
-          <div>
-            <div className="eyebrow mb-5">Workflow</div>
-            <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98]">
-              Quy trình <span className="gradient-title">làm việc</span>
-            </h2>
-          </div>
-          <div className="grid gap-4">
-            {workflow.map(([number, title, desc]) => (
-              <div key={number} className="neo-card rounded-2xl p-5 md:p-6 flex gap-5 items-start">
-                <div className="w-12 h-12 rounded-2xl bg-[#D95A2B]/15 border border-[#D95A2B]/25 flex items-center justify-center text-[#F3A06D] font-black font-heading">
-                  {number}
-                </div>
-                <div>
-                  <h3 className="font-heading font-black uppercase text-xl mb-2">{title}</h3>
-                  <p className="text-[var(--text-muted)] text-sm font-mono leading-relaxed">{desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <section className="section-shell ai-lab-detail section-space">
+        <Reveal className="ai-lab-intro">
+          <p className="eyebrow">AI Lab</p>
+          <h2>AI được dùng như một lớp công nghệ trong quy trình kiến trúc, không phải lớp trang trí.</h2>
+          <p>
+            AI Lab tập trung vào thử nghiệm concept, tự động hóa tác vụ lặp lại, hỗ trợ viết/thuyết minh và
+            nâng cấp workflow trình bày hình ảnh.
+          </p>
+        </Reveal>
+        <div className="ai-lab-list">
+          {AI_LAB_ITEMS.map((item, idx) => (
+            <Reveal key={item} delay={idx * 60}>
+              <span>{String(idx + 1).padStart(2, '0')}</span>
+              <strong>{item}</strong>
+            </Reveal>
+          ))}
         </div>
+      </section>
+
+      <section className="section-shell section-space">
+        <Reveal className="section-heading-row">
+          <div>
+            <p className="eyebrow">Workflow</p>
+            <h2>Từ brief đến hình ảnh bàn giao</h2>
+          </div>
+        </Reveal>
+        <div className="workflow-table">
+          {workflow.map(([number, title, desc]) => (
+            <Reveal key={number} className="workflow-row">
+              <span>{number}</span>
+              <strong>{title}</strong>
+              <p>{desc}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-shell section-space contact-band">
+        <Reveal>
+          <p className="eyebrow">Bắt đầu</p>
+          <h2>Gửi một brief ngắn, mặt bằng/model hoặc ảnh tham khảo. VTARCH sẽ đề xuất hướng visual phù hợp.</h2>
+          <Link to="/contact" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center gap-2">
+            Liên hệ <ArrowUpRight size={15} />
+          </Link>
+        </Reveal>
       </section>
     </div>
   );
