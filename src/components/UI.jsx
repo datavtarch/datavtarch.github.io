@@ -100,7 +100,7 @@ export const ProjectModal = ({ project, onClose }) => {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
       <div className="absolute inset-0 bg-black/88 backdrop-blur-xl" onClick={onClose} />
-      <article className="relative w-full max-w-7xl max-h-[92vh] overflow-y-auto bg-[var(--bg-color)] border border-[var(--border-color)]">
+      <article className="project-modal-shell relative w-full max-w-7xl max-h-[92vh] overflow-y-auto bg-[var(--bg-color)] border border-[var(--border-color)]">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-30 w-11 h-11 border border-white/15 bg-black/55 flex items-center justify-center text-white hover:bg-[var(--accent)] transition-colors"
@@ -109,8 +109,8 @@ export const ProjectModal = ({ project, onClose }) => {
           <X size={18} />
         </button>
 
-        <div className="grid lg:grid-cols-[1.35fr_.65fr] min-h-[70vh]">
-          <div className="relative">
+        <div className="project-modal-hero">
+          <div className="relative project-modal-image">
             <img
               src={project.image}
               alt={project.title}
@@ -121,7 +121,7 @@ export const ProjectModal = ({ project, onClose }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </div>
 
-          <div className="p-6 md:p-10 flex flex-col justify-between gap-10">
+          <div className="project-modal-intro p-6 md:p-10 flex flex-col justify-between gap-10">
             <div>
               <div className="eyebrow mb-6">Case study</div>
               <h2 className="text-4xl md:text-6xl font-heading font-semibold leading-[0.96] mb-6">
@@ -167,15 +167,14 @@ export const ProjectModal = ({ project, onClose }) => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-[var(--border-color)]">
+        <div className="project-modal-gallery">
           {gallery.map((image, idx) => (
-            <figure key={`${image}-${idx}`} className="bg-[var(--bg-color)] p-3">
+            <figure key={`${image}-${idx}`} className={idx === 0 ? 'is-large' : ''}>
               <img
                 src={image}
                 alt={`${project.title} gallery ${idx + 1}`}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[4/3] w-full object-cover"
               />
             </figure>
           ))}

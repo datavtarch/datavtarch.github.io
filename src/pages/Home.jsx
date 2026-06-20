@@ -21,7 +21,11 @@ const Home = ({ setSelectedProject }) => {
           <div className="hero-editorial-grid">
             <Reveal className="hero-copy">
               <p className="eyebrow">VTARCH / Architecture Visualization</p>
-              <h1>Kiến tạo hình ảnh kiến trúc bằng tư duy thiết kế và công nghệ AI</h1>
+              <h1 className="hero-title-stack">
+                <span>Kiến tạo hình ảnh kiến trúc</span>
+                <span>bằng tư duy thiết kế</span>
+                <span>và công nghệ AI</span>
+              </h1>
               <p className="hero-lead">
                 VTARCH phát triển hình ảnh kiến trúc, nội thất, sản phẩm và concept không gian giúp kiến trúc sư,
                 studio thiết kế và chủ đầu tư truyền tải ý tưởng nhanh hơn, chân thật hơn và hiệu quả hơn.
@@ -108,7 +112,7 @@ const Home = ({ setSelectedProject }) => {
           <p className="eyebrow">AI Lab</p>
           <h2>Không chạy theo hiệu ứng AI. Dùng AI để tăng tốc tư duy, thử nghiệm và bàn giao.</h2>
         </Reveal>
-        <div className="ai-lab-list">
+        <div className="ai-lab-list ai-lab-editorial">
           {AI_LAB_ITEMS.map((item, idx) => (
             <Reveal key={item} delay={idx * 55}>
               <span>{String(idx + 1).padStart(2, '0')}</span>
