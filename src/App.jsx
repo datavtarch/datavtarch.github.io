@@ -11,6 +11,7 @@ const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Services = lazy(() => import('./pages/Services'));
 const Store = lazy(() => import('./pages/Store'));
 const Insights = lazy(() => import('./pages/Insights'));
+const AiLab = lazy(() => import('./pages/AiLab'));
 const Contact = lazy(() => import('./pages/Contact'));
 const GraduationProject = lazy(() => import('./pages/GraduationProject'));
 
@@ -104,6 +105,8 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/store" element={<Store />} />
             <Route path="/insights" element={<Insights />} />
+            <Route path="/journal" element={<Insights />} />
+            <Route path="/ai-lab" element={<AiLab />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/graduation-project" element={<GraduationProject />} />
           </Routes>

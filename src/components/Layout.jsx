@@ -3,12 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, Moon, Sun, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  ['/', 'Trang chủ'],
-  ['/portfolio', 'Dự án'],
-  ['/services', 'Dịch vụ'],
-  ['/about', 'Giới thiệu'],
-  ['/insights', 'Góc nhìn'],
-  ['/contact', 'Liên hệ'],
+  ['/', 'Home'],
+  ['/portfolio', 'Projects'],
+  ['/services', 'Services'],
+  ['/ai-lab', 'AI Lab'],
+  ['/journal', 'Journal'],
+  ['/about', 'About'],
+  ['/contact', 'Contact'],
 ];
 
 function NavLink({ to, children, onClick }) {
@@ -92,15 +93,20 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         <div className="footer-grid">
           <div>
             <p className="eyebrow mb-5">VTARCH</p>
-            <h2 className="footer-title">Studio diễn họa và công nghệ kiến trúc.</h2>
+            <h2 className="footer-title">Architecture Visualization. AI CGI. Design Technology.</h2>
           </div>
           <div className="footer-contact">
             <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
             <a href="tel:0385550506">038.555.0506</a>
-            <span>TP.HCM / Việt Nam</span>
+            <span>Ho Chi Minh City / Vietnam</span>
           </div>
           <div className="footer-note">
-            Diễn họa kiến trúc, AI CGI, D5 Render, GPT cho kiến trúc và workflow AI cho studio thiết kế.
+            <Link to="/portfolio">Projects</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/ai-lab">AI Lab</Link>
+            <Link to="/journal">Journal</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="footer-bottom">
