@@ -12,6 +12,22 @@ const NAV_ITEMS = [
   ['/contact', 'Contact'],
 ];
 
+function BrandMark({ compact = false }) {
+  return (
+    <span className={`brand-system ${compact ? 'is-compact' : ''}`} aria-hidden="true">
+      <span className="brand-symbol">
+        <span className="brand-symbol-bar" />
+        <span className="brand-symbol-diagonal" />
+        <span className="brand-symbol-line" />
+      </span>
+      <span className="brand-word">
+        <strong>VTARCH</strong>
+        {!compact && <small>ARCHITECTURE VISUALIZATION / AI CGI</small>}
+      </span>
+    </span>
+  );
+}
+
 function NavLink({ to, children, onClick }) {
   const { pathname } = useLocation();
   const isActive = pathname === to;
@@ -48,11 +64,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         <div className="section-shell">
           <div className="site-header-inner">
             <Link to="/" className="brand-lockup" aria-label="VTARCH home">
-              <img src="logo/logo.jpg" alt="VTARCH" className="brand-mark" />
-              <span>
-                <strong>VTARCH</strong>
-                <small>Architecture Visualization / AI Lab</small>
-              </span>
+              <BrandMark />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-7">
@@ -92,7 +104,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       <footer className="site-footer section-shell">
         <div className="footer-grid">
           <div>
-            <p className="eyebrow mb-5">VTARCH</p>
+            <div className="mb-6"><BrandMark /></div>
             <h2 className="footer-title">Architecture Visualization. AI CGI. Design Technology.</h2>
           </div>
           <div className="footer-contact">

@@ -1272,6 +1272,257 @@ input:focus-visible {
   }
 }
 
+/* ========================================================
+   BRAND + TECHNICAL SANS TYPE SYSTEM
+   ======================================================== */
+
+body,
+button,
+input,
+textarea {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" 1, "liga" 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading,
+.footer-title,
+.home-hero-v2 h1,
+.minimal-section-heading h2,
+.about-v2-copy h2,
+.work-tile strong,
+.service-groups-v2 li,
+.ai-lab-v2-heading h2,
+.ai-lab-v2-list strong,
+.process-line-v2 strong,
+.journal-grid-v2 strong,
+.contact-v2 h1,
+.contact-v2 h2,
+.ai-page-hero h1,
+.ai-page-list h2,
+.editorial-project strong,
+.project-row-copy h2,
+.insight-preview strong,
+.insight-row h2,
+.stats-row strong,
+.fact-grid strong,
+.topic-list strong {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.font-mono,
+.eyebrow,
+.nav-link,
+.brand-word small,
+.section-kicker,
+.minimal-section-heading > span,
+.home-hero-v2 p,
+.primary-minimal-link,
+.timeline-list span,
+.service-groups-v2 h2,
+.service-groups-v2 h3,
+.ai-lab-v2-heading span,
+.ai-lab-v2-list span,
+.contact-v2-grid a,
+.contact-v2-form button,
+.footer-bottom,
+.tag-accent {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.brand-lockup {
+  gap: 14px;
+}
+
+.brand-system {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-symbol {
+  position: relative;
+  width: 38px;
+  height: 42px;
+  display: inline-block;
+  border: 1px solid color-mix(in srgb, currentColor 34%, transparent);
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--bg-color) 86%, transparent);
+  flex: 0 0 auto;
+}
+
+.brand-symbol-bar,
+.brand-symbol-diagonal,
+.brand-symbol-line {
+  position: absolute;
+  display: block;
+  background: currentColor;
+}
+
+.brand-symbol-bar {
+  left: 9px;
+  top: 8px;
+  width: 5px;
+  height: 26px;
+}
+
+.brand-symbol-diagonal {
+  left: 17px;
+  top: 8px;
+  width: 5px;
+  height: 26px;
+  transform: skewX(-17deg);
+  transform-origin: bottom;
+}
+
+.brand-symbol-line {
+  left: 7px;
+  right: 7px;
+  bottom: 8px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.brand-word {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  line-height: 1;
+}
+
+.brand-word strong {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.brand-word small {
+  color: var(--text-muted);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-brand-system {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: clamp(34px, 5vw, 64px);
+  color: #f5f5f5;
+}
+
+.hero-brand-symbol {
+  width: 54px;
+  height: 60px;
+  background: rgba(14, 14, 14, 0.46);
+}
+
+.hero-brand-symbol .brand-symbol-bar,
+.hero-brand-symbol .brand-symbol-diagonal {
+  top: 12px;
+  height: 34px;
+}
+
+.hero-brand-symbol .brand-symbol-bar {
+  left: 13px;
+  width: 7px;
+}
+
+.hero-brand-symbol .brand-symbol-diagonal {
+  left: 25px;
+  width: 7px;
+}
+
+.hero-brand-symbol .brand-symbol-line {
+  left: 10px;
+  right: 10px;
+  bottom: 11px;
+}
+
+.hero-brand-word {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(28px, 4vw, 54px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.loader-brand-symbol {
+  width: 68px;
+  height: 76px;
+}
+
+.loader-brand-symbol .brand-symbol-bar,
+.loader-brand-symbol .brand-symbol-diagonal {
+  top: 15px;
+  height: 44px;
+}
+
+.loader-brand-symbol .brand-symbol-bar {
+  left: 17px;
+  width: 8px;
+}
+
+.loader-brand-symbol .brand-symbol-diagonal {
+  left: 33px;
+  width: 8px;
+}
+
+.loader-brand-symbol .brand-symbol-line {
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  height: 4px;
+}
+
+.icon-button {
+  border-radius: 0;
+  color: var(--text-main);
+}
+
+.home-hero-v2 h1 {
+  letter-spacing: -0.045em;
+}
+
+.home-hero-v2 p,
+.nav-link,
+.primary-minimal-link,
+.section-kicker,
+.eyebrow {
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 640px) {
+  .brand-word small {
+    display: none;
+  }
+
+  .hero-brand-system {
+    gap: 12px;
+  }
+
+  .hero-brand-symbol {
+    width: 44px;
+    height: 50px;
+  }
+
+  .hero-brand-symbol .brand-symbol-bar,
+  .hero-brand-symbol .brand-symbol-diagonal {
+    top: 10px;
+    height: 28px;
+  }
+
+  .hero-brand-symbol .brand-symbol-line {
+    bottom: 9px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

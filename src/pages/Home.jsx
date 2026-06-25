@@ -38,7 +38,14 @@ const Home = ({ setSelectedProject }) => {
         <div className="home-hero-v2-overlay" />
         <div className="section-shell home-hero-v2-content">
           <Reveal>
-            <img src="logo/logo.jpg" alt="VTARCH" className="hero-logo-mark" />
+            <div className="hero-brand-system" aria-label="VTARCH">
+              <span className="brand-symbol hero-brand-symbol">
+                <span className="brand-symbol-bar" />
+                <span className="brand-symbol-diagonal" />
+                <span className="brand-symbol-line" />
+              </span>
+              <span className="hero-brand-word">VTARCH</span>
+            </div>
             <h1>Kiến tạo hình ảnh kiến trúc bằng tư duy thiết kế và công nghệ AI</h1>
             <p>Architecture Visualization • AI CGI • Design Technology</p>
             <Link to="/portfolio" className="primary-minimal-link">Xem dự án</Link>

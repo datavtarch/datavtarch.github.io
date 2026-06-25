@@ -73,12 +73,12 @@ export default function App() {
     return (
       <div className="fixed inset-0 z-[99999] bg-[var(--bg-color)] flex flex-col items-center justify-center overflow-hidden">
         <div className="relative z-10 flex flex-col items-center">
-          <div className="relative w-36 h-36 border border-[var(--border-color)] bg-[var(--panel-color)] flex items-center justify-center mb-8 shadow-[0_24px_70px_rgba(0,0,0,0.34)]">
-            <img
-              src="logo/logo.jpg"
-              alt="VTARCH"
-              className="w-24 h-24 object-contain logo-icon"
-            />
+          <div className="relative w-36 h-36 border border-[var(--border-color)] bg-[var(--panel-color)] flex items-center justify-center mb-8">
+            <span className="brand-symbol loader-brand-symbol" aria-label="VTARCH">
+              <span className="brand-symbol-bar" />
+              <span className="brand-symbol-diagonal" />
+              <span className="brand-symbol-line" />
+            </span>
           </div>
           <div className="w-64 h-[3px] theme-surface overflow-hidden relative">
             <div
