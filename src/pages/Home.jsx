@@ -75,26 +75,19 @@ const Home = ({ setSelectedProject }) => {
     if (!node) return undefined;
 
     let frame = 0;
-    const updatePointer = (event) => {
+    const updateScroll = () => {
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => {
-        node.style.setProperty('--mouse-x', `${event.clientX}px`);
-        node.style.setProperty('--mouse-y', `${event.clientY}px`);
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        node.style.setProperty('--scroll-ratio', `${Math.min(1, window.scrollY / max)}`);
       });
     };
 
-    const updateScroll = () => {
-      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      node.style.setProperty('--scroll-ratio', `${Math.min(1, window.scrollY / max)}`);
-    };
-
-    window.addEventListener('pointermove', updatePointer, { passive: true });
     window.addEventListener('scroll', updateScroll, { passive: true });
     updateScroll();
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener('pointermove', updatePointer);
       window.removeEventListener('scroll', updateScroll);
     };
   }, []);

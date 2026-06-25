@@ -3018,8 +3018,8 @@ h4,
   border-radius: 999px;
   background: rgba(14, 14, 14, 0.34);
   padding: 8px 12px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .site-header:not(.is-scrolled) .brand-logo {
@@ -3038,8 +3038,6 @@ h4,
 }
 
 .cinematic-home {
-  --mouse-x: 50vw;
-  --mouse-y: 30vh;
   --scroll-ratio: 0;
   background:
     radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.13), transparent 22%),
@@ -3058,11 +3056,8 @@ h4,
     linear-gradient(rgba(245, 245, 245, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(245, 245, 245, 0.055) 1px, transparent 1px);
   background-size: 28px 28px;
-  background-position:
-    calc(var(--scroll-ratio) * -140px) calc(var(--scroll-ratio) * 90px),
-    calc(var(--scroll-ratio) * 90px) calc(var(--scroll-ratio) * -140px);
   mask-image: linear-gradient(180deg, black 0%, transparent 86%);
-  animation: gridBreath 14s ease-in-out infinite alternate;
+  opacity: 0.76;
 }
 
 .cinematic-home > * {
@@ -3073,21 +3068,24 @@ h4,
 .motion-spotlight,
 .motion-scanline {
   position: fixed;
-  inset: 0;
   pointer-events: none;
 }
 
 .motion-spotlight {
+  top: 10vh;
+  right: 7vw;
   z-index: 0;
-  background:
-    radial-gradient(circle 420px at var(--mouse-x) var(--mouse-y), rgba(245, 245, 245, 0.12), rgba(245, 245, 245, 0.035) 34%, transparent 68%),
-    radial-gradient(circle 520px at calc(100% - var(--mouse-x)) calc(100% - var(--mouse-y)), rgba(199, 119, 60, 0.08), transparent 62%);
-  mix-blend-mode: screen;
-  opacity: 0.75;
-  transition: opacity 0.25s ease;
+  width: min(46vw, 620px);
+  height: min(46vw, 620px);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(245, 245, 245, 0.12), rgba(199, 119, 60, 0.06) 38%, transparent 68%);
+  opacity: 0.7;
+  will-change: transform;
+  animation: spotlightDrift 14s ease-in-out infinite alternate;
 }
 
 .motion-scanline {
+  display: none;
   z-index: 2;
   opacity: 0.12;
   background: linear-gradient(180deg, transparent 0%, rgba(245, 245, 245, 0.18) 50%, transparent 100%);
@@ -3110,7 +3108,6 @@ h4,
     linear-gradient(180deg, rgba(14, 14, 14, 0.2), rgba(14, 14, 14, 0.88)),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 28px);
-  animation: technicalPan 18s linear infinite;
 }
 
 .cinematic-hero-media > img,
@@ -3291,8 +3288,8 @@ h4,
   box-shadow:
     0 26px 80px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
@@ -3551,6 +3548,15 @@ h4,
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes spotlightDrift {
+  from {
+    transform: translate3d(-22px, -16px, 0) scale(0.96);
+  }
+  to {
+    transform: translate3d(18px, 24px, 0) scale(1.06);
   }
 }
 
