@@ -32,22 +32,23 @@ const GraduationProject = () => {
         <div className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <Link to="/portfolio" className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[#D95A2B] transition-colors group">
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            Trở về Projects
+            Trở về dự án
           </Link>
-          <span className="tag-accent w-max">Graduation Project</span>
+          <span className="tag-accent w-max">Đồ án tốt nghiệp</span>
         </div>
 
         <div className="page-hero-card relative neo-card rounded-[2rem] p-6 md:p-10 overflow-hidden mb-8">
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
-              <div className="eyebrow mb-6">Architecture case study</div>
+              <div className="eyebrow mb-6">Case study kiến trúc</div>
               <h1 className="text-4xl md:text-7xl lg:text-[5.2rem] font-black font-heading leading-[0.98] mb-7">
                 Trung tâm Thiền <br />
                 <span className="gradient-title">Làng Mai Đà Lạt</span>
               </h1>
               <p className="max-w-2xl text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed border-l border-[#D95A2B]/50 pl-5">
-                Đồ án tốt nghiệp kiến trúc sư, khai thác tinh thần tỉnh thức, thiền hành và sự hòa hợp giữa công trình với địa hình tự nhiên Đà Lạt.
+                Đồ án tốt nghiệp kiến trúc sư, khai thác tinh thần tỉnh thức, thiền hành và sự hòa hợp giữa
+                công trình với địa hình tự nhiên Đà Lạt.
               </p>
               <div className="grid sm:grid-cols-3 gap-3 mt-8">
                 {facts.map(({ icon: Icon, label, value }) => (
@@ -69,7 +70,7 @@ const GraduationProject = () => {
 
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-6 md:gap-8 mb-14 md:mb-18">
           <div className="neo-card rounded-[2rem] p-7 md:p-8 h-max lg:sticky lg:top-32">
-            <div className="eyebrow mb-5">Concept</div>
+            <div className="eyebrow mb-5">Ý tưởng</div>
             <h2 className="text-3xl md:text-5xl font-black font-heading leading-[1.02] mb-6">
               Sự tỉnh thức trong <span className="gradient-title">kiến trúc</span>
             </h2>
@@ -92,12 +93,12 @@ const GraduationProject = () => {
         </div>
 
         <div className="neo-card rounded-[2rem] p-6 md:p-9 mb-14 md:mb-18">
-          <div className="eyebrow mb-5">Architecture layout</div>
+          <div className="eyebrow mb-5">Mặt bằng kiến trúc</div>
           <h2 className="text-4xl md:text-6xl font-black font-heading leading-[0.98] mb-8">
             Tổng mặt bằng <span className="gradient-title">& giải pháp</span>
           </h2>
           <div className="visual-frame mb-6">
-            <img src={IMAGES.projectDoAn} alt="Detailed Layout" className="w-full h-auto object-contain" loading="lazy" decoding="async" />
+            <img src={IMAGES.projectDoAn} alt="Mặt bằng tổng thể Trung tâm Thiền Làng Mai" className="w-full h-auto object-contain" loading="lazy" decoding="async" />
           </div>
           <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {solutions.map(({ icon: Icon, title, desc }) => (
@@ -118,10 +119,10 @@ const GraduationProject = () => {
             Xem thêm <span className="gradient-title">dự án khác</span>
           </h3>
           <p className="text-sm font-mono text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">
-            Khám phá thêm các dự án D5 Render, nội thất, công trình thực tế và AI concept trong Project Archive.
+            Khám phá thêm các dự án D5 Render, nội thất, công trình thực tế và AI concept trong archive dự án.
           </p>
           <Link to="/portfolio" className="btn-accent inline-flex items-center gap-3 px-9 py-4 text-xs font-mono uppercase tracking-widest">
-            Trở về Projects
+            Trở về dự án
             <ArrowUpRight size={15} />
           </Link>
         </div>

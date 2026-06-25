@@ -9,8 +9,8 @@ export default function Insights() {
     <div className="page-wrap journal-page-v2">
       <section className="section-shell page-hero-minimal">
         <Reveal>
-          <span className="section-kicker">Journal</span>
-          <h1>Notes on architecture visualization, AI CGI and design workflow.</h1>
+          <span className="section-kicker">Góc nhìn</span>
+          <h1>Ghi chú về diễn họa kiến trúc, AI CGI và workflow thiết kế.</h1>
           <p>
             Những ghi chú chuyên môn về cách VTARCH tiếp cận hình ảnh kiến trúc, D5 Render, AI và quy trình thiết kế.
           </p>

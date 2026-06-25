@@ -84,7 +84,7 @@ export default function App() {
             />
           </div>
           <div className="mt-5 font-mono text-[10px] text-[var(--text-muted)] tracking-[0.24em] uppercase">
-            VTARCH Visual Lab <span className="text-[var(--accent)] font-bold">{loadingProgress}%</span>
+            VTARCH Diễn họa kiến trúc <span className="text-[var(--accent)] font-bold">{loadingProgress}%</span>
           </div>
         </div>
       </div>

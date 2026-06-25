@@ -1,9 +1,9 @@
 // ========================================================
 //  PATH HELPER
 // ========================================================
-const getAssetPath = (path) => {
+const getAssetPath = (assetPath) => {
   const base = window.location.pathname.includes('/PROFILE-VTARCH-') ? '/PROFILE-VTARCH-' : '';
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const normalizedPath = assetPath.startsWith('/') ? assetPath : `/${assetPath}`;
   return `${base}${normalizedPath}`.replace(/\/+/g, '/');
 };
 
@@ -19,9 +19,9 @@ export const IMAGES = {
   projectThanhTuanMotel: getAssetPath('/projects/THANH_TUAN_MOTEL.webp'),
   projectVinhomes: getAssetPath('/projects/VINHOMES_HYBRID.webp'),
   projectCaledon: getAssetPath('/projects/CELADON_INTERIOR.webp'),
-  storeJapandi: getAssetPath('/projects/D5_RENDER_-_WABI.webp'),
+  storeJapandi: getAssetPath('/projects/AI_-_Phong_cách_Japandi.webp'),
   storeIndochine: getAssetPath('/projects/AI_-_Phong_cách_Indochine.webp'),
-  projectAIJapandiModern: getAssetPath('/projects/VINHOMES_HYBRID.webp'),
+  projectAIJapandiModern: getAssetPath('/projects/AI_-_Phong_cách_Japandi_hiện_đại.webp'),
   projectDoAn: getAssetPath('/projects/do-an-tot-nghiep.webp'),
   compareRender: getAssetPath('/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp'),
 };
@@ -41,7 +41,7 @@ export const PROJECTS_DATA = [
     gallery: gallery(IMAGES.projectDoAn, IMAGES.projectDaLatHouse, IMAGES.projectThanhTuanMotel),
     pdfLink: getAssetPath('/documents/THUYET MINH TOT NGHIEP.pdf'),
     detailsPath: '/graduation-project',
-    desc: 'Một nghiên cứu không gian thiền định trong bối cảnh khí hậu, địa hình và cảnh quan Đà Lạt.',
+    desc: 'Nghiên cứu không gian thiền định trong bối cảnh khí hậu, địa hình và cảnh quan Đà Lạt.',
     category: ['Kiến trúc', 'Diễn họa ngoại thất'],
   },
   {
@@ -54,7 +54,7 @@ export const PROJECTS_DATA = [
     tags: ['Thực tế', 'Kiến trúc', 'Hospitality'],
     image: IMAGES.projectThanhTuanMotel,
     gallery: gallery(IMAGES.projectThanhTuanMotel, IMAGES.projectDaLatHouse, IMAGES.projectDoAn),
-    pdfLink: null,
+    pdfLink: getAssetPath('/documents/THANH_TUAN_MOTEL.pdf'),
     desc: 'Diễn họa công trình lưu trú nhỏ với ngôn ngữ gần gũi, rõ công năng và dễ trình bày với chủ đầu tư.',
     category: ['Công trình thực tế', 'Diễn họa ngoại thất'],
   },
@@ -97,7 +97,7 @@ export const PROJECTS_DATA = [
     image: IMAGES.projectVinhomes,
     gallery: gallery(IMAGES.projectVinhomes, IMAGES.projectWabi, IMAGES.projectCaledon),
     pdfLink: getAssetPath('/documents/VINHOMES_HYBRID.pdf'),
-    desc: 'Một thử nghiệm hybrid giữa tinh thần hiện đại và Wabi Sabi, tập trung cân bằng vật liệu, sáng tối và nhịp sống.',
+    desc: 'Thử nghiệm hybrid giữa tinh thần hiện đại và Wabi Sabi, tập trung cân bằng vật liệu, sáng tối và nhịp sống.',
     category: ['Render D5', 'Model', 'Diễn họa nội thất'],
   },
   {
@@ -105,8 +105,8 @@ export const PROJECTS_DATA = [
     title: 'Modern Lighting Study',
     year: '2024',
     location: 'Studio study',
-    type: 'Interior visual research',
-    services: ['Lighting study', 'AI CGI', 'Post-production'],
+    type: 'Nghiên cứu ánh sáng nội thất',
+    services: ['Lighting study', 'AI CGI', 'Hậu kỳ hình ảnh'],
     tags: ['AI CGI', 'D5 Render', 'Lighting'],
     image: IMAGES.compareRender,
     gallery: gallery(IMAGES.compareRender, IMAGES.projectCaledon, IMAGES.projectAIJapandiModern),
@@ -119,7 +119,7 @@ export const PROJECTS_DATA = [
     title: 'Wabi Sabi Zen Space',
     year: '2024',
     location: 'Studio study',
-    type: 'Interior concept',
+    type: 'Concept nội thất',
     services: ['Diễn họa nội thất', 'Material mood', 'D5 Render'],
     tags: ['Wabi Sabi', 'Nội thất', 'D5 Render'],
     image: IMAGES.projectWabi,
@@ -133,7 +133,7 @@ export const PROJECTS_DATA = [
     title: 'Eastern Minimalist Villa',
     year: '2024',
     location: 'Studio study',
-    type: 'Villa interior',
+    type: 'Nội thất villa',
     services: ['Model SketchUp', 'D5 Render', 'Visual mood'],
     tags: ['Villa', 'Wabi', 'Model'],
     image: IMAGES.projectWabiTrung,
@@ -176,7 +176,7 @@ export const PROJECTS_DATA = [
     year: '2024',
     location: 'AI Lab',
     type: 'Hybrid CGI',
-    services: ['AI CGI', 'D5 Render', 'Post-production'],
+    services: ['AI CGI', 'D5 Render', 'Hậu kỳ hình ảnh'],
     tags: ['AI CGI', 'Japandi', 'Post'],
     image: IMAGES.projectAIJapandiModern,
     gallery: gallery(IMAGES.projectAIJapandiModern, IMAGES.compareRender, IMAGES.projectCaledon),
@@ -188,17 +188,17 @@ export const PROJECTS_DATA = [
 
 export const SERVICE_GROUPS = [
   {
-    title: 'Visual',
+    title: 'Diễn họa',
     desc: 'Hình ảnh kiến trúc và nội thất có chiều sâu, đúng tinh thần thiết kế và đủ chất lượng để trình bày.',
     items: ['Diễn họa kiến trúc', 'Diễn họa nội thất', 'Diễn họa ngoại thất', 'D5 Render', 'Hậu kỳ hình ảnh'],
   },
   {
-    title: 'Design',
+    title: 'Thiết kế',
     desc: 'Tư duy thiết kế giúp hình ảnh không chỉ đẹp mà còn diễn đạt được vật liệu, ánh sáng và câu chuyện.',
     items: ['Visual direction', 'Concept không gian', 'Moodboard vật liệu', 'Góc nhìn trình bày', 'Case study dự án'],
   },
   {
-    title: 'Technology',
+    title: 'Công nghệ',
     desc: 'Ứng dụng AI và tự động hóa để tăng tốc quá trình thử nghiệm, trình bày và bàn giao.',
     items: ['AI CGI', 'GPT cho kiến trúc', 'GPT cho nội thất', 'Workflow AI', 'Tự động hóa công việc thiết kế'],
   },

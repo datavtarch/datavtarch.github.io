@@ -22,7 +22,7 @@ export function BrandLogo({ compact = false, className = '' }) {
       <BrandMark />
       <span className="brand-logo-text">
         <strong>VTARCH</strong>
-        {!compact && <small>Architecture Visualization / AI CGI</small>}
+        {!compact && <small>Diễn họa kiến trúc / AI CGI</small>}
       </span>
     </span>
   );

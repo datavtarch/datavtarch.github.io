@@ -4,13 +4,13 @@ import { Menu, Moon, Sun, X } from 'lucide-react';
 import { BrandLogo } from './Brand';
 
 const NAV_ITEMS = [
-  ['/', 'Home'],
-  ['/portfolio', 'Projects'],
-  ['/services', 'Services'],
+  ['/', 'Trang chủ'],
+  ['/portfolio', 'Dự án'],
+  ['/services', 'Dịch vụ'],
   ['/ai-lab', 'AI Lab'],
-  ['/journal', 'Journal'],
-  ['/about', 'About'],
-  ['/contact', 'Contact'],
+  ['/journal', 'Góc nhìn'],
+  ['/about', 'Giới thiệu'],
+  ['/contact', 'Liên hệ'],
 ];
 
 function NavLink({ to, children, onClick }) {
@@ -90,25 +90,25 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         <div className="footer-grid">
           <div>
             <div className="mb-6"><BrandLogo /></div>
-            <h2 className="footer-title">Architecture Visualization. AI CGI. Design Technology.</h2>
+            <h2 className="footer-title">Diễn họa kiến trúc. AI CGI. Công nghệ thiết kế.</h2>
           </div>
           <div className="footer-contact">
             <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
             <a href="tel:0385550506">038.555.0506</a>
-            <span>Ho Chi Minh City / Vietnam</span>
+            <span>TP.HCM / Việt Nam</span>
           </div>
           <div className="footer-note">
-            <Link to="/portfolio">Projects</Link>
-            <Link to="/services">Services</Link>
+            <Link to="/portfolio">Dự án</Link>
+            <Link to="/services">Dịch vụ</Link>
             <Link to="/ai-lab">AI Lab</Link>
-            <Link to="/journal">Journal</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/journal">Góc nhìn</Link>
+            <Link to="/about">Giới thiệu</Link>
+            <Link to="/contact">Liên hệ</Link>
           </div>
         </div>
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} VTARCH</span>
-          <span>Architecture Visualization / D5 / AI CGI</span>
+          <span>Diễn họa kiến trúc / D5 Render / AI CGI</span>
         </div>
       </footer>
     </div>

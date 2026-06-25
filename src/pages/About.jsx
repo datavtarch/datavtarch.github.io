@@ -30,8 +30,8 @@ const About = () => {
           <h1>Nguyễn Văn Thanh</h1>
           <p>
             Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH như một studio giao thoa giữa kiến trúc,
-            hình ảnh và công nghệ. Trọng tâm là diễn họa kiến trúc, diễn họa nội thất, AI CGI và workflow số cho
-            quá trình thiết kế.
+            hình ảnh và công nghệ. Trọng tâm là diễn họa kiến trúc, diễn họa nội thất, AI CGI và workflow số
+            cho quá trình thiết kế.
           </p>
           <Link to="/contact" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center gap-2">
             Liên hệ hợp tác <ArrowUpRight size={15} />

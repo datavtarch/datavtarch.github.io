@@ -52,8 +52,8 @@ export const Typewriter = ({ phrases }) => {
       isDeleting && text === ''
         ? 500
         : !isDeleting && text === currentPhrase
-        ? 2500
-        : typeSpeed;
+          ? 2500
+          : typeSpeed;
 
     const timer = setTimeout(() => {
       if (isDeleting) {
@@ -104,7 +104,7 @@ export const ProjectModal = ({ project, onClose }) => {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-30 w-11 h-11 border border-white/15 bg-black/55 flex items-center justify-center text-white hover:bg-[var(--accent)] transition-colors"
-          aria-label="Close project modal"
+          aria-label="Đóng dự án"
         >
           <X size={18} />
         </button>
@@ -123,7 +123,7 @@ export const ProjectModal = ({ project, onClose }) => {
 
           <div className="project-modal-intro p-6 md:p-10 flex flex-col justify-between gap-10">
             <div>
-              <div className="eyebrow mb-6">Case study</div>
+              <div className="eyebrow mb-6">Case study dự án</div>
               <h2 className="text-4xl md:text-6xl font-heading font-semibold leading-[0.96] mb-6">
                 {project.title}
               </h2>

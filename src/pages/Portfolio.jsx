@@ -24,7 +24,8 @@ const Portfolio = ({ setSelectedProject }) => {
           <p className="eyebrow">Dự án</p>
           <h1>Archive hình ảnh kiến trúc, nội thất, D5 Render và AI CGI.</h1>
           <p>
-            Mỗi dự án được trình bày như một case study ngắn: bối cảnh, loại hình, dịch vụ thực hiện và gallery hình ảnh.
+            Mỗi dự án được trình bày như một case study ngắn: bối cảnh, loại hình, dịch vụ thực hiện
+            và gallery hình ảnh.
           </p>
         </Reveal>
       </section>
