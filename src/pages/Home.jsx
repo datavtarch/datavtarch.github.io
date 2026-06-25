@@ -1,230 +1,171 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  ArrowUpRight,
-  Code2,
-  Download,
-  Globe2,
-  Layers3,
-  MessageCircle,
-  Sparkles,
-  UserRound,
-} from 'lucide-react';
+import { ArrowUpRight, Mail, Sparkles } from 'lucide-react';
 import { BrandMark } from '../components/Brand';
 import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
-const featuredIndexes = [3, 0, 2, 4];
+const featuredIndexes = [3, 4, 0, 2];
 
-const profileStats = [
-  ['01', '100+', 'Visual projects'],
-  ['02', '5+', 'Years practice'],
-  ['03', 'D5 + AI', 'Core workflow'],
+const practice = [
+  ['Visual', 'Diễn họa kiến trúc, nội thất, ngoại thất và bộ ảnh trình bày dự án.'],
+  ['Design', 'Visual direction, mood vật liệu, ánh sáng và câu chuyện không gian.'],
+  ['Technology', 'AI CGI, D5 Render, GPT architecture và workflow tự động hóa.'],
 ];
 
-const capabilityTags = ['D5 Render', 'AI CGI', 'Interior', 'Architecture'];
+const labItems = ['AI CGI', 'D5 Render', 'GPT cho kiến trúc', 'Workflow AI', 'Automation'];
 
-const techStack = ['AI CGI', 'GPT Architecture', 'D5 Render', 'Workflow AI', 'Automation'];
-
-const contactLinks = [
-  ['Email', 'vtarch99@gmail.com', 'mailto:vtarch99@gmail.com'],
-  ['Phone', '038.555.0506', 'tel:0385550506'],
-  ['Instagram', '@vtarch99', 'https://www.instagram.com/vtarch99/'],
-  ['Portfolio', 'datavtarch.github.io', 'https://datavtarch.github.io'],
+const facts = [
+  ['100+', 'visual projects'],
+  ['5+', 'years practice'],
+  ['D5 + AI', 'production workflow'],
 ];
 
-const getFeaturedProject = (sourceIndex) => PROJECTS_DATA[sourceIndex];
+const getProject = (index) => PROJECTS_DATA[index];
 
 const Home = ({ setSelectedProject }) => {
-  const projects = useMemo(() => featuredIndexes.map(getFeaturedProject), []);
+  const projects = useMemo(() => featuredIndexes.map(getProject), []);
   const [activeProject, setActiveProject] = useState(projects[0]);
-  const [activeTab, setActiveTab] = useState('projects');
-
-  const tabContent = {
-    projects,
-    lab: projects.slice().reverse(),
-    stack: techStack,
-  };
 
   return (
-    <main className="rho-home">
-      <section className="rho-intro" aria-hidden="true">
-        <div className="rho-intro-icons">
-          <span><Code2 size={15} /></span>
-          <span><UserRound size={15} /></span>
-          <span><Globe2 size={15} /></span>
-        </div>
-        <strong>Welcome to VTARCH</strong>
-        <em>Architecture Visual Portfolio</em>
+    <main className="atelier-home">
+      <section className="atelier-intro" aria-hidden="true">
+        <span>VTARCH</span>
+        <strong>Architecture Visualization</strong>
+        <em>AI CGI / D5 Render / Design Technology</em>
       </section>
 
-      <section className="rho-hero section-shell" id="home">
-        <div className="rho-brand-pill">
-          <span>vtarch.dev</span>
-          <nav aria-label="Home quick navigation">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#portfolio">Portfolio</a>
+      <section className="atelier-hero" id="home">
+        <nav className="atelier-nav section-shell" aria-label="VTARCH home navigation">
+          <a href="#home" className="atelier-nav-brand">
+            <BrandMark />
+            <span>VTARCH</span>
+          </a>
+          <div>
+            <a href="#works">Projects</a>
+            <a href="#practice">Services</a>
+            <a href="#lab">AI Lab</a>
             <a href="#contact">Contact</a>
-          </nav>
-        </div>
+          </div>
+        </nav>
 
-        <div className="rho-hero-grid">
-          <div className="rho-hero-copy">
-            <span className="rho-status">Available for selected projects</span>
+        <div className="atelier-hero-inner section-shell">
+          <div className="atelier-hero-copy">
+            <span className="atelier-kicker">Available for selected architecture briefs</span>
             <h1>
-              <span>VTARCH Visual</span>
-              <span>Studio</span>
+              <span>Architecture</span>
+              <span>Visual Studio</span>
             </h1>
-            <div className="rho-type-line">
-              <span>Architecture visualization</span>
-            </div>
             <p>
-              Diễn họa kiến trúc, nội thất và concept không gian bằng D5 Render, AI CGI và tư duy thiết kế.
-              Tập trung vào hình ảnh sạch, rõ vật liệu, đúng tinh thần studio.
+              VTARCH phát triển hình ảnh kiến trúc, nội thất và concept không gian bằng tư duy thiết kế,
+              D5 Render và workflow AI. Hình ảnh là trung tâm, công nghệ là lớp tăng tốc phía sau.
             </p>
-            <div className="rho-tags">
-              {capabilityTags.map((tag) => <span key={tag}>{tag}</span>)}
-            </div>
-            <div className="rho-notes">
-              <span>explore selected works below</span>
-              <span>open for studio and investor briefs</span>
+            <div className="atelier-actions">
+              <Link to="/portfolio">Xem dự án <ArrowUpRight size={15} /></Link>
+              <Link to="/contact">Liên hệ</Link>
             </div>
           </div>
 
-          <div className="rho-lanyard-wrap" aria-label="VTARCH visual identity card">
-            <div className="rho-strap">
-              <span>visual studio</span>
-              <span>vtarch</span>
-            </div>
+          <button
+            type="button"
+            className="atelier-hanging-frame"
+            onClick={() => setSelectedProject(activeProject)}
+          >
+            <span className="atelier-frame-strap">selected work</span>
+            <img src={activeProject.image} alt={activeProject.title} loading="eager" />
+            <span className="atelier-frame-caption">
+              <em>{activeProject.year} / {activeProject.type}</em>
+              <strong>{activeProject.title}</strong>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section className="atelier-works section-shell" id="works">
+        <div className="atelier-section-head">
+          <span>Selected Works</span>
+          <h2>Dự án được kể bằng ánh sáng, vật liệu và nhịp nhìn kiến trúc.</h2>
+        </div>
+
+        <div className="atelier-work-grid">
+          {projects.map((project, index) => (
             <button
-              className="rho-id-card"
+              key={project.id}
               type="button"
-              onClick={() => setSelectedProject(activeProject)}
+              className={activeProject.id === project.id ? 'is-active' : ''}
+              onMouseEnter={() => setActiveProject(project)}
+              onFocus={() => setActiveProject(project)}
+              onClick={() => setSelectedProject(project)}
             >
-              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
-              <span>Nguyễn Văn Thanh</span>
-              <strong>Architecture + AI CGI</strong>
-            </button>
-          </div>
-        </div>
-
-        <div className="rho-scroll-cue">Scroll ↓</div>
-      </section>
-
-      <section className="rho-about section-shell" id="about">
-        <div className="rho-about-copy">
-          <span className="rho-eyebrow">About VTARCH</span>
-          <h2>Nguyễn Văn Thanh</h2>
-          <p>
-            Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển hình ảnh kiến trúc qua giao thoa giữa thiết kế,
-            diễn họa và công nghệ AI. Mục tiêu là giúp ý tưởng không gian được nhìn thấy nhanh hơn, rõ hơn
-            và thuyết phục hơn.
-          </p>
-          <blockquote>
-            “Turning architectural ideas into clean, atmospheric and meaningful visual experiences.”
-          </blockquote>
-          <div className="rho-about-actions">
-            <Link to="/about"><Download size={15} /> About studio</Link>
-            <Link to="/portfolio"><ArrowUpRight size={15} /> View projects</Link>
-          </div>
-        </div>
-
-        <div className="rho-profile-orbit">
-          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh portrait" loading="lazy" decoding="async" />
-          <span />
-          <span />
-        </div>
-      </section>
-
-      <section className="rho-stats section-shell" aria-label="VTARCH quick facts">
-        {profileStats.map(([index, value, label]) => (
-          <article key={index}>
-            <Code2 size={16} />
-            <span>{index}</span>
-            <strong>{value}</strong>
-            <em>{label}</em>
-            <ArrowUpRight size={14} />
-          </article>
-        ))}
-      </section>
-
-      <section className="rho-portfolio section-shell" id="portfolio">
-        <div className="rho-section-center">
-          <h2>Portfolio Showcase</h2>
-          <p>Selected architecture visualization, AI CGI experiments and production workflow studies.</p>
-        </div>
-
-        <div className="rho-tabs" role="tablist" aria-label="Portfolio tabs">
-          {[
-            ['projects', 'Projects'],
-            ['lab', 'AI Lab'],
-            ['stack', 'Tech Stack'],
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === value}
-              className={activeTab === value ? 'is-active' : ''}
-              onClick={() => setActiveTab(value)}
-            >
-              {label}
+              <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{project.title}</strong>
+              <em>{project.type}</em>
             </button>
           ))}
         </div>
+      </section>
 
-        {activeTab === 'stack' ? (
-          <div className="rho-stack-grid">
-            {tabContent.stack.map((item) => (
-              <article key={item}>
-                <Sparkles size={26} />
-                <strong>{item}</strong>
+      <section className="atelier-about section-shell">
+        <div>
+          <span className="atelier-kicker">About VTARCH</span>
+          <h2>Studio diễn họa và công nghệ kiến trúc, bắt đầu từ nền tảng thiết kế.</h2>
+        </div>
+        <div>
+          <p>
+            Nguyễn Văn Thanh, kiến trúc sư Đại học Kiến Trúc TP.HCM, xây dựng VTARCH như một giao điểm
+            giữa kiến trúc, hình ảnh và công nghệ. Mỗi hình ảnh cần đủ đẹp để thu hút, đủ rõ để truyền đạt,
+            và đủ đúng để phục vụ quyết định thiết kế.
+          </p>
+          <div className="atelier-facts">
+            {facts.map(([value, label]) => (
+              <article key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
               </article>
             ))}
           </div>
-        ) : (
-          <div className="rho-project-layout">
-            <div className="rho-project-card-list">
-              {tabContent[activeTab].map((project) => (
-                <button
-                  key={project.id}
-                  type="button"
-                  className={activeProject.id === project.id ? 'is-active' : ''}
-                  onMouseEnter={() => setActiveProject(project)}
-                  onFocus={() => setActiveProject(project)}
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
-                  <span>{project.type}</span>
-                  <strong>{project.title}</strong>
-                  <em>Details <ArrowUpRight size={12} /></em>
-                </button>
-              ))}
-            </div>
-
-            <aside className="rho-project-detail">
-              <img src={activeProject.image} alt={activeProject.title} loading="lazy" decoding="async" />
-              <div>
-                <span>Project Portfolio</span>
-                <h3>{activeProject.title}</h3>
-                <p>{activeProject.desc}</p>
-              </div>
-              <ul>
-                <li><Layers3 size={14} /> {activeProject.services.slice(0, 2).join(' / ')}</li>
-                <li><Globe2 size={14} /> {activeProject.location}</li>
-                <li><Sparkles size={14} /> {activeProject.year}</li>
-              </ul>
-            </aside>
-          </div>
-        )}
+        </div>
       </section>
 
-      <section className="rho-journal section-shell">
-        <div className="rho-section-center">
-          <h2>Studio Notes</h2>
-          <p>Short notes on D5 Render, AI CGI and architecture workflow.</p>
+      <section className="atelier-practice section-shell" id="practice">
+        <div className="atelier-section-head">
+          <span>Practice</span>
+          <h2>Ba lớp năng lực cho một workflow hình ảnh kiến trúc hiện đại.</h2>
         </div>
-        <div className="rho-journal-grid">
+        <div className="atelier-practice-lines">
+          {practice.map(([title, desc], index) => (
+            <article key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="atelier-lab" id="lab">
+        <div className="section-shell atelier-lab-inner">
+          <div>
+            <span className="atelier-kicker">AI Lab</span>
+            <h2>Motion và AI chỉ xuất hiện khi chúng làm hình ảnh kiến trúc tốt hơn.</h2>
+          </div>
+          <div className="atelier-lab-board">
+            <img src={IMAGES.projectAIJapandiModern} alt="AI CGI architecture workflow" loading="lazy" decoding="async" />
+            <div>
+              {labItems.map((item) => (
+                <span key={item}><Sparkles size={13} /> {item}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="atelier-journal section-shell">
+        <div className="atelier-section-head">
+          <span>Journal</span>
+          <h2>Ghi chú ngắn về diễn họa, D5 Render và AI trong kiến trúc.</h2>
+        </div>
+        <div className="atelier-journal-grid">
           {INSIGHTS.slice(0, 3).map((post) => (
             <Link to="/journal" key={post.title}>
               <img src={post.image} alt={post.title} loading="lazy" decoding="async" />
@@ -235,24 +176,15 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      <section className="rho-contact section-shell" id="contact">
-        <div className="rho-contact-card">
-          <span className="rho-eyebrow">Contact</span>
-          <h2>Tell us about your next visual story.</h2>
-          <a href="mailto:vtarch99@gmail.com"><MessageCircle size={16} /> Send brief</a>
+      <section className="atelier-contact section-shell" id="contact">
+        <div>
+          <span className="atelier-kicker">Contact</span>
+          <h2>Let’s build a visual story for your next project.</h2>
         </div>
-
-        <div className="rho-social-card">
-          <h3>Connect with VTARCH</h3>
-          <div>
-            {contactLinks.map(([label, value, href]) => (
-              <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
-                <span>{label}</span>
-                <strong>{value}</strong>
-                <ArrowUpRight size={13} />
-              </a>
-            ))}
-          </div>
+        <div className="atelier-contact-panel">
+          <a href="mailto:vtarch99@gmail.com"><Mail size={16} /> vtarch99@gmail.com</a>
+          <a href="tel:0385550506">038.555.0506</a>
+          <Link to="/contact">Gửi brief dự án <ArrowUpRight size={15} /></Link>
         </div>
       </section>
     </main>
