@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 
 import Layout from './components/Layout';
+import { BrandMark } from './components/Brand';
 import { ProjectModal } from './components/UI';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -74,11 +75,7 @@ export default function App() {
       <div className="fixed inset-0 z-[99999] bg-[var(--bg-color)] flex flex-col items-center justify-center overflow-hidden">
         <div className="relative z-10 flex flex-col items-center">
           <div className="relative w-36 h-36 border border-[var(--border-color)] bg-[var(--panel-color)] flex items-center justify-center mb-8">
-            <span className="brand-symbol loader-brand-symbol" aria-label="VTARCH">
-              <span className="brand-symbol-bar" />
-              <span className="brand-symbol-diagonal" />
-              <span className="brand-symbol-line" />
-            </span>
+            <BrandMark className="loader-brand-mark" />
           </div>
           <div className="w-64 h-[3px] theme-surface overflow-hidden relative">
             <div

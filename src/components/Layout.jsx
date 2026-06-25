@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, Moon, Sun, X } from 'lucide-react';
+import { BrandLogo } from './Brand';
 
 const NAV_ITEMS = [
   ['/', 'Home'],
@@ -11,22 +12,6 @@ const NAV_ITEMS = [
   ['/about', 'About'],
   ['/contact', 'Contact'],
 ];
-
-function BrandMark({ compact = false }) {
-  return (
-    <span className={`brand-system ${compact ? 'is-compact' : ''}`} aria-hidden="true">
-      <span className="brand-symbol">
-        <span className="brand-symbol-bar" />
-        <span className="brand-symbol-diagonal" />
-        <span className="brand-symbol-line" />
-      </span>
-      <span className="brand-word">
-        <strong>VTARCH</strong>
-        {!compact && <small>ARCHITECTURE VISUALIZATION / AI CGI</small>}
-      </span>
-    </span>
-  );
-}
 
 function NavLink({ to, children, onClick }) {
   const { pathname } = useLocation();
@@ -64,7 +49,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
         <div className="section-shell">
           <div className="site-header-inner">
             <Link to="/" className="brand-lockup" aria-label="VTARCH home">
-              <BrandMark />
+              <BrandLogo />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-7">
@@ -104,7 +89,7 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       <footer className="site-footer section-shell">
         <div className="footer-grid">
           <div>
-            <div className="mb-6"><BrandMark /></div>
+            <div className="mb-6"><BrandLogo /></div>
             <h2 className="footer-title">Architecture Visualization. AI CGI. Design Technology.</h2>
           </div>
           <div className="footer-contact">

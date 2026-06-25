@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BrandLogo } from '../components/Brand';
 import { Reveal } from '../components/UI';
 import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
@@ -38,16 +39,13 @@ const Home = ({ setSelectedProject }) => {
         <div className="home-hero-v2-overlay" />
         <div className="section-shell home-hero-v2-content">
           <Reveal>
-            <div className="hero-brand-system" aria-label="VTARCH">
-              <span className="brand-symbol hero-brand-symbol">
-                <span className="brand-symbol-bar" />
-                <span className="brand-symbol-diagonal" />
-                <span className="brand-symbol-line" />
-              </span>
-              <span className="hero-brand-word">VTARCH</span>
-            </div>
-            <h1>Kiến tạo hình ảnh kiến trúc bằng tư duy thiết kế và công nghệ AI</h1>
-            <p>Architecture Visualization • AI CGI • Design Technology</p>
+            <BrandLogo className="hero-brand-logo" />
+            <h1 className="hero-title-locked">
+              <span>Kiến tạo hình ảnh kiến trúc</span>
+              <span>bằng tư duy thiết kế</span>
+              <span>và công nghệ AI</span>
+            </h1>
+            <p>Architecture Visualization / AI CGI / Design Technology</p>
             <Link to="/portfolio" className="primary-minimal-link">Xem dự án</Link>
           </Reveal>
         </div>
@@ -65,6 +63,7 @@ const Home = ({ setSelectedProject }) => {
                 <img src={project.image} alt={project.title} loading={idx < 2 ? 'eager' : 'lazy'} decoding="async" />
                 <span>{project.type}</span>
                 <strong>{project.title}</strong>
+                <em>{project.year} / {project.location}</em>
               </button>
             </Reveal>
           ))}
@@ -165,7 +164,7 @@ const Home = ({ setSelectedProject }) => {
       <section className="section-shell contact-v2">
         <Reveal>
           <span className="section-kicker">07 / Contact</span>
-          <h2>Let’s Talk</h2>
+          <h2>Let's Talk</h2>
           <div className="contact-v2-grid">
             <a href="mailto:vtarch99@gmail.com">Email</a>
             <a href="https://www.instagram.com/vtarch99/" target="_blank" rel="noreferrer">Instagram</a>
