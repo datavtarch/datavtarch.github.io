@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BrandLogo } from '../components/Brand';
+import { BrandMark } from '../components/Brand';
 import { Reveal } from '../components/UI';
 import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
@@ -101,15 +101,17 @@ const Home = ({ setSelectedProject }) => {
 
         <div className="section-shell cinematic-hero-inner">
           <Reveal className="cinematic-hero-copy">
-            <BrandLogo className="hero-brand-logo" />
-            <span className="cinematic-kicker">VTARCH / Architecture Visual Studio</span>
+            <div className="reference-hero-chip">
+              <BrandMark />
+              <span>VTARCH Studio</span>
+            </div>
+            <span className="cinematic-kicker">Architecture Visualization / AI CGI</span>
             <h1 className="motion-title">
               <span>Architecture</span>
-              <span>Visualization</span>
-              <span>AI CGI</span>
+              <span>Visual Studio</span>
             </h1>
             <p>
-              Hình ảnh kiến trúc, nội thất và concept không gian được xây dựng bằng tư duy thiết kế,
+              Diễn họa kiến trúc, nội thất và concept không gian bằng tư duy thiết kế,
               D5 Render và workflow AI tinh gọn.
             </p>
             <div className="cinematic-hero-actions">
@@ -135,11 +137,14 @@ const Home = ({ setSelectedProject }) => {
             </div>
           </Reveal>
 
-          <Reveal className="cinematic-hero-frame" delay={120} variant="scale">
-            <span className="cinematic-hanging-label">Selected scene</span>
-            <button type="button" onClick={() => setSelectedProject(heroProject)}>
-              <span className="cinematic-frame-ghost is-one" aria-hidden="true" />
-              <span className="cinematic-frame-ghost is-two" aria-hidden="true" />
+          <Reveal className="reference-hero-visual" delay={120} variant="scale">
+            <span className="reference-hanging-ribbon">portfolio</span>
+            <button className="reference-portrait-card" type="button" onClick={() => setSelectedProject(heroProject)}>
+              <span className="reference-card-wire is-one" aria-hidden="true" />
+              <span className="reference-card-wire is-two" aria-hidden="true" />
+              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
+            </button>
+            <button className="reference-project-peek" type="button" onClick={() => setSelectedProject(heroProject)}>
               <img src={heroProject.image} alt={heroProject.title} loading="eager" />
               <span>{heroProject.type}</span>
               <strong>{heroProject.title}</strong>
