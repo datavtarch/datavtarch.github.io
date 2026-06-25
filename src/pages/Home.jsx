@@ -50,24 +50,15 @@ const Home = ({ setSelectedProject }) => {
 
         <div className="atelier-hero-inner section-shell">
           <div className="atelier-hero-copy">
-            <div className="atelier-proof-row" aria-label="Studio credentials">
-              <span>Architecture Studio</span>
-              <span>100+ dự án</span>
-              <span>D5 + AI workflow</span>
-            </div>
-            <span className="atelier-kicker">Selected architecture visualization studio</span>
+            <span className="atelier-kicker">Available for selected architecture briefs</span>
             <h1>
-              <span>Kiến tạo</span>
-              <span><em>visual</em> kiến trúc</span>
+              <span>Architecture</span>
+              <span>Visual Studio</span>
             </h1>
             <p>
               VTARCH phát triển hình ảnh kiến trúc, nội thất và concept không gian bằng tư duy thiết kế,
               D5 Render và workflow AI. Hình ảnh là trung tâm, công nghệ là lớp tăng tốc phía sau.
             </p>
-            <div className="atelier-signal-card" aria-label="VTARCH design signal">
-              <strong>14 · 21</strong>
-              <span>visual direction / CGI / AI concept</span>
-            </div>
             <div className="atelier-actions">
               <Link to="/portfolio">Xem dự án <ArrowUpRight size={15} /></Link>
               <Link to="/contact">Liên hệ</Link>
@@ -85,7 +76,6 @@ const Home = ({ setSelectedProject }) => {
               <em>{activeProject.year} / {activeProject.type}</em>
               <strong>{activeProject.title}</strong>
             </span>
-            <span className="atelier-frame-note">brief - concept - visual set</span>
           </button>
         </div>
       </section>
@@ -189,7 +179,7 @@ const Home = ({ setSelectedProject }) => {
       <section className="atelier-contact section-shell" id="contact">
         <div>
           <span className="atelier-kicker">Contact</span>
-          <h2>Let's build a visual story for your next project.</h2>
+          <h2>Let’s build a visual story for your next project.</h2>
         </div>
         <div className="atelier-contact-panel">
           <a href="mailto:vtarch99@gmail.com"><Mail size={16} /> vtarch99@gmail.com</a>
