@@ -1,53 +1,117 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail } from 'lucide-react';
-import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
+import { BrandMark } from '../components/Brand';
+import { INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
-const selectedProjects = [PROJECTS_DATA[0], PROJECTS_DATA[3], PROJECTS_DATA[4], PROJECTS_DATA[2]];
+const selectedProjectIds = [3, 4, 0, 2, 5, 17];
 
-const services = [
-  ['Diễn họa kiến trúc', 'Ngoại thất, nội thất, concept không gian và bộ ảnh trình bày dự án.'],
-  ['D5 Render', 'Dựng hình, ánh sáng, vật liệu và hậu kỳ để tạo bộ visual có chiều sâu.'],
-  ['AI CGI', 'Thử mood, tạo concept và tăng tốc quy trình phát triển hình ảnh.'],
+const capabilities = [
+  ['01', 'Diễn họa kiến trúc', 'Ngoại thất, nội thất, concept không gian và bộ ảnh trình bày dự án.'],
+  ['02', 'D5 Render', 'Ánh sáng, vật liệu, camera và hậu kỳ cho hình ảnh có chiều sâu.'],
+  ['03', 'AI CGI', 'Thử mood, phát triển concept và tăng tốc quy trình sản xuất visual.'],
 ];
 
 const stats = [
   ['100+', 'hình ảnh / hồ sơ visual'],
-  ['5 năm', 'kinh nghiệm thiết kế và diễn họa'],
-  ['D5 + AI', 'workflow sản xuất hình ảnh'],
+  ['5 năm', 'kinh nghiệm thiết kế'],
+  ['D5 + AI', 'workflow sản xuất'],
 ];
 
 const Home = ({ setSelectedProject }) => {
-  return (
-    <main className="profile-home">
-      <section className="profile-hero section-shell">
-        <div className="profile-hero-copy">
-          <p className="profile-kicker">VTARCH / Diễn họa kiến trúc</p>
-          <h1>Diễn họa kiến trúc & nội thất.</h1>
-          <p>
-            Hồ sơ của Nguyễn Văn Thanh, kiến trúc sư phát triển hình ảnh kiến trúc, nội thất và concept
-            không gian bằng nền tảng thiết kế, D5 Render và workflow AI.
-          </p>
-          <div className="profile-actions">
-            <Link to="/portfolio">Xem dự án <ArrowUpRight size={16} /></Link>
-            <Link to="/about">Giới thiệu</Link>
-          </div>
-        </div>
+  const projects = useMemo(
+    () => selectedProjectIds
+      .map((id) => PROJECTS_DATA.find((project) => project.id === id))
+      .filter(Boolean),
+    []
+  );
+  const [activeProject, setActiveProject] = useState(projects[0]);
 
-        <button
-          type="button"
-          className="profile-featured-image"
-          onClick={() => setSelectedProject(selectedProjects[1])}
-        >
-          <img src={selectedProjects[1].image} alt={selectedProjects[1].title} loading="eager" />
-          <span>
-            <small>{selectedProjects[1].year} / {selectedProjects[1].type}</small>
-            <strong>{selectedProjects[1].title}</strong>
-          </span>
-        </button>
+  return (
+    <main className="studio-index-home">
+      <section className="studio-index-shell">
+        <aside className="studio-index-sidebar">
+          <div className="studio-index-brand">
+            <BrandMark />
+            <div>
+              <strong>VTARCH</strong>
+              <span>Architecture Visualization / AI CGI</span>
+            </div>
+          </div>
+
+          <div className="studio-index-intro">
+            <p>Hồ sơ cá nhân</p>
+            <h1>Diễn họa kiến trúc & nội thất.</h1>
+            <span>
+              Nguyễn Văn Thanh phát triển hình ảnh kiến trúc, nội thất và concept không gian bằng nền tảng thiết kế,
+              D5 Render và workflow AI.
+            </span>
+          </div>
+
+          <div className="studio-index-tabs" aria-label="Năng lực VTARCH">
+            <span>Profile</span>
+            <span>Projects</span>
+            <span>AI Lab</span>
+          </div>
+
+          <div className="studio-project-list">
+            {projects.map((project, index) => (
+              <button
+                key={project.id}
+                type="button"
+                className={activeProject.id === project.id ? 'is-active' : ''}
+                onClick={() => setActiveProject(project)}
+              >
+                <img src={project.image} alt="" loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
+                <span>
+                  <strong>{project.title}</strong>
+                  <em>{project.type}</em>
+                </span>
+                <small>{String(index + 1).padStart(2, '0')}</small>
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <section className="studio-preview">
+          <div className="studio-preview-topbar">
+            <div>
+              <span>{activeProject.year} / {activeProject.location}</span>
+              <strong>{activeProject.title}</strong>
+            </div>
+            <div>
+              <button type="button" onClick={() => setSelectedProject(activeProject)}>Mở dự án</button>
+              <Link to="/portfolio">Archive <ArrowUpRight size={15} /></Link>
+            </div>
+          </div>
+
+          <article className="studio-browser-frame">
+            <div className="studio-browser-bar" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <strong>vtarch.profile/{activeProject.id}</strong>
+            </div>
+
+            <div className="studio-browser-content">
+              <div className="studio-browser-copy">
+                <p>Selected case study</p>
+                <h2>{activeProject.title}</h2>
+                <span>{activeProject.desc}</span>
+                <dl>
+                  <div><dt>Loại hình</dt><dd>{activeProject.type}</dd></div>
+                  <div><dt>Dịch vụ</dt><dd>{activeProject.services.join(', ')}</dd></div>
+                </dl>
+              </div>
+              <button type="button" className="studio-browser-image" onClick={() => setSelectedProject(activeProject)}>
+                <img src={activeProject.image} alt={activeProject.title} loading="eager" />
+              </button>
+            </div>
+          </article>
+        </section>
       </section>
 
-      <section className="profile-strip section-shell">
+      <section className="studio-strip section-shell">
         {stats.map(([value, label]) => (
           <article key={label}>
             <strong>{value}</strong>
@@ -56,47 +120,15 @@ const Home = ({ setSelectedProject }) => {
         ))}
       </section>
 
-      <section className="profile-section section-shell">
-        <div className="profile-section-head">
-          <span>Dự án chọn lọc</span>
-          <h2>Hình ảnh dự án là phần chính của hồ sơ.</h2>
+      <section className="studio-section section-shell">
+        <div className="studio-section-head">
+          <span>Năng lực</span>
+          <h2>Một workflow hình ảnh gọn, rõ và đủ linh hoạt cho dự án kiến trúc.</h2>
         </div>
-        <div className="profile-project-grid">
-          {selectedProjects.map((project, index) => (
-            <button key={project.id} type="button" onClick={() => setSelectedProject(project)}>
-              <img src={project.image} alt={project.title} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{project.title}</strong>
-              <em>{project.type}</em>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="profile-about section-shell">
-        <div>
-          <p className="profile-kicker">Giới thiệu</p>
-          <h2>Kiến trúc sư, visual artist và người thử nghiệm workflow AI cho diễn họa.</h2>
-        </div>
-        <div>
-          <p>
-            Nguyễn Văn Thanh tốt nghiệp Đại học Kiến Trúc TP.HCM, phát triển VTARCH như một hồ sơ cá nhân
-            giao thoa giữa kiến trúc, hình ảnh và công nghệ. Trọng tâm là tạo hình ảnh rõ ý đồ thiết kế,
-            có chất liệu, ánh sáng và đủ sức thuyết phục khi trình bày dự án.
-          </p>
-          <Link to="/about">Xem hồ sơ <ArrowUpRight size={15} /></Link>
-        </div>
-      </section>
-
-      <section className="profile-section section-shell">
-        <div className="profile-section-head">
-          <span>Dịch vụ</span>
-          <h2>Gọn, rõ và đúng nhu cầu trình bày kiến trúc.</h2>
-        </div>
-        <div className="profile-service-list">
-          {services.map(([title, desc], index) => (
+        <div className="studio-capability-grid">
+          {capabilities.map(([number, title, desc]) => (
             <article key={title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{number}</span>
               <h3>{title}</h3>
               <p>{desc}</p>
             </article>
@@ -104,22 +136,39 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      <section className="profile-lab">
-        <div className="section-shell profile-lab-inner">
-          <div>
-            <p className="profile-kicker">AI Lab</p>
-            <h2>AI là công cụ hỗ trợ tư duy hình ảnh, không thay thế nền tảng kiến trúc.</h2>
-          </div>
-          <img src={IMAGES.projectAIJapandiModern} alt="AI CGI concept by VTARCH" loading="lazy" decoding="async" />
+      <section className="studio-section section-shell">
+        <div className="studio-section-head">
+          <span>Dự án</span>
+          <h2>Hình ảnh vẫn là trung tâm của hồ sơ.</h2>
+        </div>
+        <div className="studio-work-grid">
+          {projects.slice(0, 4).map((project, index) => (
+            <button key={project.id} type="button" onClick={() => setSelectedProject(project)}>
+              <img src={project.image} alt={project.title} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
+              <span>{project.year}</span>
+              <strong>{project.title}</strong>
+            </button>
+          ))}
         </div>
       </section>
 
-      <section className="profile-section section-shell">
-        <div className="profile-section-head">
+      <section className="studio-lab section-shell">
+        <div>
+          <span>AI Lab</span>
+          <h2>Công nghệ là lớp hỗ trợ thầm lặng bên trong tư duy hình ảnh.</h2>
+        </div>
+        <p>
+          AI được dùng để thử mood, kiểm tra hướng vật liệu, phát triển concept và tự động hóa một phần quy trình.
+          Điểm neo vẫn là kiến trúc, ánh sáng, tỉ lệ và câu chuyện không gian.
+        </p>
+      </section>
+
+      <section className="studio-section section-shell">
+        <div className="studio-section-head">
           <span>Góc nhìn</span>
           <h2>Ghi chú ngắn về D5 Render, AI CGI và workflow thiết kế.</h2>
         </div>
-        <div className="profile-journal">
+        <div className="studio-journal-list">
           {INSIGHTS.slice(0, 3).map((post) => (
             <Link to="/journal" key={post.title}>
               <span>{post.category}</span>
@@ -129,9 +178,9 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      <section className="profile-contact section-shell">
+      <section className="studio-contact section-shell">
         <div>
-          <p className="profile-kicker">Liên hệ</p>
+          <span>Liên hệ</span>
           <h2>Trao đổi hình ảnh cho dự án tiếp theo.</h2>
         </div>
         <div>
