@@ -8,11 +8,17 @@ export const TiltCard = ({ children, className, onClick, style }) => (
 
 export const Reveal = ({ children, className = '', delay = 0, variant = 'up' }) => {
   const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => (
+    typeof window !== 'undefined' &&
+    (
+      window.matchMedia('(max-width: 640px)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+  ));
 
   useEffect(() => {
     const node = ref.current;
-    if (!node) return undefined;
+    if (!node || isVisible) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -26,7 +32,7 @@ export const Reveal = ({ children, className = '', delay = 0, variant = 'up' }) 
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [isVisible]);
 
   return (
     <div

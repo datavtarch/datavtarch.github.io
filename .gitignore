@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .video-cache
 exports
+.gstack
 
 # Editor directories and files
 .vscode/*

@@ -1253,6 +1253,11 @@ input:focus-visible {
 
   .project-row {
     padding: 18px;
+    gap: 16px;
+  }
+
+  .project-row img {
+    aspect-ratio: 4 / 3;
   }
 
   .project-row-copy dl {
