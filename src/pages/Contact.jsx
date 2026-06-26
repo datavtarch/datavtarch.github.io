@@ -15,9 +15,18 @@ export default function Contact() {
             <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
           </div>
           <form className="contact-v2-form" onSubmit={(event) => event.preventDefault()}>
-            <input aria-label="Tên" placeholder="Tên của bạn" />
-            <input aria-label="Email" type="email" placeholder="Email" />
-            <textarea aria-label="Nội dung" placeholder="Brief dự án" rows={5} />
+            <label>
+              <span>Tên của bạn</span>
+              <input name="name" autoComplete="name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autoComplete="email" />
+            </label>
+            <label className="is-wide">
+              <span>Brief dự án</span>
+              <textarea name="message" rows={5} />
+            </label>
             <button type="submit">Gửi</button>
           </form>
         </Reveal>
