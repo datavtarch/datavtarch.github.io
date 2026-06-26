@@ -6927,3 +6927,368 @@ body:has(.studio-index-home) .site-header {
     min-height: 330px;
   }
 }
+
+/* ========================================================
+   VTARCH STUDIO REFINEMENT PASS
+   ======================================================== */
+
+.site-header .section-shell {
+  width: min(100%, 1180px);
+}
+
+.site-header-inner,
+.site-header:not(.is-scrolled) .site-header-inner,
+.site-header.is-scrolled .site-header-inner,
+body:has(.profile-home) .site-header:not(.is-scrolled) .site-header-inner,
+body:has(.cinematic-home) .site-header:not(.is-scrolled) .site-header-inner {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--bg-color) 88%, transparent);
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+}
+
+.site-header:not(.is-scrolled) {
+  color: var(--text-main);
+}
+
+.site-header:not(.is-scrolled) .brand-logo,
+.site-header:not(.is-scrolled) .nav-link,
+.site-header:not(.is-scrolled) .icon-button {
+  color: var(--text-main);
+}
+
+.site-header:not(.is-scrolled) .brand-logo-text small,
+.site-header:not(.is-scrolled) .nav-link {
+  color: var(--text-muted);
+}
+
+.site-header:not(.is-scrolled) .brand-mark-frame {
+  border-color: var(--border-color);
+  background: var(--bg-color);
+}
+
+.site-header-inner {
+  min-height: 58px;
+  padding: 10px 0;
+}
+
+.site-header.is-scrolled .site-header-inner {
+  padding: 10px 0;
+}
+
+.brand-logo {
+  gap: 11px;
+}
+
+.brand-logo .brand-mark-svg {
+  width: 34px;
+  height: 38px;
+}
+
+.brand-logo-text strong {
+  font-size: 17px;
+  letter-spacing: 0.13em;
+}
+
+.brand-logo-text small {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.nav-link {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  background: transparent;
+}
+
+body:has(.studio-index-home) {
+  background: #f5f1ea;
+}
+
+.studio-index-home {
+  --studio-bg: #f5f1ea;
+  --studio-ink: #111;
+  --studio-muted: #6e6961;
+  --studio-line: rgba(17, 17, 17, 0.14);
+  background: var(--studio-bg);
+}
+
+.studio-index-home h1,
+.studio-index-home h2,
+.studio-index-home h3,
+.studio-index-brand strong,
+.studio-project-list strong {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.studio-index-shell {
+  grid-template-columns: minmax(300px, 0.52fr) minmax(0, 1fr);
+  border-bottom: 1px solid var(--studio-line);
+}
+
+.studio-index-sidebar {
+  background: var(--studio-bg);
+  color: var(--studio-ink);
+  border-right: 1px solid var(--studio-line);
+  padding: clamp(28px, 4vw, 56px);
+}
+
+.studio-index-brand span,
+.studio-index-intro > span,
+.studio-index-tabs span,
+.studio-project-list em,
+.studio-project-list small {
+  color: var(--studio-muted);
+}
+
+.studio-index-intro h1 {
+  max-width: 430px;
+  font-size: clamp(48px, 5.4vw, 78px);
+  line-height: 0.94;
+}
+
+.studio-index-intro > span {
+  max-width: 420px;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.studio-index-tabs {
+  gap: 18px;
+  border-top-color: var(--studio-line);
+}
+
+.studio-index-tabs span {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.studio-project-list {
+  gap: 0;
+  border-top: 1px solid var(--studio-line);
+}
+
+.studio-project-list button {
+  grid-template-columns: 54px 1fr auto;
+  border: 0;
+  border-bottom: 1px solid var(--studio-line);
+  border-radius: 0;
+  color: var(--studio-ink);
+  padding: 14px 0;
+}
+
+.studio-project-list button:hover,
+.studio-project-list button.is-active {
+  background: transparent;
+  border-color: var(--studio-line);
+}
+
+.studio-project-list button.is-active strong {
+  color: var(--studio-accent);
+}
+
+.studio-project-list img {
+  width: 54px;
+  height: 42px;
+  border-radius: 0;
+}
+
+.studio-preview {
+  padding: clamp(32px, 5vw, 70px);
+}
+
+.studio-preview-topbar {
+  margin-bottom: clamp(26px, 4vw, 52px);
+}
+
+.studio-preview-topbar a,
+.studio-preview-topbar button {
+  border-radius: 0;
+  background: transparent;
+}
+
+.studio-preview-topbar button {
+  background: var(--studio-ink);
+}
+
+.studio-browser-frame {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.studio-browser-bar {
+  display: none;
+}
+
+.studio-browser-content {
+  grid-template-columns: minmax(0, 0.54fr) minmax(0, 1fr);
+  min-height: auto;
+  padding: 0;
+}
+
+.studio-browser-copy h2 {
+  max-width: 520px;
+  font-size: clamp(46px, 5.8vw, 92px);
+}
+
+.studio-browser-copy > span {
+  max-width: 480px;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.studio-browser-copy dl {
+  background: transparent;
+  border-top: 1px solid var(--studio-line);
+}
+
+.studio-browser-copy dl div {
+  background: transparent;
+  border-bottom: 1px solid var(--studio-line);
+  padding: 15px 0;
+}
+
+.studio-browser-image {
+  border-radius: 0;
+}
+
+.studio-browser-image img {
+  aspect-ratio: 5 / 4;
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.studio-strip {
+  margin-top: clamp(48px, 7vw, 96px);
+}
+
+.studio-section,
+.studio-lab,
+.studio-contact {
+  padding-top: clamp(68px, 8vw, 112px);
+}
+
+.studio-capability-grid article,
+.studio-journal-list a {
+  min-height: 190px;
+}
+
+.studio-work-grid {
+  gap: 1px;
+  background: var(--studio-line);
+}
+
+.studio-work-grid button {
+  min-height: clamp(360px, 48vw, 560px);
+}
+
+.page-hero-minimal h1,
+.contact-v2 h1,
+.contact-v2 h2 {
+  max-width: 980px;
+  font-size: clamp(48px, 9vw, 132px);
+  letter-spacing: -0.035em;
+}
+
+.service-groups-v2 article {
+  min-height: 300px;
+}
+
+.project-row {
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 1100px) {
+  .studio-index-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-index-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--studio-line);
+  }
+
+  .studio-browser-content {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-browser-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header .section-shell {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .site-header-inner,
+  .site-header.is-scrolled .site-header-inner {
+    min-height: 54px;
+  }
+
+  .studio-index-home {
+    padding-bottom: 88px;
+  }
+
+  .studio-index-sidebar,
+  .studio-preview {
+    padding: 24px 20px;
+  }
+
+  .studio-index-intro {
+    padding-top: 42px;
+  }
+
+  .studio-index-intro h1 {
+    font-size: clamp(44px, 13vw, 58px);
+  }
+
+  .studio-project-list {
+    margin-top: 22px;
+  }
+
+  .studio-preview {
+    align-content: start;
+  }
+
+  .studio-preview-topbar {
+    display: none;
+  }
+
+  .studio-browser-copy h2 {
+    font-size: clamp(38px, 11vw, 52px);
+  }
+
+  .studio-browser-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .studio-section-head h2,
+  .studio-lab h2,
+  .studio-contact h2,
+  .page-hero-minimal h1,
+  .contact-v2 h1,
+  .contact-v2 h2 {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .studio-capability-grid article,
+  .studio-journal-list a {
+    min-height: 154px;
+  }
+}
