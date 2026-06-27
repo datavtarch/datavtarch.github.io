@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, BriefcaseBusiness, FileText, MapPin, X } from 'lucide-react';
+import { getProjectCover, getProjectGallery } from '../data/constants';
 
 export const TiltCard = ({ children, className, onClick, style }) => (
   <div className={className} onClick={onClick} style={style}>{children}</div>
@@ -101,7 +102,8 @@ const MetaRow = ({ label, value }) => (
 export const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
 
-  const gallery = project.gallery?.length ? project.gallery : [project.image];
+  const coverImage = getProjectCover(project);
+  const gallery = getProjectGallery(project);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
@@ -118,7 +120,7 @@ export const ProjectModal = ({ project, onClose }) => {
         <div className="project-modal-hero">
           <div className="relative project-modal-image">
             <img
-              src={project.image}
+              src={coverImage}
               alt={project.title}
               loading="lazy"
               decoding="async"

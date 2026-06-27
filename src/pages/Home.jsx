@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BrandMark } from '../components/Brand';
 import { Reveal } from '../components/UI';
-import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
+import { IMAGES, INSIGHTS, PROJECTS_DATA, getProjectCover } from '../data/constants';
 
 const projectCopy = [
   {
@@ -105,14 +105,14 @@ const Home = ({ setSelectedProject }) => {
               <BrandMark />
               <span>VTARCH Studio</span>
             </div>
-            <span className="cinematic-kicker">Architecture Visualization / AI CGI</span>
+            <span className="cinematic-kicker">Kiến trúc sư / Diễn họa / AI CGI</span>
             <h1 className="motion-title">
-              <span>Architecture</span>
-              <span>Visual Studio</span>
+              <span>Nguyễn Văn Thanh</span>
+              <span>Diễn họa kiến trúc</span>
             </h1>
             <p>
-              Diễn họa kiến trúc, nội thất và concept không gian bằng tư duy thiết kế,
-              D5 Render và workflow AI tinh gọn.
+              Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển hình ảnh kiến trúc, nội thất và concept
+              không gian bằng tư duy thiết kế, D5 Render và workflow AI tinh gọn.
             </p>
             <div className="cinematic-hero-actions">
               <Link to="/portfolio">Xem dự án</Link>
@@ -121,18 +121,18 @@ const Home = ({ setSelectedProject }) => {
             <div className="cinematic-hero-stats">
               <article>
                 <span>01</span>
-                <strong>100+</strong>
-                <em>Visual projects</em>
+                <strong>5+</strong>
+                <em>Năm kinh nghiệm</em>
               </article>
               <article>
                 <span>02</span>
-                <strong>D5</strong>
-                <em>Render workflow</em>
+                <strong>100+</strong>
+                <em>Dự án visual</em>
               </article>
               <article>
                 <span>03</span>
                 <strong>AI</strong>
-                <em>Concept & post</em>
+                <em>CGI workflow</em>
               </article>
             </div>
           </Reveal>
@@ -145,12 +145,35 @@ const Home = ({ setSelectedProject }) => {
               <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
             </button>
             <button className="reference-project-peek" type="button" onClick={() => setSelectedProject(heroProject)}>
-              <img src={heroProject.image} alt={heroProject.title} loading="eager" />
+              <img src={getProjectCover(heroProject)} alt={heroProject.title} loading="eager" />
               <span>{heroProject.type}</span>
               <strong>{heroProject.title}</strong>
             </button>
           </Reveal>
         </div>
+      </section>
+
+      <section className="cinematic-about section-shell">
+        <Reveal className="cinematic-about-image" variant="scale">
+          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="lazy" decoding="async" />
+        </Reveal>
+        <Reveal className="cinematic-about-copy" delay={100}>
+          <span className="cinematic-kicker">Profile</span>
+          <h2>Thông tin cá nhân trước, kỹ năng rõ ràng sau đó mới đến dự án.</h2>
+          <p>
+            VTARCH là portfolio của Nguyễn Văn Thanh, kiến trúc sư định hướng giao thoa giữa thiết kế,
+            diễn họa kiến trúc và công nghệ AI. Mục tiêu là tạo ra hình ảnh có chất lượng trình bày,
+            rõ ý tưởng không gian và đủ sức thuyết phục trong hồ sơ dự án.
+          </p>
+          <div className="cinematic-timeline">
+            {timeline.map(([year, text]) => (
+              <div key={year}>
+                <span>{year}</span>
+                <strong>{text}</strong>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       <section className="section-shell cinematic-works" id="projects">
@@ -162,7 +185,7 @@ const Home = ({ setSelectedProject }) => {
         <div className="cinematic-work-stage">
           <Reveal className="cinematic-work-preview" variant="scale">
             <div className="cinematic-preview-media">
-              <img src={activeProject.image} alt={activeProject.title} />
+              <img src={getProjectCover(activeProject)} alt={activeProject.title} />
             </div>
             <div>
               <span>{activeProject.year} / {activeProject.location}</span>
@@ -188,29 +211,6 @@ const Home = ({ setSelectedProject }) => {
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="cinematic-about section-shell">
-        <Reveal className="cinematic-about-image" variant="scale">
-          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="lazy" decoding="async" />
-        </Reveal>
-        <Reveal className="cinematic-about-copy" delay={100}>
-          <span className="cinematic-kicker">About VTARCH</span>
-          <h2>Studio diễn họa và công nghệ kiến trúc được xây từ nền tảng thiết kế.</h2>
-          <p>
-            VTARCH phát triển hình ảnh kiến trúc, nội thất, sản phẩm và concept không gian cho kiến trúc sư,
-            studio thiết kế và chủ đầu tư. Trọng tâm là ánh sáng, vật liệu, câu chuyện không gian và khả năng
-            chuyển ý tưởng thành hình ảnh thuyết phục.
-          </p>
-          <div className="cinematic-timeline">
-            {timeline.map(([year, text]) => (
-              <div key={year}>
-                <span>{year}</span>
-                <strong>{text}</strong>
-              </div>
-            ))}
-          </div>
-        </Reveal>
       </section>
 
       <section className="cinematic-services">

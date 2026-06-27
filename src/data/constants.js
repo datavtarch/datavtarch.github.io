@@ -26,6 +26,37 @@ export const IMAGES = {
   compareRender: getAssetPath('/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp'),
 };
 
+export const getPdfPreviewPath = (pdfLink) => {
+  if (!pdfLink) return '';
+
+  const cleanPath = pdfLink.split(/[?#]/)[0];
+  const fileName = cleanPath.split('/').pop() || '';
+  let baseName = fileName.replace(/\.pdf$/i, '');
+
+  try {
+    baseName = decodeURIComponent(baseName);
+  } catch {
+    // Keep the original string if the path is already decoded.
+  }
+
+  const slug = baseName
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+
+  return slug ? getAssetPath(`/pdf-previews/${slug}.webp`) : '';
+};
+
+export const getProjectCover = (project) => getPdfPreviewPath(project.pdfLink) || project.image;
+
+export const getProjectGallery = (project) => {
+  const pdfPreview = getPdfPreviewPath(project.pdfLink);
+  const galleryItems = project.gallery?.length ? project.gallery : [project.image];
+  return pdfPreview ? [pdfPreview, ...galleryItems.filter((image) => image !== pdfPreview)] : galleryItems;
+};
+
 const gallery = (...images) => images;
 
 export const PROJECTS_DATA = [

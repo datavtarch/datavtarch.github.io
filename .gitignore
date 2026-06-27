@@ -14,6 +14,7 @@ dist-ssr
 .video-cache
 exports
 .gstack
+reports*/
 
 # Editor directories and files
 .vscode/*

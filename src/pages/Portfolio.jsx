@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/UI';
-import { FILTER_CATEGORIES, PROJECTS_DATA } from '../data/constants';
+import { FILTER_CATEGORIES, PROJECTS_DATA, getProjectCover } from '../data/constants';
 
 const Portfolio = ({ setSelectedProject }) => {
   const [filter, setFilter] = useState('Tất cả');
@@ -18,20 +18,20 @@ const Portfolio = ({ setSelectedProject }) => {
   };
 
   return (
-    <div className="page-wrap">
+    <div className="page-wrap portfolio-page">
       <section className="section-shell page-hero-minimal">
-        <Reveal>
+        <Reveal className="portfolio-hero-copy">
           <p className="eyebrow">Dự án</p>
           <h1>Archive hình ảnh kiến trúc, nội thất, D5 Render và AI CGI.</h1>
           <p>
-            Mỗi dự án được trình bày như một case study ngắn: bối cảnh, loại hình, dịch vụ thực hiện
-            và gallery hình ảnh.
+            Mỗi dự án được trình bày như một case study ngắn, ưu tiên ảnh lớn, thông tin gọn và cảm giác
+            studio chuyên nghiệp.
           </p>
         </Reveal>
       </section>
 
       <section className="section-shell">
-        <div className="filter-bar">
+        <div className="filter-bar portfolio-filter-bar">
           {FILTER_CATEGORIES.map((category) => (
             <button
               key={category}
@@ -47,19 +47,29 @@ const Portfolio = ({ setSelectedProject }) => {
       <section className="section-shell project-archive section-space">
         {filteredProjects.map((project, idx) => (
           <Reveal key={project.id} delay={idx * 55}>
-            <button className="project-row" onClick={() => handleProjectClick(project)}>
-              <span className="project-row-index">{String(idx + 1).padStart(2, '0')}</span>
-              <img src={project.image} alt={project.title} loading={idx < 3 ? 'eager' : 'lazy'} decoding="async" />
-              <div className="project-row-copy">
-                <span>{project.year} / {project.location}</span>
+            <button className="project-card" onClick={() => handleProjectClick(project)}>
+              <span className="project-card-index">{String(idx + 1).padStart(2, '0')}</span>
+              <div className="project-card-media">
+                <img
+                  src={getProjectCover(project)}
+                  alt={project.title}
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+              <div className="project-card-copy">
+                <div className="project-card-meta">
+                  <span>{project.year}</span>
+                  <span>{project.location}</span>
+                </div>
                 <h2>{project.title}</h2>
                 <p>{project.desc}</p>
-                <dl>
-                  <div><dt>Loại hình</dt><dd>{project.type}</dd></div>
-                  <div><dt>Dịch vụ</dt><dd>{project.services.join(', ')}</dd></div>
-                </dl>
+                <div className="project-card-tags">
+                  <span>{project.type}</span>
+                  <span>{project.services[0]}</span>
+                </div>
               </div>
-              <ArrowUpRight size={22} className="project-row-icon" />
+              <ArrowUpRight size={22} className="project-card-icon" />
             </button>
           </Reveal>
         ))}
