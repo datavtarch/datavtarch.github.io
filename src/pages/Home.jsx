@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail } from 'lucide-react';
 import { BrandMark } from '../components/Brand';
@@ -42,6 +42,48 @@ const Home = ({ setSelectedProject }) => {
     []
   );
   const [activeProject, setActiveProject] = useState(projects[0]);
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const tilts = Array.from(document.querySelectorAll('.t-tilt'));
+    const cleanups = [];
+    const MAX = 4;
+
+    tilts.forEach((tilt) => {
+      const card = tilt.querySelector('.t-tilt-card');
+      if (!card) return;
+
+      const reset = () => {
+        tilt.classList.remove('is-hover');
+        card.classList.remove('is-tilting');
+        card.style.setProperty('--tilt-rx', '0deg');
+        card.style.setProperty('--tilt-ry', '0deg');
+      };
+
+      const track = (event) => {
+        if (reduce.matches || event.pointerType !== 'mouse') return;
+        const rect = tilt.getBoundingClientRect();
+        const px = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+        const py = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+
+        tilt.classList.add('is-hover');
+        card.classList.add('is-tilting');
+        card.style.setProperty('--tilt-ry', `${((px - 0.5) * MAX).toFixed(2)}deg`);
+        card.style.setProperty('--tilt-rx', `${((0.5 - py) * MAX).toFixed(2)}deg`);
+        card.style.setProperty('--tilt-gx', `${(px * 100).toFixed(1)}%`);
+        card.style.setProperty('--tilt-gy', `${(py * 100).toFixed(1)}%`);
+      };
+
+      tilt.addEventListener('pointermove', track);
+      tilt.addEventListener('pointerleave', reset);
+      cleanups.push(() => {
+        tilt.removeEventListener('pointermove', track);
+        tilt.removeEventListener('pointerleave', reset);
+      });
+    });
+
+    return () => cleanups.forEach((cleanup) => cleanup());
+  }, []);
 
   return (
     <main className="studio-index-home studio-home-split">
@@ -92,19 +134,22 @@ const Home = ({ setSelectedProject }) => {
         </aside>
 
         <section className="studio-preview studio-visual-deck" aria-label="Giới thiệu VTARCH">
-          <article className="studio-deck-copy">
-            <p>VTARCH profile</p>
-            <h2>Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
-            <div>
+          <article className="studio-deck-copy t-stagger is-shown">
+            <p className="t-stagger-line t-stagger-line--1">VTARCH profile</p>
+            <h2 className="t-stagger-line t-stagger-line--2">Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
+            <div className="t-stagger-line t-stagger-line--3">
               <Link to="/about">Giới thiệu <ArrowUpRight size={15} /></Link>
               <Link to="/portfolio">Xem dự án <ArrowUpRight size={15} /></Link>
             </div>
           </article>
 
           <div className="studio-deck-stage">
-            <button type="button" className="studio-deck-main" onClick={() => setSelectedProject(activeProject)}>
-              <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
-              <span>{activeProject.title}</span>
+            <button type="button" className="studio-deck-main t-tilt" onClick={() => setSelectedProject(activeProject)}>
+              <span className="t-tilt-card">
+                <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
+                <span className="studio-deck-main-title">{activeProject.title}</span>
+                <span className="t-tilt-glare" aria-hidden="true" />
+              </span>
             </button>
             <div className="studio-deck-strip" aria-label="Selected visual frames">
               {projects.slice(1, 4).map((project) => (
@@ -156,10 +201,13 @@ const Home = ({ setSelectedProject }) => {
 
         <div className="studio-work-grid">
           {projects.slice(0, 4).map((project) => (
-            <button key={project.id} type="button" onClick={() => setSelectedProject(project)}>
-              <img src={project.image} alt={project.title} loading="eager" decoding="async" />
-              <span>{project.year}</span>
-              <strong>{project.title}</strong>
+            <button key={project.id} type="button" className="t-tilt" onClick={() => setSelectedProject(project)}>
+              <span className="t-tilt-card">
+                <img src={project.image} alt={project.title} loading="eager" decoding="async" />
+                <span className="studio-work-year">{project.year}</span>
+                <strong>{project.title}</strong>
+                <span className="t-tilt-glare" aria-hidden="true" />
+              </span>
             </button>
           ))}
         </div>

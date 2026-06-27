@@ -8594,7 +8594,7 @@ body:has(.studio-index-home) .footer-bottom {
 
 .studio-deck-copy p,
 .studio-deck-portrait figcaption,
-.studio-deck-main span {
+.studio-deck-main-title {
   color: var(--studio-accent);
   font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: 10px;
@@ -8678,7 +8678,7 @@ body:has(.studio-index-home) .footer-bottom {
   filter: saturate(1) contrast(1.04);
 }
 
-.studio-deck-main span {
+.studio-deck-main-title {
   position: absolute;
   left: 18px;
   bottom: 16px;
@@ -9018,4 +9018,181 @@ body:has(.studio-index-home) .footer-bottom {
   .studio-home-split .studio-home-nav a:last-child {
     border-bottom: 1px solid var(--studio-line);
   }
+}
+
+/* ========================================================
+   TRANSITIONS.DEV MOTION LAYER
+   ======================================================== */
+
+:root {
+  --stagger-dur: 500ms;
+  --stagger-distance: 12px;
+  --stagger-stagger: 40ms;
+  --stagger-blur: 3px;
+  --stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tilt-perspective: 1000px;
+  --tilt-return: 1000ms;
+  --tilt-return-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tilt-follow: 400ms;
+  --tilt-follow-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --tilt-glare-opacity: 0.18;
+  --tilt-glare-fade: 300ms;
+  --tilt-glare-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Lines start translated down + blurred + invisible; .is-shown
+   on the parent flips them to their resting state. The second
+   line's transition-delay holds it back by --stagger-stagger
+   so the eye lands on the headline first. */
+.t-stagger-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(var(--stagger-distance));
+  filter: blur(var(--stagger-blur));
+  transition:
+    opacity   var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter    var(--stagger-dur) var(--stagger-ease);
+  will-change: transform, opacity, filter;
+}
+.t-stagger-line--2 { transition-delay: var(--stagger-stagger); }
+.t-stagger-line--3 { transition-delay: calc(var(--stagger-stagger) * 2); }
+
+.t-stagger.is-shown .t-stagger-line {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+/* Exit decouples from the stagger: same fade for every line,
+   no Y return, no blur - so the disappearance reads as a
+   single quiet fade instead of a reverse reveal. */
+.t-stagger.is-hiding .t-stagger-line {
+  opacity: 0;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 200ms ease,
+    transform 0s linear,
+    filter 0s linear;
+  transition-delay: 0s;
+}
+
+/* The outer wrapper is the flat hit area. */
+.t-tilt { touch-action: auto; }
+/* The card tilts toward the pointer via rotateX/rotateY fed
+   from JS; on leave it eases back to flat. A separate
+   .is-tilting class swaps in a short linear follow while the
+   pointer moves so the tilt tracks the cursor 1:1. */
+.t-tilt-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform:
+    perspective(var(--tilt-perspective))
+    rotateX(var(--tilt-rx, 0deg))
+    rotateY(var(--tilt-ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform var(--tilt-return) var(--tilt-return-ease);
+  will-change: transform;
+}
+.t-tilt-card.is-tilting {
+  transition: transform var(--tilt-follow) var(--tilt-follow-ease);
+}
+/* Cursor-tracked glare: layered soft circles that add like
+   light (screen blend) at the pointer position. */
+.t-tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle 95px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255,255,255,0.48), rgba(255,255,255,0.06) 52%, rgba(255,255,255,0) 84%),
+    radial-gradient(circle 200px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255,255,255,0.22), rgba(255,255,255,0.04) 58%, rgba(255,255,255,0) 78%),
+    radial-gradient(circle 360px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255,255,255,0.10), rgba(255,255,255,0) 88%);
+  transition: opacity var(--tilt-glare-fade) var(--tilt-glare-ease);
+}
+.t-tilt.is-hover .t-tilt-glare { opacity: var(--tilt-glare-opacity); }
+
+.studio-deck-main .t-tilt-card > img,
+.studio-work-grid .t-tilt-card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.studio-deck-main > .t-tilt-card,
+.studio-work-grid .t-tilt > .t-tilt-card {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+  z-index: auto;
+}
+
+.studio-work-grid button.t-tilt::after {
+  display: none;
+}
+
+.studio-work-grid .t-tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.62));
+  pointer-events: none;
+}
+
+.studio-deck-main .t-tilt-glare,
+.studio-work-grid .t-tilt-glare {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.studio-deck-main .studio-deck-main-title {
+  position: absolute;
+  z-index: 2;
+  left: 18px;
+  bottom: 16px;
+  color: #fff;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.45);
+}
+
+.studio-work-grid .t-tilt-card > .studio-work-year,
+.studio-work-grid .t-tilt-card > strong {
+  position: absolute;
+  z-index: 4;
+  color: #fff;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.42);
+}
+
+.studio-work-grid .t-tilt-card > .studio-work-year {
+  left: 20px;
+  top: 18px;
+}
+
+.studio-work-grid .t-tilt-card > strong {
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-stagger-line { transition: none !important; }
+  .t-tilt-card { transform: none !important; transition: none !important; }
 }
