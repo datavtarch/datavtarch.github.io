@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail } from 'lucide-react';
 import { BrandMark } from '../components/Brand';
-import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
+import { IMAGES, PROJECTS_DATA } from '../data/constants';
 
 const selectedProjectIds = [3, 4, 0, 2, 5, 17];
 
@@ -27,10 +27,11 @@ const capabilities = [
   },
 ];
 
-const stats = [
-  ['100+', 'hình ảnh / hồ sơ visual'],
-  ['5 năm', 'kinh nghiệm thiết kế'],
-  ['D5 + AI', 'workflow sản xuất'],
+const pageLinks = [
+  ['/about', 'Thông tin cá nhân', 'Nền tảng, kinh nghiệm và hướng phát triển của Nguyễn Văn Thanh.'],
+  ['/services', 'Kỹ năng & dịch vụ', 'Diễn họa, D5 Render, visual direction và workflow thiết kế.'],
+  ['/portfolio', 'Dự án', 'Các case study hình ảnh kiến trúc, nội thất và AI CGI.'],
+  ['/ai-lab', 'AI Lab', 'Thử nghiệm GPT, automation và quy trình hình ảnh bằng AI.'],
 ];
 
 const Home = ({ setSelectedProject }) => {
@@ -43,7 +44,7 @@ const Home = ({ setSelectedProject }) => {
   const [activeProject, setActiveProject] = useState(projects[0]);
 
   return (
-    <main className="studio-index-home">
+    <main className="studio-index-home studio-home-split">
       <section className="studio-index-shell">
         <aside className="studio-index-sidebar">
           <div className="studio-index-brand">
@@ -96,7 +97,7 @@ const Home = ({ setSelectedProject }) => {
             <h2>Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
             <div>
               <Link to="/about">Giới thiệu <ArrowUpRight size={15} /></Link>
-              <Link to="/contact">Liên hệ <ArrowUpRight size={15} /></Link>
+              <Link to="/portfolio">Xem dự án <ArrowUpRight size={15} /></Link>
             </div>
           </article>
 
@@ -105,10 +106,6 @@ const Home = ({ setSelectedProject }) => {
               <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
               <span>{activeProject.title}</span>
             </button>
-            <figure className="studio-deck-portrait">
-              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
-              <figcaption>Nguyễn Văn Thanh / Architect</figcaption>
-            </figure>
             <div className="studio-deck-strip" aria-label="Selected visual frames">
               {projects.slice(1, 4).map((project) => (
                 <button key={project.id} type="button" onClick={() => setActiveProject(project)}>
@@ -120,10 +117,20 @@ const Home = ({ setSelectedProject }) => {
         </section>
       </section>
 
-      <section className="studio-section studio-skill-section section-shell">
+      <section className="studio-home-nav section-shell" aria-label="Điều hướng nội dung VTARCH">
+        {pageLinks.map(([to, title, desc]) => (
+          <Link to={to} key={to}>
+            <span>{title}</span>
+            <p>{desc}</p>
+            <ArrowUpRight size={16} />
+          </Link>
+        ))}
+      </section>
+
+      <section className="studio-section studio-home-capabilities section-shell">
         <div className="studio-section-head">
           <span>Kỹ năng</span>
-          <h2>Một hồ sơ hình ảnh bắt đầu từ tư duy thiết kế, rồi mới đến công cụ.</h2>
+          <h2>Ba năng lực chính, còn phần chi tiết để trang riêng kể tiếp.</h2>
         </div>
         <div className="studio-skill-atelier">
           {capabilities.map((item) => (
@@ -141,49 +148,10 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      <section className="studio-strip section-shell">
-        {stats.map(([value, label]) => (
-          <article key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </article>
-        ))}
-      </section>
-
-      <section className="studio-section studio-project-section section-shell">
+      <section className="studio-section studio-home-projects section-shell">
         <div className="studio-section-head">
-          <span>Dự án</span>
-          <h2>Dự án là phần minh chứng cho cách tổ chức hình ảnh và câu chuyện không gian.</h2>
-        </div>
-
-        <article className="studio-featured-work">
-          <button type="button" onClick={() => setSelectedProject(activeProject)}>
-            <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
-          </button>
-          <div>
-            <span>{activeProject.year} / {activeProject.location}</span>
-            <h3>{activeProject.title}</h3>
-            <p>{activeProject.desc}</p>
-            <dl>
-              <div><dt>Loại hình</dt><dd>{activeProject.type}</dd></div>
-              <div><dt>Dịch vụ</dt><dd>{activeProject.services.join(', ')}</dd></div>
-            </dl>
-          </div>
-        </article>
-
-        <div className="studio-project-selector" aria-label="Chọn dự án nổi bật">
-          {projects.slice(0, 6).map((project, index) => (
-            <button
-              key={project.id}
-              type="button"
-              className={activeProject.id === project.id ? 'is-active' : ''}
-              onClick={() => setActiveProject(project)}
-            >
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{project.title}</strong>
-              <em>{project.type}</em>
-            </button>
-          ))}
+          <span>Dự án nổi bật</span>
+          <h2>Một vài khung hình đại diện. Toàn bộ dự án nằm ở trang Projects.</h2>
         </div>
 
         <div className="studio-work-grid">
@@ -195,35 +163,13 @@ const Home = ({ setSelectedProject }) => {
             </button>
           ))}
         </div>
-      </section>
 
-      <section className="studio-lab section-shell">
-        <div>
-          <span>AI Lab</span>
-          <h2>Công nghệ là lớp hỗ trợ thầm lặng bên trong tư duy hình ảnh.</h2>
-        </div>
-        <p>
-          AI được dùng để thử mood, kiểm tra hướng vật liệu, phát triển concept và tự động hóa một phần quy trình.
-          Điểm neo vẫn là kiến trúc, ánh sáng, tỉ lệ và câu chuyện không gian.
-        </p>
-      </section>
-
-      <section className="studio-section section-shell">
-        <div className="studio-section-head">
-          <span>Góc nhìn</span>
-          <h2>Ghi chú ngắn về D5 Render, AI CGI và workflow thiết kế.</h2>
-        </div>
-        <div className="studio-journal-list">
-          {INSIGHTS.slice(0, 3).map((post) => (
-            <Link to="/journal" key={post.title}>
-              <span>{post.category}</span>
-              <strong>{post.title}</strong>
-            </Link>
-          ))}
+        <div className="studio-home-more">
+          <Link to="/portfolio">Xem toàn bộ dự án <ArrowUpRight size={16} /></Link>
         </div>
       </section>
 
-      <section className="studio-contact section-shell">
+      <section className="studio-contact studio-home-contact section-shell">
         <div>
           <span>Liên hệ</span>
           <h2>Trao đổi hình ảnh cho dự án tiếp theo.</h2>
