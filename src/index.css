@@ -8540,3 +8540,37 @@ body:has(.studio-index-home) {
     min-height: 132px;
   }
 }
+
+/* Keep the global footer visually attached to the VTARCH editorial home. */
+body:has(.studio-index-home) .site-footer {
+  margin-top: 0;
+  padding-top: clamp(58px, 8vw, 104px);
+  padding-bottom: clamp(26px, 4vw, 46px);
+  border-top: 1px solid rgba(21, 19, 15, 0.115);
+  background: #f5f1ea;
+  color: #15130f;
+}
+
+body:has(.studio-index-home) .site-footer a,
+body:has(.studio-index-home) .site-footer span,
+body:has(.studio-index-home) .footer-title {
+  color: inherit;
+}
+
+body:has(.studio-index-home) .site-footer small,
+body:has(.studio-index-home) .brand-logo-text small,
+body:has(.studio-index-home) .footer-bottom {
+  color: #70685e;
+}
+
+[data-theme="dark"] body:has(.studio-index-home) .site-footer {
+  border-top-color: rgba(244, 239, 231, 0.14);
+  background: #0e0d0b;
+  color: #f4efe7;
+}
+
+[data-theme="dark"] body:has(.studio-index-home) .site-footer small,
+[data-theme="dark"] body:has(.studio-index-home) .brand-logo-text small,
+[data-theme="dark"] body:has(.studio-index-home) .footer-bottom {
+  color: #a8a096;
+}
