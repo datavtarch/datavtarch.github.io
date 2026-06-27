@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail } from 'lucide-react';
 import { BrandMark } from '../components/Brand';
-import { INSIGHTS, PROJECTS_DATA } from '../data/constants';
+import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
 const selectedProjectIds = [3, 4, 0, 2, 5, 17];
 
@@ -41,79 +41,44 @@ const Home = ({ setSelectedProject }) => {
 
           <div className="studio-index-intro">
             <p>Hồ sơ cá nhân</p>
-            <h1>Diễn họa kiến trúc & nội thất.</h1>
+            <h1>Nguyễn Văn Thanh.</h1>
             <span>
-              Nguyễn Văn Thanh phát triển hình ảnh kiến trúc, nội thất và concept không gian bằng nền tảng thiết kế,
-              D5 Render và workflow AI.
+              Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH như một hồ sơ giao thoa giữa kiến trúc,
+              diễn họa hình ảnh và công nghệ AI trong quy trình thiết kế.
             </span>
           </div>
 
           <button type="button" className="studio-mobile-featured" onClick={() => setSelectedProject(activeProject)}>
-            <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
+            <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
             <span>
-              <em>Selected work</em>
-              <strong>{activeProject.title}</strong>
+              <em>Founder / Architect</em>
+              <strong>Architecture Visualization / D5 / AI CGI</strong>
             </span>
           </button>
 
           <div className="studio-index-tabs" aria-label="Năng lực VTARCH">
-            <span>Profile</span>
-            <span>Projects</span>
-            <span>AI Lab</span>
+            <span>Kiến trúc</span>
+            <span>Diễn họa</span>
+            <span>Công nghệ AI</span>
           </div>
 
-          <div className="studio-project-list">
-            {projects.map((project, index) => (
-              <button
-                key={project.id}
-                type="button"
-                className={activeProject.id === project.id ? 'is-active' : ''}
-                onClick={() => setActiveProject(project)}
-              >
-                <img src={project.image} alt="" loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
-                <span>
-                  <strong>{project.title}</strong>
-                  <em>{project.type}</em>
-                </span>
-                <small>{String(index + 1).padStart(2, '0')}</small>
-              </button>
-            ))}
+          <div className="studio-profile-facts" aria-label="Thông tin Nguyễn Văn Thanh">
+            <div><span>Nền tảng</span><strong>Kiến trúc sư</strong></div>
+            <div><span>Kinh nghiệm</span><strong>5 năm</strong></div>
+            <div><span>Định hướng</span><strong>Architecture + Visualization + AI</strong></div>
           </div>
         </aside>
 
         <section className="studio-preview">
-          <div className="studio-preview-topbar">
-            <div>
-              <span>{activeProject.year} / {activeProject.location}</span>
-              <strong>{activeProject.title}</strong>
-            </div>
-            <div>
-              <button type="button" onClick={() => setSelectedProject(activeProject)}>Mở dự án</button>
-              <Link to="/portfolio">Archive <ArrowUpRight size={15} /></Link>
-            </div>
+          <div className="studio-profile-portrait">
+            <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
           </div>
-
-          <article className="studio-browser-frame">
-            <div className="studio-browser-bar" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <strong>vtarch.profile/{activeProject.id}</strong>
-            </div>
-
-            <div className="studio-browser-content">
-              <div className="studio-browser-copy">
-                <p>Selected case study</p>
-                <h2>{activeProject.title}</h2>
-                <span>{activeProject.desc}</span>
-                <dl>
-                  <div><dt>Loại hình</dt><dd>{activeProject.type}</dd></div>
-                  <div><dt>Dịch vụ</dt><dd>{activeProject.services.join(', ')}</dd></div>
-                </dl>
-              </div>
-              <button type="button" className="studio-browser-image" onClick={() => setSelectedProject(activeProject)}>
-                <img src={activeProject.image} alt={activeProject.title} loading="eager" />
-              </button>
+          <article className="studio-profile-panel">
+            <p>VTARCH profile</p>
+            <h2>Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
+            <div>
+              <Link to="/about">Giới thiệu <ArrowUpRight size={15} /></Link>
+              <Link to="/contact">Liên hệ <ArrowUpRight size={15} /></Link>
             </div>
           </article>
         </section>
@@ -147,12 +112,26 @@ const Home = ({ setSelectedProject }) => {
       <section className="studio-section section-shell">
         <div className="studio-section-head">
           <span>Dự án</span>
-          <h2>Hình ảnh vẫn là trung tâm của hồ sơ.</h2>
+          <h2>Dự án là phần minh chứng cho cách làm hình ảnh.</h2>
+        </div>
+        <div className="studio-project-selector">
+          {projects.slice(0, 6).map((project, index) => (
+            <button
+              key={project.id}
+              type="button"
+              className={activeProject.id === project.id ? 'is-active' : ''}
+              onClick={() => setActiveProject(project)}
+            >
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{project.title}</strong>
+              <em>{project.type}</em>
+            </button>
+          ))}
         </div>
         <div className="studio-work-grid">
-          {projects.slice(0, 4).map((project, index) => (
+          {projects.slice(0, 4).map((project) => (
             <button key={project.id} type="button" onClick={() => setSelectedProject(project)}>
-              <img src={project.image} alt={project.title} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
+              <img src={project.image} alt={project.title} loading="eager" decoding="async" />
               <span>{project.year}</span>
               <strong>{project.title}</strong>
             </button>
