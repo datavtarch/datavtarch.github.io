@@ -71,6 +71,12 @@ const Home = ({ setSelectedProject }) => {
             </span>
           </button>
 
+          <div className="studio-mobile-reel" aria-label="Một số khung hình VTARCH">
+            {projects.slice(0, 3).map((project) => (
+              <img key={project.id} src={project.image} alt="" loading="eager" decoding="async" />
+            ))}
+          </div>
+
           <div className="studio-index-tabs" aria-label="Năng lực VTARCH">
             <span>Kiến trúc</span>
             <span>Diễn họa</span>
@@ -84,11 +90,8 @@ const Home = ({ setSelectedProject }) => {
           </div>
         </aside>
 
-        <section className="studio-preview" aria-label="Giới thiệu VTARCH">
-          <div className="studio-profile-portrait">
-            <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
-          </div>
-          <article className="studio-profile-panel">
+        <section className="studio-preview studio-visual-deck" aria-label="Giới thiệu VTARCH">
+          <article className="studio-deck-copy">
             <p>VTARCH profile</p>
             <h2>Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
             <div>
@@ -96,6 +99,24 @@ const Home = ({ setSelectedProject }) => {
               <Link to="/contact">Liên hệ <ArrowUpRight size={15} /></Link>
             </div>
           </article>
+
+          <div className="studio-deck-stage">
+            <button type="button" className="studio-deck-main" onClick={() => setSelectedProject(activeProject)}>
+              <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
+              <span>{activeProject.title}</span>
+            </button>
+            <figure className="studio-deck-portrait">
+              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
+              <figcaption>Nguyễn Văn Thanh / Architect</figcaption>
+            </figure>
+            <div className="studio-deck-strip" aria-label="Selected visual frames">
+              {projects.slice(1, 4).map((project) => (
+                <button key={project.id} type="button" onClick={() => setActiveProject(project)}>
+                  <img src={project.image} alt={project.title} loading="eager" decoding="async" />
+                </button>
+              ))}
+            </div>
+          </div>
         </section>
       </section>
 
