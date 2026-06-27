@@ -1,234 +1,294 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Mail } from 'lucide-react';
 import { BrandMark } from '../components/Brand';
-import { IMAGES, PROJECTS_DATA } from '../data/constants';
+import { Reveal } from '../components/UI';
+import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 
-const selectedProjectIds = [3, 4, 0, 2, 5, 17];
-
-const capabilities = [
+const projectCopy = [
   {
-    number: '01',
-    title: 'Tư duy kiến trúc',
-    desc: 'Đọc brief, tổ chức câu chuyện không gian, chọn góc nhìn và nhịp hình ảnh dựa trên nền tảng thiết kế.',
-    tools: ['Concept', 'Composition', 'Material mood'],
+    sourceIndex: 3,
+    title: 'Celadon Modern Interior',
+    type: 'Interior visualization',
+    location: 'Ho Chi Minh City',
+    year: '2024',
+    note: 'Một khung hình nội thất được xử lý như ảnh tạp chí: ánh sáng mềm, vật liệu rõ, nhịp sống vừa đủ.',
   },
   {
-    number: '02',
-    title: 'Diễn họa hình ảnh',
-    desc: 'Dựng ánh sáng, vật liệu, camera và hậu kỳ để hình ảnh có chiều sâu, rõ ý đồ và đủ sức trình bày.',
-    tools: ['D5 Render', 'SketchUp', 'Post-production'],
+    sourceIndex: 0,
+    title: 'Trung tâm Thiền Làng Mai Đà Lạt',
+    type: 'Architecture concept',
+    location: 'Da Lat',
+    year: '2024',
+    note: 'Không gian thiền định được kể bằng địa hình, bóng đổ và chuyển tiếp giữa ồn ào và tĩnh lặng.',
   },
   {
-    number: '03',
-    title: 'Workflow AI',
-    desc: 'Dùng AI để thử mood, phát triển concept, kiểm tra biến thể và tăng tốc các bước lặp trong quy trình visual.',
-    tools: ['AI CGI', 'GPT Architecture', 'Automation'],
+    sourceIndex: 2,
+    title: 'Da Lat House',
+    type: 'Residential visualization',
+    location: 'Da Lat',
+    year: '2023',
+    note: 'Một nghiên cứu về chất liệu ấm, ánh sáng tự nhiên và cảm giác cư trú trong bối cảnh cao nguyên.',
+  },
+  {
+    sourceIndex: 4,
+    title: 'Vinhomes Hybrid Interior',
+    type: 'Hybrid CGI',
+    location: 'Ho Chi Minh City',
+    year: '2024',
+    note: 'Quy trình hybrid kết hợp D5 Render và AI hậu kỳ để thử mood, vật liệu và chiều sâu hình ảnh.',
   },
 ];
 
-const pageLinks = [
-  ['/about', 'Thông tin cá nhân', 'Nền tảng, kinh nghiệm và hướng phát triển của Nguyễn Văn Thanh.'],
-  ['/services', 'Kỹ năng & dịch vụ', 'Diễn họa, D5 Render, visual direction và workflow thiết kế.'],
-  ['/portfolio', 'Dự án', 'Các case study hình ảnh kiến trúc, nội thất và AI CGI.'],
-  ['/ai-lab', 'AI Lab', 'Thử nghiệm GPT, automation và quy trình hình ảnh bằng AI.'],
+const timeline = [
+  ['2017', 'Đại học Kiến Trúc TP.HCM'],
+  ['2021', 'Thiết kế & Diễn họa'],
+  ['2023', 'Ứng dụng AI vào visual workflow'],
+  ['2025', 'Xây dựng VTARCH'],
+  ['2026', 'Architecture + AI Technology'],
 ];
+
+const labItems = [
+  ['AI CGI', 'Tăng tốc thử mood, ánh sáng và vật liệu trước khi đi vào render chính.'],
+  ['GPT cho kiến trúc', 'Hỗ trợ phân tích brief, cấu trúc thuyết minh và phát triển hướng trình bày.'],
+  ['Workflow Automation', 'Tự động hóa các bước lặp lại trong xử lý hình ảnh và hồ sơ visual.'],
+];
+
+const services = [
+  ['Visual', 'Diễn họa kiến trúc, nội thất, ngoại thất, animation và hậu kỳ hình ảnh.'],
+  ['Design', 'Visual direction, concept không gian, moodboard vật liệu và góc nhìn trình bày.'],
+  ['Technology', 'AI CGI, GPT architecture, workflow AI và công cụ tự động hóa riêng.'],
+];
+
+const getProject = (entry) => ({
+  ...PROJECTS_DATA[entry.sourceIndex],
+  ...entry,
+});
 
 const Home = ({ setSelectedProject }) => {
-  const projects = useMemo(
-    () => selectedProjectIds
-      .map((id) => PROJECTS_DATA.find((project) => project.id === id))
-      .filter(Boolean),
-    []
-  );
+  const homeRef = useRef(null);
+  const projects = useMemo(() => projectCopy.map(getProject), []);
   const [activeProject, setActiveProject] = useState(projects[0]);
+  const heroProject = activeProject || projects[0];
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const tilts = Array.from(document.querySelectorAll('.t-tilt'));
-    const cleanups = [];
-    const MAX = 4;
+    const node = homeRef.current;
+    if (!node) return undefined;
 
-    tilts.forEach((tilt) => {
-      const card = tilt.querySelector('.t-tilt-card');
-      if (!card) return;
-
-      const reset = () => {
-        tilt.classList.remove('is-hover');
-        card.classList.remove('is-tilting');
-        card.style.setProperty('--tilt-rx', '0deg');
-        card.style.setProperty('--tilt-ry', '0deg');
-      };
-
-      const track = (event) => {
-        if (reduce.matches || event.pointerType !== 'mouse') return;
-        const rect = tilt.getBoundingClientRect();
-        const px = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
-        const py = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
-
-        tilt.classList.add('is-hover');
-        card.classList.add('is-tilting');
-        card.style.setProperty('--tilt-ry', `${((px - 0.5) * MAX).toFixed(2)}deg`);
-        card.style.setProperty('--tilt-rx', `${((0.5 - py) * MAX).toFixed(2)}deg`);
-        card.style.setProperty('--tilt-gx', `${(px * 100).toFixed(1)}%`);
-        card.style.setProperty('--tilt-gy', `${(py * 100).toFixed(1)}%`);
-      };
-
-      tilt.addEventListener('pointermove', track);
-      tilt.addEventListener('pointerleave', reset);
-      cleanups.push(() => {
-        tilt.removeEventListener('pointermove', track);
-        tilt.removeEventListener('pointerleave', reset);
+    let frame = 0;
+    const updateScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        node.style.setProperty('--scroll-ratio', `${Math.min(1, window.scrollY / max)}`);
       });
-    });
+    };
 
-    return () => cleanups.forEach((cleanup) => cleanup());
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll();
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateScroll);
+    };
   }, []);
 
   return (
-    <main className="studio-index-home studio-home-split">
-      <section className="studio-index-shell">
-        <aside className="studio-index-sidebar">
-          <div className="studio-index-brand">
-            <BrandMark />
-            <div>
-              <strong>VTARCH</strong>
-              <span>Architecture Visualization / AI CGI</span>
+    <div className="cinematic-home motion-ready" ref={homeRef}>
+      <div className="motion-spotlight" aria-hidden="true" />
+      <div className="motion-scanline" aria-hidden="true" />
+      <section className="cinematic-hero">
+        <div className="cinematic-hero-media" aria-hidden="true" />
+
+        <div className="section-shell cinematic-hero-inner">
+          <Reveal className="cinematic-hero-copy">
+            <div className="reference-hero-chip">
+              <BrandMark />
+              <span>VTARCH Studio</span>
             </div>
-          </div>
+            <span className="cinematic-kicker">Architecture Visualization / AI CGI</span>
+            <h1 className="motion-title">
+              <span>Architecture</span>
+              <span>Visual Studio</span>
+            </h1>
+            <p>
+              Diễn họa kiến trúc, nội thất và concept không gian bằng tư duy thiết kế,
+              D5 Render và workflow AI tinh gọn.
+            </p>
+            <div className="cinematic-hero-actions">
+              <Link to="/portfolio">Xem dự án</Link>
+              <Link to="/contact">Liên hệ</Link>
+            </div>
+            <div className="cinematic-hero-stats">
+              <article>
+                <span>01</span>
+                <strong>100+</strong>
+                <em>Visual projects</em>
+              </article>
+              <article>
+                <span>02</span>
+                <strong>D5</strong>
+                <em>Render workflow</em>
+              </article>
+              <article>
+                <span>03</span>
+                <strong>AI</strong>
+                <em>Concept & post</em>
+              </article>
+            </div>
+          </Reveal>
 
-          <div className="studio-index-intro">
-            <p>Hồ sơ cá nhân</p>
-            <h1>Nguyễn Văn Thanh.</h1>
-            <span>
-              Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH như một hồ sơ giao thoa giữa kiến trúc,
-              diễn họa hình ảnh và công nghệ AI trong quy trình thiết kế.
-            </span>
-          </div>
+          <Reveal className="reference-hero-visual" delay={120} variant="scale">
+            <span className="reference-hanging-ribbon">portfolio</span>
+            <button className="reference-portrait-card" type="button" onClick={() => setSelectedProject(heroProject)}>
+              <span className="reference-card-wire is-one" aria-hidden="true" />
+              <span className="reference-card-wire is-two" aria-hidden="true" />
+              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
+            </button>
+            <button className="reference-project-peek" type="button" onClick={() => setSelectedProject(heroProject)}>
+              <img src={heroProject.image} alt={heroProject.title} loading="eager" />
+              <span>{heroProject.type}</span>
+              <strong>{heroProject.title}</strong>
+            </button>
+          </Reveal>
+        </div>
+      </section>
 
-          <button type="button" className="studio-mobile-featured" onClick={() => setSelectedProject(activeProject)}>
-            <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
-            <span>
-              <em>Founder / Architect</em>
-              <strong>Architecture Visualization / D5 / AI CGI</strong>
-            </span>
-          </button>
+      <section className="section-shell cinematic-works" id="projects">
+        <Reveal className="cinematic-section-title">
+          <span>Portfolio showcase</span>
+          <h2>Dự án được trình bày như một hệ khung hình, tối giản nhưng có chiều sâu chuyển động.</h2>
+        </Reveal>
 
-          <div className="studio-mobile-reel" aria-label="Một số khung hình VTARCH">
-            {projects.slice(0, 3).map((project) => (
-              <img key={project.id} src={project.image} alt="" loading="eager" decoding="async" />
+        <div className="cinematic-work-stage">
+          <Reveal className="cinematic-work-preview" variant="scale">
+            <div className="cinematic-preview-media">
+              <img src={activeProject.image} alt={activeProject.title} />
+            </div>
+            <div>
+              <span>{activeProject.year} / {activeProject.location}</span>
+              <strong>{activeProject.title}</strong>
+            </div>
+          </Reveal>
+
+          <div className="cinematic-work-list">
+            {projects.map((project, idx) => (
+              <Reveal key={project.title} delay={idx * 70}>
+                <button
+                  type="button"
+                  className={activeProject.title === project.title ? 'is-active' : ''}
+                  onMouseEnter={() => setActiveProject(project)}
+                  onFocus={() => setActiveProject(project)}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <strong>{project.title}</strong>
+                  <em>{project.type}</em>
+                </button>
+              </Reveal>
             ))}
           </div>
-
-          <div className="studio-index-tabs" aria-label="Năng lực VTARCH">
-            <span>Kiến trúc</span>
-            <span>Diễn họa</span>
-            <span>Công nghệ AI</span>
-          </div>
-
-          <div className="studio-profile-facts" aria-label="Thông tin Nguyễn Văn Thanh">
-            <div><span>Nền tảng</span><strong>Kiến trúc sư</strong></div>
-            <div><span>Kinh nghiệm</span><strong>5 năm</strong></div>
-            <div><span>Định hướng</span><strong>Architecture + Visualization + AI</strong></div>
-          </div>
-        </aside>
-
-        <section className="studio-preview studio-visual-deck" aria-label="Giới thiệu VTARCH">
-          <article className="studio-deck-copy t-stagger is-shown">
-            <p className="t-stagger-line t-stagger-line--1">VTARCH profile</p>
-            <h2 className="t-stagger-line t-stagger-line--2">Diễn họa kiến trúc, nội thất và workflow hình ảnh bằng D5 Render + AI CGI.</h2>
-            <div className="t-stagger-line t-stagger-line--3">
-              <Link to="/about">Giới thiệu <ArrowUpRight size={15} /></Link>
-              <Link to="/portfolio">Xem dự án <ArrowUpRight size={15} /></Link>
-            </div>
-          </article>
-
-          <div className="studio-deck-stage">
-            <button type="button" className="studio-deck-main t-tilt" onClick={() => setSelectedProject(activeProject)}>
-              <span className="t-tilt-card">
-                <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
-                <span className="studio-deck-main-title">{activeProject.title}</span>
-                <span className="t-tilt-glare" aria-hidden="true" />
-              </span>
-            </button>
-            <div className="studio-deck-strip" aria-label="Selected visual frames">
-              {projects.slice(1, 4).map((project) => (
-                <button key={project.id} type="button" onClick={() => setActiveProject(project)}>
-                  <img src={project.image} alt={project.title} loading="eager" decoding="async" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <section className="studio-home-nav section-shell" aria-label="Điều hướng nội dung VTARCH">
-        {pageLinks.map(([to, title, desc]) => (
-          <Link to={to} key={to}>
-            <span>{title}</span>
-            <p>{desc}</p>
-            <ArrowUpRight size={16} />
-          </Link>
-        ))}
-      </section>
-
-      <section className="studio-section studio-home-capabilities section-shell">
-        <div className="studio-section-head">
-          <span>Kỹ năng</span>
-          <h2>Ba năng lực chính, còn phần chi tiết để trang riêng kể tiếp.</h2>
         </div>
-        <div className="studio-skill-atelier">
-          {capabilities.map((item) => (
-            <article key={item.title}>
-              <span>{item.number}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+      </section>
+
+      <section className="cinematic-about section-shell">
+        <Reveal className="cinematic-about-image" variant="scale">
+          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="lazy" decoding="async" />
+        </Reveal>
+        <Reveal className="cinematic-about-copy" delay={100}>
+          <span className="cinematic-kicker">About VTARCH</span>
+          <h2>Studio diễn họa và công nghệ kiến trúc được xây từ nền tảng thiết kế.</h2>
+          <p>
+            VTARCH phát triển hình ảnh kiến trúc, nội thất, sản phẩm và concept không gian cho kiến trúc sư,
+            studio thiết kế và chủ đầu tư. Trọng tâm là ánh sáng, vật liệu, câu chuyện không gian và khả năng
+            chuyển ý tưởng thành hình ảnh thuyết phục.
+          </p>
+          <div className="cinematic-timeline">
+            {timeline.map(([year, text]) => (
+              <div key={year}>
+                <span>{year}</span>
+                <strong>{text}</strong>
               </div>
-              <ul>
-                {item.tools.map((tool) => <li key={tool}>{tool}</li>)}
-              </ul>
-            </article>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="cinematic-services">
+        <div className="section-shell">
+          <Reveal className="cinematic-section-title">
+            <span>Practice</span>
+            <h2>Visual trước, công nghệ sau. Công nghệ chỉ xuất hiện khi nó làm hình ảnh tốt hơn.</h2>
+          </Reveal>
+          <div className="cinematic-service-grid">
+            {services.map(([title, desc], idx) => (
+              <Reveal key={title} delay={idx * 80}>
+                <article>
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cinematic-lab">
+        <div className="section-shell cinematic-lab-inner">
+          <Reveal className="cinematic-lab-heading">
+            <span>AI Lab</span>
+            <h2>Không phải hiệu ứng phô trương. Là lớp tăng tốc phía sau một workflow kiến trúc.</h2>
+          </Reveal>
+
+          <Reveal className="cinematic-lab-visual" delay={80} variant="scale">
+            <img src={IMAGES.projectAIJapandiModern} alt="AI CGI visual workflow" loading="lazy" decoding="async" />
+            <img src={IMAGES.compareRender} alt="D5 Render lighting workflow" loading="lazy" decoding="async" />
+          </Reveal>
+
+          <div className="cinematic-lab-list">
+            {labItems.map(([title, desc], idx) => (
+              <Reveal key={title} delay={idx * 70}>
+                <article>
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <strong>{title}</strong>
+                  <p>{desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell cinematic-journal">
+        <Reveal className="cinematic-section-title">
+          <span>Journal</span>
+          <h2>Ghi chú nghề nghiệp về render, AI và workflow thiết kế.</h2>
+        </Reveal>
+        <div className="cinematic-journal-grid">
+          {INSIGHTS.slice(0, 3).map((post, idx) => (
+            <Reveal key={post.title} delay={idx * 70}>
+              <Link to="/journal">
+                <img src={post.image} alt={post.title} loading="lazy" decoding="async" />
+                <span>{post.category}</span>
+                <strong>{post.title}</strong>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="studio-section studio-home-projects section-shell">
-        <div className="studio-section-head">
-          <span>Dự án nổi bật</span>
-          <h2>Một vài khung hình đại diện. Toàn bộ dự án nằm ở trang Projects.</h2>
-        </div>
-
-        <div className="studio-work-grid">
-          {projects.slice(0, 4).map((project) => (
-            <button key={project.id} type="button" className="t-tilt" onClick={() => setSelectedProject(project)}>
-              <span className="t-tilt-card">
-                <img src={project.image} alt={project.title} loading="eager" decoding="async" />
-                <span className="studio-work-year">{project.year}</span>
-                <strong>{project.title}</strong>
-                <span className="t-tilt-glare" aria-hidden="true" />
-              </span>
-            </button>
-          ))}
-        </div>
-
-        <div className="studio-home-more">
-          <Link to="/portfolio">Xem toàn bộ dự án <ArrowUpRight size={16} /></Link>
-        </div>
+      <section className="section-shell cinematic-contact">
+        <Reveal>
+          <span className="cinematic-kicker">Contact</span>
+          <h2>Let’s build a visual story for your next project.</h2>
+          <div>
+            <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
+            <a href="tel:0385550506">038.555.0506</a>
+            <Link to="/contact">Gửi brief dự án</Link>
+          </div>
+        </Reveal>
       </section>
-
-      <section className="studio-contact studio-home-contact section-shell">
-        <div>
-          <span>Liên hệ</span>
-          <h2>Trao đổi hình ảnh cho dự án tiếp theo.</h2>
-        </div>
-        <div>
-          <a href="mailto:vtarch99@gmail.com"><Mail size={16} /> vtarch99@gmail.com</a>
-          <a href="tel:0385550506">038.555.0506</a>
-          <Link to="/contact">Gửi brief dự án <ArrowUpRight size={15} /></Link>
-        </div>
-      </section>
-    </main>
+    </div>
   );
 };
 
