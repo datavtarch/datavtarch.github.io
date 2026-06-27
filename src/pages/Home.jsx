@@ -48,6 +48,14 @@ const Home = ({ setSelectedProject }) => {
             </span>
           </div>
 
+          <button type="button" className="studio-mobile-featured" onClick={() => setSelectedProject(activeProject)}>
+            <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
+            <span>
+              <em>Selected work</em>
+              <strong>{activeProject.title}</strong>
+            </span>
+          </button>
+
           <div className="studio-index-tabs" aria-label="Năng lực VTARCH">
             <span>Profile</span>
             <span>Projects</span>

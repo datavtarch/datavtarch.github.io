@@ -7292,3 +7292,242 @@ body:has(.studio-index-home) {
     min-height: 154px;
   }
 }
+
+/* ========================================================
+   VTARCH SOFT CRAFT PASS
+   ======================================================== */
+
+:root {
+  --border-color: rgba(17, 17, 17, 0.105);
+  --text-muted: #756f67;
+}
+
+.dark {
+  --border-color: rgba(245, 245, 245, 0.13);
+  --text-muted: #b5ada3;
+}
+
+h1,
+h2,
+h3,
+.studio-index-home h1,
+.studio-index-home h2,
+.studio-index-home h3,
+.page-hero-minimal h1,
+.contact-v2 h1,
+.contact-v2 h2,
+.footer-title {
+  font-weight: 500 !important;
+  letter-spacing: -0.018em !important;
+}
+
+.studio-index-home {
+  --studio-line: rgba(17, 17, 17, 0.105);
+  --studio-muted: #736d64;
+}
+
+.studio-index-sidebar {
+  padding-top: clamp(34px, 5vw, 68px);
+}
+
+.studio-index-brand .brand-mark-svg,
+.brand-logo .brand-mark-svg {
+  filter: saturate(0.9);
+}
+
+.studio-index-brand strong,
+.brand-logo-text strong {
+  font-weight: 600;
+}
+
+.studio-index-intro h1 {
+  max-width: 470px;
+  font-size: clamp(46px, 5vw, 72px);
+  line-height: 0.99;
+}
+
+.studio-index-intro > span,
+.studio-browser-copy > span,
+.studio-capability-grid p,
+.studio-lab p,
+.page-hero-minimal p,
+.journal-grid-v2 p {
+  color: var(--studio-muted, var(--text-muted));
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.studio-index-tabs,
+.studio-project-list,
+.studio-strip,
+.studio-section-head,
+.studio-lab,
+.studio-contact,
+.footer-grid,
+.footer-bottom {
+  border-color: var(--studio-line, var(--border-color));
+}
+
+.studio-mobile-featured {
+  display: none;
+}
+
+.studio-preview-topbar button,
+.studio-contact a:last-child,
+.contact-v2-form button {
+  background: #171411;
+}
+
+.studio-browser-image,
+.studio-work-grid button,
+.project-row img,
+.journal-grid-v2 img,
+.ai-page-hero img,
+.about-portrait img {
+  border-radius: 3px;
+}
+
+.studio-browser-image img,
+.studio-work-grid img,
+.project-row img {
+  filter: saturate(0.94) contrast(1.015);
+}
+
+.studio-strip strong {
+  font-weight: 500;
+}
+
+.studio-capability-grid article,
+.studio-journal-list a,
+.service-groups-v2 article {
+  background: color-mix(in srgb, var(--bg-color) 94%, white);
+}
+
+.studio-capability-grid h3,
+.studio-journal-list strong,
+.service-groups-v2 li {
+  font-weight: 500;
+}
+
+.page-wrap {
+  padding-top: clamp(108px, 12vw, 154px);
+}
+
+.page-hero-minimal h1,
+.contact-v2 h1,
+.contact-v2 h2 {
+  line-height: 0.98;
+}
+
+.service-groups-v2 li {
+  font-size: clamp(18px, 1.8vw, 25px);
+}
+
+.project-row {
+  padding-top: clamp(22px, 3vw, 34px);
+  padding-bottom: clamp(22px, 3vw, 34px);
+}
+
+.project-row-copy h2 {
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .studio-index-intro {
+    padding-top: 34px;
+  }
+
+  .studio-index-intro h1 {
+    font-size: clamp(39px, 11vw, 50px);
+    line-height: 1.02;
+  }
+
+  .studio-index-intro > span {
+    font-size: 14px;
+  }
+
+  .studio-mobile-featured {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    margin-top: 26px;
+    border: 0;
+    border-top: 1px solid var(--studio-line);
+    border-bottom: 1px solid var(--studio-line);
+    background: transparent;
+    color: var(--studio-ink);
+    padding: 16px 0;
+    text-align: left;
+  }
+
+  .studio-mobile-featured img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 3px;
+    object-fit: cover;
+    filter: saturate(0.94) contrast(1.015);
+  }
+
+  .studio-mobile-featured span,
+  .studio-mobile-featured em,
+  .studio-mobile-featured strong {
+    display: block;
+  }
+
+  .studio-mobile-featured em {
+    color: var(--studio-muted);
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .studio-mobile-featured strong {
+    margin-top: 4px;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.08;
+  }
+
+  .studio-preview {
+    display: none;
+  }
+
+  .studio-project-list button:nth-child(n + 5) {
+    display: none;
+  }
+
+  .studio-strip {
+    margin-top: 34px;
+  }
+
+  .studio-strip article {
+    min-height: 92px;
+    padding: 20px 0;
+  }
+
+  .studio-section,
+  .studio-lab,
+  .studio-contact {
+    padding-top: 58px;
+  }
+
+  .studio-section-head h2,
+  .studio-lab h2,
+  .studio-contact h2,
+  .page-hero-minimal h1,
+  .contact-v2 h1,
+  .contact-v2 h2 {
+    font-size: clamp(34px, 10vw, 48px);
+    line-height: 1.03;
+  }
+
+  .studio-work-grid button {
+    min-height: 300px;
+  }
+
+  .page-wrap {
+    padding-top: 94px;
+  }
+}
