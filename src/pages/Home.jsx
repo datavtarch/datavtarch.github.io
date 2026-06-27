@@ -7,9 +7,24 @@ import { IMAGES, INSIGHTS, PROJECTS_DATA } from '../data/constants';
 const selectedProjectIds = [3, 4, 0, 2, 5, 17];
 
 const capabilities = [
-  ['01', 'Diễn họa kiến trúc', 'Ngoại thất, nội thất, concept không gian và bộ ảnh trình bày dự án.'],
-  ['02', 'D5 Render', 'Ánh sáng, vật liệu, camera và hậu kỳ cho hình ảnh có chiều sâu.'],
-  ['03', 'AI CGI', 'Thử mood, phát triển concept và tăng tốc quy trình sản xuất visual.'],
+  {
+    number: '01',
+    title: 'Tư duy kiến trúc',
+    desc: 'Đọc brief, tổ chức câu chuyện không gian, chọn góc nhìn và nhịp hình ảnh dựa trên nền tảng thiết kế.',
+    tools: ['Concept', 'Composition', 'Material mood'],
+  },
+  {
+    number: '02',
+    title: 'Diễn họa hình ảnh',
+    desc: 'Dựng ánh sáng, vật liệu, camera và hậu kỳ để hình ảnh có chiều sâu, rõ ý đồ và đủ sức trình bày.',
+    tools: ['D5 Render', 'SketchUp', 'Post-production'],
+  },
+  {
+    number: '03',
+    title: 'Workflow AI',
+    desc: 'Dùng AI để thử mood, phát triển concept, kiểm tra biến thể và tăng tốc các bước lặp trong quy trình visual.',
+    tools: ['AI CGI', 'GPT Architecture', 'Automation'],
+  },
 ];
 
 const stats = [
@@ -69,7 +84,7 @@ const Home = ({ setSelectedProject }) => {
           </div>
         </aside>
 
-        <section className="studio-preview">
+        <section className="studio-preview" aria-label="Giới thiệu VTARCH">
           <div className="studio-profile-portrait">
             <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
           </div>
@@ -84,6 +99,27 @@ const Home = ({ setSelectedProject }) => {
         </section>
       </section>
 
+      <section className="studio-section studio-skill-section section-shell">
+        <div className="studio-section-head">
+          <span>Kỹ năng</span>
+          <h2>Một hồ sơ hình ảnh bắt đầu từ tư duy thiết kế, rồi mới đến công cụ.</h2>
+        </div>
+        <div className="studio-skill-atelier">
+          {capabilities.map((item) => (
+            <article key={item.title}>
+              <span>{item.number}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+              <ul>
+                {item.tools.map((tool) => <li key={tool}>{tool}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="studio-strip section-shell">
         {stats.map(([value, label]) => (
           <article key={label}>
@@ -93,28 +129,28 @@ const Home = ({ setSelectedProject }) => {
         ))}
       </section>
 
-      <section className="studio-section section-shell">
-        <div className="studio-section-head">
-          <span>Năng lực</span>
-          <h2>Một workflow hình ảnh gọn, rõ và đủ linh hoạt cho dự án kiến trúc.</h2>
-        </div>
-        <div className="studio-capability-grid">
-          {capabilities.map(([number, title, desc]) => (
-            <article key={title}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{desc}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="studio-section section-shell">
+      <section className="studio-section studio-project-section section-shell">
         <div className="studio-section-head">
           <span>Dự án</span>
-          <h2>Dự án là phần minh chứng cho cách làm hình ảnh.</h2>
+          <h2>Dự án là phần minh chứng cho cách tổ chức hình ảnh và câu chuyện không gian.</h2>
         </div>
-        <div className="studio-project-selector">
+
+        <article className="studio-featured-work">
+          <button type="button" onClick={() => setSelectedProject(activeProject)}>
+            <img src={activeProject.image} alt={activeProject.title} loading="eager" decoding="async" />
+          </button>
+          <div>
+            <span>{activeProject.year} / {activeProject.location}</span>
+            <h3>{activeProject.title}</h3>
+            <p>{activeProject.desc}</p>
+            <dl>
+              <div><dt>Loại hình</dt><dd>{activeProject.type}</dd></div>
+              <div><dt>Dịch vụ</dt><dd>{activeProject.services.join(', ')}</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <div className="studio-project-selector" aria-label="Chọn dự án nổi bật">
           {projects.slice(0, 6).map((project, index) => (
             <button
               key={project.id}
@@ -128,6 +164,7 @@ const Home = ({ setSelectedProject }) => {
             </button>
           ))}
         </div>
+
         <div className="studio-work-grid">
           {projects.slice(0, 4).map((project) => (
             <button key={project.id} type="button" onClick={() => setSelectedProject(project)}>
