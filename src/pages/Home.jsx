@@ -71,6 +71,10 @@ const Home = () => {
   const [activeProject, setActiveProject] = useState(projects[0]);
 
   useEffect(() => {
+    document.title = 'VTARCH | Diễn họa kiến trúc & AI CGI';
+  }, []);
+
+  useEffect(() => {
     const node = homeRef.current;
     if (!node) return undefined;
 
@@ -175,7 +179,7 @@ const Home = () => {
 
       <section className="section-shell cinematic-works" id="projects">
         <Reveal className="cinematic-section-title">
-          <span>Portfolio showcase</span>
+          <span>Dự án tiêu biểu</span>
           <h2>Dự án được trình bày như một hệ khung hình, tối giản nhưng có chiều sâu chuyển động.</h2>
         </Reveal>
 
@@ -213,7 +217,7 @@ const Home = () => {
       <section className="cinematic-services">
         <div className="section-shell">
           <Reveal className="cinematic-section-title">
-            <span>Practice</span>
+            <span>Năng lực</span>
             <h2>Visual trước, công nghệ sau. Công nghệ chỉ xuất hiện khi nó làm hình ảnh tốt hơn.</h2>
           </Reveal>
           <div className="cinematic-service-grid">
@@ -258,7 +262,7 @@ const Home = () => {
 
       <section className="section-shell cinematic-journal">
         <Reveal className="cinematic-section-title">
-          <span>Journal</span>
+          <span>Góc nhìn</span>
           <h2>Ghi chú nghề nghiệp về render, AI và workflow thiết kế.</h2>
         </Reveal>
         <div className="cinematic-journal-grid">
@@ -276,8 +280,8 @@ const Home = () => {
 
       <section className="section-shell cinematic-contact">
         <Reveal>
-          <span className="cinematic-kicker">Contact</span>
-          <h2>Let’s build a visual story for your next project.</h2>
+          <span className="cinematic-kicker">Liên hệ</span>
+          <h2>Bắt đầu câu chuyện hình ảnh cho dự án tiếp theo.</h2>
           <div>
             <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
             <a href="tel:0385550506">038.555.0506</a>

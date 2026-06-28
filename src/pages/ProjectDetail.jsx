@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { PROJECTS_DATA, getProjectGallery } from '../data/constants';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import {
+  PROJECTS_DATA,
+  getProjectCover,
+  getProjectDetailPath,
+  getProjectGallery,
+} from '../data/constants';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const project = PROJECTS_DATA.find((item) => String(item.id) === String(projectId));
+
+  useEffect(() => {
+    document.title = project ? `${project.title} | VTARCH` : 'Dự án | VTARCH';
+
+    const description = document.querySelector('meta[name="description"]');
+    if (project && description) {
+      description.setAttribute('content', project.desc);
+    }
+  }, [project]);
 
   if (!project) {
     return (
@@ -22,6 +36,10 @@ const ProjectDetail = () => {
   }
 
   const gallery = getProjectGallery(project);
+  const coverImage = getProjectCover(project);
+  const projectIndex = PROJECTS_DATA.findIndex((item) => item.id === project.id);
+  const previousProject = PROJECTS_DATA[(projectIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length];
+  const nextProject = PROJECTS_DATA[(projectIndex + 1) % PROJECTS_DATA.length];
 
   return (
     <main className="page-wrap project-detail-page">
@@ -36,6 +54,19 @@ const ProjectDetail = () => {
           <h1>{project.title}</h1>
           <p>{project.desc}</p>
         </div>
+
+        <figure className="project-detail-cover">
+          <img
+            src={coverImage}
+            alt={`${project.title} cover`}
+            loading="eager"
+            decoding="async"
+          />
+          <figcaption>
+            <span>Cover</span>
+            <strong>Ảnh chuyển trực tiếp từ PDF dự án</strong>
+          </figcaption>
+        </figure>
 
         <dl className="project-detail-meta">
           <div>
@@ -54,6 +85,14 @@ const ProjectDetail = () => {
       </section>
 
       <section className="section-shell project-detail-gallery">
+        <div className="project-detail-gallery-heading">
+          <div>
+            <p className="eyebrow">Gallery</p>
+            <h2>Toàn bộ hình ảnh dự án.</h2>
+          </div>
+          <span>{gallery.length} ảnh từ PDF</span>
+        </div>
+
         {gallery.map((image, index) => (
           <figure key={image} className="project-detail-frame">
             <img
@@ -78,6 +117,18 @@ const ProjectDetail = () => {
           </a>
         </section>
       )}
+
+      <section className="section-shell project-detail-next">
+        <Link to={getProjectDetailPath(previousProject)}>
+          <span>Dự án trước</span>
+          <strong>{previousProject.title}</strong>
+        </Link>
+        <Link to={getProjectDetailPath(nextProject)}>
+          <span>Dự án tiếp theo</span>
+          <strong>{nextProject.title}</strong>
+          <ArrowRight size={17} />
+        </Link>
+      </section>
     </main>
   );
 };

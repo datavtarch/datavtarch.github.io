@@ -71,6 +71,20 @@ const PDF_PAGE_COUNTS = {
   'vinhomes-hybrid': 30,
 };
 
+const PDF_COVER_PAGES = {
+  'ai-phong-cach-indochine': 9,
+  'ai-phong-cach-japandi': 6,
+  'ai-phong-cach-japandi-hien-dai': 9,
+  'celadon-interior': 1,
+  'd5-render-phong-cach-hien-dai': 1,
+  'd5-render-wabi': 1,
+  'd5-render-wabi-trung': 1,
+  'sketchup-d5-render-du-an-thiet-ke-da-lat-house': 2,
+  'thanh-tuan-motel': 2,
+  'thuyet-minh-tot-nghiep': 1,
+  'vinhomes-hybrid': 1,
+};
+
 export const getPdfPreviewPath = (pdfLink) => {
   const slug = getPdfSlug(pdfLink);
   return slug ? getAssetPath(`/pdf-previews/${slug}.webp`) : '';
@@ -84,9 +98,12 @@ export const getProjectPdfImages = (project) => {
   ));
 };
 
-export const getProjectCover = (project) => (
-  getProjectPdfImages(project)[0] || project.image || getPdfPreviewPath(project.pdfLink)
-);
+export const getProjectCover = (project) => {
+  const slug = getPdfSlug(project.pdfLink);
+  const pdfImages = getProjectPdfImages(project);
+  const coverPage = Math.max(1, PDF_COVER_PAGES[slug] || 1);
+  return pdfImages[coverPage - 1] || pdfImages[0] || project.image || getPdfPreviewPath(project.pdfLink);
+};
 
 export const getProjectGallery = (project) => {
   const pdfImages = getProjectPdfImages(project);

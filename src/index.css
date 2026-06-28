@@ -5338,3 +5338,413 @@ body:has(.cinematic-home) .site-header.is-scrolled .icon-button {
     border-radius: 20px !important;
   }
 }
+
+/* ========================================================
+   VTARCH FINAL INTERFACE CONSOLIDATION
+   ======================================================== */
+
+body {
+  font-family: "Be Vietnam Pro", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-heading,
+.brand-logo-text strong,
+.motion-title,
+.cinematic-section-title h2,
+.project-card-copy h2,
+.project-detail-title h1,
+.project-detail-gallery-heading h2,
+.project-detail-next strong {
+  font-family: "Be Vietnam Pro", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+.cinematic-hero h1.motion-title {
+  max-width: 760px;
+  font-size: 5.25rem !important;
+  font-weight: 700;
+  line-height: 0.94;
+}
+
+.page-hero-minimal h1 {
+  max-width: 820px;
+  font-size: 3.75rem;
+  font-weight: 700;
+  line-height: 1.06;
+}
+
+.page-hero-minimal p {
+  max-width: 680px;
+}
+
+.cinematic-section-title h2,
+.cinematic-about-copy h2,
+.cinematic-lab-heading h2,
+.cinematic-contact h2 {
+  font-size: 4.25rem;
+  font-weight: 650;
+  line-height: 1.02;
+}
+
+.project-archive {
+  gap: 28px;
+  margin-top: 44px;
+}
+
+.project-card {
+  min-height: 100%;
+  border-radius: 30px !important;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-color) 96%, transparent), color-mix(in srgb, var(--panel-color) 72%, transparent));
+  border: 1px solid color-mix(in srgb, var(--border-color) 82%, transparent);
+  padding: 12px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"] .project-card {
+  box-shadow: 0 24px 58px rgba(40, 30, 18, 0.08);
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border-color));
+  transform: translateY(-3px);
+}
+
+.project-card-media {
+  aspect-ratio: 4 / 3;
+  border-radius: 24px !important;
+  background: color-mix(in srgb, var(--panel-elevated) 76%, var(--bg-color));
+}
+
+.project-card-media img {
+  border-radius: 24px !important;
+}
+
+.project-card-index {
+  top: 26px;
+  left: 26px;
+  border-radius: 999px;
+  background: rgba(14, 14, 14, 0.46);
+  padding: 6px 9px;
+  color: #f5f5f5;
+}
+
+[data-theme="light"] .project-card-index {
+  background: rgba(245, 241, 234, 0.74);
+  color: var(--accent);
+}
+
+.project-card-copy {
+  gap: 12px;
+  padding: 20px 8px 10px;
+}
+
+.project-card-copy h2 {
+  max-width: 16ch;
+  font-size: 2rem;
+  font-weight: 650;
+  line-height: 1.08;
+}
+
+.project-card-copy p {
+  min-height: 4.8em;
+  max-width: 54ch;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
+.project-card-meta {
+  gap: 8px 12px;
+}
+
+.project-card-tags span {
+  min-height: 30px;
+  border-radius: 999px !important;
+  background: color-mix(in srgb, var(--panel-elevated) 58%, transparent);
+}
+
+.project-detail-hero {
+  display: grid;
+  gap: 34px;
+  padding-top: 128px;
+  border-bottom: 0;
+}
+
+.project-detail-title {
+  max-width: 860px;
+  margin-top: 28px;
+}
+
+.project-detail-title h1 {
+  max-width: 14ch;
+  font-size: 4.75rem;
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.project-detail-title > p:last-child {
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.project-detail-cover {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 34px;
+  background: color-mix(in srgb, var(--panel-color) 88%, transparent);
+  padding: 12px;
+}
+
+.project-detail-cover img {
+  width: 100%;
+  max-height: 74vh;
+  border-radius: 24px;
+  object-fit: contain;
+  background: color-mix(in srgb, var(--panel-elevated) 80%, #0e0e0e);
+}
+
+.project-detail-cover figcaption,
+.project-detail-gallery-heading > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 2px 8px 6px;
+  color: var(--text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-detail-cover figcaption strong {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.project-detail-meta {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 0;
+  border: 0;
+  background: transparent;
+}
+
+.project-detail-meta div {
+  min-height: 116px;
+  border: 1px solid var(--border-color);
+  border-radius: 24px !important;
+  background: color-mix(in srgb, var(--panel-color) 92%, transparent);
+}
+
+.project-detail-gallery {
+  gap: 28px;
+  padding-top: 48px;
+}
+
+.project-detail-gallery-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+
+.project-detail-gallery-heading h2 {
+  margin-top: 10px;
+  font-size: 2.1rem;
+  font-weight: 650;
+  line-height: 1.12;
+}
+
+.project-detail-frame {
+  width: min(100%, 1120px);
+  margin-inline: auto;
+  gap: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  background: color-mix(in srgb, var(--panel-color) 88%, transparent);
+  padding: 12px;
+}
+
+.project-detail-frame img {
+  border: 0;
+  border-radius: 22px !important;
+  object-fit: contain;
+}
+
+.project-detail-frame figcaption {
+  padding: 0 6px 4px;
+}
+
+.project-detail-pdf {
+  padding-bottom: 28px;
+}
+
+.project-detail-pdf a {
+  min-height: 52px;
+  border-radius: 999px !important;
+  padding-inline: 22px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.project-detail-next {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding-bottom: 84px;
+}
+
+.project-detail-next a {
+  display: grid;
+  gap: 12px;
+  min-height: 132px;
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--panel-color) 90%, transparent);
+  padding: 24px;
+}
+
+.project-detail-next a:last-child {
+  justify-items: end;
+  text-align: right;
+}
+
+.project-detail-next span {
+  color: var(--accent);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-detail-next strong {
+  max-width: 20ch;
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.14;
+}
+
+@media (max-width: 980px) {
+  .cinematic-hero h1.motion-title {
+    font-size: 4rem !important;
+  }
+
+  .cinematic-section-title h2,
+  .cinematic-about-copy h2,
+  .cinematic-lab-heading h2,
+  .cinematic-contact h2 {
+    font-size: 3.1rem;
+  }
+
+  .project-archive {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-title h1 {
+    font-size: 3.6rem;
+  }
+
+  .page-hero-minimal h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .reference-hero-chip,
+  .reference-hero-visual,
+  .reference-portrait-card,
+  .reference-portrait-caption,
+  .cinematic-about-image {
+    display: none !important;
+  }
+
+  .cinematic-hero-inner {
+    padding-top: 120px;
+    padding-bottom: 58px;
+  }
+
+  .cinematic-hero h1.motion-title {
+    max-width: 12ch;
+    font-size: 2.75rem !important;
+    line-height: 1.02;
+  }
+
+  .cinematic-section-title h2,
+  .cinematic-about-copy h2,
+  .cinematic-lab-heading h2,
+  .cinematic-contact h2 {
+    font-size: 2.35rem;
+    line-height: 1.08;
+  }
+
+  .page-hero-minimal h1 {
+    max-width: 13.5em;
+    font-size: 2.1rem;
+    line-height: 1.1;
+  }
+
+  .project-card {
+    border-radius: 26px !important;
+  }
+
+  .project-card-media,
+  .project-card-media img {
+    border-radius: 20px !important;
+  }
+
+  .project-card-copy h2 {
+    font-size: 1.55rem;
+  }
+
+  .project-card-copy p {
+    min-height: 0;
+    font-size: 0.9rem;
+  }
+
+  .project-detail-hero {
+    padding-top: 104px;
+  }
+
+  .project-detail-title h1 {
+    max-width: 12ch;
+    font-size: 2.55rem;
+    line-height: 1.05;
+  }
+
+  .project-detail-cover,
+  .project-detail-frame {
+    border-radius: 24px;
+    padding: 8px;
+  }
+
+  .project-detail-cover img,
+  .project-detail-frame img {
+    border-radius: 18px !important;
+  }
+
+  .project-detail-meta,
+  .project-detail-next {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-gallery-heading {
+    display: grid;
+  }
+
+  .project-detail-gallery-heading h2 {
+    font-size: 1.6rem;
+  }
+
+  .project-detail-next a:last-child {
+    justify-items: start;
+    text-align: left;
+  }
+}
