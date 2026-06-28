@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, BriefcaseBusiness, FileText, MapPin, X } from 'lucide-react';
 import { getProjectCover, getProjectGallery } from '../data/constants';
@@ -8,37 +8,9 @@ export const TiltCard = ({ children, className, onClick, style }) => (
 );
 
 export const Reveal = ({ children, className = '', delay = 0, variant = 'up' }) => {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(() => (
-    typeof window !== 'undefined' &&
-    (
-      window.matchMedia('(max-width: 640px)').matches ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    )
-  ));
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node || isVisible) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.18 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [isVisible]);
-
   return (
     <div
-      ref={ref}
-      className={`reveal-item ${isVisible ? 'is-visible' : ''} ${className}`}
+      className={`reveal-item is-visible ${className}`}
       data-reveal-variant={variant}
       style={{ '--reveal-delay': `${delay}ms` }}
     >

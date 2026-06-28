@@ -138,17 +138,14 @@ const Home = ({ setSelectedProject }) => {
           </Reveal>
 
           <Reveal className="reference-hero-visual" delay={120} variant="scale">
-            <span className="reference-hanging-ribbon">portfolio</span>
             <button className="reference-portrait-card" type="button" onClick={() => setSelectedProject(heroProject)}>
-              <span className="reference-card-wire is-one" aria-hidden="true" />
-              <span className="reference-card-wire is-two" aria-hidden="true" />
               <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
             </button>
-            <button className="reference-project-peek" type="button" onClick={() => setSelectedProject(heroProject)}>
-              <img src={getProjectCover(heroProject)} alt={heroProject.title} loading="eager" />
-              <span>{heroProject.type}</span>
-              <strong>{heroProject.title}</strong>
-            </button>
+            <div className="reference-portrait-caption">
+              <span>Profile</span>
+              <strong>Nguyễn Văn Thanh</strong>
+              <em>Architecture Visualization / AI CGI</em>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -241,8 +238,8 @@ const Home = ({ setSelectedProject }) => {
           </Reveal>
 
           <Reveal className="cinematic-lab-visual" delay={80} variant="scale">
-            <img src={IMAGES.projectAIJapandiModern} alt="AI CGI visual workflow" loading="lazy" decoding="async" />
-            <img src={IMAGES.compareRender} alt="D5 Render lighting workflow" loading="lazy" decoding="async" />
+            <img src={IMAGES.projectAIJapandiModern} alt="AI CGI visual workflow" loading="eager" decoding="async" />
+            <img src={IMAGES.compareRender} alt="D5 Render lighting workflow" loading="eager" decoding="async" />
           </Reveal>
 
           <div className="cinematic-lab-list">
@@ -268,7 +265,7 @@ const Home = ({ setSelectedProject }) => {
           {INSIGHTS.slice(0, 3).map((post, idx) => (
             <Reveal key={post.title} delay={idx * 70}>
               <Link to="/journal">
-                <img src={post.image} alt={post.title} loading="lazy" decoding="async" />
+                <img src={post.image} alt={post.title} loading="eager" decoding="async" />
                 <span>{post.category}</span>
                 <strong>{post.title}</strong>
               </Link>

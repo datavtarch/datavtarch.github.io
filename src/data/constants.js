@@ -26,6 +26,15 @@ export const IMAGES = {
   compareRender: getAssetPath('/projects/D5_RENDER_-_PHONG_CÁCH_HIỆN_ĐẠI.webp'),
 };
 
+Object.assign(IMAGES, {
+  portrait: getAssetPath('/projects/profile-nguyen-van-thanh.webp'),
+  projectDaLatHouse: getAssetPath('/projects/sketchup-d5-render-da-lat-house.webp'),
+  storeJapandi: getAssetPath('/projects/ai-phong-cach-japandi.webp'),
+  storeIndochine: getAssetPath('/projects/ai-phong-cach-indochine.webp'),
+  projectAIJapandiModern: getAssetPath('/projects/ai-phong-cach-japandi-hien-dai.webp'),
+  compareRender: getAssetPath('/projects/d5-render-phong-cach-hien-dai.webp'),
+});
+
 export const getPdfPreviewPath = (pdfLink) => {
   if (!pdfLink) return '';
 
@@ -49,12 +58,14 @@ export const getPdfPreviewPath = (pdfLink) => {
   return slug ? getAssetPath(`/pdf-previews/${slug}.webp`) : '';
 };
 
-export const getProjectCover = (project) => getPdfPreviewPath(project.pdfLink) || project.image;
+export const getProjectCover = (project) => project.image || getPdfPreviewPath(project.pdfLink);
 
 export const getProjectGallery = (project) => {
   const pdfPreview = getPdfPreviewPath(project.pdfLink);
-  const galleryItems = project.gallery?.length ? project.gallery : [project.image];
-  return pdfPreview ? [pdfPreview, ...galleryItems.filter((image) => image !== pdfPreview)] : galleryItems;
+  const galleryItems = project.gallery?.length ? project.gallery : [project.image].filter(Boolean);
+  return pdfPreview
+    ? [...galleryItems, pdfPreview].filter((image, index, list) => image && list.indexOf(image) === index)
+    : galleryItems;
 };
 
 const gallery = (...images) => images;
