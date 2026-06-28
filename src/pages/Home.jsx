@@ -44,7 +44,7 @@ const timeline = [
   ['2021', 'Thiết kế & Diễn họa'],
   ['2023', 'Ứng dụng AI vào visual workflow'],
   ['2025', 'Xây dựng VTARCH'],
-  ['2026', 'Architecture + AI Technology'],
+  ['2026', 'Kiến trúc + công nghệ AI'],
 ];
 
 const labItems = [
@@ -146,7 +146,7 @@ const Home = () => {
               <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
             </button>
             <div className="reference-portrait-caption">
-              <span>Profile</span>
+              <span>Hồ sơ</span>
               <strong>Nguyễn Văn Thanh</strong>
               <em>Architecture Visualization / AI CGI</em>
             </div>
@@ -159,12 +159,12 @@ const Home = () => {
           <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="lazy" decoding="async" />
         </Reveal>
         <Reveal className="cinematic-about-copy" delay={100}>
-          <span className="cinematic-kicker">Profile</span>
-          <h2>Thông tin cá nhân trước, kỹ năng rõ ràng sau đó mới đến dự án.</h2>
+          <span className="cinematic-kicker">Hồ sơ</span>
+          <h2>Nguyễn Văn Thanh, kiến trúc sư phát triển hình ảnh kiến trúc và workflow AI.</h2>
           <p>
-            VTARCH là portfolio của Nguyễn Văn Thanh, kiến trúc sư định hướng giao thoa giữa thiết kế,
-            diễn họa kiến trúc và công nghệ AI. Mục tiêu là tạo ra hình ảnh có chất lượng trình bày,
-            rõ ý tưởng không gian và đủ sức thuyết phục trong hồ sơ dự án.
+            VTARCH là không gian lưu trữ các nghiên cứu hình ảnh, diễn họa nội thất, diễn họa ngoại thất
+            và thử nghiệm AI CGI. Mỗi dự án được tiếp cận bằng tư duy kiến trúc trước, sau đó mới đến
+            công cụ render, hậu kỳ và tự động hóa.
           </p>
           <div className="cinematic-timeline">
             {timeline.map(([year, text]) => (
