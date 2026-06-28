@@ -5048,6 +5048,21 @@ body:has(.cinematic-home) .site-header.is-scrolled .icon-button {
 }
 
 @media (max-width: 760px) {
+  .reference-hero-chip,
+  .reference-portrait-caption,
+  .cinematic-about-image {
+    display: none !important;
+  }
+
+  .cinematic-hero-copy > .cinematic-kicker {
+    margin-top: 0 !important;
+  }
+
+  .cinematic-about {
+    margin-top: 0;
+    padding-top: 54px;
+  }
+
   .project-archive {
     gap: 18px;
   }
