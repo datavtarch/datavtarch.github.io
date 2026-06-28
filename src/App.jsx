@@ -31,7 +31,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState(false);
 
   useEffect(() => {
     let progress = 0;
