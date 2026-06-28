@@ -5089,3 +5089,252 @@ body:has(.cinematic-home) .site-header.is-scrolled .icon-button {
     font-size: 13px;
   }
 }
+
+/* ========================================================
+   VTARCH PROJECT DETAIL PAGES
+   ======================================================== */
+
+.project-detail-page {
+  background: var(--bg-color);
+}
+
+.project-detail-hero {
+  padding-top: clamp(120px, 15vw, 190px);
+  padding-bottom: clamp(44px, 7vw, 96px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  color: var(--text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-detail-title {
+  display: grid;
+  gap: 24px;
+  max-width: 920px;
+  margin-top: clamp(34px, 6vw, 74px);
+}
+
+.project-detail-title h1 {
+  max-width: 11ch;
+  font-size: clamp(54px, 9vw, 132px);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.project-detail-title > p:last-child {
+  max-width: 720px;
+  color: var(--text-muted);
+  font-size: clamp(16px, 1.4vw, 22px);
+  line-height: 1.7;
+}
+
+.project-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(38px, 6vw, 76px);
+  background: var(--border-color);
+  border: 1px solid var(--border-color);
+}
+
+.project-detail-meta div {
+  min-height: 128px;
+  background: var(--panel-color);
+  padding: clamp(18px, 2vw, 28px);
+}
+
+.project-detail-meta dt {
+  color: var(--accent);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-detail-meta dd {
+  margin: 18px 0 0;
+  color: var(--text-main);
+  line-height: 1.55;
+}
+
+.project-detail-gallery {
+  display: grid;
+  gap: clamp(28px, 5vw, 72px);
+  padding-top: clamp(42px, 7vw, 92px);
+  padding-bottom: clamp(54px, 9vw, 120px);
+}
+
+.project-detail-frame {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.project-detail-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-color);
+  background: var(--panel-color);
+}
+
+.project-detail-frame figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-detail-pdf {
+  padding-bottom: clamp(52px, 8vw, 96px);
+}
+
+.project-detail-pdf a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  border: 1px solid var(--border-color);
+  padding: 0 18px;
+  color: var(--text-main);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-detail-not-found {
+  min-height: 70vh;
+  padding-top: 150px;
+}
+
+@media (max-width: 760px) {
+  .project-detail-hero {
+    padding-top: 96px;
+  }
+
+  .project-detail-title h1 {
+    max-width: 9ch;
+  }
+
+  .project-detail-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .project-detail-meta div {
+    min-height: 0;
+  }
+}
+
+/* ========================================================
+   VTARCH APP-LIKE RADIUS POLISH
+   ======================================================== */
+
+:root {
+  --radius-app-panel: 28px;
+  --radius-app-card: 24px;
+  --radius-app-media: 22px;
+  --radius-app-control: 18px;
+  --radius-app-pill: 999px;
+}
+
+.site-header-inner {
+  border-radius: var(--radius-app-panel) !important;
+}
+
+.icon-button,
+.cinematic-hero-actions a,
+.cinematic-contact a,
+.portfolio-filter-bar button,
+.project-detail-back,
+.project-detail-pdf a,
+.contact-links-v3 a,
+.contact-form-shell button,
+.contact-v2-form button,
+.contact-band .btn-accent {
+  border-radius: var(--radius-app-pill) !important;
+}
+
+.cinematic-hero-stats article,
+.cinematic-work-preview,
+.cinematic-work-list button,
+.cinematic-service-grid article,
+.journal-feature-card,
+.ai-feature-card,
+.contact-form-shell,
+.contact-form-shell label,
+.contact-page-block,
+.contact-v2-form,
+.contact-v2-grid a,
+.project-card,
+.project-detail-meta,
+.project-detail-not-found {
+  border-radius: var(--radius-app-card) !important;
+}
+
+.cinematic-work-preview,
+.cinematic-service-grid article,
+.journal-feature-card,
+.ai-feature-card,
+.contact-form-shell,
+.project-card,
+.project-detail-meta {
+  overflow: hidden;
+}
+
+.project-card-media,
+.project-card-media img,
+.cinematic-preview-media,
+.cinematic-preview-media img,
+.cinematic-lab-visual img,
+.cinematic-journal-grid img,
+.journal-feature-card img,
+.journal-hero-visual img,
+.contact-hero-visual img,
+.reference-portrait-card,
+.reference-portrait-card img,
+.project-detail-frame img {
+  border-radius: var(--radius-app-media) !important;
+}
+
+.project-card-tags span,
+.tag-accent,
+.contact-form-shell input,
+.contact-form-shell textarea,
+.contact-v2-form input,
+.contact-v2-form textarea,
+.theme-field {
+  border-radius: var(--radius-app-control) !important;
+}
+
+.project-detail-meta div {
+  border-radius: 0;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --radius-app-panel: 22px;
+    --radius-app-card: 20px;
+    --radius-app-media: 18px;
+    --radius-app-control: 16px;
+  }
+
+  .site-header-inner {
+    border-radius: 20px !important;
+  }
+}

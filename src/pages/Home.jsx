@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BrandMark } from '../components/Brand';
 import { Reveal } from '../components/UI';
-import { IMAGES, INSIGHTS, PROJECTS_DATA, getProjectCover } from '../data/constants';
+import { IMAGES, INSIGHTS, PROJECTS_DATA, getProjectCover, getProjectDetailPath } from '../data/constants';
 
 const projectCopy = [
   {
@@ -64,11 +64,11 @@ const getProject = (entry) => ({
   ...entry,
 });
 
-const Home = ({ setSelectedProject }) => {
+const Home = () => {
+  const navigate = useNavigate();
   const homeRef = useRef(null);
   const projects = useMemo(() => projectCopy.map(getProject), []);
   const [activeProject, setActiveProject] = useState(projects[0]);
-  const heroProject = activeProject || projects[0];
 
   useEffect(() => {
     const node = homeRef.current;
@@ -138,7 +138,7 @@ const Home = ({ setSelectedProject }) => {
           </Reveal>
 
           <Reveal className="reference-hero-visual" delay={120} variant="scale">
-            <button className="reference-portrait-card" type="button" onClick={() => setSelectedProject(heroProject)}>
+            <button className="reference-portrait-card" type="button" onClick={() => navigate('/about')}>
               <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
             </button>
             <div className="reference-portrait-caption">
@@ -198,7 +198,7 @@ const Home = ({ setSelectedProject }) => {
                   className={activeProject.title === project.title ? 'is-active' : ''}
                   onMouseEnter={() => setActiveProject(project)}
                   onFocus={() => setActiveProject(project)}
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => navigate(getProjectDetailPath(project))}
                 >
                   <span>{String(idx + 1).padStart(2, '0')}</span>
                   <strong>{project.title}</strong>

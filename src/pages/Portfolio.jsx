@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/UI';
-import { FILTER_CATEGORIES, PROJECTS_DATA, getProjectCover } from '../data/constants';
+import { FILTER_CATEGORIES, PROJECTS_DATA, getProjectCover, getProjectDetailPath } from '../data/constants';
 
-const Portfolio = ({ setSelectedProject }) => {
+const Portfolio = () => {
   const [filter, setFilter] = useState('Tất cả');
   const navigate = useNavigate();
 
@@ -13,8 +13,7 @@ const Portfolio = ({ setSelectedProject }) => {
     : PROJECTS_DATA.filter((project) => project.category?.includes(filter));
 
   const handleProjectClick = (project) => {
-    if (project.detailsPath) navigate(project.detailsPath);
-    else setSelectedProject(project);
+    navigate(getProjectDetailPath(project));
   };
 
   return (

@@ -4,11 +4,11 @@ import Lenis from 'lenis';
 
 import Layout from './components/Layout';
 import { BrandMark } from './components/Brand';
-import { ProjectModal } from './components/UI';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 const Services = lazy(() => import('./pages/Services'));
 const Store = lazy(() => import('./pages/Store'));
 const Insights = lazy(() => import('./pages/Insights'));
@@ -30,7 +30,6 @@ const PageLoader = () => (
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [selectedProject, setSelectedProject] = useState(null);
   const [isLightMode, setIsLightMode] = useState(false);
 
   useEffect(() => {
@@ -96,9 +95,10 @@ export default function App() {
       <Layout isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Home setSelectedProject={setSelectedProject} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/portfolio" element={<Portfolio setSelectedProject={setSelectedProject} />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:projectId" element={<ProjectDetail />} />
             <Route path="/services" element={<Services />} />
             <Route path="/store" element={<Store />} />
             <Route path="/insights" element={<Insights />} />
@@ -110,7 +110,6 @@ export default function App() {
         </Suspense>
       </Layout>
 
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </Router>
   );
 }

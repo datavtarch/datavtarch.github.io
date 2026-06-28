@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "pdf:images": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/render-pdf-pages.ps1",
     "video:home": "node scripts/render-video.mjs"
   },
   "dependencies": {

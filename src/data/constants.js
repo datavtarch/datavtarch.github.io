@@ -35,7 +35,7 @@ Object.assign(IMAGES, {
   compareRender: getAssetPath('/projects/d5-render-phong-cach-hien-dai.webp'),
 });
 
-export const getPdfPreviewPath = (pdfLink) => {
+const getPdfSlug = (pdfLink) => {
   if (!pdfLink) return '';
 
   const cleanPath = pdfLink.split(/[?#]/)[0];
@@ -48,25 +48,56 @@ export const getPdfPreviewPath = (pdfLink) => {
     // Keep the original string if the path is already decoded.
   }
 
-  const slug = baseName
+  return baseName
+    .replace(/[đĐ]/g, 'd')
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .toLowerCase();
+};
 
+const PDF_PAGE_COUNTS = {
+  'ai-phong-cach-indochine': 11,
+  'ai-phong-cach-japandi': 11,
+  'ai-phong-cach-japandi-hien-dai': 11,
+  'celadon-interior': 15,
+  'd5-render-phong-cach-hien-dai': 14,
+  'd5-render-wabi': 4,
+  'd5-render-wabi-trung': 5,
+  'sketchup-d5-render-du-an-thiet-ke-da-lat-house': 17,
+  'thanh-tuan-motel': 6,
+  'thuyet-minh-tot-nghiep': 24,
+  'vinhomes-hybrid': 30,
+};
+
+export const getPdfPreviewPath = (pdfLink) => {
+  const slug = getPdfSlug(pdfLink);
   return slug ? getAssetPath(`/pdf-previews/${slug}.webp`) : '';
 };
 
-export const getProjectCover = (project) => project.image || getPdfPreviewPath(project.pdfLink);
+export const getProjectPdfImages = (project) => {
+  const slug = getPdfSlug(project.pdfLink);
+  const pageCount = PDF_PAGE_COUNTS[slug] || 0;
+  return Array.from({ length: pageCount }, (_, index) => (
+    getAssetPath(`/pdf-pages/${slug}/page-${String(index + 1).padStart(2, '0')}.webp`)
+  ));
+};
+
+export const getProjectCover = (project) => (
+  getProjectPdfImages(project)[0] || project.image || getPdfPreviewPath(project.pdfLink)
+);
 
 export const getProjectGallery = (project) => {
-  const pdfPreview = getPdfPreviewPath(project.pdfLink);
+  const pdfImages = getProjectPdfImages(project);
+  if (pdfImages.length) return pdfImages;
+
   const galleryItems = project.gallery?.length ? project.gallery : [project.image].filter(Boolean);
-  return pdfPreview
-    ? [...galleryItems, pdfPreview].filter((image, index, list) => image && list.indexOf(image) === index)
-    : galleryItems;
+  const pdfPreview = getPdfPreviewPath(project.pdfLink);
+  return pdfPreview ? [pdfPreview, ...galleryItems].filter(Boolean) : galleryItems;
 };
+
+export const getProjectDetailPath = (project) => `/portfolio/${project.id}`;
 
 const gallery = (...images) => images;
 
