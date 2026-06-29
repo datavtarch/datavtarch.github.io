@@ -15,7 +15,7 @@ const NAV_ITEMS = [
 
 function NavLink({ to, children, onClick }) {
   const { pathname } = useLocation();
-  const isActive = pathname === to;
+  const isActive = pathname === to || (to !== '/' && pathname.startsWith(`${to}/`));
 
   return (
     <Link
@@ -42,6 +42,20 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[var(--accent)] selection:text-white relative overflow-x-hidden">
