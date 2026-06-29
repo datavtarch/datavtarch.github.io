@@ -7931,3 +7931,145 @@ body .mobile-menu .nav-link.is-active::after {
     font-size: 14px;
   }
 }
+
+/* ========================================================
+   TYPE SCALE HARDENING FOR TYPOGRAPHY CONSISTENCY
+   ======================================================== */
+
+:root {
+  --type-hero: 4.2rem;
+  --type-hero-mobile: 2.75rem;
+  --type-hero-mid: 3.4rem;
+  --type-section: 2.85rem;
+  --type-section-mobile: 2.3rem;
+  --type-card: 2.1rem;
+  --type-card-mobile: 1.65rem;
+  --type-body: 1rem;
+}
+
+.cinematic-hero h1.motion-title,
+.editorial-home-v2 .cinematic-hero h1.motion-title,
+.page-hero-minimal h1,
+.editorial-portfolio-v2 .portfolio-hero-copy h1,
+.journal-hero-copy h1,
+.ai-hero-copy h1,
+.contact-hero-copy h1,
+.project-detail-title h1 {
+  font-size: var(--type-hero);
+  line-height: 1.02;
+}
+
+.cinematic-hero h1.motion-title,
+.editorial-home-v2 .cinematic-hero h1.motion-title {
+  font-size: var(--type-hero) !important;
+}
+
+.cinematic-section-title h2,
+.cinematic-about-copy h2,
+.cinematic-lab-heading h2,
+.cinematic-contact h2,
+.profile-summary-panel h2,
+.project-story-heading h2,
+.project-gallery-section-heading h3,
+.project-closeout-copy h2,
+.service-groups-v2 h2,
+.contact-form-copy h2,
+.project-detail-gallery-heading h2 {
+  font-size: var(--type-section);
+  line-height: 1.03;
+}
+
+.project-card-copy h2,
+.editorial-portfolio-v2 .project-card-copy h2,
+.editorial-portfolio-v2 .project-card.is-featured .project-card-copy h2 {
+  font-size: var(--type-card);
+}
+
+p,
+.cinematic-hero-copy p,
+.profile-summary-panel p,
+.editorial-portfolio-v2 .portfolio-hero-copy p,
+.project-card-copy p,
+.project-story-item p,
+.contact-form-copy p {
+  font-size: var(--type-body);
+  line-height: 1.72;
+}
+
+@media (max-width: 980px) {
+  .cinematic-hero h1.motion-title,
+  .editorial-home-v2 .cinematic-hero h1.motion-title,
+  .page-hero-minimal h1,
+  .editorial-portfolio-v2 .portfolio-hero-copy h1,
+  .journal-hero-copy h1,
+  .ai-hero-copy h1,
+  .contact-hero-copy h1,
+  .project-detail-title h1 {
+    font-size: var(--type-hero-mid);
+  }
+
+  .cinematic-section-title h2,
+  .cinematic-about-copy h2,
+  .cinematic-lab-heading h2,
+  .cinematic-contact h2,
+  .profile-summary-panel h2,
+  .project-story-heading h2,
+  .project-gallery-section-heading h3,
+  .project-closeout-copy h2,
+  .service-groups-v2 h2,
+  .contact-form-copy h2,
+  .project-detail-gallery-heading h2 {
+    font-size: var(--type-section-mobile);
+  }
+
+  .project-card-copy h2,
+  .editorial-portfolio-v2 .project-card-copy h2,
+  .editorial-portfolio-v2 .project-card.is-featured .project-card-copy h2 {
+    font-size: var(--type-card-mobile);
+  }
+
+  .cinematic-hero h1.motion-title,
+  .editorial-home-v2 .cinematic-hero h1.motion-title {
+    font-size: var(--type-hero-mid) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .cinematic-hero h1.motion-title,
+  .editorial-home-v2 .cinematic-hero h1.motion-title,
+  .page-hero-minimal h1,
+  .editorial-portfolio-v2 .portfolio-hero-copy h1,
+  .journal-hero-copy h1,
+  .ai-hero-copy h1,
+  .contact-hero-copy h1,
+  .project-detail-title h1 {
+    font-size: var(--type-hero-mobile);
+    line-height: 1.04;
+  }
+
+  .cinematic-section-title h2,
+  .cinematic-about-copy h2,
+  .cinematic-lab-heading h2,
+  .cinematic-contact h2,
+  .profile-summary-panel h2,
+  .project-story-heading h2,
+  .project-gallery-section-heading h3,
+  .project-closeout-copy h2,
+  .service-groups-v2 h2,
+  .contact-form-copy h2,
+  .project-detail-gallery-heading h2 {
+    font-size: 2rem;
+    line-height: 1.06;
+  }
+
+  .project-card-copy h2,
+  .editorial-portfolio-v2 .project-card-copy h2,
+  .editorial-portfolio-v2 .project-card.is-featured .project-card-copy h2 {
+    font-size: 1.52rem;
+  }
+
+  .cinematic-hero h1.motion-title,
+  .editorial-home-v2 .cinematic-hero h1.motion-title {
+    font-size: var(--type-hero-mobile) !important;
+  }
+}
