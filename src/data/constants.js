@@ -393,9 +393,19 @@ export const SERVICE_GROUPS = [
     items: ['Định hướng thị giác', 'Concept không gian', 'Moodboard vật liệu', 'Góc nhìn trình bày', 'Hồ sơ dự án'],
   },
   {
+    title: 'Triển khai sản xuất',
+    desc: 'Chuyển ảnh tham khảo hoặc concept thành bản vẽ kỹ thuật, cấu tạo, vật liệu và chi tiết gia cố để xưởng nội thất sản xuất rõ ràng hơn.',
+    items: ['Shop drawing nội thất', 'Bản vẽ kích thước', 'Cấu tạo đồ gỗ công nghiệp', 'Đá & khung sắt gia cố', 'Phối hợp xưởng thi công'],
+  },
+  {
+    title: 'Nội dung sản phẩm',
+    desc: 'AI Product Content cho thương hiệu nội thất: tái dựng sản phẩm, tạo nhiều góc nhìn, Việt hóa ảnh nguồn và chuẩn bị nội dung SEO.',
+    items: ['Tái dựng ảnh sản phẩm', 'Ảnh lifestyle minh họa', 'Việt hóa ảnh Taobao/Trung Quốc', 'Ảnh thông tin sản phẩm', 'Bài SEO Rank Math bằng GPT'],
+  },
+  {
     title: 'Công nghệ',
     desc: 'Ứng dụng AI và tự động hóa để tăng tốc quá trình thử nghiệm, trình bày và bàn giao.',
-    items: ['AI CGI', 'GPT cho kiến trúc', 'GPT cho nội thất', 'Quy trình AI', 'Tự động hóa công việc thiết kế'],
+    items: ['AI CGI', 'GPT cho kiến trúc', 'GPT cho nội thất', 'Quy trình AI', 'Tự động hóa công việc thiết kế', 'Custom applications'],
   },
 ];
 

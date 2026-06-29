@@ -17,7 +17,8 @@ const focus = [
   'Tư duy kiến trúc trước khi dựng hình.',
   'Hình ảnh rõ vật liệu, ánh sáng và ý đồ không gian.',
   'Kết hợp D5 Render, hậu kỳ, AI CGI và quy trình GPT.',
-  'Xây dựng ngôn ngữ hình ảnh phù hợp với kiến trúc sư, studio và chủ đầu tư.',
+  'Triển khai chi tiết nội thất để xưởng sản xuất đọc được và làm được.',
+  'Xây dựng ngôn ngữ hình ảnh phù hợp với kiến trúc sư, studio, chủ đầu tư và thương hiệu nội thất.',
 ];
 
 const skillNameOverrides = {
@@ -37,6 +38,23 @@ const aiSkills = [
   ['Custom GPT', CV_DATA.aiSkills.automation],
   ['Nghiên cứu AI', CV_DATA.aiSkills.research],
   ['Quy trình AI-CGI', CV_DATA.aiSkills.workflow],
+];
+
+const productionCapabilities = [
+  {
+    label: 'Shop drawing',
+    title: 'Triển khai sản xuất nội thất',
+    desc:
+      'Chuyển ảnh tham khảo hoặc concept thành bản vẽ kích thước, cấu tạo, vật liệu và chi tiết gia cố để xưởng gỗ công nghiệp, đá và sắt có thể sản xuất.',
+    items: ['Bản vẽ kích thước & cấu tạo', 'Đồ gỗ công nghiệp', 'Đá, khung sắt gia cố', 'Phối hợp xưởng thi công'],
+  },
+  {
+    label: 'AI Product Content',
+    title: 'Hình ảnh & nội dung sản phẩm nội thất',
+    desc:
+      'Tái dựng sản phẩm từ ảnh tham khảo, tạo nhiều góc nhìn/lifestyle, Việt hóa ảnh sản phẩm và xây workflow GPT cho nội dung SEO.',
+    items: ['Nhiều góc nhìn sản phẩm', 'Ảnh lifestyle minh họa', 'Việt hóa ảnh nguồn', 'Bài SEO Rank Math bằng GPT'],
+  },
 ];
 
 const About = () => {
@@ -62,7 +80,7 @@ const About = () => {
           <p>
             Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH như một studio giao thoa giữa kiến trúc,
             hình ảnh và công nghệ. Trọng tâm là diễn họa kiến trúc, diễn họa nội thất, AI CGI và quy trình số
-            cho quá trình thiết kế.
+            cho quá trình thiết kế, sản xuất nội thất và nội dung sản phẩm.
           </p>
           <Link to="/contact" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center gap-2">
             Liên hệ hợp tác <ArrowUpRight size={15} />
@@ -84,7 +102,7 @@ const About = () => {
       <section className="section-shell about-capability section-space">
         <Reveal className="about-capability-heading">
           <p className="eyebrow">Hồ sơ năng lực</p>
-          <h2>Phần mềm, quy trình AI, giải thưởng và hoạt động xã hội.</h2>
+          <h2>Phần mềm, quy trình AI, triển khai sản xuất và hoạt động chuyên môn.</h2>
         </Reveal>
 
         <div className="about-capability-grid">
@@ -117,6 +135,27 @@ const About = () => {
                   <span>{String(idx + 1).padStart(2, '0')}</span>
                   <strong>{title}</strong>
                   <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="about-production-panel" delay={100}>
+            <div className="capability-panel-heading">
+              <span>Năng lực mở rộng</span>
+              <h3>Từ ảnh tham khảo đến sản xuất và bán hàng</h3>
+            </div>
+            <div className="production-capability-list">
+              {productionCapabilities.map((capability, idx) => (
+                <article key={capability.title}>
+                  <span>{String(idx + 1).padStart(2, '0')} / {capability.label}</span>
+                  <strong>{capability.title}</strong>
+                  <p>{capability.desc}</p>
+                  <ul>
+                    {capability.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
                 </article>
               ))}
             </div>

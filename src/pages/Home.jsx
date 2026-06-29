@@ -62,9 +62,10 @@ const profileFacts = [
 ];
 
 const capabilityPreview = [
-  ['Công cụ', 'D5 Render, SketchUp, V-Ray, AutoCAD, Photoshop và hậu kỳ hình ảnh.'],
-  ['Quy trình AI', 'Custom GPT, AI-CGI và các bước tự động hóa phục vụ diễn họa.'],
-  ['Dấu mốc', 'Giải thưởng thiết kế nhanh, hoạt động tổ chức và cộng đồng kiến trúc.'],
+  ['Hình ảnh', 'Diễn họa kiến trúc, nội thất, ngoại thất và hậu kỳ hình ảnh.'],
+  ['Thiết kế', 'Tư duy không gian, concept, moodboard vật liệu và hồ sơ trình bày.'],
+  ['Triển khai', 'Bản vẽ cấu tạo, kích thước và chi tiết sản xuất nội thất.'],
+  ['AI Product Content', 'Tái dựng hình ảnh sản phẩm, Việt hóa nội dung và hỗ trợ SEO bằng GPT.'],
 ];
 
 const summaryLead = CV_DATA.summary.split('\n\n')[0];
@@ -213,7 +214,7 @@ const Home = () => {
               <span className="cinematic-kicker">Năng lực</span>
               <h2>Kiến trúc, hình ảnh và công nghệ trong một quy trình.</h2>
               <p>
-                Chuyển ý tưởng không gian thành hình ảnh rõ ràng, có chất liệu, có nhịp sáng và được hỗ trợ bởi công cụ AI phù hợp.
+                Từ concept không gian, hình ảnh diễn họa đến bản vẽ sản xuất và nội dung sản phẩm nội thất, mỗi bước được tổ chức như một quy trình rõ ràng.
               </p>
               <Link to="/about">Xem hồ sơ chi tiết</Link>
             </Reveal>

@@ -4,9 +4,31 @@ import { Reveal } from '../components/UI';
 import { setPageSeo } from '../utils/seo';
 
 const serviceGroups = [
-  ['DIỄN HỌA', ['Diễn họa ngoại thất', 'Diễn họa nội thất', 'Chuyển động hình ảnh', 'AI CGI']],
-  ['THIẾT KẾ', ['Thiết kế kiến trúc', 'Thiết kế nội thất', 'Ý tưởng không gian']],
-  ['CÔNG NGHỆ', ['GPT cho kiến trúc', 'Quy trình AI', 'Công cụ tự động hóa', 'Ứng dụng tùy chỉnh']],
+  {
+    title: 'Diễn họa',
+    desc: 'Hình ảnh kiến trúc và nội thất có vật liệu, ánh sáng và góc nhìn đủ sức trình bày dự án.',
+    items: ['Diễn họa ngoại thất', 'Diễn họa nội thất', 'Chuyển động hình ảnh', 'AI CGI'],
+  },
+  {
+    title: 'Thiết kế',
+    desc: 'Định hướng thị giác, concept không gian và hồ sơ trình bày cho kiến trúc sư, studio và chủ đầu tư.',
+    items: ['Thiết kế kiến trúc', 'Thiết kế nội thất', 'Ý tưởng không gian', 'Moodboard vật liệu'],
+  },
+  {
+    title: 'Triển khai sản xuất',
+    desc: 'Chuyển ảnh tham khảo hoặc concept thành bản vẽ kỹ thuật để xưởng nội thất sản xuất rõ ràng hơn.',
+    items: ['Shop drawing nội thất', 'Kích thước & cấu tạo', 'Gỗ công nghiệp', 'Đá & khung sắt gia cố'],
+  },
+  {
+    title: 'Nội dung sản phẩm',
+    desc: 'AI Product Content cho thương hiệu nội thất: từ hình ảnh tham khảo đến bộ ảnh và nội dung bán hàng.',
+    items: ['Tái dựng nhiều góc sản phẩm', 'Ảnh lifestyle minh họa', 'Việt hóa ảnh nguồn', 'Bài SEO Rank Math bằng GPT'],
+  },
+  {
+    title: 'Công nghệ',
+    desc: 'GPT và công cụ tự động hóa giúp rút ngắn các bước lặp lại trong thiết kế, hình ảnh và nội dung.',
+    items: ['GPT cho kiến trúc', 'GPT cho nội thất', 'Quy trình AI', 'Công cụ tự động hóa', 'Ứng dụng tùy chỉnh'],
+  },
 ];
 
 export default function Services() {
@@ -14,7 +36,7 @@ export default function Services() {
     setPageSeo({
       title: 'Dịch vụ diễn họa kiến trúc, AI CGI & D5 Render | VTARCH',
       description:
-        'Dịch vụ VTARCH gồm diễn họa ngoại thất, diễn họa nội thất, D5 Render, AI CGI, GPT cho kiến trúc và công cụ tự động hóa quy trình thiết kế.',
+        'Dịch vụ VTARCH gồm diễn họa ngoại thất, diễn họa nội thất, D5 Render, AI CGI, shop drawing nội thất, AI Product Content và GPT cho kiến trúc.',
       path: '/#/services',
     });
   }, []);
@@ -26,19 +48,20 @@ export default function Services() {
           <span className="section-kicker">Dịch vụ</span>
           <h1>Hình ảnh, thiết kế và công nghệ cho studio kiến trúc.</h1>
           <p>
-            VTARCH phát triển hình ảnh, ý tưởng và công cụ quy trình để hỗ trợ kiến trúc sư, studio thiết kế
-            và chủ đầu tư trình bày ý tưởng rõ hơn.
+            VTARCH phát triển hình ảnh, ý tưởng và công cụ quy trình để hỗ trợ kiến trúc sư, studio thiết kế,
+            chủ đầu tư, công ty nội thất và xưởng sản xuất trình bày ý tưởng rõ hơn.
           </p>
         </Reveal>
       </section>
 
       <section className="section-shell service-groups-v2 service-page-list">
-        {serviceGroups.map(([title, items], idx) => (
-          <Reveal key={title} delay={idx * 90}>
+        {serviceGroups.map((group, idx) => (
+          <Reveal key={group.title} delay={idx * 70}>
             <article>
-              <h2>{title}</h2>
+              <h2>{group.title}</h2>
+              <p>{group.desc}</p>
               <ul>
-                {items.map((item) => <li key={item}>{item}</li>)}
+                {group.items.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
           </Reveal>
