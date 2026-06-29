@@ -33,22 +33,65 @@
     <script id="page-jsonld" type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Nguyễn Văn Thanh",
-        "alternateName": "VTARCH",
-        "jobTitle": "Kiến trúc sư diễn họa",
-        "url": "https://datavtarch.github.io/",
-        "image": "https://datavtarch.github.io/og-image.webp",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "VTARCH"
-        },
-        "knowsAbout": [
-          "Diễn họa kiến trúc",
-          "Diễn họa nội thất",
-          "D5 Render",
-          "AI CGI",
-          "Công nghệ thiết kế"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://datavtarch.github.io/#website",
+            "name": "VTARCH",
+            "alternateName": "VTARCH Portfolio",
+            "url": "https://datavtarch.github.io/",
+            "inLanguage": "vi-VN",
+            "description": "Portfolio diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI và công nghệ thiết kế của Nguyễn Văn Thanh.",
+            "publisher": {
+              "@id": "https://datavtarch.github.io/#organization"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://datavtarch.github.io/#organization",
+            "name": "VTARCH",
+            "url": "https://datavtarch.github.io/",
+            "logo": "https://datavtarch.github.io/logo/logo.jpg",
+            "image": "https://datavtarch.github.io/og-image.webp",
+            "description": "VTARCH phát triển hình ảnh kiến trúc, diễn họa nội thất, ngoại thất, D5 Render và AI CGI."
+          },
+          {
+            "@type": "Person",
+            "@id": "https://datavtarch.github.io/#person",
+            "name": "Nguyễn Văn Thanh",
+            "alternateName": "VTARCH",
+            "jobTitle": "Kiến trúc sư diễn họa",
+            "url": "https://datavtarch.github.io/",
+            "image": "https://datavtarch.github.io/og-image.webp",
+            "worksFor": {
+              "@id": "https://datavtarch.github.io/#organization"
+            },
+            "knowsAbout": [
+              "Diễn họa kiến trúc",
+              "Diễn họa nội thất",
+              "Diễn họa ngoại thất",
+              "D5 Render",
+              "AI CGI",
+              "Công nghệ thiết kế"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://datavtarch.github.io/#service",
+            "name": "Dịch vụ diễn họa kiến trúc VTARCH",
+            "url": "https://datavtarch.github.io/services",
+            "provider": {
+              "@id": "https://datavtarch.github.io/#organization"
+            },
+            "areaServed": "VN",
+            "serviceType": [
+              "Diễn họa kiến trúc",
+              "Diễn họa nội thất",
+              "Diễn họa ngoại thất",
+              "D5 Render",
+              "AI CGI"
+            ]
+          }
         ]
       }
     </script>
