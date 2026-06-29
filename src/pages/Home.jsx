@@ -59,6 +59,12 @@ const services = [
   ['Công nghệ', 'AI CGI, GPT cho kiến trúc, quy trình AI và công cụ tự động hóa riêng.'],
 ];
 
+const profileFacts = [
+  ['Đào tạo', 'Kiến trúc sư - Đại học Kiến Trúc TP.HCM'],
+  ['Kinh nghiệm', '5+ năm thiết kế, diễn họa và trình bày dự án'],
+  ['Trọng tâm', 'Diễn họa kiến trúc / D5 Render / AI CGI'],
+];
+
 const getProject = (entry) => ({
   ...PROJECTS_DATA[entry.sourceIndex],
   ...entry,
@@ -105,35 +111,30 @@ const Home = () => {
 
         <div className="section-shell cinematic-hero-inner">
           <Reveal className="cinematic-hero-copy">
-            <div className="reference-hero-chip">
+            <div className="reference-hero-chip profile-hero-chip">
               <BrandMark />
-              <span>VTARCH Studio</span>
+              <span>Portfolio cá nhân</span>
             </div>
-            <span className="cinematic-kicker">Kiến trúc sư / Diễn họa / AI CGI</span>
+            <span className="cinematic-kicker">Nguyễn Văn Thanh / VTARCH</span>
             <h1 className="motion-title">
               <span>Nguyễn Văn Thanh</span>
-              <span>Diễn họa kiến trúc</span>
+              <span>Kiến trúc sư diễn họa.</span>
             </h1>
             <p>
-              Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển hình ảnh kiến trúc, nội thất và concept
-              không gian bằng tư duy thiết kế, D5 Render và quy trình AI tinh gọn.
+              Portfolio ghi lại quá trình phát triển hình ảnh kiến trúc, nội thất và concept không gian
+              bằng nền tảng thiết kế, D5 Render và quy trình AI hỗ trợ.
             </p>
+            <div className="profile-hero-facts">
+              {profileFacts.map(([label, value]) => (
+                <article key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </article>
+              ))}
+            </div>
             <div className="cinematic-hero-actions">
               <Link to="/portfolio">Xem dự án</Link>
               <Link to="/contact">Liên hệ</Link>
-            </div>
-            <div className="editorial-hero-plates" aria-label="Dự án nổi bật">
-              {projects.slice(0, 2).map((project) => (
-                <button
-                  key={project.id}
-                  type="button"
-                  onClick={() => navigate(getProjectDetailPath(project))}
-                >
-                  <img src={getProjectCover(project)} alt={project.title} loading="eager" decoding="async" />
-                  <span>{project.type}</span>
-                  <strong>{project.title}</strong>
-                </button>
-              ))}
             </div>
             <div className="cinematic-hero-stats">
               <article>
@@ -154,7 +155,7 @@ const Home = () => {
             </div>
           </Reveal>
 
-          <Reveal className="reference-hero-visual" delay={120} variant="scale">
+          <Reveal className="reference-hero-visual profile-hero-visual" delay={120} variant="scale">
             <button className="reference-portrait-card" type="button" onClick={() => navigate('/about')}>
               <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
             </button>
@@ -167,22 +168,18 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="section-shell editorial-manifesto">
-        <Reveal>
-          <span className="cinematic-kicker">Định hướng</span>
-          <h2>Hình ảnh kiến trúc cần đủ chính xác để trình bày, đủ cảm xúc để người xem nhớ.</h2>
-        </Reveal>
-        <Reveal delay={90}>
-          <p>
-            VTARCH xây dựng portfolio như một chuỗi hồ sơ hình ảnh: ít chữ, nhiều không gian, nhấn vào ánh sáng,
-            vật liệu và cách một ý tưởng kiến trúc được kể bằng hình ảnh.
-          </p>
-        </Reveal>
-      </section>
-
-      <section className="cinematic-about section-shell">
-        <Reveal className="cinematic-about-image" variant="scale">
-          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="lazy" decoding="async" />
+      <section className="cinematic-about section-shell profile-summary">
+        <Reveal className="profile-summary-panel" variant="scale">
+          <span className="cinematic-kicker">Thông tin trước</span>
+          <h2>Kiến trúc, hình ảnh và công nghệ được đặt chung trong một quy trình làm việc.</h2>
+          <div>
+            {profileFacts.map(([label, value]) => (
+              <article key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </article>
+            ))}
+          </div>
         </Reveal>
         <Reveal className="cinematic-about-copy" delay={100}>
           <span className="cinematic-kicker">Hồ sơ</span>
@@ -203,10 +200,30 @@ const Home = () => {
         </Reveal>
       </section>
 
+      <section className="cinematic-services">
+        <div className="section-shell">
+          <Reveal className="cinematic-section-title">
+            <span>Kỹ năng</span>
+            <h2>Sau hồ sơ cá nhân là hệ kỹ năng chính: hình ảnh, thiết kế và công nghệ.</h2>
+          </Reveal>
+          <div className="cinematic-service-grid">
+            {services.map(([title, desc], idx) => (
+              <Reveal key={title} delay={idx * 80}>
+                <article>
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell cinematic-works" id="projects">
         <Reveal className="cinematic-section-title">
           <span>Dự án tiêu biểu</span>
-          <h2>Những dự án đại diện cho cách VTARCH xử lý ánh sáng, vật liệu và câu chuyện không gian.</h2>
+          <h2>Cuối cùng là dự án: ảnh lớn, thông tin gọn, mở thẳng vào hồ sơ chi tiết.</h2>
         </Reveal>
 
         <div className="cinematic-work-stage">
@@ -234,26 +251,6 @@ const Home = () => {
                   <strong>{project.title}</strong>
                   <em>{project.type}</em>
                 </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="cinematic-services">
-        <div className="section-shell">
-          <Reveal className="cinematic-section-title">
-            <span>Năng lực</span>
-            <h2>Năng lực được tổ chức quanh hình ảnh kiến trúc, tư duy thiết kế và công nghệ hỗ trợ.</h2>
-          </Reveal>
-          <div className="cinematic-service-grid">
-            {services.map(([title, desc], idx) => (
-              <Reveal key={title} delay={idx * 80}>
-                <article>
-                  <span>{String(idx + 1).padStart(2, '0')}</span>
-                  <h3>{title}</h3>
-                  <p>{desc}</p>
-                </article>
               </Reveal>
             ))}
           </div>

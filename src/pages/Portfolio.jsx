@@ -31,11 +31,25 @@ const Portfolio = () => {
       <section className="section-shell page-hero-minimal">
         <Reveal className="portfolio-hero-copy">
           <p className="eyebrow">Dự án</p>
-          <h1>Lưu trữ hình ảnh kiến trúc, nội thất, D5 Render và AI CGI.</h1>
+          <h1>Hồ sơ hình ảnh kiến trúc, nội thất và AI CGI.</h1>
           <p>
-            Mỗi dự án được trình bày như một hồ sơ hình ảnh ngắn, ưu tiên ảnh lớn, thông tin gọn và cảm giác
-            studio chuyên nghiệp.
+            Mỗi dự án được trình bày như một hồ sơ hình ảnh ngắn: ảnh chuyển trực tiếp từ PDF, thông tin rõ và
+            mở vào thư viện chi tiết thay vì màn hình nổi.
           </p>
+          <div className="portfolio-hero-metrics">
+            <article>
+              <strong>{PROJECTS_DATA.length}</strong>
+              <span>Hồ sơ dự án</span>
+            </article>
+            <article>
+              <strong>PDF</strong>
+              <span>Nguồn ảnh gốc</span>
+            </article>
+            <article>
+              <strong>D5 + AI</strong>
+              <span>Quy trình hình ảnh</span>
+            </article>
+          </div>
         </Reveal>
       </section>
 
@@ -56,11 +70,12 @@ const Portfolio = () => {
       <section className="section-shell project-archive section-space">
         {filteredProjects.map((project, idx) => {
           const galleryCount = getProjectGallery(project).length;
+          const isFeatured = idx === 0 || idx === 5;
 
           return (
             <Reveal key={project.id} delay={idx * 55}>
               <button
-                className={`project-card ${idx % 5 === 0 ? 'is-featured' : ''}`}
+                className={`project-card ${isFeatured ? 'is-featured' : ''}`}
                 onClick={() => handleProjectClick(project)}
                 aria-label={`Xem dự án ${project.title}`}
               >
@@ -80,11 +95,13 @@ const Portfolio = () => {
                     <span>{galleryCount} ảnh</span>
                   </div>
                   <h2>{project.title}</h2>
-                  <p>{project.location}</p>
+                  <span className="project-card-location">{project.location}</span>
+                  <p className="project-card-note">{project.story?.overview || project.desc}</p>
                   <div className="project-card-tags">
                     <span>{project.services[0]}</span>
                     <span>{project.category?.[0] || 'Hồ sơ hình ảnh'}</span>
                   </div>
+                  <span className="project-card-action">Xem hồ sơ dự án</span>
                 </div>
                 <ArrowUpRight size={22} className="project-card-icon" />
               </button>
