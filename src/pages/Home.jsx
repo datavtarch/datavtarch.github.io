@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BrandMark } from '../components/Brand';
 import { Reveal } from '../components/UI';
 import { IMAGES, INSIGHTS, PROJECTS_DATA, getProjectCover, getProjectDetailPath } from '../data/constants';
+import { personSchema, setPageSeo } from '../utils/seo';
 
 const projectCopy = [
   {
@@ -77,7 +78,13 @@ const Home = () => {
   const [activeProject, setActiveProject] = useState(projects[0]);
 
   useEffect(() => {
-    document.title = 'VTARCH | Diễn họa kiến trúc & AI CGI';
+    setPageSeo({
+      title: 'VTARCH | Nguyễn Văn Thanh - Diễn họa kiến trúc & AI CGI',
+      description:
+        'Portfolio của Nguyễn Văn Thanh về diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI và công nghệ thiết kế cho studio kiến trúc.',
+      path: '/',
+      schema: personSchema,
+    });
   }, []);
 
   useEffect(() => {
@@ -157,7 +164,7 @@ const Home = () => {
 
           <Reveal className="reference-hero-visual profile-hero-visual" delay={120} variant="scale">
             <button className="reference-portrait-card" type="button" onClick={() => navigate('/about')}>
-              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" />
+              <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" fetchPriority="high" />
             </button>
             <div className="reference-portrait-caption">
               <span>Hồ sơ</span>
@@ -229,7 +236,7 @@ const Home = () => {
         <div className="cinematic-work-stage">
           <Reveal className="cinematic-work-preview" variant="scale">
             <div className="cinematic-preview-media">
-              <img src={getProjectCover(activeProject)} alt={activeProject.title} />
+              <img src={getProjectCover(activeProject)} alt={activeProject.title} loading="lazy" decoding="async" />
             </div>
             <div>
               <span>{activeProject.year} / {activeProject.location}</span>
@@ -265,8 +272,8 @@ const Home = () => {
           </Reveal>
 
           <Reveal className="cinematic-lab-visual" delay={80} variant="scale">
-            <img src={IMAGES.projectAIJapandiModern} alt="Quy trình AI CGI" loading="eager" decoding="async" />
-            <img src={IMAGES.compareRender} alt="Quy trình ánh sáng D5 Render" loading="eager" decoding="async" />
+            <img src={IMAGES.projectAIJapandiModern} alt="Quy trình AI CGI" loading="lazy" decoding="async" />
+            <img src={IMAGES.compareRender} alt="Quy trình ánh sáng D5 Render" loading="lazy" decoding="async" />
           </Reveal>
 
           <div className="cinematic-lab-list">
@@ -292,7 +299,7 @@ const Home = () => {
           {INSIGHTS.slice(0, 3).map((post, idx) => (
             <Reveal key={post.title} delay={idx * 70}>
               <Link to="/journal">
-                <img src={post.image} alt={post.title} loading="eager" decoding="async" />
+                <img src={post.image} alt={post.title} loading="lazy" decoding="async" />
                 <span>{post.category}</span>
                 <strong>{post.title}</strong>
               </Link>

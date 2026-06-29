@@ -1,10 +1,16 @@
 import React, { useEffect } from 'react';
 import { Reveal } from '../components/UI';
 import { IMAGES } from '../data/constants';
+import { setPageSeo } from '../utils/seo';
 
 export default function Contact() {
   useEffect(() => {
-    document.title = 'Liên hệ | VTARCH';
+    setPageSeo({
+      title: 'Liên hệ VTARCH | Brief diễn họa kiến trúc & AI CGI',
+      description:
+        'Liên hệ VTARCH để gửi brief diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI hoặc xây dựng workflow AI cho studio thiết kế.',
+      path: '/#/contact',
+    });
   }, []);
 
   return (
@@ -27,7 +33,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal className="contact-hero-visual" delay={120} variant="scale">
-          <img src={IMAGES.portrait} alt="VTARCH portrait" loading="eager" decoding="async" />
+          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" fetchPriority="high" />
           <div>
             <span>Nguyễn Văn Thanh</span>
             <strong>Diễn họa kiến trúc / AI CGI / Công nghệ thiết kế</strong>

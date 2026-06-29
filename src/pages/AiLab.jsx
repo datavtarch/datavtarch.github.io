@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/UI';
 import { IMAGES } from '../data/constants';
+import { setPageSeo } from '../utils/seo';
 
 const labItems = [
   ['GPT cho kiến trúc', 'Hỗ trợ phân tích brief, dàn ý thuyết minh và cấu trúc trình bày.'],
@@ -13,7 +14,13 @@ const labItems = [
 
 export default function AiLab() {
   useEffect(() => {
-    document.title = 'AI Lab | VTARCH';
+    setPageSeo({
+      title: 'AI Lab cho kiến trúc, nội thất & workflow thiết kế | VTARCH',
+      description:
+        'AI Lab của VTARCH thử nghiệm AI CGI, GPT cho kiến trúc, GPT cho nội thất, workflow AI và tự động hóa công việc thiết kế.',
+      path: '/#/ai-lab',
+      image: IMAGES.projectAIJapandiModern,
+    });
   }, []);
 
   return (
@@ -29,7 +36,7 @@ export default function AiLab() {
         </Reveal>
 
         <Reveal className="ai-hero-visual" delay={120} variant="scale">
-          <img src={IMAGES.projectAIJapandiModern} alt="AI CGI study by VTARCH" loading="eager" decoding="async" />
+          <img src={IMAGES.projectAIJapandiModern} alt="Nghiên cứu AI CGI của VTARCH" loading="eager" decoding="async" fetchPriority="high" />
           <div>
             <span>AI CGI / Quy trình / Prompt</span>
             <strong>Công cụ hỗ trợ diễn họa cho studio thiết kế.</strong>

@@ -153,7 +153,7 @@ const PROJECT_STORIES = {
     overview: 'Một đồ án thiền định tại Đà Lạt, khai thác quan hệ giữa địa hình, khí hậu mát, mảng xanh và nhịp di chuyển chậm của người sử dụng.',
     role: 'Phát triển ý tưởng kiến trúc, dựng câu chuyện không gian, diễn họa ngoại thất và biên tập hồ sơ trình bày.',
     direction: 'Hình ảnh ưu tiên sự yên tĩnh: ánh sáng dịu, lớp cảnh quan sâu, vật liệu mộc và góc nhìn có khoảng thở.',
-    deliverables: ['Concept kiến trúc', 'Diễn họa ngoại thất', 'Hồ sơ thuyết minh', 'Gallery PDF chuyển ảnh'],
+    deliverables: ['Concept kiến trúc', 'Diễn họa ngoại thất', 'Hồ sơ thuyết minh', 'Thư viện ảnh từ PDF'],
   },
   1: {
     overview: 'Bộ hình ảnh cho công trình lưu trú quy mô nhỏ, cần diễn đạt rõ công năng, mặt đứng và cảm giác gần gũi với người dùng.',
@@ -165,7 +165,7 @@ const PROJECT_STORIES = {
     overview: 'Dự án nhà ở tại Đà Lạt, đặt trọng tâm vào cảm giác cư trú, chất liệu ấm và mối quan hệ giữa nhà với cảnh quan.',
     role: 'Dựng model SketchUp, hoàn thiện cảnh D5 Render, chọn camera và phát triển nhịp ảnh cho portfolio dự án.',
     direction: 'Tông sáng ấm, vật liệu đọc rõ, góc nhìn vừa đủ đời sống để hình ảnh không chỉ là render kỹ thuật.',
-    deliverables: ['Model SketchUp', 'D5 Render', 'Định hướng thị giác', 'Gallery ngoại thất'],
+    deliverables: ['Model SketchUp', 'D5 Render', 'Định hướng thị giác', 'Thư viện ngoại thất'],
   },
   3: {
     overview: 'Bộ ảnh căn hộ hiện đại hướng đến cảm giác sống gọn gàng, sáng và có tính thương mại trong hồ sơ nội thất.',
@@ -183,13 +183,13 @@ const PROJECT_STORIES = {
     overview: 'Một nghiên cứu ánh sáng nội thất, dùng D5 Render và AI CGI để thử độ sâu, tương phản và cảm xúc hình ảnh.',
     role: 'Kiểm tra mood ánh sáng, nâng cấp hậu kỳ, so sánh các hướng xử lý ảnh và chuẩn hóa đầu ra cho portfolio.',
     direction: 'Ánh sáng là chủ thể chính: vùng sáng ấm, bóng sâu vừa phải, chi tiết vật liệu đủ sắc nhưng không gắt.',
-    deliverables: ['Nghiên cứu ánh sáng', 'AI CGI', 'Hậu kỳ hình ảnh', 'Bộ so sánh visual'],
+    deliverables: ['Nghiên cứu ánh sáng', 'AI CGI', 'Hậu kỳ hình ảnh', 'Bộ so sánh hình ảnh'],
   },
   6: {
     overview: 'Concept nội thất Wabi Sabi, tập trung vào khoảng trống, chất cảm mộc và trạng thái tĩnh của không gian.',
     role: 'Định hướng mood vật liệu, dựng cảnh, render và biên tập bộ ảnh để diễn đạt tinh thần tối giản mộc mạc.',
     direction: 'Hình ảnh ít chi tiết thừa, ưu tiên bề mặt thô, ánh sáng tản và bố cục có khoảng lặng.',
-    deliverables: ['Diễn họa nội thất', 'Mood vật liệu', 'D5 Render', 'Concept image set'],
+    deliverables: ['Diễn họa nội thất', 'Mood vật liệu', 'D5 Render', 'Bộ ảnh concept'],
   },
   7: {
     overview: 'Biến thể villa theo tinh thần Á Đông tối giản, nhấn vào cấu trúc không gian, bóng đổ và lớp vật liệu tự nhiên.',
@@ -207,13 +207,13 @@ const PROJECT_STORIES = {
     overview: 'Bộ concept Japandi tạo nhanh bằng AI, phục vụ giai đoạn tìm mood, so sánh vật liệu và hướng sáng.',
     role: 'Xây dựng prompt, tuyển chọn ảnh, tinh chỉnh ngôn ngữ không gian và biên tập thành bộ mood rõ ràng.',
     direction: 'Tối giản, ấm, ít nhiễu thị giác; tập trung vào gỗ sáng, ánh sáng mềm và tỷ lệ nội thất cân bằng.',
-    deliverables: ['AI CGI', 'Thiết kế prompt', 'Moodboard', 'Gallery concept'],
+    deliverables: ['AI CGI', 'Thiết kế prompt', 'Moodboard', 'Thư viện concept'],
   },
   19: {
     overview: 'Quy trình hybrid AI-CGI cho nội thất Japandi hiện đại, giúp tăng tốc thử mood và nâng chất lượng hình ảnh.',
-    role: 'Kết hợp render, AI enhancement và hậu kỳ để kiểm tra nhiều hướng vật liệu trước khi chốt visual cuối.',
+    role: 'Kết hợp render, tăng cường hình ảnh bằng AI và hậu kỳ để kiểm tra nhiều hướng vật liệu trước khi chốt visual cuối.',
     direction: 'Hiện đại hơn Japandi truyền thống: đường nét sạch, chất liệu sáng, ánh sáng rõ và cảm giác thương mại.',
-    deliverables: ['AI CGI', 'D5 Render', 'Hậu kỳ hình ảnh', 'Workflow thử mood'],
+    deliverables: ['AI CGI', 'D5 Render', 'Hậu kỳ hình ảnh', 'Quy trình thử hướng hình ảnh'],
   },
 };
 
@@ -363,7 +363,7 @@ export const PROJECTS_DATA = [
   },
   {
     id: 19,
-    title: 'Japandi Modern AI Enhanced',
+    title: 'Japandi Modern AI CGI',
     year: '2024',
     location: 'AI Lab',
     type: 'Diễn họa hybrid',
@@ -429,7 +429,7 @@ export const INSIGHTS = [
     excerpt: 'Quy trình giúp studio kiểm soát thời gian, chất lượng và câu chuyện hình ảnh.',
   },
   {
-    title: 'Case Study: diễn họa nội thất cho portfolio studio',
+    title: 'Hồ sơ dự án: diễn họa nội thất cho portfolio studio',
     category: 'Hồ sơ dự án',
     date: '2026',
     image: IMAGES.projectCaledon,
@@ -442,28 +442,28 @@ export const STORE_ITEMS = [
     img: IMAGES.storeIndochine,
     title: 'Indochine Mood Pack',
     price: '$18',
-    tags: ['D5 Asset'],
+    tags: ['Tài nguyên D5'],
     desc: 'Bộ mood và asset tham khảo cho không gian Indochine.',
   },
   {
     img: IMAGES.storeJapandi,
     title: 'Bộ vật liệu Japandi',
     price: '$15',
-    tags: ['D5 Asset'],
+    tags: ['Tài nguyên D5'],
     desc: 'Bộ vật liệu và ánh sáng theo tinh thần Japandi.',
   },
   {
     img: IMAGES.projectWabi,
     title: 'Gói tham khảo Wabi Sabi',
     price: '$20',
-    tags: ['D5 Asset', 'Render'],
+    tags: ['Tài nguyên D5', 'Render'],
     desc: 'Gói tham khảo ánh sáng và vật liệu Wabi Sabi.',
   },
   {
     img: IMAGES.compareRender,
     title: 'Gói render hiện đại',
     price: '$22',
-    tags: ['D5 Asset', 'Render'],
+    tags: ['Tài nguyên D5', 'Render'],
     desc: 'Thiết lập ánh sáng và hậu kỳ cho nội thất hiện đại.',
   },
 ];

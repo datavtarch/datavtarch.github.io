@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/UI';
 import { IMAGES } from '../data/constants';
+import { personSchema, setPageSeo } from '../utils/seo';
 
 const profileFacts = [
   ['Founder', 'Nguyễn Văn Thanh'],
@@ -20,14 +21,20 @@ const focus = [
 
 const About = () => {
   useEffect(() => {
-    document.title = 'Giới thiệu | VTARCH';
+    setPageSeo({
+      title: 'Giới thiệu Nguyễn Văn Thanh | VTARCH',
+      description:
+        'Nguyễn Văn Thanh là kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH ở giao điểm giữa kiến trúc, diễn họa và công nghệ AI.',
+      path: '/#/about',
+      schema: personSchema,
+    });
   }, []);
 
   return (
     <div className="page-wrap">
       <section className="section-shell about-hero">
         <Reveal className="about-portrait">
-          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" />
+          <img src={IMAGES.portrait} alt="Nguyễn Văn Thanh - VTARCH" loading="eager" decoding="async" fetchPriority="high" />
         </Reveal>
         <Reveal className="about-copy" delay={100}>
           <p className="eyebrow">Giới thiệu</p>

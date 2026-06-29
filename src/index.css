@@ -7443,3 +7443,16 @@ body .mobile-menu-nav {
     font-size: clamp(23px, 6.2vw, 29px);
   }
 }
+
+.project-gallery-section,
+.project-detail-frame {
+  content-visibility: auto;
+}
+
+.project-gallery-section {
+  contain-intrinsic-size: 980px;
+}
+
+.project-detail-frame {
+  contain-intrinsic-size: 540px;
+}

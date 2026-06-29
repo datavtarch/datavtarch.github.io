@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Download, Mail, PackageCheck } from 'lucide-react';
 import { TiltCard } from '../components/UI';
 import { STORE_ITEMS } from '../data/constants';
+import { setPageSeo } from '../utils/seo';
 
 const resourceBenefits = [
   'Dành cho người học D5 Render và diễn họa nội thất.',
@@ -12,7 +13,12 @@ const resourceBenefits = [
 
 const Store = () => {
   useEffect(() => {
-    document.title = 'Tài nguyên | VTARCH';
+    setPageSeo({
+      title: 'Tài nguyên D5 Render & workflow diễn họa | VTARCH',
+      description:
+        'Tài nguyên phụ của VTARCH gồm vật liệu, thiết lập ánh sáng, D5 Render và quy trình tham khảo cho người học diễn họa nội thất.',
+      path: '/#/store',
+    });
   }, []);
 
   return (
@@ -34,7 +40,7 @@ const Store = () => {
                   Xem dịch vụ VTARCH <ArrowUpRight size={15} />
                 </Link>
                 <a href="mailto:vtarch99@gmail.com" className="btn-outline-luxury px-7 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
-                  Hỏi về asset <Mail size={15} />
+                  Hỏi về tài nguyên <Mail size={15} />
                 </a>
               </div>
             </div>

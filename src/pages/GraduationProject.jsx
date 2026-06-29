@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IMAGES } from '../data/constants';
 import { ArrowLeft, ArrowUpRight, Calendar, FileText, Layers, MapPin, Mountain, Sun, Wind } from 'lucide-react';
+import { setPageSeo } from '../utils/seo';
 
 const facts = [
   { icon: MapPin, label: 'Vị trí', value: 'Đà Lạt, Lâm Đồng' },
@@ -23,7 +24,14 @@ const solutions = [
 
 const GraduationProject = () => {
   useEffect(() => {
-    document.title = 'Trung tâm Thiền Làng Mai Đà Lạt | VTARCH';
+    setPageSeo({
+      title: 'Trung tâm Thiền Làng Mai Đà Lạt | VTARCH',
+      description:
+        'Đồ án tốt nghiệp kiến trúc sư của Nguyễn Văn Thanh, khai thác không gian thiền định, địa hình và cảnh quan Đà Lạt.',
+      path: '/#/graduation-project',
+      image: IMAGES.projectDoAn,
+      type: 'article',
+    });
     window.scrollTo(0, 0);
   }, []);
 
@@ -63,7 +71,7 @@ const GraduationProject = () => {
             </div>
 
             <div className="relative visual-frame mobile-wide-visual aspect-[4/5] md:aspect-[16/12]">
-              <img src={IMAGES.projectDoAn} alt="Trung tâm Thiền Làng Mai Đà Lạt" className="w-full h-full object-cover" loading="eager" decoding="async" />
+              <img src={IMAGES.projectDoAn} alt="Trung tâm Thiền Làng Mai Đà Lạt" className="w-full h-full object-cover" loading="eager" decoding="async" fetchPriority="high" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </div>
           </div>

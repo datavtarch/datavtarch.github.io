@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/UI';
+import { setPageSeo } from '../utils/seo';
 
 const serviceGroups = [
   ['DIỄN HỌA', ['Diễn họa ngoại thất', 'Diễn họa nội thất', 'Chuyển động hình ảnh', 'AI CGI']],
@@ -10,7 +11,12 @@ const serviceGroups = [
 
 export default function Services() {
   useEffect(() => {
-    document.title = 'Dịch vụ | VTARCH';
+    setPageSeo({
+      title: 'Dịch vụ diễn họa kiến trúc, AI CGI & D5 Render | VTARCH',
+      description:
+        'Dịch vụ VTARCH gồm diễn họa ngoại thất, diễn họa nội thất, D5 Render, AI CGI, GPT cho kiến trúc và công cụ tự động hóa quy trình thiết kế.',
+      path: '/#/services',
+    });
   }, []);
 
   return (

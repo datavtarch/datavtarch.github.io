@@ -9,13 +9,19 @@ import {
   getProjectDetailPath,
   getProjectGallery,
 } from '../data/constants';
+import { setPageSeo } from '../utils/seo';
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('Tất cả');
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = 'Dự án | VTARCH';
+    setPageSeo({
+      title: 'Dự án diễn họa kiến trúc | VTARCH',
+      description:
+        'Thư viện dự án VTARCH gồm diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI và ảnh chuyển trực tiếp từ hồ sơ PDF dự án.',
+      path: '/#/portfolio',
+    });
   }, []);
 
   const filteredProjects = filter === 'Tất cả'
@@ -84,8 +90,9 @@ const Portfolio = () => {
                   <img
                     src={getProjectCover(project)}
                     alt={project.title}
-                    loading="eager"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
                     decoding="async"
+                    fetchPriority={idx === 0 ? 'high' : 'auto'}
                   />
                 </div>
                 <div className="project-card-copy">

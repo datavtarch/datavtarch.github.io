@@ -7,6 +7,7 @@ import {
   getProjectDetailPath,
   getProjectGallery,
 } from '../data/constants';
+import { projectSchema, setPageSeo } from '../utils/seo';
 
 const galleryCopy = {
   ai: {
@@ -105,12 +106,24 @@ const ProjectDetail = () => {
   const project = PROJECTS_DATA.find((item) => String(item.id) === String(projectId));
 
   useEffect(() => {
-    document.title = project ? `${project.title} | VTARCH` : 'Dự án | VTARCH';
-
-    const description = document.querySelector('meta[name="description"]');
-    if (project && description) {
-      description.setAttribute('content', project.story?.overview || project.desc);
+    if (!project) {
+      setPageSeo({
+        title: 'Dự án | VTARCH',
+        description: 'Không tìm thấy dự án trong thư viện VTARCH.',
+        path: '/#/portfolio',
+      });
+      return;
     }
+
+    const coverImage = getProjectCover(project);
+    setPageSeo({
+      title: `${project.title} | VTARCH`,
+      description: project.story?.overview || project.desc,
+      path: `/#/portfolio/${project.id}`,
+      image: coverImage,
+      type: 'article',
+      schema: projectSchema(project, coverImage),
+    });
   }, [project]);
 
   if (!project) {
@@ -160,6 +173,7 @@ const ProjectDetail = () => {
             alt={`${project.title} cover`}
             loading="eager"
             decoding="async"
+            fetchPriority="high"
           />
           <figcaption>
             <span>Ảnh chính</span>
@@ -214,7 +228,7 @@ const ProjectDetail = () => {
         <div className="project-detail-gallery-heading">
           <div>
             <p className="eyebrow">Thư viện ảnh</p>
-            <h2>Gallery kể theo nhịp dự án.</h2>
+            <h2>Thư viện ảnh kể theo nhịp dự án.</h2>
           </div>
           <span>{gallery.length} ảnh từ PDF</span>
         </div>
@@ -243,8 +257,9 @@ const ProjectDetail = () => {
                   <img
                     src={image}
                     alt={`${project.title} - ${caption.toLowerCase()}`}
-                    loading="eager"
+                    loading={globalIndex < 2 ? 'eager' : 'lazy'}
                     decoding="async"
+                    fetchPriority={globalIndex === 0 ? 'high' : 'auto'}
                   />
                   <figcaption>
                     <span>{String(globalIndex + 1).padStart(2, '0')}</span>
