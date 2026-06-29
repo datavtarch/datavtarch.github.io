@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '../components/UI';
+import { CV_DATA } from '../data/cvData';
 import { IMAGES } from '../data/constants';
 import { personSchema, setPageSeo } from '../utils/seo';
 
@@ -17,6 +18,25 @@ const focus = [
   'Hình ảnh rõ vật liệu, ánh sáng và ý đồ không gian.',
   'Kết hợp D5 Render, hậu kỳ, AI CGI và quy trình GPT.',
   'Xây dựng ngôn ngữ hình ảnh phù hợp với kiến trúc sư, studio và chủ đầu tư.',
+];
+
+const skillNameOverrides = {
+  Sketchup: 'SketchUp',
+  'Vray Sketchup': 'V-Ray SketchUp',
+};
+
+const softwareSkills = [
+  { name: 'D5 Render', level: 90 },
+  ...CV_DATA.softwareSkills.map((skill) => ({
+    ...skill,
+    name: skillNameOverrides[skill.name] ?? skill.name,
+  })),
+];
+
+const aiSkills = [
+  ['Custom GPT', CV_DATA.aiSkills.automation],
+  ['Nghiên cứu AI', CV_DATA.aiSkills.research],
+  ['Quy trình AI-CGI', CV_DATA.aiSkills.workflow],
 ];
 
 const About = () => {
@@ -58,6 +78,76 @@ const About = () => {
               <strong>{value}</strong>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="section-shell about-capability section-space">
+        <Reveal className="about-capability-heading">
+          <p className="eyebrow">Hồ sơ năng lực</p>
+          <h2>Phần mềm, quy trình AI, giải thưởng và hoạt động xã hội.</h2>
+        </Reveal>
+
+        <div className="about-capability-grid">
+          <Reveal className="about-software-panel" variant="scale">
+            <div className="capability-panel-heading">
+              <span>Phần mềm</span>
+              <h3>Công cụ thiết kế & diễn họa</h3>
+            </div>
+            <div className="software-skill-list">
+              {softwareSkills.map((skill) => (
+                <article key={skill.name} className="software-skill-item">
+                  <span>{skill.name}</span>
+                  <em>{skill.level}%</em>
+                  <div className="skill-meter" aria-hidden="true">
+                    <i style={{ width: `${skill.level}%` }} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="about-ai-panel" delay={80}>
+            <div className="capability-panel-heading">
+              <span>Quy trình AI</span>
+              <h3>Quy trình thử nghiệm & tự động hóa</h3>
+            </div>
+            <div className="about-ai-list">
+              {aiSkills.map(([title, desc], idx) => (
+                <article key={title}>
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <strong>{title}</strong>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal className="about-list-panel" delay={120}>
+            <div className="capability-panel-heading">
+              <span>Giải thưởng</span>
+              <h3>Dấu mốc học thuật & sáng tạo</h3>
+            </div>
+            <ul className="credential-list">
+              {CV_DATA.achievements.map((item) => (
+                <li key={`${item.title}-${item.event}`}>
+                  <strong>{item.title}</strong>
+                  <span>{item.event}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal className="about-list-panel" delay={160}>
+            <div className="capability-panel-heading">
+              <span>Hoạt động</span>
+              <h3>Tổ chức, cộng đồng & trách nhiệm</h3>
+            </div>
+            <ul className="credential-list">
+              {CV_DATA.activities.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
