@@ -22,6 +22,7 @@ function NavLink({ to, children, onClick }) {
       to={to}
       onClick={onClick}
       className={`nav-link ${isActive ? 'is-active' : ''}`}
+      aria-current={isActive ? 'page' : undefined}
     >
       {children}
     </Link>
@@ -59,57 +60,63 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
 
   return (
     <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-main)] font-sans selection:bg-[var(--accent)] selection:text-white relative overflow-x-hidden">
+      <a href="#main-content" className="skip-link">Bỏ qua đến nội dung chính</a>
+
       <header className={`site-header fixed top-0 left-0 right-0 z-40 ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="section-shell">
           <div className="site-header-inner">
-            <Link to="/" className="brand-lockup" aria-label="VTARCH home" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/" className="brand-lockup" aria-label="VTARCH - về trang chủ" onClick={() => setMobileMenuOpen(false)}>
               <BrandLogo />
             </Link>
 
-            <nav className="site-nav hidden lg:flex items-center">
+            <nav className="site-nav hidden lg:flex items-center" aria-label="Điều hướng chính">
               {NAV_ITEMS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
             </nav>
 
             <div className="site-actions flex items-center gap-2">
               <button
+                type="button"
                 onClick={() => setIsLightMode(!isLightMode)}
+                aria-pressed={isLightMode}
                 aria-label={isLightMode ? 'Chuyển sang giao diện tối' : 'Chuyển sang giao diện sáng'}
                 className="icon-button"
               >
-                {isLightMode ? <Moon size={17} /> : <Sun size={17} />}
+                {isLightMode ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}
               </button>
               <button
+                type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-expanded={mobileMenuOpen}
-                aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
+                aria-controls="mobile-navigation"
+                aria-label={mobileMenuOpen ? 'Đóng menu điều hướng' : 'Mở menu điều hướng'}
                 className="icon-button lg:hidden"
               >
-                {mobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
+                {mobileMenuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className={`mobile-menu ${mobileMenuOpen ? 'is-open' : ''}`}>
+      <div className={`mobile-menu ${mobileMenuOpen ? 'is-open' : ''}`} aria-hidden={!mobileMenuOpen}>
         <div className="section-shell mobile-menu-shell">
           <div className="mobile-menu-head">
             <span>Menu</span>
             <strong>VTARCH</strong>
           </div>
-          <nav className="mobile-menu-nav">
+          <nav id="mobile-navigation" className="mobile-menu-nav" aria-label="Điều hướng trên di động">
             {NAV_ITEMS.map(([to, label]) => (
               <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)}>{label}</NavLink>
             ))}
           </nav>
           <div className="mobile-menu-contact">
             <span>Diễn họa kiến trúc / D5 Render / AI CGI</span>
-            <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
+            <a href="mailto:vtarch99@gmail.com" aria-label="Gửi email đến VTARCH">vtarch99@gmail.com</a>
           </div>
         </div>
       </div>
 
-      <main className="relative z-10">{children}</main>
+      <main id="main-content" className="relative z-10" tabIndex={-1}>{children}</main>
 
       <footer className="site-footer section-shell">
         <div className="footer-grid">
@@ -118,18 +125,18 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
             <h2 className="footer-title">Diễn họa kiến trúc. AI CGI. Công nghệ thiết kế.</h2>
           </div>
           <div className="footer-contact">
-            <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
-            <a href="tel:0385550506">038.555.0506</a>
+            <a href="mailto:vtarch99@gmail.com" aria-label="Gửi email đến VTARCH">vtarch99@gmail.com</a>
+            <a href="tel:0385550506" aria-label="Gọi VTARCH theo số 038 555 0506">038.555.0506</a>
             <span>TP.HCM / Việt Nam</span>
           </div>
-          <div className="footer-note">
+          <nav className="footer-note" aria-label="Điều hướng chân trang">
             <Link to="/portfolio">Dự án</Link>
             <Link to="/services">Dịch vụ</Link>
             <Link to="/ai-lab">AI Lab</Link>
             <Link to="/journal">Góc nhìn</Link>
             <Link to="/about">Giới thiệu</Link>
             <Link to="/contact">Liên hệ</Link>
-          </div>
+          </nav>
         </div>
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} VTARCH</span>
