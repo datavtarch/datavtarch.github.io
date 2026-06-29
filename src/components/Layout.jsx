@@ -48,25 +48,26 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       <header className={`site-header fixed top-0 left-0 right-0 z-40 ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="section-shell">
           <div className="site-header-inner">
-            <Link to="/" className="brand-lockup" aria-label="VTARCH home">
+            <Link to="/" className="brand-lockup" aria-label="VTARCH home" onClick={() => setMobileMenuOpen(false)}>
               <BrandLogo />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-7">
+            <nav className="site-nav hidden lg:flex items-center">
               {NAV_ITEMS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="site-actions flex items-center gap-2">
               <button
                 onClick={() => setIsLightMode(!isLightMode)}
-                aria-label="Toggle theme"
+                aria-label={isLightMode ? 'Chuyển sang giao diện tối' : 'Chuyển sang giao diện sáng'}
                 className="icon-button"
               >
                 {isLightMode ? <Moon size={17} /> : <Sun size={17} />}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Open menu"
+                aria-expanded={mobileMenuOpen}
+                aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
                 className="icon-button lg:hidden"
               >
                 {mobileMenuOpen ? <X size={19} /> : <Menu size={19} />}
@@ -77,11 +78,21 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
       </header>
 
       <div className={`mobile-menu ${mobileMenuOpen ? 'is-open' : ''}`}>
-        <nav className="section-shell mobile-menu-nav">
-          {NAV_ITEMS.map(([to, label]) => (
-            <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)}>{label}</NavLink>
-          ))}
-        </nav>
+        <div className="section-shell mobile-menu-shell">
+          <div className="mobile-menu-head">
+            <span>Menu</span>
+            <strong>VTARCH</strong>
+          </div>
+          <nav className="mobile-menu-nav">
+            {NAV_ITEMS.map(([to, label]) => (
+              <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)}>{label}</NavLink>
+            ))}
+          </nav>
+          <div className="mobile-menu-contact">
+            <span>Diễn họa kiến trúc / D5 Render / AI CGI</span>
+            <a href="mailto:vtarch99@gmail.com">vtarch99@gmail.com</a>
+          </div>
+        </div>
       </div>
 
       <main className="relative z-10">{children}</main>
