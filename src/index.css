@@ -15754,3 +15754,163 @@ p,
     font-size: 1.35rem !important;
   }
 }
+
+/* ========================================================
+   ACCESSIBILITY + OPERATIONS HARDENING PASS
+   ======================================================== */
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 88%, #ffffff) !important;
+  outline-offset: 4px !important;
+  border-radius: 12px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+.font-heading,
+.footer-title,
+.project-card-copy h2,
+.cinematic-work-list strong,
+.journal-grid-v2 strong,
+.ai-lab-v2-list strong,
+.project-story-item strong {
+  font-family: var(--font-body) !important;
+}
+
+body .cinematic-hero h1.motion-title,
+body .editorial-home-v2 .cinematic-hero h1.motion-title,
+body .motion-title,
+body .motion-title span,
+body .hero-title-stack span,
+body .cinematic-section-title h2,
+body .cinematic-about-copy h2,
+body .cinematic-lab-heading h2,
+body .cinematic-contact h2 {
+  font-family: var(--font-body) !important;
+}
+
+.font-mono,
+.eyebrow,
+.section-kicker,
+.nav-link,
+.project-card-meta,
+.project-card-location,
+.project-card-tags span,
+.project-card-action,
+.contact-form-status {
+  font-family: var(--font-mono) !important;
+}
+
+:where(input, textarea, select):focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--border-color)) !important;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.project-modal-shell:focus {
+  outline: none;
+}
+
+.project-modal-shell:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 82%, #ffffff);
+  outline-offset: 6px;
+}
+
+.contact-links-v3 {
+  align-items: center;
+}
+
+.contact-links-v3 a {
+  border-radius: 999px;
+}
+
+.contact-form-v3 form {
+  align-items: end;
+}
+
+.contact-form-v3 form button {
+  min-height: 48px;
+}
+
+.contact-form-status {
+  grid-column: 1 / -1;
+  min-height: 1.35em;
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em;
+  line-height: 1.5 !important;
+}
+
+@media (min-width: 981px) {
+  .editorial-portfolio-v2 .project-card.is-featured {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.58fr) minmax(320px, 0.42fr) !important;
+    align-items: stretch !important;
+    gap: clamp(22px, 3vw, 38px) !important;
+    min-height: 0 !important;
+    padding: clamp(16px, 1.6vw, 22px) !important;
+  }
+
+  .editorial-portfolio-v2 .project-card.is-featured .project-card-media {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    min-height: 0 !important;
+    height: clamp(440px, 40vw, 560px) !important;
+    aspect-ratio: auto !important;
+  }
+
+  .editorial-portfolio-v2 .project-card.is-featured .project-card-copy {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    justify-self: stretch !important;
+    padding: clamp(22px, 2.4vw, 34px) clamp(12px, 2vw, 28px) !important;
+  }
+
+  .editorial-portfolio-v2 .project-card.is-featured .project-card-index {
+    top: 34px !important;
+    left: 34px !important;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(10px);
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-form-v3 form {
+    align-items: stretch;
+  }
+
+  .contact-form-status {
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item,
+  .motion-title span,
+  .project-card,
+  .project-card-media img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

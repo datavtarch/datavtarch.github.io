@@ -16,6 +16,11 @@ const AiLab = lazy(() => import('./pages/AiLab'));
 const Contact = lazy(() => import('./pages/Contact'));
 const GraduationProject = lazy(() => import('./pages/GraduationProject'));
 
+const prefersReducedMotion = () => (
+  typeof window !== 'undefined'
+  && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+);
+
 const PageLoader = () => (
   <div className="min-h-[70vh] flex items-center justify-center px-6 text-center">
     <div className="w-full max-w-sm border border-[var(--border-color)] p-7 bg-[var(--panel-color)]">
@@ -28,11 +33,15 @@ const PageLoader = () => (
 );
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => !prefersReducedMotion());
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLightMode, setIsLightMode] = useState(false);
 
   useEffect(() => {
+    if (prefersReducedMotion()) {
+      return undefined;
+    }
+
     let progress = 0;
     const interval = setInterval(() => {
       progress += Math.floor(Math.random() * 28) + 30;
@@ -51,6 +60,8 @@ export default function App() {
   }, [isLightMode]);
 
   useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+
     const lenis = new Lenis({
       duration: 1.05,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

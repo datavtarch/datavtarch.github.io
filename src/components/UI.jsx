@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, BriefcaseBusiness, FileText, MapPin, X } from 'lucide-react';
 import { getProjectCover, getProjectGallery } from '../data/constants';
@@ -72,15 +72,67 @@ const MetaRow = ({ label, value }) => (
 );
 
 export const ProjectModal = ({ project, onClose }) => {
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (!project) return undefined;
+
+    const previousFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    dialogRef.current?.focus();
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusableElements = dialogRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (!focusableElements.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+      previousFocus?.focus?.();
+    };
+  }, [project, onClose]);
+
   if (!project) return null;
 
   const coverImage = getProjectCover(project);
   const gallery = getProjectGallery(project);
+  const titleId = `project-modal-title-${project.id}`;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
-      <div className="absolute inset-0 bg-black/88 backdrop-blur-xl" onClick={onClose} />
-      <article className="project-modal-shell relative w-full max-w-7xl max-h-[92vh] overflow-y-auto bg-[var(--bg-color)] border border-[var(--border-color)]">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8" role="presentation">
+      <div className="absolute inset-0 bg-black/88 backdrop-blur-xl" onClick={onClose} aria-hidden="true" />
+      <article
+        ref={dialogRef}
+        className="project-modal-shell relative w-full max-w-7xl max-h-[92vh] overflow-y-auto bg-[var(--bg-color)] border border-[var(--border-color)]"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+      >
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-30 w-11 h-11 border border-white/15 bg-black/55 flex items-center justify-center text-white hover:bg-[var(--accent)] transition-colors"
@@ -104,7 +156,7 @@ export const ProjectModal = ({ project, onClose }) => {
           <div className="project-modal-intro p-6 md:p-10 flex flex-col justify-between gap-10">
             <div>
               <div className="eyebrow mb-6">Hồ sơ dự án</div>
-              <h2 className="text-4xl md:text-6xl font-heading font-semibold leading-[0.96] mb-6">
+              <h2 id={titleId} className="text-4xl md:text-6xl font-heading font-semibold leading-[0.96] mb-6">
                 {project.title}
               </h2>
               <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed mb-8">
