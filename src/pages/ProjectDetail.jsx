@@ -17,7 +17,7 @@ const ProjectDetail = () => {
 
     const description = document.querySelector('meta[name="description"]');
     if (project && description) {
-      description.setAttribute('content', project.desc);
+      description.setAttribute('content', project.story?.overview || project.desc);
     }
   }, [project]);
 
@@ -40,6 +40,12 @@ const ProjectDetail = () => {
   const projectIndex = PROJECTS_DATA.findIndex((item) => item.id === project.id);
   const previousProject = PROJECTS_DATA[(projectIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length];
   const nextProject = PROJECTS_DATA[(projectIndex + 1) % PROJECTS_DATA.length];
+  const storyBlocks = [
+    ['Tổng quan', project.story?.overview || project.desc],
+    ['Vai trò', project.story?.role || project.services.join(' / ')],
+    ['Hướng hình ảnh', project.story?.direction || project.desc],
+  ];
+  const deliverables = project.story?.deliverables?.length ? project.story.deliverables : project.services;
 
   return (
     <main className="page-wrap project-detail-page project-detail-editorial-v2">
@@ -84,6 +90,33 @@ const ProjectDetail = () => {
         </dl>
       </section>
 
+      <section className="section-shell project-story-grid">
+        <div className="project-story-heading">
+          <p className="eyebrow">Hồ sơ dự án</p>
+          <h2>Từ bối cảnh đến bộ ảnh hoàn chỉnh.</h2>
+        </div>
+
+        <div className="project-story-content">
+          <div className="project-story-list">
+            {storyBlocks.map(([label, value]) => (
+              <article key={label} className="project-story-item">
+                <span>{label}</span>
+                <p>{value}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="project-deliverables">
+            <span>Bàn giao</span>
+            <div>
+              {deliverables.map((item) => (
+                <em key={item}>{item}</em>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell project-detail-gallery">
         <div className="project-detail-gallery-heading">
           <div>
@@ -102,17 +135,17 @@ const ProjectDetail = () => {
 
           return (
             <figure key={image} className={`project-detail-frame ${frameClass}`}>
-            <img
-              src={image}
-              alt={`${project.title} - trang ${index + 1}`}
-              loading="eager"
-              decoding="async"
-            />
-            <figcaption>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{project.title}</strong>
-            </figcaption>
-          </figure>
+              <img
+                src={image}
+                alt={`${project.title} - ảnh ${index + 1}`}
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{project.title}</strong>
+              </figcaption>
+            </figure>
           );
         })}
       </section>

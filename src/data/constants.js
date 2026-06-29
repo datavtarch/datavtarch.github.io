@@ -85,6 +85,37 @@ const PDF_COVER_PAGES = {
   'vinhomes-hybrid': 1,
 };
 
+const PDF_GALLERY_PRIORITY_PAGES = {
+  'ai-phong-cach-indochine': [9, 1, 6, 3, 4, 7, 10],
+  'ai-phong-cach-japandi': [6, 2, 7, 9, 11, 1],
+  'ai-phong-cach-japandi-hien-dai': [9, 2, 5, 6, 7, 8, 10],
+  'celadon-interior': [1, 10, 2, 3, 8, 9, 11, 12, 6, 7],
+  'd5-render-phong-cach-hien-dai': [1, 2, 7, 9, 10, 11, 6],
+  'd5-render-wabi': [1, 2, 3, 4],
+  'd5-render-wabi-trung': [1, 3, 4, 2, 5],
+  'sketchup-d5-render-du-an-thiet-ke-da-lat-house': [2, 1, 4, 5, 6, 7, 9, 10, 11, 12],
+  'thanh-tuan-motel': [2, 1, 3, 4, 5, 6],
+  'thuyet-minh-tot-nghiep': [1, 11, 9, 10, 8],
+  'vinhomes-hybrid': [1, 2, 3, 8, 9, 10, 11, 12],
+};
+
+const orderPdfImages = (pdfImages, priorityPages = []) => {
+  if (!pdfImages.length || !priorityPages.length) return pdfImages;
+
+  const seen = new Set();
+  const prioritized = priorityPages
+    .map((page) => pdfImages[page - 1])
+    .filter(Boolean)
+    .filter((image) => {
+      if (seen.has(image)) return false;
+      seen.add(image);
+      return true;
+    });
+
+  const remaining = pdfImages.filter((image) => !seen.has(image));
+  return [...prioritized, ...remaining];
+};
+
 export const getPdfPreviewPath = (pdfLink) => {
   const slug = getPdfSlug(pdfLink);
   return slug ? getAssetPath(`/pdf-previews/${slug}.webp`) : '';
@@ -106,8 +137,9 @@ export const getProjectCover = (project) => {
 };
 
 export const getProjectGallery = (project) => {
+  const slug = getPdfSlug(project.pdfLink);
   const pdfImages = getProjectPdfImages(project);
-  if (pdfImages.length) return pdfImages;
+  if (pdfImages.length) return orderPdfImages(pdfImages, PDF_GALLERY_PRIORITY_PAGES[slug]);
 
   const galleryItems = project.gallery?.length ? project.gallery : [project.image].filter(Boolean);
   const pdfPreview = getPdfPreviewPath(project.pdfLink);
@@ -115,6 +147,75 @@ export const getProjectGallery = (project) => {
 };
 
 export const getProjectDetailPath = (project) => `/portfolio/${project.id}`;
+
+const PROJECT_STORIES = {
+  0: {
+    overview: 'Một đồ án thiền định tại Đà Lạt, khai thác quan hệ giữa địa hình, khí hậu mát, mảng xanh và nhịp di chuyển chậm của người sử dụng.',
+    role: 'Phát triển ý tưởng kiến trúc, dựng câu chuyện không gian, diễn họa ngoại thất và biên tập hồ sơ trình bày.',
+    direction: 'Hình ảnh ưu tiên sự yên tĩnh: ánh sáng dịu, lớp cảnh quan sâu, vật liệu mộc và góc nhìn có khoảng thở.',
+    deliverables: ['Concept kiến trúc', 'Diễn họa ngoại thất', 'Hồ sơ thuyết minh', 'Gallery PDF chuyển ảnh'],
+  },
+  1: {
+    overview: 'Bộ hình ảnh cho công trình lưu trú quy mô nhỏ, cần diễn đạt rõ công năng, mặt đứng và cảm giác gần gũi với người dùng.',
+    role: 'Tổ chức góc nhìn, xử lý ánh sáng, dựng bộ ảnh trình bày và hậu kỳ để công trình dễ trao đổi với chủ đầu tư.',
+    direction: 'Ngôn ngữ hình ảnh rõ ràng, ít phô diễn, tập trung vào nhận diện công trình, vật liệu và bối cảnh sử dụng thực tế.',
+    deliverables: ['Diễn họa kiến trúc', 'D5 Render', 'Hậu kỳ hình ảnh', 'Bộ ảnh trình bày'],
+  },
+  2: {
+    overview: 'Dự án nhà ở tại Đà Lạt, đặt trọng tâm vào cảm giác cư trú, chất liệu ấm và mối quan hệ giữa nhà với cảnh quan.',
+    role: 'Dựng model SketchUp, hoàn thiện cảnh D5 Render, chọn camera và phát triển nhịp ảnh cho portfolio dự án.',
+    direction: 'Tông sáng ấm, vật liệu đọc rõ, góc nhìn vừa đủ đời sống để hình ảnh không chỉ là render kỹ thuật.',
+    deliverables: ['Model SketchUp', 'D5 Render', 'Định hướng thị giác', 'Gallery ngoại thất'],
+  },
+  3: {
+    overview: 'Bộ ảnh căn hộ hiện đại hướng đến cảm giác sống gọn gàng, sáng và có tính thương mại trong hồ sơ nội thất.',
+    role: 'Dựng không gian, cân bằng ánh sáng mềm, vật liệu và phối cảnh để tạo bộ ảnh nhất quán cho từng khu vực.',
+    direction: 'Tinh thần magazine interior: sạch, rõ vật liệu, đủ chiều sâu và có các góc cận để tăng cảm giác hoàn thiện.',
+    deliverables: ['Diễn họa nội thất', 'Model SketchUp', 'D5 Render', 'Bộ ảnh portfolio'],
+  },
+  4: {
+    overview: 'Thử nghiệm hybrid giữa nội thất hiện đại và tinh thần Wabi Sabi cho căn hộ, hướng đến sự cân bằng và tiết chế.',
+    role: 'Phát triển mood, chọn hệ vật liệu, render và hậu kỳ để kiểm soát sắc độ, sáng tối và nhịp không gian.',
+    direction: 'Bảng màu trầm ấm, bề mặt vật liệu tự nhiên, góc nhìn rộng kết hợp chi tiết để tạo nhịp sống trong ảnh.',
+    deliverables: ['Diễn họa nội thất', 'Tinh chỉnh mood', 'D5 Render', 'Hậu kỳ hình ảnh'],
+  },
+  5: {
+    overview: 'Một nghiên cứu ánh sáng nội thất, dùng D5 Render và AI CGI để thử độ sâu, tương phản và cảm xúc hình ảnh.',
+    role: 'Kiểm tra mood ánh sáng, nâng cấp hậu kỳ, so sánh các hướng xử lý ảnh và chuẩn hóa đầu ra cho portfolio.',
+    direction: 'Ánh sáng là chủ thể chính: vùng sáng ấm, bóng sâu vừa phải, chi tiết vật liệu đủ sắc nhưng không gắt.',
+    deliverables: ['Nghiên cứu ánh sáng', 'AI CGI', 'Hậu kỳ hình ảnh', 'Bộ so sánh visual'],
+  },
+  6: {
+    overview: 'Concept nội thất Wabi Sabi, tập trung vào khoảng trống, chất cảm mộc và trạng thái tĩnh của không gian.',
+    role: 'Định hướng mood vật liệu, dựng cảnh, render và biên tập bộ ảnh để diễn đạt tinh thần tối giản mộc mạc.',
+    direction: 'Hình ảnh ít chi tiết thừa, ưu tiên bề mặt thô, ánh sáng tản và bố cục có khoảng lặng.',
+    deliverables: ['Diễn họa nội thất', 'Mood vật liệu', 'D5 Render', 'Concept image set'],
+  },
+  7: {
+    overview: 'Biến thể villa theo tinh thần Á Đông tối giản, nhấn vào cấu trúc không gian, bóng đổ và lớp vật liệu tự nhiên.',
+    role: 'Dựng model, phát triển mood, chọn camera và kiểm soát ánh sáng để bộ ảnh có chiều sâu kiến trúc.',
+    direction: 'Không gian trầm, nét ngang mạnh, ánh sáng đi qua lớp vật liệu để tạo cảm giác sang nhưng không phô trương.',
+    deliverables: ['Model SketchUp', 'D5 Render', 'Định hướng mood', 'Bộ ảnh nội thất'],
+  },
+  17: {
+    overview: 'Thử nghiệm AI CGI cho phong cách Indochine, dùng như một bước khám phá nhanh trước khi phát triển render chính.',
+    role: 'Thiết kế prompt, lọc hình, kiểm tra ngôn ngữ vật liệu và chuyển hóa mood thành hướng trình bày có thể sử dụng.',
+    direction: 'Tinh thần Đông Dương tiết chế: gỗ tối, mây tre, ánh sáng ấm và bố cục nội thất có chiều sâu.',
+    deliverables: ['AI CGI', 'Thiết kế prompt', 'Thử nghiệm phong cách', 'Moodboard hình ảnh'],
+  },
+  18: {
+    overview: 'Bộ concept Japandi tạo nhanh bằng AI, phục vụ giai đoạn tìm mood, so sánh vật liệu và hướng sáng.',
+    role: 'Xây dựng prompt, tuyển chọn ảnh, tinh chỉnh ngôn ngữ không gian và biên tập thành bộ mood rõ ràng.',
+    direction: 'Tối giản, ấm, ít nhiễu thị giác; tập trung vào gỗ sáng, ánh sáng mềm và tỷ lệ nội thất cân bằng.',
+    deliverables: ['AI CGI', 'Thiết kế prompt', 'Moodboard', 'Gallery concept'],
+  },
+  19: {
+    overview: 'Quy trình hybrid AI-CGI cho nội thất Japandi hiện đại, giúp tăng tốc thử mood và nâng chất lượng hình ảnh.',
+    role: 'Kết hợp render, AI enhancement và hậu kỳ để kiểm tra nhiều hướng vật liệu trước khi chốt visual cuối.',
+    direction: 'Hiện đại hơn Japandi truyền thống: đường nét sạch, chất liệu sáng, ánh sáng rõ và cảm giác thương mại.',
+    deliverables: ['AI CGI', 'D5 Render', 'Hậu kỳ hình ảnh', 'Workflow thử mood'],
+  },
+};
 
 const gallery = (...images) => images;
 
@@ -274,7 +375,10 @@ export const PROJECTS_DATA = [
     desc: 'Quy trình hybrid AI-CGI giúp tăng tốc thử mood, nâng chất ảnh và kiểm tra nhiều hướng vật liệu.',
     category: ['AI Render', 'Diễn họa nội thất'],
   },
-];
+].map((project) => ({
+  ...project,
+  story: PROJECT_STORIES[project.id],
+}));
 
 export const SERVICE_GROUPS = [
   {
