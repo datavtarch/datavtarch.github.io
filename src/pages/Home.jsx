@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BrandMark } from '../components/Brand';
 import { Reveal } from '../components/UI';
+import { CV_DATA } from '../data/cvData';
 import { IMAGES, INSIGHTS, PROJECTS_DATA, getProjectCover, getProjectDetailPath } from '../data/constants';
 import { personSchema, setPageSeo } from '../utils/seo';
 
@@ -54,17 +55,34 @@ const labItems = [
   ['Tự động hóa quy trình', 'Rút gọn các bước lặp lại trong xử lý hình ảnh và hồ sơ trình bày.'],
 ];
 
-const services = [
-  ['Hình ảnh', 'Diễn họa kiến trúc, nội thất, ngoại thất, animation và hậu kỳ hình ảnh.'],
-  ['Thiết kế', 'Định hướng thị giác, concept không gian, moodboard vật liệu và góc nhìn trình bày.'],
-  ['Công nghệ', 'AI CGI, GPT cho kiến trúc, quy trình AI và công cụ tự động hóa riêng.'],
-];
-
 const profileFacts = [
   ['Đào tạo', 'Kiến trúc sư - Đại học Kiến Trúc TP.HCM'],
   ['Kinh nghiệm', '5+ năm thiết kế, diễn họa và trình bày dự án'],
   ['Trọng tâm', 'Diễn họa kiến trúc / D5 Render / AI CGI'],
 ];
+
+const skillNameOverrides = {
+  Sketchup: 'SketchUp',
+  'Vray Sketchup': 'V-Ray SketchUp',
+};
+
+const softwareSkills = [
+  { name: 'D5 Render', level: 90 },
+  ...CV_DATA.softwareSkills.map((skill) => ({
+    ...skill,
+    name: skillNameOverrides[skill.name] ?? skill.name,
+  })),
+];
+
+const aiSkillCards = [
+  ['Custom GPT', CV_DATA.aiSkills.automation],
+  ['Nghiên cứu AI', CV_DATA.aiSkills.research],
+  ['Quy trình AI-CGI', CV_DATA.aiSkills.workflow],
+];
+
+const summaryLead = CV_DATA.summary.split('\n\n')[0];
+const achievementPreview = CV_DATA.achievements.slice(0, 4);
+const activityPreview = CV_DATA.activities.slice(0, 6);
 
 const getProject = (entry) => ({
   ...PROJECTS_DATA[entry.sourceIndex],
@@ -177,25 +195,21 @@ const Home = () => {
 
       <section className="cinematic-about section-shell profile-summary">
         <Reveal className="profile-summary-panel" variant="scale">
-          <span className="cinematic-kicker">Thông tin trước</span>
-          <h2>Kiến trúc, hình ảnh và công nghệ được đặt chung trong một quy trình làm việc.</h2>
-          <div>
-            {profileFacts.map(([label, value]) => (
-              <article key={label}>
-                <span>{label}</span>
-                <strong>{value}</strong>
+          <span className="cinematic-kicker">Hồ sơ trước</span>
+          <h2>Nền tảng kiến trúc, diễn họa và công nghệ.</h2>
+          <div className="profile-education-list">
+            {CV_DATA.education.map((item, idx) => (
+              <article key={item}>
+                <span>{String(idx + 1).padStart(2, '0')}</span>
+                <strong>{item}</strong>
               </article>
             ))}
           </div>
         </Reveal>
         <Reveal className="cinematic-about-copy" delay={100}>
-          <span className="cinematic-kicker">Hồ sơ</span>
-          <h2>Nguyễn Văn Thanh, kiến trúc sư phát triển hình ảnh kiến trúc và quy trình AI.</h2>
-          <p>
-            VTARCH là không gian lưu trữ các nghiên cứu hình ảnh, diễn họa nội thất, diễn họa ngoại thất
-            và thử nghiệm AI CGI. Mỗi dự án được phát triển từ tư duy kiến trúc, kết hợp render, hậu kỳ
-            và các công cụ tự động hóa phù hợp.
-          </p>
+          <span className="cinematic-kicker">Nguyễn Văn Thanh</span>
+          <h2>Hồ sơ năng lực của một kiến trúc sư phát triển hình ảnh.</h2>
+          <p>{summaryLead}</p>
           <div className="cinematic-timeline">
             {timeline.map(([year, text]) => (
               <div key={year}>
@@ -207,22 +221,71 @@ const Home = () => {
         </Reveal>
       </section>
 
-      <section className="cinematic-services">
+      <section className="cinematic-services capability-profile">
         <div className="section-shell">
-          <Reveal className="cinematic-section-title">
-            <span>Kỹ năng</span>
-            <h2>Sau hồ sơ cá nhân là hệ kỹ năng chính: hình ảnh, thiết kế và công nghệ.</h2>
+          <Reveal className="cinematic-section-title capability-title">
+            <span>Năng lực</span>
+            <h2>Phần mềm, AI workflow, giải thưởng và hoạt động.</h2>
           </Reveal>
-          <div className="cinematic-service-grid">
-            {services.map(([title, desc], idx) => (
-              <Reveal key={title} delay={idx * 80}>
-                <article>
-                  <span>{String(idx + 1).padStart(2, '0')}</span>
-                  <h3>{title}</h3>
-                  <p>{desc}</p>
-                </article>
+          <div className="capability-layout">
+            <Reveal className="software-panel" variant="scale">
+              <div className="capability-panel-heading">
+                <span>Phần mềm</span>
+                <h3>Công cụ thiết kế & diễn họa</h3>
+              </div>
+              <div className="software-skill-list">
+                {softwareSkills.map((skill) => (
+                  <article key={skill.name} className="software-skill-item">
+                    <span>{skill.name}</span>
+                    <em>{skill.level}%</em>
+                    <div className="skill-meter" aria-hidden="true">
+                      <i style={{ width: `${skill.level}%` }} />
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </Reveal>
+
+            <div className="capability-side">
+              <Reveal className="ai-skill-strip" delay={80}>
+                {aiSkillCards.map(([title, desc], idx) => (
+                  <article key={title}>
+                    <span>{String(idx + 1).padStart(2, '0')}</span>
+                    <strong>{title}</strong>
+                    <p>{desc}</p>
+                  </article>
+                ))}
               </Reveal>
-            ))}
+
+              <div className="credential-grid">
+                <Reveal className="credential-panel" delay={120}>
+                  <div className="capability-panel-heading">
+                    <span>Giải thưởng</span>
+                    <h3>Dấu mốc học thuật & sáng tạo</h3>
+                  </div>
+                  <ul className="credential-list">
+                    {achievementPreview.map((item) => (
+                      <li key={`${item.title}-${item.event}`}>
+                        <strong>{item.title}</strong>
+                        <span>{item.event}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+
+                <Reveal className="credential-panel" delay={160}>
+                  <div className="capability-panel-heading">
+                    <span>Hoạt động</span>
+                    <h3>Tổ chức, cộng đồng & trách nhiệm</h3>
+                  </div>
+                  <ul className="credential-list">
+                    {activityPreview.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+            </div>
           </div>
         </div>
       </section>
