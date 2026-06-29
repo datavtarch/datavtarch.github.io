@@ -21,6 +21,7 @@ function NavLink({ to, children, onClick }) {
     <Link
       to={to}
       onClick={onClick}
+      aria-current={isActive ? 'page' : undefined}
       className={`nav-link ${isActive ? 'is-active' : ''}`}
     >
       {children}
@@ -67,7 +68,11 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
             </Link>
 
             <nav className="site-nav hidden lg:flex items-center">
-              {NAV_ITEMS.map(([to, label]) => <NavLink key={to} to={to}>{label}</NavLink>)}
+              {NAV_ITEMS.map(([to, label]) => (
+                <NavLink key={to} to={to}>
+                  {label}
+                </NavLink>
+              ))}
             </nav>
 
             <div className="site-actions flex items-center gap-2">
@@ -99,7 +104,9 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
           </div>
           <nav className="mobile-menu-nav">
             {NAV_ITEMS.map(([to, label]) => (
-              <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)}>{label}</NavLink>
+              <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)}>
+                {label}
+              </NavLink>
             ))}
           </nav>
           <div className="mobile-menu-contact">
@@ -139,3 +146,4 @@ export default function Layout({ children, isLightMode, setIsLightMode }) {
     </div>
   );
 }
+

@@ -1770,6 +1770,10 @@ h4,
   padding: 0;
   text-align: left;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .work-tile img {
@@ -1778,11 +1782,17 @@ h4,
   object-fit: cover;
   margin-bottom: 18px;
   transition: transform 0.45s ease, filter 0.45s ease;
+  border-radius: 22px 22px 0 0;
 }
 
 .work-tile:hover img {
   transform: scale(1.018);
   filter: saturate(1.04);
+}
+
+.work-tile:hover {
+  border-color: color-mix(in srgb, var(--accent) 26%, transparent);
+  transform: translateY(-2px);
 }
 
 .work-tile span {
@@ -1864,6 +1874,14 @@ h4,
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   padding: clamp(24px, 4vw, 42px);
+  border-radius: 22px;
+  margin: 0 10px 10px 0;
+  background: color-mix(in srgb, var(--panel-color) 48%, transparent);
+}
+
+.service-groups-v2 article > * {
+  position: relative;
+  z-index: 1;
 }
 
 .service-groups-v2 h3,

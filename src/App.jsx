@@ -109,7 +109,6 @@ export default function App() {
           </Routes>
         </Suspense>
       </Layout>
-
     </Router>
   );
 }
