@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/UI';
 
 const serviceGroups = [
-  ['DIỄN HỌA', ['Diễn họa ngoại thất', 'Diễn họa nội thất', 'Animation', 'AI CGI']],
-  ['THIẾT KẾ', ['Thiết kế kiến trúc', 'Thiết kế nội thất', 'Concept không gian']],
-  ['CÔNG NGHỆ', ['GPT cho kiến trúc', 'Workflow AI', 'Công cụ tự động hóa', 'Ứng dụng tùy chỉnh']],
+  ['DIỄN HỌA', ['Diễn họa ngoại thất', 'Diễn họa nội thất', 'Chuyển động hình ảnh', 'AI CGI']],
+  ['THIẾT KẾ', ['Thiết kế kiến trúc', 'Thiết kế nội thất', 'Ý tưởng không gian']],
+  ['CÔNG NGHỆ', ['GPT cho kiến trúc', 'Quy trình AI', 'Công cụ tự động hóa', 'Ứng dụng tùy chỉnh']],
 ];
 
 export default function Services() {
+  useEffect(() => {
+    document.title = 'Dịch vụ | VTARCH';
+  }, []);
+
   return (
     <div className="page-wrap service-page-v2">
       <section className="section-shell page-hero-minimal">
@@ -16,7 +20,7 @@ export default function Services() {
           <span className="section-kicker">Dịch vụ</span>
           <h1>Hình ảnh, thiết kế và công nghệ cho studio kiến trúc.</h1>
           <p>
-            VTARCH phát triển hình ảnh, concept và công cụ workflow để hỗ trợ kiến trúc sư, studio thiết kế
+            VTARCH phát triển hình ảnh, ý tưởng và công cụ quy trình để hỗ trợ kiến trúc sư, studio thiết kế
             và chủ đầu tư trình bày ý tưởng rõ hơn.
           </p>
         </Reveal>

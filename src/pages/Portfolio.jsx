@@ -33,7 +33,7 @@ const Portfolio = () => {
           <p className="eyebrow">Dự án</p>
           <h1>Lưu trữ hình ảnh kiến trúc, nội thất, D5 Render và AI CGI.</h1>
           <p>
-            Mỗi dự án được trình bày như một case study ngắn, ưu tiên ảnh lớn, thông tin gọn và cảm giác
+            Mỗi dự án được trình bày như một hồ sơ hình ảnh ngắn, ưu tiên ảnh lớn, thông tin gọn và cảm giác
             studio chuyên nghiệp.
           </p>
         </Reveal>

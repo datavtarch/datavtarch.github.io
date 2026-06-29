@@ -103,7 +103,7 @@ export const ProjectModal = ({ project, onClose }) => {
 
           <div className="project-modal-intro p-6 md:p-10 flex flex-col justify-between gap-10">
             <div>
-              <div className="eyebrow mb-6">Case study dự án</div>
+              <div className="eyebrow mb-6">Hồ sơ dự án</div>
               <h2 className="text-4xl md:text-6xl font-heading font-semibold leading-[0.96] mb-6">
                 {project.title}
               </h2>

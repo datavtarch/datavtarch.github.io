@@ -63,7 +63,7 @@ const ProjectDetail = () => {
             decoding="async"
           />
           <figcaption>
-            <span>Cover</span>
+            <span>Ảnh chính</span>
             <strong>Ảnh chuyển trực tiếp từ PDF dự án</strong>
           </figcaption>
         </figure>
@@ -87,7 +87,7 @@ const ProjectDetail = () => {
       <section className="section-shell project-detail-gallery">
         <div className="project-detail-gallery-heading">
           <div>
-            <p className="eyebrow">Gallery</p>
+            <p className="eyebrow">Thư viện ảnh</p>
             <h2>Toàn bộ hình ảnh dự án.</h2>
           </div>
           <span>{gallery.length} ảnh từ PDF</span>

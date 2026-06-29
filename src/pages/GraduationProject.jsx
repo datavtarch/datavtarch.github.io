@@ -23,6 +23,7 @@ const solutions = [
 
 const GraduationProject = () => {
   useEffect(() => {
+    document.title = 'Trung tâm Thiền Làng Mai Đà Lạt | VTARCH';
     window.scrollTo(0, 0);
   }, []);
 
@@ -41,7 +42,7 @@ const GraduationProject = () => {
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.9fr] gap-8 md:gap-12 items-center">
             <div>
-              <div className="eyebrow mb-6">Case study kiến trúc</div>
+              <div className="eyebrow mb-6">Hồ sơ kiến trúc</div>
               <h1 className="text-4xl md:text-7xl lg:text-[5.2rem] font-black font-heading leading-[0.98] mb-7">
                 Trung tâm Thiền <br />
                 <span className="gradient-title">Làng Mai Đà Lạt</span>
@@ -119,7 +120,7 @@ const GraduationProject = () => {
             Xem thêm <span className="gradient-title">dự án khác</span>
           </h3>
           <p className="text-sm font-mono text-[var(--text-muted)] max-w-2xl mx-auto mb-8 leading-relaxed">
-            Khám phá thêm các dự án D5 Render, nội thất, công trình thực tế và AI concept trong archive dự án.
+            Khám phá thêm các dự án D5 Render, nội thất, công trình thực tế và AI concept trong thư viện dự án.
           </p>
           <Link to="/portfolio" className="btn-accent inline-flex items-center gap-3 px-9 py-4 text-xs font-mono uppercase tracking-widest">
             Trở về dự án

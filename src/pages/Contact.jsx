@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Reveal } from '../components/UI';
 import { IMAGES } from '../data/constants';
 
 export default function Contact() {
+  useEffect(() => {
+    document.title = 'Liên hệ | VTARCH';
+  }, []);
+
   return (
     <div className="page-wrap contact-page-v3">
       <section className="section-shell contact-hero-v3">
         <Reveal className="contact-hero-copy">
           <span className="section-kicker">Liên hệ</span>
-          <h1>Let&apos;s build a visual story for your next project.</h1>
+          <h1>Bắt đầu câu chuyện hình ảnh cho dự án tiếp theo.</h1>
           <p>
-            Nếu bạn đang cần diễn họa kiến trúc, nội thất hoặc một workflow AI gọn hơn, mình có thể nhận brief
-            và phản hồi theo hướng studio, rõ ràng và thực tế.
+            VTARCH tiếp nhận brief diễn họa kiến trúc, nội thất và các yêu cầu xây dựng quy trình AI gọn hơn
+            cho studio thiết kế, kiến trúc sư và chủ đầu tư.
           </p>
 
           <div className="contact-links-v3">
@@ -26,7 +30,7 @@ export default function Contact() {
           <img src={IMAGES.portrait} alt="VTARCH portrait" loading="eager" decoding="async" />
           <div>
             <span>Nguyễn Văn Thanh</span>
-            <strong>Architecture Visualization / AI CGI / Design Technology</strong>
+            <strong>Diễn họa kiến trúc / AI CGI / Công nghệ thiết kế</strong>
           </div>
         </Reveal>
       </section>
@@ -36,7 +40,7 @@ export default function Contact() {
           <div className="contact-form-shell">
             <div className="contact-form-copy">
               <span className="section-kicker">Brief</span>
-              <h2>Gửi mô tả ngắn về dự án, mình sẽ xem và phản hồi lại bằng hướng đi rõ ràng hơn.</h2>
+              <h2>Gửi mô tả ngắn về dự án để VTARCH phản hồi bằng hướng triển khai rõ ràng.</h2>
             </div>
 
             <form onSubmit={(event) => event.preventDefault()}>

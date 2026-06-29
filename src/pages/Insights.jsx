@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Reveal } from '../components/UI';
 import { INSIGHTS } from '../data/constants';
@@ -7,15 +7,19 @@ export default function Insights() {
   const featuredPost = INSIGHTS[0];
   const featurePosts = INSIGHTS.slice(1, 4);
 
+  useEffect(() => {
+    document.title = 'Góc nhìn | VTARCH';
+  }, []);
+
   return (
     <div className="page-wrap journal-page-v3">
       <section className="section-shell journal-hero-v3">
         <Reveal className="journal-hero-copy">
           <span className="section-kicker">Góc nhìn</span>
-          <h1>Ghi chép chuyên môn về diễn họa kiến trúc, AI CGI và workflow thiết kế.</h1>
+          <h1>Ghi chép chuyên môn về diễn họa kiến trúc, AI CGI và quy trình thiết kế.</h1>
           <p>
-            Những ghi chép ngắn, ưu tiên hình ảnh và case study thực tế, để trang này đọc như một tạp chí studio
-            hơn là một blog kỹ thuật.
+            Các bài viết ngắn về hình ảnh, hồ sơ dự án thực tế và cách công nghệ hỗ trợ quá trình trình bày
+            ý tưởng kiến trúc.
           </p>
         </Reveal>
 

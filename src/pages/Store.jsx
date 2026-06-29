@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Download, Mail, PackageCheck } from 'lucide-react';
 import { TiltCard } from '../components/UI';
@@ -6,11 +6,15 @@ import { STORE_ITEMS } from '../data/constants';
 
 const resourceBenefits = [
   'Dành cho người học D5 Render và diễn họa nội thất.',
-  'Tập trung vào vật liệu, ánh sáng và workflow thực chiến.',
+  'Tập trung vào vật liệu, ánh sáng và quy trình thực chiến.',
   'Có thể dùng như tài liệu tham khảo khi triển khai dự án.',
 ];
 
 const Store = () => {
+  useEffect(() => {
+    document.title = 'Tài nguyên | VTARCH';
+  }, []);
+
   return (
     <div className="pt-32 md:pt-40 pb-24">
       <section className="section-shell">
@@ -18,12 +22,12 @@ const Store = () => {
           <div className="absolute inset-0 soft-grid opacity-20" />
           <div className="relative z-10 grid lg:grid-cols-[1fr_.75fr] gap-8 items-end">
             <div>
-              <div className="eyebrow mb-6">VTARCH Resources</div>
+              <div className="eyebrow mb-6">Tài nguyên VTARCH</div>
               <h1 className="text-5xl md:text-8xl font-black uppercase font-heading leading-[0.9]">
-                D5 Assets <span className="gradient-title">& Workflow.</span>
+                Tài nguyên D5 <span className="gradient-title">& quy trình.</span>
               </h1>
               <p className="max-w-2xl mt-6 text-sm md:text-base font-mono text-[var(--text-muted)] leading-relaxed">
-                Khu tài nguyên phụ của VTARCH: vật liệu, setting render và workflow tham khảo cho D5 Render. Phần này hỗ trợ người học và cộng đồng diễn họa, không thay thế phần dịch vụ chính của website.
+                Khu tài nguyên phụ của VTARCH: vật liệu, thiết lập render và quy trình tham khảo cho D5 Render. Phần này hỗ trợ người học và cộng đồng diễn họa, không thay thế phần dịch vụ chính của website.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link to="/services" className="btn-accent px-7 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center justify-center gap-2">
@@ -61,7 +65,7 @@ const Store = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/16 to-transparent" />
               <div className="absolute top-5 left-5 right-5 flex items-start justify-between">
-                <span className="tag-accent">{item.tags?.[0] || 'Resource'}</span>
+                <span className="tag-accent">{item.tags?.[0] || 'Tài nguyên'}</span>
                 <span className="w-10 h-10 rounded-full border border-white/10 bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-[#D95A2B] transition-colors">
                   <ArrowUpRight size={15} />
                 </span>
@@ -76,7 +80,7 @@ const Store = () => {
                 <div className="flex items-end justify-between border-t border-white/10 pt-4 gap-4">
                   <div>
                     <span className="text-[#F3A06D] font-black text-4xl block leading-none">{item.price}</span>
-                    <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Digital resource</span>
+                    <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest">Tài nguyên số</span>
                   </div>
                   <a href="mailto:vtarch99@gmail.com" className="btn-accent px-5 py-3 text-[10px] font-mono uppercase tracking-widest whitespace-nowrap">
                     Liên hệ
@@ -93,10 +97,10 @@ const Store = () => {
               <Download size={26} />
             </div>
             <h3 className="text-3xl md:text-6xl font-black uppercase font-heading mb-5">
-              Muốn nhận <br /> <span className="gradient-title">D5 Material Pack?</span>
+              Muốn nhận <br /> <span className="gradient-title">bộ vật liệu D5?</span>
             </h3>
             <p className="text-sm font-mono text-[var(--text-muted)] mb-8 max-w-2xl mx-auto leading-relaxed">
-              Gửi email hoặc liên hệ trực tiếp để nhận tài nguyên mẫu, trao đổi workflow D5 Render hoặc đặt dịch vụ hình ảnh dự án.
+              Gửi email hoặc liên hệ trực tiếp để nhận tài nguyên mẫu, trao đổi quy trình D5 Render hoặc đặt dịch vụ hình ảnh dự án.
             </p>
             <form className="flex flex-col sm:flex-row max-w-xl mx-auto gap-3" onSubmit={(e) => { e.preventDefault(); alert('Cảm ơn bạn! VTARCH sẽ liên hệ lại qua email.'); }}>
               <div className="flex-1 relative">

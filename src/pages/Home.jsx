@@ -8,32 +8,32 @@ const projectCopy = [
   {
     sourceIndex: 3,
     title: 'Celadon Modern Interior',
-    type: 'Interior visualization',
-    location: 'Ho Chi Minh City',
+    type: 'Diễn họa nội thất',
+    location: 'TP.HCM',
     year: '2024',
     note: 'Một khung hình nội thất được xử lý như ảnh tạp chí: ánh sáng mềm, vật liệu rõ, nhịp sống vừa đủ.',
   },
   {
     sourceIndex: 0,
     title: 'Trung tâm Thiền Làng Mai Đà Lạt',
-    type: 'Architecture concept',
-    location: 'Da Lat',
+    type: 'Concept kiến trúc',
+    location: 'Đà Lạt',
     year: '2024',
     note: 'Không gian thiền định được kể bằng địa hình, bóng đổ và chuyển tiếp giữa ồn ào và tĩnh lặng.',
   },
   {
     sourceIndex: 2,
     title: 'Da Lat House',
-    type: 'Residential visualization',
-    location: 'Da Lat',
+    type: 'Diễn họa nhà ở',
+    location: 'Đà Lạt',
     year: '2023',
     note: 'Một nghiên cứu về chất liệu ấm, ánh sáng tự nhiên và cảm giác cư trú trong bối cảnh cao nguyên.',
   },
   {
     sourceIndex: 4,
     title: 'Vinhomes Hybrid Interior',
-    type: 'Hybrid CGI',
-    location: 'Ho Chi Minh City',
+    type: 'Diễn họa hybrid',
+    location: 'TP.HCM',
     year: '2024',
     note: 'Quy trình hybrid kết hợp D5 Render và AI hậu kỳ để thử mood, vật liệu và chiều sâu hình ảnh.',
   },
@@ -42,7 +42,7 @@ const projectCopy = [
 const timeline = [
   ['2017', 'Đại học Kiến Trúc TP.HCM'],
   ['2021', 'Thiết kế & Diễn họa'],
-  ['2023', 'Ứng dụng AI vào visual workflow'],
+  ['2023', 'Ứng dụng AI vào quy trình diễn họa'],
   ['2025', 'Xây dựng VTARCH'],
   ['2026', 'Kiến trúc + công nghệ AI'],
 ];
@@ -50,13 +50,13 @@ const timeline = [
 const labItems = [
   ['AI CGI', 'Tăng tốc thử mood, ánh sáng và vật liệu trước khi đi vào render chính.'],
   ['GPT cho kiến trúc', 'Hỗ trợ phân tích brief, cấu trúc thuyết minh và phát triển hướng trình bày.'],
-  ['Workflow Automation', 'Tự động hóa các bước lặp lại trong xử lý hình ảnh và hồ sơ visual.'],
+  ['Tự động hóa quy trình', 'Rút gọn các bước lặp lại trong xử lý hình ảnh và hồ sơ trình bày.'],
 ];
 
 const services = [
-  ['Visual', 'Diễn họa kiến trúc, nội thất, ngoại thất, animation và hậu kỳ hình ảnh.'],
-  ['Design', 'Visual direction, concept không gian, moodboard vật liệu và góc nhìn trình bày.'],
-  ['Technology', 'AI CGI, GPT architecture, workflow AI và công cụ tự động hóa riêng.'],
+  ['Hình ảnh', 'Diễn họa kiến trúc, nội thất, ngoại thất, animation và hậu kỳ hình ảnh.'],
+  ['Thiết kế', 'Định hướng thị giác, concept không gian, moodboard vật liệu và góc nhìn trình bày.'],
+  ['Công nghệ', 'AI CGI, GPT cho kiến trúc, quy trình AI và công cụ tự động hóa riêng.'],
 ];
 
 const getProject = (entry) => ({
@@ -116,7 +116,7 @@ const Home = () => {
             </h1>
             <p>
               Kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển hình ảnh kiến trúc, nội thất và concept
-              không gian bằng tư duy thiết kế, D5 Render và workflow AI tinh gọn.
+              không gian bằng tư duy thiết kế, D5 Render và quy trình AI tinh gọn.
             </p>
             <div className="cinematic-hero-actions">
               <Link to="/portfolio">Xem dự án</Link>
@@ -131,12 +131,12 @@ const Home = () => {
               <article>
                 <span>02</span>
                 <strong>100+</strong>
-                <em>Dự án visual</em>
+                <em>Dự án hình ảnh</em>
               </article>
               <article>
                 <span>03</span>
                 <strong>AI</strong>
-                <em>CGI workflow</em>
+                <em>Quy trình CGI</em>
               </article>
             </div>
           </Reveal>
@@ -148,7 +148,7 @@ const Home = () => {
             <div className="reference-portrait-caption">
               <span>Hồ sơ</span>
               <strong>Nguyễn Văn Thanh</strong>
-              <em>Architecture Visualization / AI CGI</em>
+              <em>Diễn họa kiến trúc / AI CGI</em>
             </div>
           </Reveal>
         </div>
@@ -160,11 +160,11 @@ const Home = () => {
         </Reveal>
         <Reveal className="cinematic-about-copy" delay={100}>
           <span className="cinematic-kicker">Hồ sơ</span>
-          <h2>Nguyễn Văn Thanh, kiến trúc sư phát triển hình ảnh kiến trúc và workflow AI.</h2>
+          <h2>Nguyễn Văn Thanh, kiến trúc sư phát triển hình ảnh kiến trúc và quy trình AI.</h2>
           <p>
             VTARCH là không gian lưu trữ các nghiên cứu hình ảnh, diễn họa nội thất, diễn họa ngoại thất
-            và thử nghiệm AI CGI. Mỗi dự án được tiếp cận bằng tư duy kiến trúc trước, sau đó mới đến
-            công cụ render, hậu kỳ và tự động hóa.
+            và thử nghiệm AI CGI. Mỗi dự án được phát triển từ tư duy kiến trúc, kết hợp render, hậu kỳ
+            và các công cụ tự động hóa phù hợp.
           </p>
           <div className="cinematic-timeline">
             {timeline.map(([year, text]) => (
@@ -180,7 +180,7 @@ const Home = () => {
       <section className="section-shell cinematic-works" id="projects">
         <Reveal className="cinematic-section-title">
           <span>Dự án tiêu biểu</span>
-          <h2>Dự án được trình bày như một hệ khung hình, tối giản nhưng có chiều sâu chuyển động.</h2>
+          <h2>Những dự án đại diện cho cách VTARCH xử lý ánh sáng, vật liệu và câu chuyện không gian.</h2>
         </Reveal>
 
         <div className="cinematic-work-stage">
@@ -218,7 +218,7 @@ const Home = () => {
         <div className="section-shell">
           <Reveal className="cinematic-section-title">
             <span>Năng lực</span>
-            <h2>Visual trước, công nghệ sau. Công nghệ chỉ xuất hiện khi nó làm hình ảnh tốt hơn.</h2>
+            <h2>Năng lực được tổ chức quanh hình ảnh kiến trúc, tư duy thiết kế và công nghệ hỗ trợ.</h2>
           </Reveal>
           <div className="cinematic-service-grid">
             {services.map(([title, desc], idx) => (
@@ -238,12 +238,12 @@ const Home = () => {
         <div className="section-shell cinematic-lab-inner">
           <Reveal className="cinematic-lab-heading">
             <span>AI Lab</span>
-            <h2>Không phải hiệu ứng phô trương. Là lớp tăng tốc phía sau một workflow kiến trúc.</h2>
+            <h2>AI Lab phát triển các thử nghiệm giúp quy trình diễn họa nhanh hơn và rõ ý tưởng hơn.</h2>
           </Reveal>
 
           <Reveal className="cinematic-lab-visual" delay={80} variant="scale">
-            <img src={IMAGES.projectAIJapandiModern} alt="AI CGI visual workflow" loading="eager" decoding="async" />
-            <img src={IMAGES.compareRender} alt="D5 Render lighting workflow" loading="eager" decoding="async" />
+            <img src={IMAGES.projectAIJapandiModern} alt="Quy trình AI CGI" loading="eager" decoding="async" />
+            <img src={IMAGES.compareRender} alt="Quy trình ánh sáng D5 Render" loading="eager" decoding="async" />
           </Reveal>
 
           <div className="cinematic-lab-list">
@@ -263,7 +263,7 @@ const Home = () => {
       <section className="section-shell cinematic-journal">
         <Reveal className="cinematic-section-title">
           <span>Góc nhìn</span>
-          <h2>Ghi chú nghề nghiệp về render, AI và workflow thiết kế.</h2>
+          <h2>Góc nhìn chuyên môn về render, AI và quy trình thiết kế.</h2>
         </Reveal>
         <div className="cinematic-journal-grid">
           {INSIGHTS.slice(0, 3).map((post, idx) => (
