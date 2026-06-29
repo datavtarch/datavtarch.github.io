@@ -1,0 +1,78 @@
+.skip-link {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 100000;
+  transform: translateY(-160%);
+  border: 1px solid var(--accent);
+  background: var(--bg-color);
+  color: var(--text-main);
+  padding: 12px 16px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus {
+  outline: none;
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.icon-button:focus-visible,
+.project-card:focus-visible,
+.editorial-project:focus-visible,
+.filter-bar button:focus-visible,
+.btn-accent:focus-visible,
+.btn-outline-luxury:focus-visible,
+.text-link-large:focus-visible,
+.text-link-small:focus-visible {
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.mobile-menu[aria-hidden="true"] a,
+.mobile-menu[aria-hidden="true"] button {
+  visibility: hidden;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .project-card:hover,
+  .luxury-card:hover,
+  .editorial-project:hover img,
+  .project-card:hover .project-card-media img,
+  .project-card:hover .project-card-icon,
+  .btn-accent:hover,
+  .btn-outline-luxury:hover {
+    transform: none !important;
+  }
+}
