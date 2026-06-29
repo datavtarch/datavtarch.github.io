@@ -29,6 +29,7 @@ export const IMAGES = {
 Object.assign(IMAGES, {
   portrait: getAssetPath('/projects/profile-nguyen-van-thanh.webp'),
   projectDaLatHouse: getAssetPath('/projects/sketchup-d5-render-da-lat-house.webp'),
+  projectDaLatHouseInterior: getAssetPath('/pdf-pages/sketchup-d5-render-du-an-thiet-ke-da-lat-house/page-04.webp'),
   storeJapandi: getAssetPath('/projects/ai-phong-cach-japandi.webp'),
   storeIndochine: getAssetPath('/projects/ai-phong-cach-indochine.webp'),
   projectAIJapandiModern: getAssetPath('/projects/ai-phong-cach-japandi-hien-dai.webp'),
@@ -425,7 +426,7 @@ export const INSIGHTS = [
     title: 'Quy trình thiết kế: từ brief đến bộ ảnh thuyết phục',
     category: 'Quy trình thiết kế',
     date: '2026',
-    image: IMAGES.projectDaLatHouse,
+    image: IMAGES.projectDaLatHouseInterior,
     excerpt: 'Quy trình giúp studio kiểm soát thời gian, chất lượng và câu chuyện hình ảnh.',
   },
   {
