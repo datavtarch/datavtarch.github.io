@@ -7947,6 +7947,74 @@ body .mobile-menu .nav-link.is-active::after {
   --type-body: 1rem;
 }
 
+/* ========================================================
+   FINAL UI PASS: NAVIGATION + PROJECT CARDS
+   ======================================================== */
+
+:root {
+  --refined-radius: 30px;
+  --refined-hover: cubic-bezier(0.17, 0.84, 0.44, 1);
+}
+
+.site-nav .nav-link {
+  border-radius: 999px;
+  padding: 8px 13px;
+  margin: 0 2px;
+  transition: color 0.22s var(--refined-hover), background-color 0.22s var(--refined-hover);
+}
+
+.site-nav .nav-link:hover {
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.site-nav .nav-link.is-active {
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.site-nav .nav-link::after {
+  display: none;
+}
+
+.site-actions .icon-button {
+  border-radius: 12px;
+}
+
+body .mobile-menu .nav-link {
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 72%, transparent);
+  background: color-mix(in srgb, var(--panel-color) 52%, transparent);
+  padding: 0 20px;
+  transition: transform 0.2s var(--refined-hover), background-color 0.2s var(--refined-hover);
+}
+
+body .mobile-menu .nav-link:hover,
+body .mobile-menu .nav-link.is-active {
+  transform: translateX(4px);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.editorial-portfolio-v2 .project-card {
+  border-radius: var(--refined-radius) !important;
+}
+
+.editorial-portfolio-v2 .project-card-media {
+  border-radius: calc(var(--refined-radius) - 6px) !important;
+}
+
+.project-card:hover,
+.editorial-portfolio-v2 .project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--border-color));
+}
+
+@media (hover: hover) {
+  .project-card:hover,
+  .editorial-portfolio-v2 .project-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
 .cinematic-hero h1.motion-title,
 .editorial-home-v2 .cinematic-hero h1.motion-title,
 .page-hero-minimal h1,
