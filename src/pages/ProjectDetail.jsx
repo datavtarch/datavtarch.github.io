@@ -42,7 +42,7 @@ const ProjectDetail = () => {
   const nextProject = PROJECTS_DATA[(projectIndex + 1) % PROJECTS_DATA.length];
 
   return (
-    <main className="page-wrap project-detail-page">
+    <main className="page-wrap project-detail-page project-detail-editorial-v2">
       <section className="section-shell project-detail-hero">
         <Link to="/portfolio" className="project-detail-back">
           <ArrowLeft size={17} />
@@ -93,8 +93,15 @@ const ProjectDetail = () => {
           <span>{gallery.length} ảnh từ PDF</span>
         </div>
 
-        {gallery.map((image, index) => (
-          <figure key={image} className="project-detail-frame">
+        {gallery.map((image, index) => {
+          const frameClass = index % 6 === 0
+            ? 'is-wide'
+            : index % 6 === 3
+              ? 'is-offset'
+              : 'is-pair';
+
+          return (
+            <figure key={image} className={`project-detail-frame ${frameClass}`}>
             <img
               src={image}
               alt={`${project.title} - trang ${index + 1}`}
@@ -106,7 +113,8 @@ const ProjectDetail = () => {
               <strong>{project.title}</strong>
             </figcaption>
           </figure>
-        ))}
+          );
+        })}
       </section>
 
       {project.pdfLink && (

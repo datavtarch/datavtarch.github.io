@@ -97,7 +97,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="cinematic-home motion-ready" ref={homeRef}>
+    <div className="cinematic-home editorial-home-v2 motion-ready" ref={homeRef}>
       <div className="motion-spotlight" aria-hidden="true" />
       <div className="motion-scanline" aria-hidden="true" />
       <section className="cinematic-hero">
@@ -121,6 +121,19 @@ const Home = () => {
             <div className="cinematic-hero-actions">
               <Link to="/portfolio">Xem dự án</Link>
               <Link to="/contact">Liên hệ</Link>
+            </div>
+            <div className="editorial-hero-plates" aria-label="Dự án nổi bật">
+              {projects.slice(0, 2).map((project) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  onClick={() => navigate(getProjectDetailPath(project))}
+                >
+                  <img src={getProjectCover(project)} alt={project.title} loading="eager" decoding="async" />
+                  <span>{project.type}</span>
+                  <strong>{project.title}</strong>
+                </button>
+              ))}
             </div>
             <div className="cinematic-hero-stats">
               <article>
@@ -152,6 +165,19 @@ const Home = () => {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      <section className="section-shell editorial-manifesto">
+        <Reveal>
+          <span className="cinematic-kicker">Định hướng</span>
+          <h2>Hình ảnh kiến trúc cần đủ chính xác để trình bày, đủ cảm xúc để người xem nhớ.</h2>
+        </Reveal>
+        <Reveal delay={90}>
+          <p>
+            VTARCH xây dựng portfolio như một chuỗi hồ sơ hình ảnh: ít chữ, nhiều không gian, nhấn vào ánh sáng,
+            vật liệu và cách một ý tưởng kiến trúc được kể bằng hình ảnh.
+          </p>
+        </Reveal>
       </section>
 
       <section className="cinematic-about section-shell">

@@ -27,7 +27,7 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="page-wrap portfolio-page">
+    <div className="page-wrap portfolio-page editorial-portfolio-v2">
       <section className="section-shell page-hero-minimal">
         <Reveal className="portfolio-hero-copy">
           <p className="eyebrow">Dự án</p>
@@ -60,7 +60,7 @@ const Portfolio = () => {
           return (
             <Reveal key={project.id} delay={idx * 55}>
               <button
-                className="project-card"
+                className={`project-card ${idx % 5 === 0 ? 'is-featured' : ''}`}
                 onClick={() => handleProjectClick(project)}
                 aria-label={`Xem dự án ${project.title}`}
               >
@@ -76,14 +76,14 @@ const Portfolio = () => {
                 <div className="project-card-copy">
                   <div className="project-card-meta">
                     <span>{project.year}</span>
-                    <span>{project.location}</span>
-                    <span>{galleryCount} ảnh PDF</span>
+                    <span>{project.type}</span>
+                    <span>{galleryCount} ảnh</span>
                   </div>
                   <h2>{project.title}</h2>
-                  <p>{project.desc}</p>
+                  <p>{project.location}</p>
                   <div className="project-card-tags">
-                    <span>{project.type}</span>
                     <span>{project.services[0]}</span>
+                    <span>{project.category?.[0] || 'Hồ sơ hình ảnh'}</span>
                   </div>
                 </div>
                 <ArrowUpRight size={22} className="project-card-icon" />
