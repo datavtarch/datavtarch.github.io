@@ -257,9 +257,9 @@ const ProjectDetail = () => {
                   <img
                     src={image}
                     alt={`${project.title} - ${caption.toLowerCase()}`}
-                    loading={globalIndex < 2 ? 'eager' : 'lazy'}
+                    loading="eager"
                     decoding="async"
-                    fetchPriority={globalIndex === 0 ? 'high' : 'auto'}
+                    fetchPriority={globalIndex < 4 ? 'high' : 'low'}
                   />
                   <figcaption>
                     <span>{String(globalIndex + 1).padStart(2, '0')}</span>
