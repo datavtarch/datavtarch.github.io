@@ -20,7 +20,7 @@ export default function Contact() {
       title: 'Liên hệ VTARCH | Brief diễn họa kiến trúc & AI CGI',
       description:
         'Liên hệ VTARCH để gửi brief diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI hoặc xây dựng workflow AI cho studio thiết kế.',
-      path: '/#/contact',
+      path: '/contact',
     });
   }, []);
 

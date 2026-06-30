@@ -18,7 +18,7 @@ export default function AiLab() {
       title: 'AI Lab cho kiến trúc, nội thất & workflow thiết kế | VTARCH',
       description:
         'AI Lab của VTARCH thử nghiệm AI CGI, GPT cho kiến trúc, GPT cho nội thất, workflow AI và tự động hóa công việc thiết kế.',
-      path: '/#/ai-lab',
+      path: '/ai-lab',
       image: IMAGES.projectAIJapandiModern,
     });
   }, []);

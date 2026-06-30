@@ -37,7 +37,7 @@ export default function Services() {
       title: 'Dịch vụ diễn họa kiến trúc, AI CGI & D5 Render | VTARCH',
       description:
         'Dịch vụ VTARCH gồm diễn họa ngoại thất, diễn họa nội thất, D5 Render, AI CGI, shop drawing nội thất, AI Product Content và GPT cho kiến trúc.',
-      path: '/#/services',
+      path: '/services',
     });
   }, []);
 

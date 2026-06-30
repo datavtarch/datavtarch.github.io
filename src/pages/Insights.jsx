@@ -13,7 +13,7 @@ export default function Insights() {
       title: 'Góc nhìn về AI, D5 Render & diễn họa kiến trúc | VTARCH',
       description:
         'Góc nhìn chuyên môn của VTARCH về AI trong kiến trúc, D5 Render, workflow thiết kế, diễn họa kiến trúc và case study dự án.',
-      path: '/#/journal',
+      path: '/journal',
       image: featuredPost.image,
     });
   }, [featuredPost.image]);

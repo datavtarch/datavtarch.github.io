@@ -110,7 +110,7 @@ const ProjectDetail = () => {
       setPageSeo({
         title: 'Dự án | VTARCH',
         description: 'Không tìm thấy dự án trong thư viện VTARCH.',
-        path: '/#/portfolio',
+        path: '/portfolio',
       });
       return;
     }
@@ -119,7 +119,7 @@ const ProjectDetail = () => {
     setPageSeo({
       title: `${project.title} | VTARCH`,
       description: project.story?.overview || project.desc,
-      path: `/#/portfolio/${project.id}`,
+      path: `/portfolio/${project.id}`,
       image: coverImage,
       type: 'article',
       schema: projectSchema(project, coverImage),

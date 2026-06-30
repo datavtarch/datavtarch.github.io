@@ -28,7 +28,7 @@ const GraduationProject = () => {
       title: 'Trung tâm Thiền Làng Mai Đà Lạt | VTARCH',
       description:
         'Đồ án tốt nghiệp kiến trúc sư của Nguyễn Văn Thanh, khai thác không gian thiền định, địa hình và cảnh quan Đà Lạt.',
-      path: '/#/graduation-project',
+      path: '/graduation-project',
       image: IMAGES.projectDoAn,
       type: 'article',
     });

@@ -20,7 +20,7 @@ const Portfolio = () => {
       title: 'Dự án diễn họa kiến trúc | VTARCH',
       description:
         'Thư viện dự án VTARCH gồm diễn họa kiến trúc, diễn họa nội thất, D5 Render, AI CGI và ảnh chuyển trực tiếp từ hồ sơ PDF dự án.',
-      path: '/#/portfolio',
+      path: '/portfolio',
     });
   }, []);
 

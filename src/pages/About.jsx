@@ -74,7 +74,7 @@ const About = () => {
       title: 'Giới thiệu Nguyễn Văn Thanh | VTARCH',
       description:
         'Nguyễn Văn Thanh là kiến trúc sư Đại học Kiến Trúc TP.HCM, phát triển VTARCH ở giao điểm giữa kiến trúc, diễn họa và công nghệ AI.',
-      path: '/#/about',
+      path: '/about',
       schema: personSchema,
     });
   }, []);

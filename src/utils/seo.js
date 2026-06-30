@@ -130,7 +130,7 @@ export const projectSchema = (project, image) => ({
   },
   dateCreated: project.year,
   locationCreated: project.location,
-  url: absoluteUrl(`/#/portfolio/${project.id}`),
+  url: absoluteUrl(`/portfolio/${project.id}`),
   image: absoluteUrl(image),
   genre: project.type,
   keywords: [...(project.tags || []), ...(project.category || [])].join(', '),

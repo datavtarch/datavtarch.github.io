@@ -17,7 +17,7 @@ const Store = () => {
       title: 'Tài nguyên D5 Render & workflow diễn họa | VTARCH',
       description:
         'Tài nguyên phụ của VTARCH gồm vật liệu, thiết lập ánh sáng, D5 Render và quy trình tham khảo cho người học diễn họa nội thất.',
-      path: '/#/store',
+      path: '/store',
     });
   }, []);
 

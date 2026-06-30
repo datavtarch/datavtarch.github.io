@@ -2,16 +2,15 @@ export function BrandMark({ className = '', title = 'VTARCH' }) {
   return (
     <svg
       className={`brand-mark-svg ${className}`}
-      viewBox="0 0 64 72"
+      viewBox="0 0 72 72"
       role="img"
       aria-label={title}
     >
       <title>{title}</title>
-      <rect className="brand-mark-frame" x="1" y="1" width="62" height="70" />
-      <path className="brand-mark-fill" d="M16 58V14h10v44H16Z" />
-      <path className="brand-mark-fill" d="M31 58V14h7.5L50 58H40L36 40.5V58h-5Z" />
-      <path className="brand-mark-accent" d="M16 23H48" />
-      <path className="brand-mark-accent" d="M16 51H48" />
+      <path className="brand-mark-mass" d="M13 59V29L25 22V59H13Z" />
+      <path className="brand-mark-mass" d="M31 59V11L49 23V42L40 51V29L37 27V59H31Z" />
+      <path className="brand-mark-mass" d="M44 59V48L59 33V59H50V49L47 52V59H44Z" />
+      <path className="brand-mark-accent" d="M24 53L59 18" />
     </svg>
   );
 }

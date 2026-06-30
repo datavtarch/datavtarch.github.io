@@ -8,9 +8,36 @@ export const TiltCard = ({ children, className, onClick, style }) => (
 );
 
 export const Reveal = ({ children, className = '', delay = 0, variant = 'up' }) => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(() => (
+    typeof window === 'undefined'
+    || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    || !('IntersectionObserver' in window)
+  ));
+
+  useEffect(() => {
+    if (isVisible) return undefined;
+
+    const node = ref.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setIsVisible(true);
+        observer.disconnect();
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
     <div
-      className={`reveal-item is-visible ${className}`}
+      ref={ref}
+      className={`reveal-item ${isVisible ? 'is-visible' : ''} ${className}`}
       data-reveal-variant={variant}
       style={{ '--reveal-delay': `${delay}ms` }}
     >
