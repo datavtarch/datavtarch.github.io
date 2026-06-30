@@ -60,6 +60,14 @@ const productionCapabilities = [
   },
 ];
 
+const collaborators = [
+  ['Công Nghĩa', 'CN'],
+  ['Ngọc Phú', 'NP'],
+  ['Ngọc Diệp', 'ND'],
+  ['Văn Anh', 'VA'],
+  ['Quốc Việt', 'QV'],
+];
+
 const About = () => {
   useEffect(() => {
     setPageSeo({
@@ -191,6 +199,32 @@ const About = () => {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section-shell collaborators-section section-space">
+        <Reveal className="collaborators-heading">
+          <p className="eyebrow">Cộng sự</p>
+          <h2>Những người đồng hành trong các dự án phù hợp.</h2>
+          <p>
+            VTARCH phát triển theo mô hình linh hoạt: định hướng hình ảnh, quy trình và tiêu chuẩn được giữ nhất quán,
+            các cộng sự tham gia theo từng brief để mở rộng năng lực diễn họa, thiết kế, triển khai và nội dung.
+          </p>
+        </Reveal>
+
+        <div className="collaborators-grid" aria-label="Danh sách cộng sự VTARCH">
+          {collaborators.map(([name, initials], idx) => (
+            <Reveal key={name} delay={idx * 60}>
+              <article className="collaborator-card">
+                <div className="collaborator-mark" aria-hidden="true">{initials}</div>
+                <div>
+                  <span>{String(idx + 1).padStart(2, '0')}</span>
+                  <h3>{name}</h3>
+                  <p>Cộng sự dự án</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </section>
 
