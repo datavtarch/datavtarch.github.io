@@ -13,6 +13,9 @@ const profileFacts = [
   ['Dự án', '100+ hình ảnh và hồ sơ trình bày'],
 ];
 
+const personalIntro =
+  'Tôi mong muốn làm việc trong môi trường năng động, có áp lực đủ để phát triển, nơi tôi có thể học hỏi nhanh, tiếp thu phản hồi và đóng góp bằng tinh thần chủ động. Bên cạnh nền tảng kiến trúc - diễn họa, tôi thường tự nghiên cứu các giải pháp AI, mày mò workflow mới và bổ sung những kỹ năng cần thiết để giải quyết công việc hiệu quả hơn.';
+
 const focus = [
   'Tư duy kiến trúc trước khi dựng hình.',
   'Hình ảnh rõ vật liệu, ánh sáng và ý đồ không gian.',
@@ -82,6 +85,7 @@ const About = () => {
             hình ảnh và công nghệ. Trọng tâm là diễn họa kiến trúc, diễn họa nội thất, AI CGI và quy trình số
             cho quá trình thiết kế, sản xuất nội thất và nội dung sản phẩm.
           </p>
+          <p className="about-personal-intro">{personalIntro}</p>
           <Link to="/contact" className="btn-accent px-8 py-4 text-xs uppercase font-mono tracking-widest inline-flex items-center gap-2">
             Liên hệ hợp tác <ArrowUpRight size={15} />
           </Link>
