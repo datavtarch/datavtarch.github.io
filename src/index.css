@@ -17187,3 +17187,102 @@ body .service-page-v2 .service-groups-v2 li:last-child {
     min-height: clamp(280px, 30vw, 380px);
   }
 }
+
+/* ========================================================
+   ABOUT PAGE SOFT SHAPE + VIETNAMESE LABEL FIX
+   ======================================================== */
+
+body .about-hero .eyebrow,
+body .about-capability-heading .eyebrow,
+body .collaborators-heading .eyebrow,
+body .capability-panel-heading span,
+body .fact-grid span,
+body .production-capability-list span,
+body .collaborator-card span {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.07em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase;
+}
+
+body .about-portrait {
+  border-radius: 34px;
+  overflow: hidden;
+}
+
+body .about-portrait img {
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border-color));
+  border-radius: 34px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.24);
+}
+
+body .about-copy .btn-accent {
+  border-radius: 999px !important;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 0 16px 34px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+body .fact-grid {
+  gap: 12px;
+  border: 0;
+  background: transparent;
+}
+
+body .fact-grid > div {
+  position: relative;
+  overflow: hidden;
+  min-height: 176px;
+  border: 1px solid color-mix(in srgb, var(--border-color) 78%, transparent);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--panel-elevated) 92%, #201915), color-mix(in srgb, var(--panel-color) 88%, #101010)),
+    radial-gradient(circle at 12% 0%, rgba(199, 119, 60, 0.12), transparent 14rem);
+  padding: clamp(22px, 3vw, 30px);
+}
+
+body .fact-grid > div::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 44px;
+  height: 1px;
+  background: color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+body .fact-grid strong {
+  max-width: 12ch;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif !important;
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem) !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.06 !important;
+}
+
+[data-theme="light"] body .fact-grid > div {
+  background:
+    linear-gradient(145deg, #2d2923, #171514),
+    radial-gradient(circle at 12% 0%, rgba(199, 119, 60, 0.16), transparent 14rem);
+}
+
+[data-theme="light"] body .fact-grid strong {
+  color: #f5f5f5;
+}
+
+@media (max-width: 760px) {
+  body .about-portrait,
+  body .about-portrait img {
+    border-radius: 28px;
+  }
+
+  body .fact-grid > div {
+    min-height: 132px;
+    border-radius: 24px;
+  }
+}
